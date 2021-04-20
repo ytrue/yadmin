@@ -1,0 +1,10 @@
+spring:
+  # 环境 dev|test|prod quart定时任务
+  profiles:
+    active: dev,quartz
+  main:
+    ##当遇到同样名字的时候，是否允许覆盖注
+    allow-bean-definition-overriding: true
+  resources:
+    #这个要配置下，不然本地上传访问不到文件
+    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,classpath:/static/upload
