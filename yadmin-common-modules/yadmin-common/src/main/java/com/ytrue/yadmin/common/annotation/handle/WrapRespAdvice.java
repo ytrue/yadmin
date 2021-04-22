@@ -1,7 +1,6 @@
 package com.ytrue.yadmin.common.annotation.handle;
 
 
-import cn.hutool.core.util.ObjectUtil;
 import com.ytrue.yadmin.common.annotation.WrapResp;
 import com.ytrue.yadmin.common.response.ResponseData;
 import lombok.extern.slf4j.Slf4j;
@@ -49,9 +48,16 @@ public class WrapRespAdvice implements ResponseBodyAdvice<Object> {
             ServerHttpResponse serverHttpResponse
     ) {
         //这里要处理一下，如果返回的数据是ResponseData,就是直接返回
+        //这个怎么搞呢, 我又想返回null,又想抓到以前的数据
+
+        System.out.println(resp);
         if (resp instanceof ResponseData) {
+            log.info("1111111111");
             return resp;
+        } else {
+            log.info("222222222222");
+            return ResponseData.success(resp);
         }
-        return ResponseData.success(resp);
+
     }
 }

@@ -1,7 +1,7 @@
 package com.ytrue.yadmin.common.exeption;
 
 
-import com.ytrue.yadmin.common.response.ResponseCode1;
+import com.ytrue.yadmin.common.response.ResponseCode;
 import com.ytrue.yadmin.common.response.ResponseData;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +37,7 @@ public class GlobalExceptionHandle implements ErrorController {
     public Object error(HttpServletResponse response, WebRequest req) {
         log.info("GlobalExceptionHandle：被触发了");
         //设置200，方便前端处理
-        response.setStatus(ResponseCode1.SUCCESS.getCode());
+        response.setStatus(ResponseCode.SUCCESS.getCode());
         Map<String, Object> errorAttributes = this.errorAttributes.getErrorAttributes(req, false);
         //返回错误
         return ResponseData.

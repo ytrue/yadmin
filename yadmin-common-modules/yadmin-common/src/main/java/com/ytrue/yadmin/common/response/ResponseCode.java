@@ -8,7 +8,7 @@ import lombok.Getter;
  * @description 响应枚举
  */
 @Getter
-public enum ResponseCode1 {
+public enum ResponseCode {
 
     /**
      * 成功
@@ -46,7 +46,7 @@ public enum ResponseCode1 {
      */
     private String message;
 
-    ResponseCode1(Integer code, String message) {
+    ResponseCode(Integer code, String message) {
         this.code = code;
         this.message = message;
     }

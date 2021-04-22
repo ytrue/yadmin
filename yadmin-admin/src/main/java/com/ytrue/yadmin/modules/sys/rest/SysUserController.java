@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.ytrue.yadmin.common.annotation.AutoValid;
+import com.ytrue.yadmin.common.annotation.AutoValids;
 import com.ytrue.yadmin.common.annotation.WrapResp;
 import com.ytrue.yadmin.common.exeption.YadminException;
 import com.ytrue.yadmin.common.response.ResponseData;
@@ -16,6 +17,7 @@ import com.ytrue.yadmin.modules.sys.service.SysRoleService;
 import com.ytrue.yadmin.modules.sys.service.SysUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,7 +35,6 @@ import java.util.Objects;
 @WrapResp
 @RestController
 @RequestMapping("/sys/user")
-
 public class SysUserController {
 
     @Autowired
@@ -50,7 +51,7 @@ public class SysUserController {
      * 所有用户列表
      */
     @PostMapping("/page")
-    // @PreAuthorize("@pms.hasPermission('sys:user:page')")
+    @PreAuthorize("@pms.hasPermission('sys:user:page')")
     public IPage<SysUser> page(@RequestBody SearchModel<SysUser> searchModel) {
         return sysUserService.page(searchModel.getPage(), searchModel.getQueryModel());
     }
@@ -60,7 +61,7 @@ public class SysUserController {
      * 用户信息
      */
     @GetMapping("/info/{userId}")
-    // @PreAuthorize("@pms.hasPermission('sys:user:info')")
+    @PreAuthorize("@pms.hasPermission('sys:user:info')")
     public SysUser info(@PathVariable("userId") Long userId) {
         SysUser sysUser = sysUserService.getById(userId);
         List<Long> roleIdList = sysRoleService.listRoleIdByUserId(userId);
@@ -73,9 +74,14 @@ public class SysUserController {
      */
     @SysLog("保存用户")
     @PostMapping
-    @AutoValid(entity = SysUser.class)
+
+    //测试一下批量验证
+    @AutoValids({
+            @AutoValid(entity = SysUser.class)
+    })
     // @PreAuthorize("@pms.hasPermission('sys:user:save')")
     public void save(@RequestBody SysUser user) {
+        log.info("我被触发了----");
         String username = user.getUsername();
         SysUser dbUser = sysUserService.getOne(new LambdaQueryWrapper<SysUser>()
                 .eq(SysUser::getUsername, username));
@@ -87,10 +93,11 @@ public class SysUserController {
         sysUserService.saveUserAndUserRole(user);
     }
 
+
     @SysLog("修改用户")
     @PutMapping
     @AutoValid(entity = SysUser.class)
-    // @PreAuthorize("@pms.hasPermission('sys:user:update')")
+    @PreAuthorize("@pms.hasPermission('sys:user:update')")
     public void update(@RequestBody SysUser user) {
         String password = user.getPassword();
         SysUser dbUserNameInfo = sysUserService.getOne(new QueryWrapper<SysUser>().eq("username", user.getUsername()));
@@ -111,7 +118,7 @@ public class SysUserController {
      */
     @SysLog("删除用户")
     @DeleteMapping
-    // @PreAuthorize("@pms.hasPermission('sys:user:delete')")
+    @PreAuthorize("@pms.hasPermission('sys:user:delete')")
     public void delete(@RequestBody List<Long> userIds) {
         if (userIds.size() == 0) {
             throw new YadminException("请选择需要删除的用户");

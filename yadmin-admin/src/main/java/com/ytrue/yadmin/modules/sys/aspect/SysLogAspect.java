@@ -2,8 +2,7 @@ package com.ytrue.yadmin.modules.sys.aspect;
 
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.date.SystemClock;
-import com.alibaba.fastjson.JSON;
-
+import com.ytrue.yadmin.common.json.JsonUtil;
 import com.ytrue.yadmin.common.util.IpHelper;
 import com.ytrue.yadmin.modules.sys.model.SysLog;
 import com.ytrue.yadmin.modules.sys.service.SysLogService;
@@ -48,7 +47,8 @@ public class SysLogAspect {
 
         //请求的参数
         Object[] args = joinPoint.getArgs();
-        String params = JSON.toJSONString(args[0]);
+
+        String params = JsonUtil.toJsonString(args[0]);
         sysLogEntity.setParams(params);
 
         //设置IP地址

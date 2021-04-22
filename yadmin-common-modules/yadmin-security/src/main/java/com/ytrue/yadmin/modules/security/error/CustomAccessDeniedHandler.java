@@ -1,7 +1,7 @@
 package com.ytrue.yadmin.modules.security.error;
 
 
-import com.ytrue.yadmin.common.response.ResponseCode1;
+import com.ytrue.yadmin.common.response.ResponseCode;
 import com.ytrue.yadmin.common.response.ResponseData;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.AccessDeniedException;
@@ -24,7 +24,7 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException e) {
 
         ResponseData.jsonOut(response,
-                ResponseData.fail(ResponseCode1.NOT_PERMISSION.getCode(), ResponseCode1.NOT_PERMISSION.getMessage()));
+                ResponseData.fail(ResponseCode.NOT_PERMISSION.getCode(), ResponseCode.NOT_PERMISSION.getMessage()));
     }
 
 }

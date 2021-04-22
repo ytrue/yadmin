@@ -1,0 +1,20 @@
+工具类整合了Jackson、Gson和Fastjson库并统一API
+
+初始化时可以指定使用的Json库
+JsonUtil.initJson(JsonEnum.FASTJSON);
+
+解析 list
+
+ String json = "[1, 2, 4, 5]";
+ List result = JsonUtil.toList(json);
+ ...
+ json = "[{"id": 1,"username": "yidasanqian"},{"id": 2,"username": "yidasanqian2"}]"
+ TypeReference<List<User>> typeReference = new TypeReference<List<User>>() {};
+ List<User> result = JsonUtil.toList(json, typeReference.getType());
+
+
+解析 map
+
+ String json = "{"id":1, "username":"yidasanqian"}"
+ TypeReference<Map<String, Object>> typeReference = new TypeReference<Map<String, Object>>() {};
+ Map result = JsonUtil.toMap(json, typeReference.getType());

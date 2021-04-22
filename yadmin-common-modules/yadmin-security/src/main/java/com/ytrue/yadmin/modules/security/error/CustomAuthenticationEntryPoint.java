@@ -1,7 +1,7 @@
 package com.ytrue.yadmin.modules.security.error;
 
 
-import com.ytrue.yadmin.common.response.ResponseCode1;
+import com.ytrue.yadmin.common.response.ResponseCode;
 import com.ytrue.yadmin.common.response.ResponseData;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.AuthenticationException;
@@ -25,6 +25,6 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException e) {
         ResponseData.jsonOut(response,
-                ResponseData.fail(ResponseCode1.NOT_LOGIN.getCode(), ResponseCode1.NOT_LOGIN.getMessage()));
+                ResponseData.fail(ResponseCode.NOT_LOGIN.getCode(), ResponseCode.NOT_LOGIN.getMessage()));
     }
 }

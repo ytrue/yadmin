@@ -1,6 +1,6 @@
 package com.ytrue.yadmin.common.http;
 
-import com.alibaba.fastjson.JSONObject;
+import com.ytrue.yadmin.common.json.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.ReadListener;
@@ -15,9 +15,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author  ytrue
+ * @author ytrue
  * @description 多次读写BODY用HTTP REQUEST - 解决流只能读一次问题
- * @date  2019/10/12 15:42
+ * @date 2019/10/12 15:42
  */
 @Slf4j
 public class MultiReadHttpServletRequest extends HttpServletRequestWrapper {
@@ -121,7 +121,8 @@ public class MultiReadHttpServletRequest extends HttpServletRequestWrapper {
         } catch (Exception e) {
             log.error("请求参数转换错误!", e);
         }
-        return JSONObject.toJSONString(bodyMap);
+
+        return JsonUtil.toJsonString(bodyMap);
     }
 
     /**
