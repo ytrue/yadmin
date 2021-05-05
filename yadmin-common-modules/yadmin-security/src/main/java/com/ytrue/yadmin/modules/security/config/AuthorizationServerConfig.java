@@ -90,7 +90,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 //配置client-secret
                 .secret(passwordEncoder.encode("112233"))
                 //配置访问token的有效期
-                .accessTokenValiditySeconds(6000)
+                .accessTokenValiditySeconds(864000)
                 //配置刷新token的有效期
                 .refreshTokenValiditySeconds(864000)
                 //配置申请的权限范围

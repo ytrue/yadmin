@@ -20,10 +20,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
  */
 
 @Slf4j
-@ControllerAdvice(basePackages = {
-        "com.ytrue.yadmin.modules.sys.rest",
-        "com.ytrue.yadmin.modules.security.rest",
-})
+@ControllerAdvice(basePackages = {"com.ytrue.yadmin",})
 public class WrapRespAdvice implements ResponseBodyAdvice<Object> {
 
     @Override
@@ -47,15 +44,9 @@ public class WrapRespAdvice implements ResponseBodyAdvice<Object> {
             ServerHttpRequest serverHttpRequest,
             ServerHttpResponse serverHttpResponse
     ) {
-        //这里要处理一下，如果返回的数据是ResponseData,就是直接返回
-        //这个怎么搞呢, 我又想返回null,又想抓到以前的数据
-
-        System.out.println(resp);
         if (resp instanceof ResponseData) {
-            log.info("1111111111");
             return resp;
         } else {
-            log.info("222222222222");
             return ResponseData.success(resp);
         }
 

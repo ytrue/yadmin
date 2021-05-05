@@ -21,7 +21,7 @@ import java.io.PrintWriter;
 @AllArgsConstructor
 public class ResponseData<T> {
 
-    private Integer status;
+    private Integer code;
 
     private String message;
 
@@ -41,7 +41,7 @@ public class ResponseData<T> {
     public static <T> ResponseData<T> success() {
         ResponseData<T> resp = new ResponseData<>(null);
         //操作成功
-        resp.setStatus(ResponseCode.SUCCESS.getCode());
+        resp.setCode(ResponseCode.SUCCESS.getCode());
         resp.setMessage(ResponseCode.SUCCESS.getMessage());
         return resp;
     }
@@ -56,7 +56,7 @@ public class ResponseData<T> {
     public static <T> ResponseData<T> success(T data) {
         ResponseData<T> resp = new ResponseData<T>(data);
         //操作成功
-        resp.setStatus(ResponseCode.SUCCESS.getCode());
+        resp.setCode(ResponseCode.SUCCESS.getCode());
         resp.setMessage(ResponseCode.SUCCESS.getMessage());
         return resp;
     }
@@ -72,24 +72,24 @@ public class ResponseData<T> {
     public static <T> ResponseData<T> success(String message, T data) {
         ResponseData<T> resp = new ResponseData<T>(data);
         //操作成功
-        resp.setStatus(ResponseCode.SUCCESS.getCode());
+        resp.setCode(ResponseCode.SUCCESS.getCode());
         resp.setMessage(message);
         return resp;
     }
 
     /**
-     * 成功返回，自定义status, message, data
+     * 成功返回，自定义code, message, data
      *
-     * @param status
+     * @param code
      * @param message
      * @param data
      * @param <T>
      * @return
      */
-    public static <T> ResponseData<T> success(Integer status, String message, T data) {
+    public static <T> ResponseData<T> success(Integer code, String message, T data) {
         ResponseData<T> resp = new ResponseData<>(data);
         //操作成功
-        resp.setStatus(status);
+        resp.setCode(code);
         resp.setMessage(message);
         return resp;
     }
@@ -103,7 +103,7 @@ public class ResponseData<T> {
     public static <T> ResponseData<T> fail() {
         ResponseData<T> resp = new ResponseData<>(null);
         //操作失败
-        resp.setStatus(ResponseCode.EXCEPTION.getCode());
+        resp.setCode(ResponseCode.EXCEPTION.getCode());
         resp.setMessage(ResponseCode.EXCEPTION.getMessage());
         return resp;
     }
@@ -118,40 +118,40 @@ public class ResponseData<T> {
     public static <T> ResponseData<T> fail(String message) {
         ResponseData<T> resp = new ResponseData<>();
         //操作失败
-        resp.setStatus(ResponseCode.EXCEPTION.getCode());
+        resp.setCode(ResponseCode.EXCEPTION.getCode());
         resp.setMessage(message);
         return resp;
     }
 
 
     /**
-     * 失败返回,自定义 message,status
+     * 失败返回,自定义 message,code
      *
-     * @param status
+     * @param code
      * @param message
      * @param <T>
      * @return
      */
-    public static <T> ResponseData<T> fail(Integer status, String message) {
+    public static <T> ResponseData<T> fail(Integer code, String message) {
         ResponseData<T> resp = new ResponseData<>();
         //操作失败
-        resp.setStatus(status);
+        resp.setCode(code);
         resp.setMessage(message);
         return resp;
     }
 
     /**
-     * 失败返回,自定义 message,status,data
+     * 失败返回,自定义 message,code,data
      *
-     * @param status
+     * @param code
      * @param message
      * @param <T>
      * @return
      */
-    public static <T> ResponseData<T> fail(Integer status, String message, T data) {
+    public static <T> ResponseData<T> fail(Integer code, String message, T data) {
         ResponseData<T> resp = new ResponseData<>(data);
         //操作失败
-        resp.setStatus(status);
+        resp.setCode(code);
         resp.setMessage(message);
         return resp;
     }

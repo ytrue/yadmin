@@ -10,10 +10,10 @@ import lombok.Data;
 @Data
 public class Field {
 
-    private String name;
+    private String column;
 
     private Object value;
 
-    private QueryMethod queryMethod;
+    private QueryMethod type;
 
 }

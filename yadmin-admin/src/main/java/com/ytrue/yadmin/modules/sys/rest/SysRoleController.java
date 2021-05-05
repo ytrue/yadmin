@@ -8,6 +8,7 @@ import com.ytrue.yadmin.modules.sys.annotation.SysLog;
 import com.ytrue.yadmin.modules.sys.model.SysRole;
 import com.ytrue.yadmin.modules.sys.service.SysMenuService;
 import com.ytrue.yadmin.modules.sys.service.SysRoleService;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author ytrue
@@ -44,9 +46,11 @@ public class SysRoleController {
     /**
      * 角色列表
      */
+    @SneakyThrows
     @GetMapping("/list")
     @PreAuthorize("@pms.hasPermission('sys:role:list')")
     public List<SysRole> list() {
+        TimeUnit.SECONDS.sleep(3);
         return sysRoleService.list();
     }
 

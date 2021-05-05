@@ -21,11 +21,11 @@ public class SearchModel<T> {
     /**
      * 当前页码，默认是1
      */
-    private Integer pageIndex = 1;
+    private Integer currentPage = 1;
     /**
      * 每页取多少条，默认是10
      */
-    private Integer pageSize = 10;
+    private Integer limit = 10;
     /**
      * 字段条件
      */
@@ -46,7 +46,7 @@ public class SearchModel<T> {
      * @return
      */
     public IPage<T> getPage() {
-        IPage<T> page = new Page<>(pageIndex, pageSize);
+        IPage<T> page = new Page<>(currentPage, limit);
         if (!StrUtil.hasEmpty(orderField)) {
             OrderItem orderItem = new OrderItem();
             orderItem.setAsc(isAsc);
@@ -66,12 +66,12 @@ public class SearchModel<T> {
         //要判断一下是否为空，不然会报空指针异常
         if (CollUtil.isNotEmpty(fields)) {
             fields.forEach(field -> {
-                switch (field.getQueryMethod()) {
+                switch (field.getType()) {
                     case eq:
-                        queryWrapper.eq(true, field.getName(), field.getValue());
+                        queryWrapper.eq(true, field.getColumn(), field.getValue());
                         break;
                     case like:
-                        queryWrapper.like(true, field.getName(), field.getValue());
+                        queryWrapper.like(true, field.getColumn(), field.getValue());
                         break;
                     default:
                         throw new YadminException("非法操作");

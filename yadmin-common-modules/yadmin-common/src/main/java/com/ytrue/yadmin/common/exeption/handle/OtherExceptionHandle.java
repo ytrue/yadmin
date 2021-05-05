@@ -1,6 +1,8 @@
-package com.ytrue.yadmin.common.exeption;
+package com.ytrue.yadmin.common.exeption.handle;
 
 
+import com.ytrue.yadmin.common.exeption.AutoValidException;
+import com.ytrue.yadmin.common.exeption.YadminException;
 import com.ytrue.yadmin.common.json.JsonUtil;
 import com.ytrue.yadmin.common.response.ResponseCode;
 import com.ytrue.yadmin.common.response.ResponseData;

@@ -1,10 +1,11 @@
-package com.ytrue.yadmin.common.exeption;
+package com.ytrue.yadmin.common.exeption.handle;
 
 
 import com.ytrue.yadmin.common.response.ResponseCode;
 import com.ytrue.yadmin.common.response.ResponseData;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.error.ErrorAttributeOptions;
 import org.springframework.boot.web.servlet.error.ErrorAttributes;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.stereotype.Controller;
@@ -39,6 +40,9 @@ public class GlobalExceptionHandle implements ErrorController {
         //设置200，方便前端处理
         response.setStatus(ResponseCode.SUCCESS.getCode());
         Map<String, Object> errorAttributes = this.errorAttributes.getErrorAttributes(req, false);
+
+        System.out.println(req);
+
         //返回错误
         return ResponseData.
                 fail((Integer) errorAttributes.get("status"),

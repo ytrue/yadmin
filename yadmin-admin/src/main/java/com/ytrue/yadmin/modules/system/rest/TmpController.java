@@ -17,7 +17,7 @@ import java.util.Map;
 public class TmpController {
 
 
-    @GetMapping("store/info")
+    @GetMapping("user/info")
     public Map<String, String> info() {
         HashMap<String, String> stringHashMap = new HashMap<>();
 
