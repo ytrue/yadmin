@@ -5,7 +5,9 @@ import com.ytrue.yadmin.common.annotation.WrapResp;
 import com.ytrue.yadmin.common.search.SearchModel;
 import com.ytrue.yadmin.modules.sys.model.SysLog;
 import com.ytrue.yadmin.modules.sys.service.SysLogService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,16 +21,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/sys/log")
 @WrapResp
+@AllArgsConstructor
 public class SysLogController {
 
-    @Autowired
-    private SysLogService sysLogService;
+    private final SysLogService sysLogService;
 
     /**
      * 列表
+     *
+     * @param sysLogSearchModel
+     * @return
      */
     @PostMapping("/page")
-    // @PreAuthorize("@pms.hasPermission('sys:log:page')")
+    @PreAuthorize("@pms.hasPermission('sys:log:page')")
     public IPage<SysLog> page(@RequestBody SearchModel<SysLog> sysLogSearchModel) {
         return sysLogService.page(
                 sysLogSearchModel.getPage(),

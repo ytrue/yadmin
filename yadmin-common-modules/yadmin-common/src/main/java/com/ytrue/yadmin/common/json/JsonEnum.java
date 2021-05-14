@@ -17,5 +17,5 @@ public enum JsonEnum {
     /**
      * gson
      */
-    GSON;
+    GSON
 }

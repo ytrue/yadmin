@@ -29,6 +29,9 @@ public class FileUtil extends cn.hutool.core.io.FileUtil {
 
     /**
      * 文件大小转换
+     *
+     * @param size
+     * @return
      */
     public static String getSize(long size) {
         String resultSize;

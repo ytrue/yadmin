@@ -20,7 +20,6 @@ import java.util.Map;
  * @description 自定义token返回格式
  */
 @RestController
-@CrossOrigin
 @RequestMapping("oauth")
 @Slf4j
 @WrapResp

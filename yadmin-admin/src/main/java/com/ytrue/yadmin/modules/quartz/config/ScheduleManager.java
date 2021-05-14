@@ -15,12 +15,16 @@ import org.springframework.stereotype.Component;
 @Component
 @AllArgsConstructor
 public class ScheduleManager {
+
     private final static String JOB_NAME = "TASK_";
 
     private final Scheduler scheduler;
 
     /**
      * 获取触发器key
+     *
+     * @param scheduleJob
+     * @return
      */
     private TriggerKey getTriggerKey(ScheduleJob scheduleJob) {
         return TriggerKey.triggerKey(JOB_NAME + scheduleJob.getJobId());
@@ -28,6 +32,9 @@ public class ScheduleManager {
 
     /**
      * 获取jobKey
+     *
+     * @param scheduleJob
+     * @return
      */
     private JobKey getJobKey(ScheduleJob scheduleJob) {
         return JobKey.jobKey(JOB_NAME + scheduleJob.getJobId());
@@ -35,6 +42,9 @@ public class ScheduleManager {
 
     /**
      * 获取表达式触发器
+     *
+     * @param scheduleJob
+     * @return
      */
     public CronTrigger getCronTrigger(ScheduleJob scheduleJob) {
         try {
@@ -46,6 +56,8 @@ public class ScheduleManager {
 
     /**
      * 创建定时任务
+     *
+     * @param scheduleJob
      */
     public void createScheduleJob(ScheduleJob scheduleJob) {
         try {
@@ -75,6 +87,8 @@ public class ScheduleManager {
 
     /**
      * 更新定时任务
+     *
+     * @param scheduleJob
      */
     public void updateScheduleJob(ScheduleJob scheduleJob) {
         try {
@@ -111,6 +125,7 @@ public class ScheduleManager {
 
     /**
      * 立即执行任务
+     * @param scheduleJob
      */
     public void run(ScheduleJob scheduleJob) {
         try {
@@ -126,6 +141,7 @@ public class ScheduleManager {
 
     /**
      * 暂停任务
+     * @param scheduleJob
      */
     public void pauseJob(ScheduleJob scheduleJob) {
         try {
@@ -137,6 +153,7 @@ public class ScheduleManager {
 
     /**
      * 恢复任务
+     * @param scheduleJob
      */
     public void resumeJob(ScheduleJob scheduleJob) {
         try {
@@ -148,6 +165,7 @@ public class ScheduleManager {
 
     /**
      * 删除定时任务
+     * @param scheduleJob
      */
     public void deleteScheduleJob(ScheduleJob scheduleJob) {
         try {

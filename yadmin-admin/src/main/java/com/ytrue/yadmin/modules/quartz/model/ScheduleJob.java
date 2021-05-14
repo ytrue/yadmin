@@ -16,9 +16,8 @@ import java.util.Date;
 @Data
 @TableName("schedule_job")
 public class ScheduleJob implements Serializable {
-    /**
-     *
-     */
+
+
     private static final long serialVersionUID = 9150018026309004044L;
 
     /**
@@ -66,6 +65,5 @@ public class ScheduleJob implements Serializable {
     /**
      * 创建时间
      */
-
     private Date createTime;
 }

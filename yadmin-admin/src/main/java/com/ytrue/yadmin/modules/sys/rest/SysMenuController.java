@@ -2,7 +2,6 @@ package com.ytrue.yadmin.modules.sys.rest;
 
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-
 import com.ytrue.yadmin.common.exeption.YadminException;
 import com.ytrue.yadmin.common.response.ResponseData;
 import com.ytrue.yadmin.modules.sys.annotation.SysLog;
@@ -10,7 +9,7 @@ import com.ytrue.yadmin.modules.sys.constant.Constant;
 import com.ytrue.yadmin.modules.sys.constant.MenuType;
 import com.ytrue.yadmin.modules.sys.model.SysMenu;
 import com.ytrue.yadmin.modules.sys.service.SysMenuService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -27,10 +26,10 @@ import java.util.Objects;
  */
 @RestController
 @RequestMapping("/sys/menu")
+@AllArgsConstructor
 public class SysMenuController {
 
-    @Autowired
-    private SysMenuService sysMenuService;
+    private final SysMenuService sysMenuService;
 
     /**
      * 获取菜单页面的表
@@ -46,6 +45,8 @@ public class SysMenuController {
     /**
      * 获取用户所拥有的菜单(不包括按钮)
      * 所有菜单列表(用于新建、修改角色时 获取菜单的信息)
+     *
+     * @return
      */
     @GetMapping("/list")
     public List<SysMenu> list() {
@@ -64,6 +65,9 @@ public class SysMenuController {
 
     /**
      * 保存
+     *
+     * @param menu
+     * @param b
      */
     @SysLog("保存菜单")
     @PostMapping
@@ -77,10 +81,14 @@ public class SysMenuController {
 
     /**
      * 修改
+     *
+     * @param menu
+     * @param b
+     * @return
      */
     @SysLog("修改菜单")
     @PutMapping
-    // @PreAuthorize("@pms.hasPermission('sys:menu:update')")
+    @PreAuthorize("@pms.hasPermission('sys:menu:update')")
     public ResponseData<String> update(@Valid @RequestBody SysMenu menu, BindingResult b) {
         //数据校验
         verifyForm(menu);
@@ -95,10 +103,12 @@ public class SysMenuController {
 
     /**
      * 删除
+     *
+     * @param menuId
      */
     @SysLog("删除菜单")
     @DeleteMapping("/{menuId}")
-    // @PreAuthorize("@pms.hasPermission('sys:menu:delete')")
+    @PreAuthorize("@pms.hasPermission('sys:menu:delete')")
     public void delete(@PathVariable Long menuId) {
         if (menuId <= Constant.SYS_MENU_MAX_ID) {
             throw new YadminException("系统菜单，不能删除");
@@ -114,6 +124,8 @@ public class SysMenuController {
 
     /**
      * 验证参数是否正确
+     *
+     * @param menu
      */
     private void verifyForm(SysMenu menu) {
 

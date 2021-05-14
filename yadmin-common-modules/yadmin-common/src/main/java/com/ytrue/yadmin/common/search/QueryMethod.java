@@ -15,5 +15,5 @@ public enum QueryMethod {
     /**
      * like
      */
-    like;
+    like
 }

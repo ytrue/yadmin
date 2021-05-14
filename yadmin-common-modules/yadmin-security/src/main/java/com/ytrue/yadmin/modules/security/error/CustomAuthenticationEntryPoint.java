@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 @Component
 @Slf4j
 public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint {
+
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException e) {
         ResponseData.jsonOut(response,

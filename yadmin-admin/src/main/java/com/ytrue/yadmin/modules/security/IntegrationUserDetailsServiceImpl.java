@@ -3,15 +3,15 @@ package com.ytrue.yadmin.modules.security;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.ytrue.yadmin.common.exeption.YadminException;
+import com.ytrue.yadmin.modules.security.dto.SysUserDetails;
+import com.ytrue.yadmin.modules.security.integration.IntegrationAuthenticationContext;
+import com.ytrue.yadmin.modules.security.integration.IntegrationAuthenticationEntity;
+import com.ytrue.yadmin.modules.security.integration.authenticator.IntegrationAuthenticator;
 import com.ytrue.yadmin.modules.sys.constant.Constant;
 import com.ytrue.yadmin.modules.sys.dao.SysMenuMapper;
 import com.ytrue.yadmin.modules.sys.dao.SysUserMapper;
 import com.ytrue.yadmin.modules.sys.model.SysMenu;
 import com.ytrue.yadmin.modules.sys.model.SysUser;
-import com.ytrue.yadmin.modules.security.dto.SysUserDetails;
-import com.ytrue.yadmin.modules.security.integration.IntegrationAuthenticationContext;
-import com.ytrue.yadmin.modules.security.integration.IntegrationAuthenticationEntity;
-import com.ytrue.yadmin.modules.security.integration.authenticator.IntegrationAuthenticator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -66,7 +66,7 @@ public class IntegrationUserDetailsServiceImpl implements UserDetailsService {
         SysUser user = (SysUser) authenticate(entity);
         //传递
         List<GrantedAuthority> authorityList = AuthorityUtils.createAuthorityList(getUserPermissions(user.getUserId()).toArray(new String[0]));
-        return new SysUserDetails(user.getUsername(), user.getPassword(), "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif", authorityList, user.getUserId());
+        return new SysUserDetails(user.getUsername(), user.getPassword(), authorityList,"https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif", user.getUserId());
     }
 
 

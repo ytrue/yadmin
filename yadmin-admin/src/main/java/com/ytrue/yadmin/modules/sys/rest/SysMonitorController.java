@@ -4,6 +4,7 @@ package com.ytrue.yadmin.modules.sys.rest;
 import com.ytrue.yadmin.common.annotation.WrapResp;
 import com.ytrue.yadmin.modules.sys.service.SysMonitorService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,8 +24,13 @@ public class SysMonitorController {
 
     private final SysMonitorService serverService;
 
+    /**
+     * 获得信息
+     *
+     * @return
+     */
     @GetMapping
-    //@PreAuthorize("@pms.hasPermission('sys:monito:page' )")
+    @PreAuthorize("@pms.hasPermission('sys:monito:page' )")
     public Map<String, Object> query() {
         return serverService.getServers();
     }

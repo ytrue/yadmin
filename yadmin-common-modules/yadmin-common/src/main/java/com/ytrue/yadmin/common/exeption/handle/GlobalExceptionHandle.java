@@ -3,9 +3,9 @@ package com.ytrue.yadmin.common.exeption.handle;
 
 import com.ytrue.yadmin.common.response.ResponseCode;
 import com.ytrue.yadmin.common.response.ResponseData;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.error.ErrorAttributeOptions;
 import org.springframework.boot.web.servlet.error.ErrorAttributes;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.stereotype.Controller;
@@ -19,14 +19,14 @@ import java.util.Map;
 /**
  * @author yangyi
  * @date 2020/6/15 16:27
- * @description 全局异常处理类,这个类会在以后替换掉，目前暂时不做升级
+ * @description 全局异常处理类, 这个类会在以后替换掉，目前暂时不做升级
  */
 @Controller
 @Slf4j
+@AllArgsConstructor
 public class GlobalExceptionHandle implements ErrorController {
 
-    @Autowired
-    private ErrorAttributes errorAttributes;
+    private final ErrorAttributes errorAttributes;
 
     @Override
     public String getErrorPath() {

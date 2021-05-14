@@ -8,6 +8,7 @@ import com.ytrue.yadmin.modules.sys.annotation.SysLog;
 import com.ytrue.yadmin.modules.sys.model.SysRole;
 import com.ytrue.yadmin.modules.sys.service.SysMenuService;
 import com.ytrue.yadmin.modules.sys.service.SysRoleService;
+import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -26,16 +27,19 @@ import java.util.concurrent.TimeUnit;
 @WrapResp
 @RestController
 @RequestMapping("/sys/role")
+@AllArgsConstructor
 public class SysRoleController {
 
-    @Autowired
-    private SysRoleService sysRoleService;
 
-    @Autowired
-    private SysMenuService sysMenuService;
+    private final SysRoleService sysRoleService;
+
+    private final SysMenuService sysMenuService;
 
     /**
      * 角色列表
+     *
+     * @param userSearchModel
+     * @return
      */
     @PostMapping("/page")
     @PreAuthorize("@pms.hasPermission('sys:role:page')")
@@ -45,17 +49,22 @@ public class SysRoleController {
 
     /**
      * 角色列表
+     *
+     * @return
      */
     @SneakyThrows
     @GetMapping("/list")
     @PreAuthorize("@pms.hasPermission('sys:role:list')")
     public List<SysRole> list() {
-        TimeUnit.SECONDS.sleep(3);
+       // TimeUnit.SECONDS.sleep(3);
         return sysRoleService.list();
     }
 
     /**
      * 角色信息
+     *
+     * @param roleId
+     * @return
      */
     @GetMapping("/info/{roleId}")
     @PreAuthorize("@pms.hasPermission('sys:role:info')")
@@ -69,6 +78,9 @@ public class SysRoleController {
 
     /**
      * 保存角色
+     *
+     * @param role
+     * @param b
      */
     @SysLog("保存角色")
     @PostMapping
@@ -79,6 +91,9 @@ public class SysRoleController {
 
     /**
      * 修改角色
+     *
+     * @param role
+     * @param b
      */
     @SysLog("修改角色")
     @PutMapping
@@ -89,10 +104,12 @@ public class SysRoleController {
 
     /**
      * 删除角色
+     *
+     * @param roleIds
      */
     @SysLog("删除角色")
     @DeleteMapping
-    // @PreAuthorize("@pms.hasPermission('sys:role:delete')")
+    @PreAuthorize("@pms.hasPermission('sys:role:delete')")
     public void delete(@RequestBody Long[] roleIds) {
         sysRoleService.deleteBatch(roleIds);
     }

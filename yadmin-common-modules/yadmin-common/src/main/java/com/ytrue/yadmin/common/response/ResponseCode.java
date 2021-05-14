@@ -39,12 +39,12 @@ public enum ResponseCode {
     /**
      * code错误码
      */
-    private Integer code;
+    private final Integer code;
 
     /**
      * 前端进行页面展示的信息
      */
-    private String message;
+    private final String message;
 
     ResponseCode(Integer code, String message) {
         this.code = code;

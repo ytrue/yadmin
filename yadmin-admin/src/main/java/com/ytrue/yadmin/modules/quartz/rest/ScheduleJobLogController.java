@@ -5,6 +5,7 @@ import com.ytrue.yadmin.common.annotation.WrapResp;
 import com.ytrue.yadmin.common.search.SearchModel;
 import com.ytrue.yadmin.modules.quartz.model.ScheduleJobLog;
 import com.ytrue.yadmin.modules.quartz.service.ScheduleJobLogService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,14 +21,17 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @WrapResp
 @RestController
+@AllArgsConstructor
 @RequestMapping("/sys/scheduleLog")
 public class ScheduleJobLogController {
 
-    @Autowired
-    private ScheduleJobLogService scheduleJobLogService;
+    private final ScheduleJobLogService scheduleJobLogService;
 
     /**
-     * 定时任务日志列表
+     * 定时日志列表
+     *
+     * @param searchModel
+     * @return
      */
     @PostMapping("/page")
     @PreAuthorize("@pms.hasPermission('sys:schedule:log')")

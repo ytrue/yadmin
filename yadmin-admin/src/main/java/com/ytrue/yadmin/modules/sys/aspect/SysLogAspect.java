@@ -6,10 +6,10 @@ import com.ytrue.yadmin.common.json.JsonUtil;
 import com.ytrue.yadmin.common.util.IpHelper;
 import com.ytrue.yadmin.modules.sys.model.SysLog;
 import com.ytrue.yadmin.modules.sys.service.SysLogService;
+import lombok.AllArgsConstructor;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -19,11 +19,19 @@ import org.springframework.stereotype.Component;
  */
 @Aspect
 @Component
+@AllArgsConstructor
 public class SysLogAspect {
 
-    @Autowired
-    private SysLogService sysLogService;
+    private final SysLogService sysLogService;
 
+    /**
+     * 切面具体操作
+     *
+     * @param joinPoint
+     * @param sysLog
+     * @return
+     * @throws Throwable
+     */
     @Around("@annotation(sysLog)")
     public Object around(ProceedingJoinPoint joinPoint, com.ytrue.yadmin.modules.sys.annotation.SysLog sysLog) throws Throwable {
 

@@ -16,6 +16,11 @@ import java.lang.reflect.Method;
 @Slf4j
 public class SpringBeanTaskUtil {
 
+    /**
+     * 反射
+     *
+     * @param scheduleJob
+     */
     public static void invokeMethod(ScheduleJob scheduleJob) {
         Object target = SpringContextUtils.getBean(scheduleJob.getBeanName());
         try {

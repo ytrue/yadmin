@@ -13,8 +13,17 @@ import java.util.List;
  */
 public interface SysRoleMapper extends BaseMapper<SysRole> {
 
+    /**
+     * 批量删除
+     * @param roleIds
+     */
     void deleteBatch(@Param("roleIds") Long[] roleIds);
 
+    /**
+     * 关联
+     * @param userId
+     * @return
+     */
     List<Long> listRoleIdByUserId(Long userId);
 
 }

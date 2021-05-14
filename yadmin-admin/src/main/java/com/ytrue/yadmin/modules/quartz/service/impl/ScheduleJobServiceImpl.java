@@ -8,6 +8,7 @@ import com.ytrue.yadmin.modules.quartz.dao.ScheduleJobMapper;
 import com.ytrue.yadmin.modules.quartz.enums.ScheduleStatus;
 import com.ytrue.yadmin.modules.quartz.model.ScheduleJob;
 import com.ytrue.yadmin.modules.quartz.service.ScheduleJobService;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.CronTrigger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +26,13 @@ import java.util.List;
  */
 @Service
 @Slf4j
+@AllArgsConstructor
 public class ScheduleJobServiceImpl extends ServiceImpl<ScheduleJobMapper, ScheduleJob> implements ScheduleJobService {
 
-    @Autowired
-    private ScheduleJobMapper scheduleJobMapper;
-    @Autowired
-    private ScheduleManager scheduleManager;
+
+    private final ScheduleJobMapper scheduleJobMapper;
+
+    private final ScheduleManager scheduleManager;
 
     /**
      * 项目启动时，初始化定时器

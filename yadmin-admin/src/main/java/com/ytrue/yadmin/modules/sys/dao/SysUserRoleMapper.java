@@ -16,6 +16,9 @@ public interface SysUserRoleMapper extends BaseMapper<SysUserRole> {
 
     /**
      * 根据角色ID数组，批量删除
+     *
+     * @param roleIds
+     * @return
      */
     int deleteBatch(@Param("roleIds") Long[] roleIds);
 

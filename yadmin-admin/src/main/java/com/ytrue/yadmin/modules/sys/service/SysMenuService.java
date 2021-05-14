@@ -10,9 +10,9 @@ import java.util.List;
 
 
 /**
- * 菜单管理
- *
  * @author ytrue
+ * @date 2021/4/8 15:36
+ * @description 菜单管理
  */
 public interface SysMenuService extends IService<SysMenu> {
 

@@ -54,11 +54,14 @@ public interface SysMenuMapper extends BaseMapper<SysMenu> {
     /**
      * 根据一级菜单id 获取二级菜单
      *
+     * @param parentId
      * @return 二级菜单列表
      */
     List<SysMenu> listChildrenMenuByParentId(Long parentId);
 
     /**
+     * listMenuAndBtn
+     *
      * @return
      */
     List<SysMenu> listMenuAndBtn();

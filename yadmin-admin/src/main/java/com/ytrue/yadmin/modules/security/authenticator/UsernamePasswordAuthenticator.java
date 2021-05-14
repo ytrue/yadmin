@@ -8,6 +8,7 @@ import com.ytrue.yadmin.modules.sys.dao.SysUserMapper;
 import com.ytrue.yadmin.modules.sys.model.SysUser;
 import com.ytrue.yadmin.modules.security.integration.IntegrationAuthenticationEntity;
 import com.ytrue.yadmin.modules.security.integration.authenticator.AbstractPreparableIntegrationAuthenticator;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -25,10 +26,11 @@ import org.springframework.util.StringUtils;
  */
 @Component
 @Primary
+@AllArgsConstructor
 public class UsernamePasswordAuthenticator extends AbstractPreparableIntegrationAuthenticator {
 
-    @Autowired
-    private SysUserMapper sysUserMapper;
+
+    private final SysUserMapper sysUserMapper;
 
     /**
      * 预处理

@@ -20,7 +20,7 @@ public enum MenuType {
      */
     BUTTON(2);
 
-    private int value;
+    private final int value;
 
     MenuType(int value) {
         this.value = value;

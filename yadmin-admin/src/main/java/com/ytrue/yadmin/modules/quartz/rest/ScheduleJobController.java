@@ -9,6 +9,7 @@ import com.ytrue.yadmin.common.search.SearchModel;
 import com.ytrue.yadmin.modules.quartz.model.ScheduleJob;
 import com.ytrue.yadmin.modules.quartz.service.ScheduleJobService;
 import com.ytrue.yadmin.modules.sys.annotation.SysLog;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -25,14 +26,17 @@ import javax.validation.Valid;
 @Slf4j
 @WrapResp
 @RestController
+@AllArgsConstructor
 @RequestMapping("/sys/schedule")
 public class ScheduleJobController {
 
-    @Autowired
-    private ScheduleJobService scheduleJobService;
+    private final ScheduleJobService scheduleJobService;
 
     /**
      * 定时任务列表
+     *
+     * @param searchModel
+     * @return
      */
     @PostMapping("/page")
     @PreAuthorize("@pms.hasPermission('sys:schedule:page')")
@@ -42,6 +46,9 @@ public class ScheduleJobController {
 
     /**
      * 定时任务信息
+     *
+     * @param jobId
+     * @return
      */
     @GetMapping("/info/{jobId}")
     @PreAuthorize("@pms.hasPermission('sys:schedule:info')")
@@ -51,6 +58,9 @@ public class ScheduleJobController {
 
     /**
      * 保存定时任务
+     *
+     * @param scheduleJob
+     * @param b
      */
     @SysLog("保存定时任务")
     @PostMapping
@@ -65,6 +75,9 @@ public class ScheduleJobController {
 
     /**
      * 修改定时任务
+     *
+     * @param scheduleJob
+     * @param b
      */
     @SysLog("修改定时任务")
     @PutMapping
@@ -80,6 +93,8 @@ public class ScheduleJobController {
 
     /**
      * 删除定时任务
+     *
+     * @param jobIds
      */
     @SysLog("删除定时任务")
     @DeleteMapping
@@ -90,6 +105,8 @@ public class ScheduleJobController {
 
     /**
      * 立即执行任务
+     *
+     * @param jobIds
      */
     @SysLog("立即执行任务")
     @PostMapping("/run")
@@ -100,6 +117,8 @@ public class ScheduleJobController {
 
     /**
      * 暂停定时任务
+     *
+     * @param jobIds
      */
     @SysLog("暂停定时任务")
     @PostMapping("/pause")
@@ -110,6 +129,8 @@ public class ScheduleJobController {
 
     /**
      * 恢复定时任务
+     *
+     * @param jobIds
      */
     @SysLog("恢复定时任务")
     @PostMapping("/resume")

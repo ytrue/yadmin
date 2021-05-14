@@ -28,7 +28,7 @@ public class WrapRespAdvice implements ResponseBodyAdvice<Object> {
         boolean wrap = methodParameter.hasMethodAnnotation(WrapResp.class);
         if (!wrap) {
             WrapResp ann = methodParameter.getMethod() == null ? null : methodParameter.getMethod().getDeclaringClass().getAnnotation(WrapResp.class);
-            if (ann != null) {
+            if (null != ann) {
                 wrap = true;
             }
         }
@@ -44,7 +44,8 @@ public class WrapRespAdvice implements ResponseBodyAdvice<Object> {
             ServerHttpRequest serverHttpRequest,
             ServerHttpResponse serverHttpResponse
     ) {
-        if (resp instanceof ResponseData) {
+        //字符串的返回有问题，所以暂时直接返回
+        if (resp instanceof ResponseData || resp instanceof String) {
             return resp;
         } else {
             return ResponseData.success(resp);

@@ -11,7 +11,7 @@ import org.springframework.util.StringUtils;
 /**
  * @author ytrue
  * @date 2021/4/8 15:36
- * @description 短信认证器
+ * @description 短信认证器--这个待保留
  */
 @Component
 public class SmsAuthenticator extends AbstractPreparableIntegrationAuthenticator {

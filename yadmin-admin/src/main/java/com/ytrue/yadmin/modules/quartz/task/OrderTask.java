@@ -14,6 +14,9 @@ import org.springframework.stereotype.Component;
 public class OrderTask {
 
 
+    /**
+     * 取消订单,这里以后会使用延迟队列
+     */
     public void cancelOrder() {
          log.info("我是OrderTask--cancelOrder：取消订单---我被触发了");
     }

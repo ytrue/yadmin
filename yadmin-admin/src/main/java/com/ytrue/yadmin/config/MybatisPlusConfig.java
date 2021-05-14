@@ -36,13 +36,11 @@ public class MybatisPlusConfig {
      *
      * @return
      */
-    /**
-     * 旧版
-     */
     @Bean
     public OptimisticLockerInterceptor optimisticLockerInterceptor() {
         return new OptimisticLockerInterceptor();
     }
+
 
     /**
      * 自定义mybatisPlus填充类

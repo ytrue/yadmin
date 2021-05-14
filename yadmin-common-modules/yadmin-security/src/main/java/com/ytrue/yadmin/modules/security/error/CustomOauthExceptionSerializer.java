@@ -15,6 +15,7 @@ import java.util.Map;
  * @description 认证服务器错误数据返回格式
  */
 public class CustomOauthExceptionSerializer extends StdSerializer<CustomOauthException> {
+
     public CustomOauthExceptionSerializer() {
         super(CustomOauthException.class);
     }

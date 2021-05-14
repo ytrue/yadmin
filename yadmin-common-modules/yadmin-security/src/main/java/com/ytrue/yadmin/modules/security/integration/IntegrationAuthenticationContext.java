@@ -6,6 +6,7 @@ package com.ytrue.yadmin.modules.security.integration;
  * @description 集成认证上下文
  */
 public class IntegrationAuthenticationContext {
+
     private static final ThreadLocal<IntegrationAuthenticationEntity> HOLDERS = new ThreadLocal<>();
 
     public static void set(IntegrationAuthenticationEntity entity) {

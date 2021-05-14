@@ -13,6 +13,7 @@ import java.util.concurrent.ThreadPoolExecutor;
  * @date 2021/4/8 15:36
  * @description 多线程的配置
  */
+@Deprecated
 @Configuration
 @EnableAsync
 public class AsyncConfig {

@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ytrue.yadmin.modules.quartz.dao.ScheduleJobLogMapper;
 import com.ytrue.yadmin.modules.quartz.model.ScheduleJobLog;
 import com.ytrue.yadmin.modules.quartz.service.ScheduleJobLogService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +16,5 @@ import org.springframework.stereotype.Service;
  */
 @Service("scheduleJobLogService")
 public class ScheduleJobLogServiceImpl extends ServiceImpl<ScheduleJobLogMapper, ScheduleJobLog> implements ScheduleJobLogService {
-
-    @Autowired
-    private ScheduleJobLogMapper scheduleJobLogMapper;
 
 }

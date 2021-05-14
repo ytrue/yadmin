@@ -15,6 +15,8 @@ public interface SysRoleMenuMapper extends BaseMapper<SysRoleMenu> {
 
     /**
      * 根据角色ID数组，批量删除
+     * @param roleIds
+     * @return
      */
     int deleteBatch(Long[] roleIds);
 

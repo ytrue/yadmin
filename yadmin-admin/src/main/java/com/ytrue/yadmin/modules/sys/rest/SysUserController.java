@@ -17,6 +17,7 @@ import com.ytrue.yadmin.modules.sys.model.SysUser;
 import com.ytrue.yadmin.modules.sys.service.SysMenuService;
 import com.ytrue.yadmin.modules.sys.service.SysRoleService;
 import com.ytrue.yadmin.modules.sys.service.SysUserService;
+import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,32 +38,33 @@ import java.util.concurrent.TimeUnit;
 @WrapResp
 @RestController
 @RequestMapping("/sys/user")
+@AllArgsConstructor
 public class SysUserController {
 
-    @Autowired
-    private SysUserService sysUserService;
 
-    @Autowired
-    private SysRoleService sysRoleService;
-
-    @Autowired
-    private SysMenuService sysMenuService;
+    private final SysUserService sysUserService;
+    private final SysRoleService sysRoleService;
 
 
     /**
      * 所有用户列表
+     *
+     * @param searchModel
+     * @return
      */
     @SneakyThrows
     @PostMapping("/page")
     @PreAuthorize("@pms.hasPermission('sys:user:page')")
     public IPage<SysUser> page(@RequestBody SearchModel<SysUser> searchModel) {
-        TimeUnit.SECONDS.sleep(3);
-        return sysUserService.page(searchModel.getPage(), searchModel.getQueryModel());
+        return sysUserService.page(searchModel.getPage(), searchModel.getQueryModel().orderByDesc("user_id"));
     }
 
 
     /**
      * 用户信息
+     *
+     * @param userId
+     * @return
      */
     @GetMapping("/info/{userId}")
     @PreAuthorize("@pms.hasPermission('sys:user:info')")
@@ -75,19 +77,17 @@ public class SysUserController {
 
     /**
      * 保存用户
+     *
+     * @param user
      */
     @SysLog("保存用户")
     @PostMapping
-
-    //测试一下批量验证
     @AutoValids({
             @AutoValid(entity = SysUser.class)
     })
     @SneakyThrows
     @PreAuthorize("@pms.hasPermission('sys:user:save')")
     public void save(@RequestBody SysUser user) {
-
-        TimeUnit.SECONDS.sleep(3);
         String username = user.getUsername();
         SysUser dbUser = sysUserService.getOne(new LambdaQueryWrapper<SysUser>()
                 .eq(SysUser::getUsername, username));
@@ -100,6 +100,11 @@ public class SysUserController {
     }
 
 
+    /**
+     * 修改用户
+     *
+     * @param user
+     */
     @SysLog("修改用户")
     @PutMapping
     @AutoValid(entity = SysUser.class)
@@ -121,6 +126,8 @@ public class SysUserController {
 
     /**
      * 删除用户
+     *
+     * @param userIds
      */
     @SysLog("删除用户")
     @DeleteMapping
@@ -154,14 +161,13 @@ public class SysUserController {
         //获得用户
         SysUser user = sysUserService.getById(1);
         //获得用户的角色
-
         return null;
     }
 
     /**
      * 获得我的路由，这里先模拟
      *
-     * @return
+     * @return---tmp
      */
     @GetMapping("router")
     public Object getMyRouter() {

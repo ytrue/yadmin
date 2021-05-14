@@ -27,6 +27,11 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     private final CustomAccessDeniedHandler customAccessDeniedHandler;
 
+    /**
+     * 配置
+     * @param http
+     * @throws Exception
+     */
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
@@ -37,7 +42,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers(
-                        "/actuator/**", "/svg/**","/passport/**").permitAll()
+                        "/actuator/**", "/svg/**", "/passport/**").permitAll()
                 .and()
                 .cors() //资源服务解决跨域，需要添加此配置项
                 .and()
@@ -46,6 +51,12 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .antMatchers("/**").authenticated();
     }
 
+    /**
+     * 定制返回错误信息-- 未登录访问权限控制和登录过后的权限不足
+     *
+     * @param resources
+     * @throws Exception
+     */
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
         resources.authenticationEntryPoint(customAuthenticationEntryPoint)

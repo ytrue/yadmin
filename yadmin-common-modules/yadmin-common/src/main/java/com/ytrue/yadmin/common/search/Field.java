@@ -10,10 +10,19 @@ import lombok.Data;
 @Data
 public class Field {
 
+    /**
+     * 字段
+     */
     private String column;
 
+    /**
+     * 内容
+     */
     private Object value;
 
+    /**
+     * 类型
+     */
     private QueryMethod type;
 
 }

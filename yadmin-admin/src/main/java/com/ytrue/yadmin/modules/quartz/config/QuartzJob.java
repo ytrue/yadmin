@@ -20,6 +20,7 @@ import org.springframework.context.ApplicationEventPublisher;
 @DisallowConcurrentExecution
 public class QuartzJob implements Job {
 
+
     @Autowired
     private ApplicationEventPublisher publisher;
 

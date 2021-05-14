@@ -8,8 +8,9 @@ import com.ytrue.yadmin.modules.sys.model.SysRole;
 import java.util.List;
 
 /**
- * 角色
  * @author ytrue
+ * @date 2021/4/8 15:36
+ * @description SysRoleService
  */
 public interface SysRoleService extends IService<SysRole> {
 

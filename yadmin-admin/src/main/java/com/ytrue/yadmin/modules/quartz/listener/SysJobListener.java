@@ -31,6 +31,10 @@ public class SysJobListener {
 
     private final ScheduleJobLogService scheduleJobLogService;
 
+    /**
+     * 监听
+     * @param event
+     */
     @Async
     @EventListener(ScheduleJobEvent.class)
     public void scheduleJobEventListener(ScheduleJobEvent event) {
