@@ -33,11 +33,6 @@ public class SysMenu implements Serializable {
     @NotNull(message = "上级菜单不能为空")
     private Long parentId;
 
-    /**
-     * 父菜单名称
-     */
-    @TableField(exist = false)
-    private String parentName;
 
     /**
      * 菜单名称
@@ -45,15 +40,7 @@ public class SysMenu implements Serializable {
     @NotBlank(message = "菜单名称不能为空")
     private String name;
 
-    /**
-     * 菜单URL
-     */
-    private String url;
 
-    /**
-     * 组件
-     */
-    private String component;
 
     /**
      * 授权(多个用逗号分隔，如：user:list,user:create)
@@ -65,10 +52,6 @@ public class SysMenu implements Serializable {
      */
     private Integer type;
 
-    /**
-     * 菜单图标
-     */
-    private String icon;
 
     /**
      * 排序
@@ -80,7 +63,5 @@ public class SysMenu implements Serializable {
      */
     private Boolean hidden;
 
-    @TableField(exist = false)
-    private List<?> list;
 
 }

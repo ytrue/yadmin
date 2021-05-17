@@ -52,11 +52,9 @@ public class SysRoleController {
      *
      * @return
      */
-    @SneakyThrows
     @GetMapping("/list")
     @PreAuthorize("@pms.hasPermission('sys:role:list')")
     public List<SysRole> list() {
-       // TimeUnit.SECONDS.sleep(3);
         return sysRoleService.list();
     }
 

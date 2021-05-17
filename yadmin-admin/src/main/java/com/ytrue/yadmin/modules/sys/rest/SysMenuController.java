@@ -2,6 +2,7 @@ package com.ytrue.yadmin.modules.sys.rest;
 
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.ytrue.yadmin.common.annotation.WrapResp;
 import com.ytrue.yadmin.common.exeption.YadminException;
 import com.ytrue.yadmin.common.response.ResponseData;
 import com.ytrue.yadmin.modules.sys.annotation.SysLog;
@@ -10,6 +11,7 @@ import com.ytrue.yadmin.modules.sys.constant.MenuType;
 import com.ytrue.yadmin.modules.sys.model.SysMenu;
 import com.ytrue.yadmin.modules.sys.service.SysMenuService;
 import lombok.AllArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -24,6 +27,7 @@ import java.util.Objects;
  * @date 2021/4/8 15:36
  * @description 系统菜单
  */
+@WrapResp
 @RestController
 @RequestMapping("/sys/menu")
 @AllArgsConstructor
@@ -92,11 +96,11 @@ public class SysMenuController {
     public ResponseData<String> update(@Valid @RequestBody SysMenu menu, BindingResult b) {
         //数据校验
         verifyForm(menu);
-        if (menu.getType() == MenuType.MENU.getValue()) {
-            if (StrUtil.isBlank(menu.getUrl())) {
-                return ResponseData.fail("菜单URL不能为空");
-            }
-        }
+//        if (menu.getType() == MenuType.MENU.getValue()) {
+//            if (StrUtil.isBlank(menu.getUrl())) {
+//                return ResponseData.fail("菜单URL不能为空");
+//            }
+//        }
         sysMenuService.updateById(menu);
         return ResponseData.success();
     }
@@ -129,11 +133,11 @@ public class SysMenuController {
      */
     private void verifyForm(SysMenu menu) {
 
-        if (menu.getType() == MenuType.MENU.getValue()) {
-            if (StrUtil.isBlank(menu.getUrl())) {
-                throw new YadminException("菜单URL不能为空");
-            }
-        }
+//        if (menu.getType() == MenuType.MENU.getValue()) {
+//            if (StrUtil.isBlank(menu.getUrl())) {
+//                throw new YadminException("菜单URL不能为空");
+//            }
+//        }
         if (Objects.equals(menu.getMenuId(), menu.getParentId())) {
             throw new YadminException("自己不能是自己的上级");
         }

@@ -52,7 +52,6 @@ public class SysUserController {
      * @param searchModel
      * @return
      */
-    @SneakyThrows
     @PostMapping("/page")
     @PreAuthorize("@pms.hasPermission('sys:user:page')")
     public IPage<SysUser> page(@RequestBody SearchModel<SysUser> searchModel) {
@@ -85,7 +84,6 @@ public class SysUserController {
     @AutoValids({
             @AutoValid(entity = SysUser.class)
     })
-    @SneakyThrows
     @PreAuthorize("@pms.hasPermission('sys:user:save')")
     public void save(@RequestBody SysUser user) {
         String username = user.getUsername();

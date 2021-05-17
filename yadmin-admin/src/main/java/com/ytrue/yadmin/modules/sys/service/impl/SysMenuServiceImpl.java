@@ -73,7 +73,9 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
 
     @Override
     public List<Tree<String>> myRouter(Long userId) {
-        List<SysMenu> menus = listMenuByUserId(userId);
+
+        return null;
+        /*List<SysMenu> menus = listMenuByUserId(userId);
         //配置
         TreeNodeConfig treeNodeConfig = new TreeNodeConfig();
         treeNodeConfig.setWeightKey("orderNum");
@@ -110,7 +112,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
             tree.putExtra("component", extra.get("component"));
             tree.putExtra("meta", extra.get("meta"));
             tree.putExtra("hidden", extra.get("hidden"));
-        });
+        });*/
     }
 
 

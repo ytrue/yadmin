@@ -9,7 +9,7 @@
 
 	<!-- 查询用户的所有菜单 -->
 	<select id="listMenuByUserId" resultType="com.ytrue.yadmin.modules.sys.model.SysMenu">
-		SELECT DISTINCT m.menu_id AS menu_id,m.parent_id,m.name,url,m.type,m.icon,m.order_num,m.component FROM sys_user_role ur
+		SELECT DISTINCT m.menu_id AS menu_id,m.parent_id,m.name,url,m.type,m.icon,m.order_num FROM sys_user_role ur
 			LEFT JOIN sys_role_menu rm ON ur.role_id = rm.role_id LEFT JOIN sys_menu m ON m.`menu_id` = rm.`menu_id`
 		WHERE  ur.user_id = #{userId} and m.type != 2 order by order_num
 	</select>
