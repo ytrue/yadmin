@@ -40,9 +40,6 @@ public class GlobalExceptionHandle implements ErrorController {
         //设置200，方便前端处理
         response.setStatus(ResponseCode.SUCCESS.getCode());
         Map<String, Object> errorAttributes = this.errorAttributes.getErrorAttributes(req, false);
-
-        System.out.println(req);
-
         //返回错误
         return ResponseData.
                 fail((Integer) errorAttributes.get("status"),

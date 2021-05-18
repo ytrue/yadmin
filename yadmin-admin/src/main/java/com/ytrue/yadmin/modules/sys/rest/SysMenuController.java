@@ -55,7 +55,7 @@ public class SysMenuController {
     @GetMapping("/list")
     public List<SysMenu> list() {
         return sysMenuService.list(
-                new QueryWrapper<SysMenu>().ne("type", 2).orderByAsc("order_num"));
+                new QueryWrapper<SysMenu>().orderByAsc("order_num"));
     }
 
     /**
@@ -142,27 +142,27 @@ public class SysMenuController {
             throw new YadminException("自己不能是自己的上级");
         }
 
-        //上级菜单类型
-        int parentType = MenuType.CATALOG.getValue();
-        if (menu.getParentId() != 0) {
-            SysMenu parentMenu = sysMenuService.getById(menu.getParentId());
-            parentType = parentMenu.getType();
-        }
+//        //上级菜单类型
+//        int parentType = MenuType.CATALOG.getValue();
+//        if (menu.getParentId() != 0) {
+//            SysMenu parentMenu = sysMenuService.getById(menu.getParentId());
+//            parentType = parentMenu.getType();
+//        }
+//
+//        //目录、菜单
+//        if (menu.getType() == MenuType.CATALOG.getValue() ||
+//                menu.getType() == MenuType.MENU.getValue()) {
+//            if (parentType != MenuType.CATALOG.getValue()) {
+//                throw new YadminException("上级菜单只能为目录类型");
+//            }
+//            return;
+//        }
 
-        //目录、菜单
-        if (menu.getType() == MenuType.CATALOG.getValue() ||
-                menu.getType() == MenuType.MENU.getValue()) {
-            if (parentType != MenuType.CATALOG.getValue()) {
-                throw new YadminException("上级菜单只能为目录类型");
-            }
-            return;
-        }
-
-        //按钮
-        if (menu.getType() == MenuType.BUTTON.getValue()) {
-            if (parentType != MenuType.MENU.getValue()) {
-                throw new YadminException("上级菜单只能为菜单类型");
-            }
-        }
+//        //按钮
+//        if (menu.getType() == MenuType.BUTTON.getValue()) {
+//            if (parentType != MenuType.MENU.getValue()) {
+//                throw new YadminException("上级菜单只能为菜单类型");
+//            }
+//        }
     }
 }

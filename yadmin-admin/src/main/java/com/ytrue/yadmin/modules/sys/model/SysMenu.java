@@ -33,6 +33,12 @@ public class SysMenu implements Serializable {
     @NotNull(message = "上级菜单不能为空")
     private Long parentId;
 
+    /**
+     * 路由名称
+     */
+    @NotBlank(message = "路由名称不能为空")
+    private String router;
+
 
     /**
      * 菜单名称
@@ -41,16 +47,22 @@ public class SysMenu implements Serializable {
     private String name;
 
 
+    /**
+     * path
+     */
+    @NotBlank(message = "path不能为空")
+    private String path;
+
+    /**
+     * 跳转地址
+     */
+    private String redirect;
+
 
     /**
      * 授权(多个用逗号分隔，如：user:list,user:create)
      */
     private String perms;
-
-    /**
-     * 类型     0：目录   1：菜单   2：按钮
-     */
-    private Integer type;
 
 
     /**
@@ -63,5 +75,9 @@ public class SysMenu implements Serializable {
      */
     private Boolean hidden;
 
+    /**
+     * 级别，一共四级
+     */
+    private Integer level;
 
 }

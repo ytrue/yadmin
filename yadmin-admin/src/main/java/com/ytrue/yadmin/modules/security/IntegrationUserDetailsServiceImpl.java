@@ -66,7 +66,7 @@ public class IntegrationUserDetailsServiceImpl implements UserDetailsService {
         SysUser user = (SysUser) authenticate(entity);
         //传递
         List<GrantedAuthority> authorityList = AuthorityUtils.createAuthorityList(getUserPermissions(user.getUserId()).toArray(new String[0]));
-        return new SysUserDetails(user.getUsername(), user.getPassword(), authorityList,"https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif", user.getUserId());
+        return new SysUserDetails(user.getUsername(), user.getPassword(), authorityList, "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif", user.getUserId());
     }
 
 
