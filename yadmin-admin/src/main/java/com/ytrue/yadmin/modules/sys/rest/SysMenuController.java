@@ -55,7 +55,7 @@ public class SysMenuController {
     @GetMapping("/list")
     public List<SysMenu> list() {
         return sysMenuService.list(
-                new QueryWrapper<SysMenu>().orderByAsc("order_num"));
+                new QueryWrapper<SysMenu>().ne("level", 3).orderByAsc("order_num"));
     }
 
     /**
