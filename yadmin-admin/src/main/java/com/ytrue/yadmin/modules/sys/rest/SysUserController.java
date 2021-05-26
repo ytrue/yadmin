@@ -81,9 +81,7 @@ public class SysUserController {
      */
     @SysLog("保存用户")
     @PostMapping
-    @AutoValids({
-            @AutoValid(entity = SysUser.class)
-    })
+    @AutoValid(entity = SysUser.class)
     @PreAuthorize("@pms.hasPermission('sys:user:save')")
     public void save(@RequestBody SysUser user) {
         String username = user.getUsername();

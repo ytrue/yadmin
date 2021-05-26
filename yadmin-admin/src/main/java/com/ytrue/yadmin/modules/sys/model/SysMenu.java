@@ -1,15 +1,12 @@
 package com.ytrue.yadmin.modules.sys.model;
 
 
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * @author ytrue
@@ -30,7 +27,6 @@ public class SysMenu implements Serializable {
     /**
      * 父菜单ID，一级菜单为0
      */
-    @NotNull(message = "上级菜单不能为空")
     private Long parentId;
 
     /**
@@ -38,7 +34,6 @@ public class SysMenu implements Serializable {
      */
     @NotBlank(message = "路由名称不能为空")
     private String router;
-
 
     /**
      * 菜单名称
@@ -50,7 +45,6 @@ public class SysMenu implements Serializable {
     /**
      * path
      */
-    @NotBlank(message = "path不能为空")
     private String path;
 
     /**

@@ -2,6 +2,7 @@ package com.ytrue.yadmin.modules.sys.rest;
 
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.ytrue.yadmin.common.annotation.AutoValid;
 import com.ytrue.yadmin.common.annotation.WrapResp;
 import com.ytrue.yadmin.common.exeption.YadminException;
 import com.ytrue.yadmin.common.response.ResponseData;
@@ -9,6 +10,7 @@ import com.ytrue.yadmin.modules.sys.annotation.SysLog;
 import com.ytrue.yadmin.modules.sys.constant.Constant;
 import com.ytrue.yadmin.modules.sys.constant.MenuType;
 import com.ytrue.yadmin.modules.sys.model.SysMenu;
+import com.ytrue.yadmin.modules.sys.model.SysUser;
 import com.ytrue.yadmin.modules.sys.service.SysMenuService;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
@@ -75,10 +77,10 @@ public class SysMenuController {
      */
     @SysLog("保存菜单")
     @PostMapping
+    @AutoValid(entity = SysMenu.class)
     @PreAuthorize("@pms.hasPermission('sys:menu:save')")
     public void save(@Valid @RequestBody SysMenu menu, BindingResult b) {
         //数据校验
-        verifyForm(menu);
         sysMenuService.save(menu);
     }
 

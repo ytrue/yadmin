@@ -41,7 +41,7 @@ spring:
       client:
         url: http://127.0.0.1:9996
   application:
-    name: ytrue-baseadmin-admin
+    name: yadmin-admin
   redis:
     host: 127.0.0.1
     port: 6379
@@ -71,7 +71,7 @@ mybatis-plus:
       logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
 logging:
   level:
-    com.ytrue.baseadmin: debug
+    com.ytrue.yadmin: debug
 
 #debug: true
 management:

@@ -1,0 +1,8 @@
+server:
+  port: 9996
+spring:
+  application:
+    name: yadmin-monitor
+logging:
+  level:
+    com.ytrue.yadmin: debug
