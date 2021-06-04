@@ -66,12 +66,25 @@ public class SearchModel<T> {
         //要判断一下是否为空，不然会报空指针异常
         if (CollUtil.isNotEmpty(fields)) {
             fields.forEach(field -> {
+                if (StrUtil.hasBlank(field.getValue())) {
+                    return;
+                }
                 switch (field.getType()) {
                     case eq:
                         queryWrapper.eq(true, field.getColumn(), field.getValue());
                         break;
                     case like:
                         queryWrapper.like(true, field.getColumn(), field.getValue());
+                        break;
+                    case betweenDate:
+                        String[] arr = field.getValue().split(",");
+                        if (2 != arr.length) {
+                            throw new YadminException("日期参数不正确");
+                        }
+                        queryWrapper.apply(true, "DATE_FORMAT( " + field.getColumn() + ", '%Y-%m-%d %H:%i:%s' ) " +
+                                " >= DATE_FORMAT( '" + arr[0] + "', '%Y-%m-%d %H:%i:%s' )");
+                        queryWrapper.apply(true, "DATE_FORMAT( " + field.getColumn() + ", '%Y-%m-%d %H:%i:%s' ) " +
+                                " <= DATE_FORMAT( '" + arr[1] + "', '%Y-%m-%d %H:%i:%s' )");
                         break;
                     default:
                         throw new YadminException("非法操作");

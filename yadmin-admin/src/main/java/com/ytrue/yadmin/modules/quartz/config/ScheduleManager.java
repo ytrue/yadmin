@@ -114,6 +114,9 @@ public class ScheduleManager {
             scheduler.rescheduleJob(triggerKey, trigger);
 
             //暂停任务
+
+            System.out.println(scheduleJob);
+
             if (scheduleJob.getStatus().equals(ScheduleStatus.PAUSE.getType())) {
                 pauseJob(scheduleJob);
             }
@@ -125,6 +128,7 @@ public class ScheduleManager {
 
     /**
      * 立即执行任务
+     *
      * @param scheduleJob
      */
     public void run(ScheduleJob scheduleJob) {
@@ -141,6 +145,7 @@ public class ScheduleManager {
 
     /**
      * 暂停任务
+     *
      * @param scheduleJob
      */
     public void pauseJob(ScheduleJob scheduleJob) {
@@ -153,6 +158,7 @@ public class ScheduleManager {
 
     /**
      * 恢复任务
+     *
      * @param scheduleJob
      */
     public void resumeJob(ScheduleJob scheduleJob) {
@@ -165,6 +171,7 @@ public class ScheduleManager {
 
     /**
      * 删除定时任务
+     *
      * @param scheduleJob
      */
     public void deleteScheduleJob(ScheduleJob scheduleJob) {

@@ -1,7 +1,7 @@
 package com.ytrue.yadmin.modules.sys.rest;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-
+import com.ytrue.yadmin.common.annotation.AutoValid;
 import com.ytrue.yadmin.common.annotation.WrapResp;
 import com.ytrue.yadmin.common.search.SearchModel;
 import com.ytrue.yadmin.modules.sys.annotation.SysLog;
@@ -9,15 +9,10 @@ import com.ytrue.yadmin.modules.sys.model.SysRole;
 import com.ytrue.yadmin.modules.sys.service.SysMenuService;
 import com.ytrue.yadmin.modules.sys.service.SysRoleService;
 import lombok.AllArgsConstructor;
-import lombok.SneakyThrows;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author ytrue
@@ -82,8 +77,9 @@ public class SysRoleController {
      */
     @SysLog("保存角色")
     @PostMapping
+    @AutoValid(entity = SysRole.class)
     @PreAuthorize("@pms.hasPermission('sys:role:save')")
-    public void save(@Valid @RequestBody SysRole role, BindingResult b) {
+    public void save(@RequestBody SysRole role) {
         sysRoleService.saveRoleAndRoleMenu(role);
     }
 
@@ -95,8 +91,9 @@ public class SysRoleController {
      */
     @SysLog("修改角色")
     @PutMapping
+    @AutoValid(entity = SysRole.class)
     @PreAuthorize("@pms.hasPermission('sys:role:update')")
-    public void update(@Valid @RequestBody SysRole role, BindingResult b) {
+    public void update(@RequestBody SysRole role) {
         sysRoleService.updateRoleAndRoleMenu(role);
     }
 

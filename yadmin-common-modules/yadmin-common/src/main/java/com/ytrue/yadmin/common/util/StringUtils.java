@@ -6,7 +6,7 @@ import java.util.HashMap;
  * @author ytrue
  * @description 自定义字符串工具库类
  */
-public class StringUtil {
+public class StringUtils {
 
     /**
      * 对比两个值的大小,返回字符串拼接

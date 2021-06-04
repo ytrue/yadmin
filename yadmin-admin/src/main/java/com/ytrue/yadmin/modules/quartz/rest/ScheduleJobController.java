@@ -2,7 +2,7 @@ package com.ytrue.yadmin.modules.quartz.rest;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-
+import com.ytrue.yadmin.common.annotation.AutoValid;
 import com.ytrue.yadmin.common.annotation.WrapResp;
 import com.ytrue.yadmin.common.exeption.YadminException;
 import com.ytrue.yadmin.common.search.SearchModel;
@@ -11,9 +11,7 @@ import com.ytrue.yadmin.modules.quartz.service.ScheduleJobService;
 import com.ytrue.yadmin.modules.sys.annotation.SysLog;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -60,12 +58,12 @@ public class ScheduleJobController {
      * 保存定时任务
      *
      * @param scheduleJob
-     * @param b
      */
     @SysLog("保存定时任务")
     @PostMapping
+    @AutoValid(entity = ScheduleJob.class)
     @PreAuthorize("@pms.hasPermission('sys:schedule:save')")
-    public void save(@RequestBody @Valid ScheduleJob scheduleJob, BindingResult b) {
+    public void save(@RequestBody ScheduleJob scheduleJob) {
         int dbAlikeCount = scheduleJobService.count(new LambdaQueryWrapper<ScheduleJob>().eq(ScheduleJob::getBeanName, scheduleJob.getBeanName()).eq(ScheduleJob::getMethodName, scheduleJob.getMethodName()));
         if (dbAlikeCount > 0) {
             throw new YadminException("定时任务已存在");
@@ -77,12 +75,12 @@ public class ScheduleJobController {
      * 修改定时任务
      *
      * @param scheduleJob
-     * @param b
      */
     @SysLog("修改定时任务")
     @PutMapping
+    @AutoValid(entity = ScheduleJob.class)
     @PreAuthorize("@pms.hasPermission('sys:schedule:update')")
-    public void update(@RequestBody @Valid ScheduleJob scheduleJob, BindingResult b) {
+    public void update(@RequestBody ScheduleJob scheduleJob) {
 
         int dbAlikeCount = scheduleJobService.count(new LambdaQueryWrapper<ScheduleJob>().eq(ScheduleJob::getBeanName, scheduleJob.getBeanName()).eq(ScheduleJob::getMethodName, scheduleJob.getMethodName()).ne(ScheduleJob::getJobId, scheduleJob.getJobId()));
         if (dbAlikeCount > 0) {

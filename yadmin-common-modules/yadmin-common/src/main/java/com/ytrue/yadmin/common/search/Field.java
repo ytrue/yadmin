@@ -18,7 +18,7 @@ public class Field {
     /**
      * 内容
      */
-    private Object value;
+    private String value;
 
     /**
      * 类型

@@ -7,27 +7,22 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.ytrue.yadmin.bean.dto.One;
 import com.ytrue.yadmin.bean.dto.Two;
 import com.ytrue.yadmin.common.annotation.AutoValid;
-import com.ytrue.yadmin.common.annotation.AutoValids;
 import com.ytrue.yadmin.common.annotation.WrapResp;
 import com.ytrue.yadmin.common.exeption.YadminException;
 import com.ytrue.yadmin.common.response.ResponseData;
 import com.ytrue.yadmin.common.search.SearchModel;
 import com.ytrue.yadmin.modules.sys.annotation.SysLog;
 import com.ytrue.yadmin.modules.sys.model.SysUser;
-import com.ytrue.yadmin.modules.sys.service.SysMenuService;
 import com.ytrue.yadmin.modules.sys.service.SysRoleService;
 import com.ytrue.yadmin.modules.sys.service.SysUserService;
 import lombok.AllArgsConstructor;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author ytrue
