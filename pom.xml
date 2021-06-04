@@ -9,15 +9,20 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>yadmin-common-modules</module>
         <module>yadmin-admin</module>
         <module>yadmin-api</module>
-        <module>yadmin-common-modules/yadmin-bean</module>
-        <module>yadmin-common-modules/yadmin-service</module>
-        <module>yadmin-common-modules/yadmin-security</module>
-        <module>yadmin-tool</module>
-        <module>yadmin-common-modules/yadmin-common</module>
+        <module>yadmin-common</module>
         <module>yadmin-monitor</module>
+
+
+        <module>yadmin-module</module>
+        <module>yadmin-module/yadmin-security</module>
+        <module>yadmin-module/yadmin-sys</module>
+        <module>yadmin-module/yadmin-quartz</module>
+        <module>yadmin-module/yadmin-oss</module>
+        <module>yadmin-module/yadmin-mall</module>
+        <module>yadmin-module/yadmin-chat</module>
+
     </modules>
 
     <parent>
