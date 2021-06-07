@@ -1,4 +1,4 @@
-package com.ytrue.yadmin.config;
+package com.ytrue.yadmin.common.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

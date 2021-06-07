@@ -1,4 +1,4 @@
-package com.ytrue.yadmin.sys.rest;
+package com.ytrue.yadmin.controller.sys;
 
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -9,7 +9,7 @@ import com.ytrue.yadmin.common.annotation.WrapResp;
 import com.ytrue.yadmin.common.exeption.YadminException;
 import com.ytrue.yadmin.common.response.ResponseData;
 import com.ytrue.yadmin.common.search.SearchModel;
-import com.ytrue.yadmin.sys.annotation.SysLog;
+import com.ytrue.yadmin.common.annotation.SysLog;
 import com.ytrue.yadmin.sys.model.SysUser;
 import com.ytrue.yadmin.sys.service.SysRoleService;
 import com.ytrue.yadmin.sys.service.SysUserService;

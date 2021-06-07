@@ -1,4 +1,4 @@
-package com.ytrue.yadmin.sys.annotation;
+package com.ytrue.yadmin.common.annotation;
 
 import java.lang.annotation.*;
 

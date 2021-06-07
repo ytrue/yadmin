@@ -33,7 +33,7 @@ public class SysLogAspect {
      * @throws Throwable
      */
     @Around("@annotation(sysLog)")
-    public Object around(ProceedingJoinPoint joinPoint, com.ytrue.yadmin.sys.annotation.SysLog sysLog) throws Throwable {
+    public Object around(ProceedingJoinPoint joinPoint, com.ytrue.yadmin.common.annotation.SysLog sysLog) throws Throwable {
 
         long beginTime = SystemClock.now();
         //执行方法

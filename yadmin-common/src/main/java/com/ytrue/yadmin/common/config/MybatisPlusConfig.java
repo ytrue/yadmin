@@ -1,4 +1,4 @@
-package com.ytrue.yadmin.config;
+package com.ytrue.yadmin.common.config;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor;

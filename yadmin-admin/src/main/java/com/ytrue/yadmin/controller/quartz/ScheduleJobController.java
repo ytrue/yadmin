@@ -1,13 +1,14 @@
-package com.ytrue.yadmin.quartz.rest;
+package com.ytrue.yadmin.controller.quartz;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.ytrue.yadmin.quartz.model.ScheduleJob;
-import com.ytrue.yadmin.quartz.service.ScheduleJobService;
 import com.ytrue.yadmin.common.annotation.AutoValid;
 import com.ytrue.yadmin.common.annotation.WrapResp;
 import com.ytrue.yadmin.common.exeption.YadminException;
 import com.ytrue.yadmin.common.search.SearchModel;
+import com.ytrue.yadmin.quartz.model.ScheduleJob;
+import com.ytrue.yadmin.quartz.service.ScheduleJobService;
+import com.ytrue.yadmin.common.annotation.SysLog;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -56,7 +57,7 @@ public class ScheduleJobController {
      *
      * @param scheduleJob
      */
-    //@SysLog("保存定时任务")
+    @SysLog("保存定时任务")
     @PostMapping
     @AutoValid(entity = ScheduleJob.class)
     @PreAuthorize("@pms.hasPermission('sys:schedule:save')")
@@ -73,7 +74,7 @@ public class ScheduleJobController {
      *
      * @param scheduleJob
      */
-   // @SysLog("修改定时任务")
+    @SysLog("修改定时任务")
     @PutMapping
     @AutoValid(entity = ScheduleJob.class)
     @PreAuthorize("@pms.hasPermission('sys:schedule:update')")
@@ -91,7 +92,7 @@ public class ScheduleJobController {
      *
      * @param jobIds
      */
-   // @SysLog("删除定时任务")
+    @SysLog("删除定时任务")
     @DeleteMapping
     @PreAuthorize("@pms.hasPermission('sys:schedule:delete')")
     public void delete(@RequestBody Long[] jobIds) {
@@ -103,7 +104,7 @@ public class ScheduleJobController {
      *
      * @param jobIds
      */
-   // @SysLog("立即执行任务")
+    @SysLog("立即执行任务")
     @PostMapping("/run")
     @PreAuthorize("@pms.hasPermission('sys:schedule:run')")
     public void run(@RequestBody Long[] jobIds) {
@@ -115,7 +116,7 @@ public class ScheduleJobController {
      *
      * @param jobIds
      */
-   // @SysLog("暂停定时任务")
+    @SysLog("暂停定时任务")
     @PostMapping("/pause")
     @PreAuthorize("@pms.hasPermission('sys:schedule:pause')")
     public void pause(@RequestBody Long[] jobIds) {
@@ -127,7 +128,7 @@ public class ScheduleJobController {
      *
      * @param jobIds
      */
-    //@SysLog("恢复定时任务")
+    @SysLog("恢复定时任务")
     @PostMapping("/resume")
     @PreAuthorize("@pms.hasPermission('sys:schedule:resume')")
     public void resume(@RequestBody Long[] jobIds) {

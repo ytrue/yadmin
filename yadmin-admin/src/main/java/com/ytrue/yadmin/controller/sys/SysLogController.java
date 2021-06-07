@@ -1,4 +1,4 @@
-package com.ytrue.yadmin.sys.rest;
+package com.ytrue.yadmin.controller.sys;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.ytrue.yadmin.common.annotation.WrapResp;
@@ -28,6 +28,7 @@ public class SysLogController {
     /**
      * 列表
      *
+     * hasAuthority
      * @param sysLogSearchModel
      * @return
      */

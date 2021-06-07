@@ -1,4 +1,4 @@
-package com.ytrue.yadmin.quartz.rest;
+package com.ytrue.yadmin.controller.quartz;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.ytrue.yadmin.common.annotation.WrapResp;

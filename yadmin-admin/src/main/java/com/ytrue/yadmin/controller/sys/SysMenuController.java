@@ -1,12 +1,11 @@
-package com.ytrue.yadmin.sys.rest;
+package com.ytrue.yadmin.controller.sys;
 
-import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.ytrue.yadmin.common.annotation.AutoValid;
 import com.ytrue.yadmin.common.annotation.WrapResp;
 import com.ytrue.yadmin.common.exeption.YadminException;
 import com.ytrue.yadmin.common.response.ResponseData;
-import com.ytrue.yadmin.sys.annotation.SysLog;
+import com.ytrue.yadmin.common.annotation.SysLog;
 import com.ytrue.yadmin.sys.constant.Constant;
 import com.ytrue.yadmin.sys.model.SysMenu;
 import com.ytrue.yadmin.sys.service.SysMenuService;

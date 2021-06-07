@@ -1,4 +1,4 @@
-package com.ytrue.yadmin.security.rest;
+package com.ytrue.yadmin.security.controller;
 
 
 import com.ytrue.yadmin.common.annotation.WrapResp;

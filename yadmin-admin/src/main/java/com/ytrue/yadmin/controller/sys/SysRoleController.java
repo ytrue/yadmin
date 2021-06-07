@@ -1,10 +1,10 @@
-package com.ytrue.yadmin.sys.rest;
+package com.ytrue.yadmin.controller.sys;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.ytrue.yadmin.common.annotation.AutoValid;
 import com.ytrue.yadmin.common.annotation.WrapResp;
 import com.ytrue.yadmin.common.search.SearchModel;
-import com.ytrue.yadmin.sys.annotation.SysLog;
+import com.ytrue.yadmin.common.annotation.SysLog;
 import com.ytrue.yadmin.sys.model.SysRole;
 import com.ytrue.yadmin.sys.service.SysMenuService;
 import com.ytrue.yadmin.sys.service.SysRoleService;

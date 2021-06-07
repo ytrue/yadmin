@@ -1,4 +1,4 @@
-package com.ytrue.yadmin.config;
+package com.ytrue.yadmin.common.config;
 
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
