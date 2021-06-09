@@ -1,20 +1,28 @@
 package com.ytrue.yadmin.controller.sys;
 
+import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.convert.Convert;
+import cn.hutool.core.lang.tree.TreeNode;
+import cn.hutool.core.lang.tree.TreeNodeConfig;
+import cn.hutool.core.lang.tree.TreeUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.google.common.collect.ImmutableMap;
 import com.ytrue.yadmin.common.annotation.AutoValid;
 import com.ytrue.yadmin.common.annotation.SysLog;
 import com.ytrue.yadmin.common.annotation.WrapResp;
 import com.ytrue.yadmin.common.exeption.YadminException;
 import com.ytrue.yadmin.common.response.ResponseData;
 import com.ytrue.yadmin.common.search.SearchModel;
+import com.ytrue.yadmin.common.utils.JwtUtils;
 import com.ytrue.yadmin.sys.model.SysMenu;
 import com.ytrue.yadmin.sys.model.SysUser;
 import com.ytrue.yadmin.sys.service.SysMenuService;
 import com.ytrue.yadmin.sys.service.SysRoleService;
 import com.ytrue.yadmin.sys.service.SysUserService;
+import io.jsonwebtoken.Claims;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -22,9 +30,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
+import java.util.function.Consumer;
 
 /**
  * @author ytrue
@@ -43,6 +50,8 @@ public class SysUserController {
     private final SysRoleService sysRoleService;
 
     private final SysMenuService sysMenuService;
+
+    private final JwtUtils jwtUtils;
 
     /**
      * 所有用户列表
@@ -63,7 +72,7 @@ public class SysUserController {
      * @param userId
      * @return
      */
-    @GetMapping("/info/{userId}")
+    @GetMapping("/{userId}")
     @PreAuthorize("@pms.hasPermission('sys:user:info')")
     public SysUser info(@PathVariable("userId") Long userId) {
         SysUser sysUser = sysUserService.getById(userId);
@@ -141,30 +150,29 @@ public class SysUserController {
 
 
     /**
-     * 获得当前用户的就基本信息和路由信息
+     * 获得我的基本信息
      *
+     * @param request
      * @return
      */
-    @PostMapping("/info")
-    public ResponseData<Map<String, Object>> getUserInfo(HttpServletRequest request) {
+    @GetMapping("router")
+    public Map<String, Object> userInfo(HttpServletRequest request) {
         //获得token
-        //查看什么什么的
         String header = request.getHeader("Authorization");
         String token = header.substring(header.indexOf("bearer") + 7);
+        Claims claimsFromToken = jwtUtils.getClaimsFromToken(token);
 
-        //获得用户
-        SysUser user = sysUserService.getById(1);
-        //获得用户的角色
-        return null;
-    }
-
-    /**
-     * 获得我的路由，这里先模拟
-     *
-     * @return---tmp
-     */
-    @GetMapping("router")
-    public List<SysMenu> getMyRouter() {
-        return sysMenuService.list();
+        //去获得用户名和头像
+        String userName = (String) claimsFromToken.get("user_name");
+        SysUser username = sysUserService.getOne(new QueryWrapper<SysUser>().eq("username", userName));
+        //获得了该角色的权限
+        List<?> authorities = (List<?>) claimsFromToken.get("authorities");
+        //返回数据
+        return ImmutableMap.of(
+                "nickname", username.getNickname(),
+                "avatar", username.getAvatar(),
+                "permissions", authorities,
+                "menu", sysMenuService.myMenuTree(username.getUserId(), 2)
+        );
     }
 }

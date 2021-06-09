@@ -74,4 +74,9 @@ public class SysMenu implements Serializable {
      */
     private Integer level;
 
+    /**
+     * icon
+     */
+    private String icon;
+
 }

@@ -18,7 +18,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author ytrue
@@ -49,56 +51,43 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
 
 
     @Override
-    public List<SysMenu> listSimpleMenuNoButton() {
-        return sysMenuMapper.listSimpleMenuNoButton();
-    }
-
-    @Override
-    public List<SysMenu> listRootMenu() {
-        return sysMenuMapper.listRootMenu();
-    }
-
-    @Override
     public List<SysMenu> listChildrenMenuByParentId(Long parentId) {
         return sysMenuMapper.listChildrenMenuByParentId(parentId);
     }
 
     @Override
-    public List<SysMenu> listMenuAndBtn() {
-        return sysMenuMapper.listMenuAndBtn();
-    }
+    public List<Tree<String>> myMenuTree(Long userId, Integer deep) {
+        //获得我的菜单
+        List<SysMenu> myMenus = list();
 
-    @Override
-    public List<Tree<String>> myRouter(Long userId) {
-
-        return null;
-        /*List<SysMenu> menus = listMenuByUserId(userId);
-        //配置
+        //配置HuTool的树
         TreeNodeConfig treeNodeConfig = new TreeNodeConfig();
         treeNodeConfig.setWeightKey("orderNum");
         treeNodeConfig.setNameKey("name");
         treeNodeConfig.setIdKey("menuId");
-        List<TreeNode<String>> nodeList = CollUtil.newArrayList();
-        for (SysMenu menu : menus) {
-            Meta meta = new Meta(menu.getName(), menu.getIcon());
-            Map<String, Object> map = new HashMap<>(16);
+        treeNodeConfig.setDeep(deep);
 
-            if (menu.getType().equals(0)) {
-                map.put("component", "Layout");
-            } else {
-                map.put("component", menu.getComponent());
-            }
-            map.put("path", menu.getUrl());
-            map.put("meta", meta);
-            map.put("hidden", menu.getHidden());
+        //使用树
+        List<TreeNode<String>> nodeList = CollUtil.newArrayList();
+        myMenus.forEach(menu -> {
+            //扩展信息
+            Map<String, Object> map = new HashMap<>();
+            map.put("path", menu.getPath());
+            map.put("icon", menu.getIcon());
+            map.put("router", menu.getRouter());
+            map.put("redirect", menu.getRedirect());
+            map.put("authority", menu.getPerms());
+            //插入进去
             nodeList.add(new TreeNode<>(
                     Convert.toStr(menu.getMenuId()),
                     Convert.toStr(menu.getParentId()),
                     menu.getName(),
                     menu.getOrderNum()).setExtra(map)
             );
-        }
+        });
+
         return TreeUtil.build(nodeList, "0", treeNodeConfig, (treeNode, tree) -> {
+            //基本信息
             tree.setId(treeNode.getId());
             tree.setParentId(treeNode.getParentId());
             tree.setWeight(treeNode.getWeight());
@@ -106,29 +95,10 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
             // 扩展属性 ...
             Map<String, Object> extra = treeNode.getExtra();
             tree.putExtra("path", extra.get("path"));
-            tree.putExtra("component", extra.get("component"));
-            tree.putExtra("meta", extra.get("meta"));
-            tree.putExtra("hidden", extra.get("hidden"));
-        });*/
+            tree.putExtra("icon", extra.get("icon"));
+            tree.putExtra("router", extra.get("router"));
+            tree.putExtra("redirect", extra.get("redirect"));
+            tree.putExtra("authority", extra.get("authority"));
+        });
     }
-
-
-    /**
-     * 获取用户菜单列表
-     *
-     * @param userId
-     * @return
-     */
-    private List<SysMenu> listMenuByUserId(Long userId) {
-        // 用户的所有菜单信息
-        List<SysMenu> sysMenus;
-        //系统管理员，拥有最高权限
-        if (userId == Constant.SUPER_ADMIN_ID) {
-            sysMenus = sysMenuMapper.listMenu();
-        } else {
-            sysMenus = sysMenuMapper.listMenuByUserId(userId);
-        }
-        return sysMenus;
-    }
-
 }

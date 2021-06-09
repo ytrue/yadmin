@@ -31,19 +31,6 @@ public interface SysMenuService extends IService<SysMenu> {
      */
     List<Long> listMenuIdByRoleId(Long roleId);
 
-    /**
-     * 获取简单的menu tree 用于在ele-ui tree中显示，根据orderNum排序
-     *
-     * @return 所有的菜单
-     */
-    List<SysMenu> listSimpleMenuNoButton();
-
-    /**
-     * 获取一级菜单
-     *
-     * @return 一级菜单列表
-     */
-    List<SysMenu> listRootMenu();
 
     /**
      * 根据一级菜单id 获取二级菜单
@@ -53,13 +40,13 @@ public interface SysMenuService extends IService<SysMenu> {
      */
     List<SysMenu> listChildrenMenuByParentId(Long parentId);
 
-    List<SysMenu> listMenuAndBtn();
 
     /**
-     * 获得当前用户的路由
+     * 获得当前用户的菜单,封装成树结构
      *
-     * @param userId
+     * @param userId 用户名id
+     * @param deep   深度
      * @return
      */
-    List<Tree<String>> myRouter(Long userId);
+    List<Tree<String>> myMenuTree(Long userId, Integer deep);
 }
