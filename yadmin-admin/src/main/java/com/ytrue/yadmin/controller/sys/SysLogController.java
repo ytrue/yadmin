@@ -37,7 +37,7 @@ public class SysLogController {
     public IPage<SysLog> page(@RequestBody SearchModel<SysLog> sysLogSearchModel) {
         return sysLogService.page(
                 sysLogSearchModel.getPage(),
-                sysLogSearchModel.getQueryModel()
+                sysLogSearchModel.getQueryModel().orderByDesc("id")
         );
     }
 }

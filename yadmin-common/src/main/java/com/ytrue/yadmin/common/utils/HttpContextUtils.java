@@ -1,4 +1,4 @@
-package com.ytrue.yadmin.common.util;
+package com.ytrue.yadmin.common.utils;
 
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;

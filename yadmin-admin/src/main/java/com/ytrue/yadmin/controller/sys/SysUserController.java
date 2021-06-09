@@ -5,12 +5,14 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.ytrue.yadmin.common.annotation.AutoValid;
+import com.ytrue.yadmin.common.annotation.SysLog;
 import com.ytrue.yadmin.common.annotation.WrapResp;
 import com.ytrue.yadmin.common.exeption.YadminException;
 import com.ytrue.yadmin.common.response.ResponseData;
 import com.ytrue.yadmin.common.search.SearchModel;
-import com.ytrue.yadmin.common.annotation.SysLog;
+import com.ytrue.yadmin.sys.model.SysMenu;
 import com.ytrue.yadmin.sys.model.SysUser;
+import com.ytrue.yadmin.sys.service.SysMenuService;
 import com.ytrue.yadmin.sys.service.SysRoleService;
 import com.ytrue.yadmin.sys.service.SysUserService;
 import lombok.AllArgsConstructor;
@@ -20,7 +22,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * @author ytrue
@@ -34,10 +38,11 @@ import java.util.*;
 @AllArgsConstructor
 public class SysUserController {
 
-
     private final SysUserService sysUserService;
+
     private final SysRoleService sysRoleService;
 
+    private final SysMenuService sysMenuService;
 
     /**
      * 所有用户列表
@@ -159,7 +164,7 @@ public class SysUserController {
      * @return---tmp
      */
     @GetMapping("router")
-    public Object getMyRouter() {
-       return  ResponseData.success();
+    public List<SysMenu> getMyRouter() {
+        return sysMenuService.list();
     }
 }

@@ -1,4 +1,4 @@
-package com.ytrue.yadmin.common.util;
+package com.ytrue.yadmin.common.utils;
 
 import ma.glasnost.orika.MapperFacade;
 import ma.glasnost.orika.MapperFactory;

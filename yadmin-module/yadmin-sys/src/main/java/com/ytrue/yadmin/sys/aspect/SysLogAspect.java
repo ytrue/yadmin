@@ -3,14 +3,19 @@ package com.ytrue.yadmin.sys.aspect;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.date.SystemClock;
 import com.ytrue.yadmin.common.json.JsonUtil;
-import com.ytrue.yadmin.common.util.IpHelper;
+import com.ytrue.yadmin.common.utils.IpHelper;
+import com.ytrue.yadmin.common.utils.JwtUtils;
+import com.ytrue.yadmin.sys.dao.SysLogMapper;
 import com.ytrue.yadmin.sys.model.SysLog;
-import com.ytrue.yadmin.sys.service.SysLogService;
 import lombok.AllArgsConstructor;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
+
+import javax.servlet.http.HttpServletRequest;
+
 
 /**
  * @author ytrue
@@ -22,7 +27,13 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 public class SysLogAspect {
 
-    private final SysLogService sysLogService;
+
+    private final SysLogMapper sysLogMapper;
+
+    private final HttpServletRequest request;
+
+    private final JwtUtils jwtUtils;
+
 
     /**
      * 切面具体操作
@@ -62,16 +73,14 @@ public class SysLogAspect {
         //设置IP地址
         sysLogEntity.setIp(IpHelper.getIpAddr());
 
-        //用户名
-        String username = "临时用户名";
-        sysLogEntity.setUsername(username);
-
+        //这里使用SecurityContextHolder的上下文来获取用户名
+        sysLogEntity.setUsername((String) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         sysLogEntity.setTime(time);
         sysLogEntity.setCreateDate(DateUtil.date());
         //保存系统日志
-        sysLogService.save(sysLogEntity);
-
+        sysLogMapper.insert(sysLogEntity);
         return result;
     }
+
 
 }

@@ -1,4 +1,4 @@
-package com.ytrue.yadmin.common.util;
+package com.ytrue.yadmin.common.utils;
 
 import lombok.extern.slf4j.Slf4j;
 

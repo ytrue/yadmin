@@ -1,4 +1,4 @@
-package com.ytrue.yadmin.common.util;
+package com.ytrue.yadmin.common.utils;
 
 import java.util.HashMap;
 

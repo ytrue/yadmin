@@ -1,4 +1,4 @@
-package com.ytrue.yadmin.common.util;
+package com.ytrue.yadmin.common.utils;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
