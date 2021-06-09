@@ -59,7 +59,7 @@ public class SysRoleController {
      * @param roleId
      * @return
      */
-    @GetMapping("/info/{roleId}")
+    @GetMapping("/{roleId}")
     @PreAuthorize("@pms.hasPermission('sys:role:info')")
     public SysRole info(@PathVariable("roleId") Long roleId) {
         SysRole role = sysRoleService.getById(roleId);
@@ -73,7 +73,6 @@ public class SysRoleController {
      * 保存角色
      *
      * @param role
-     * @param b
      */
     @SysLog("保存角色")
     @PostMapping
@@ -87,7 +86,6 @@ public class SysRoleController {
      * 修改角色
      *
      * @param role
-     * @param b
      */
     @SysLog("修改角色")
     @PutMapping
