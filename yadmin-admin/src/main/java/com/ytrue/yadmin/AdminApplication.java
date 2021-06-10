@@ -20,9 +20,6 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
         "com.ytrue.yadmin.sys.dao",
         "com.ytrue.yadmin.quartz.dao",
 })
-/**
- * @author ytrue
- */
 public class AdminApplication {
     public static void main(String[] args) {
         SpringApplication.run(AdminApplication.class, args);

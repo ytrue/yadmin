@@ -22,6 +22,8 @@
         <module>yadmin-module/yadmin-oss</module>
         <module>yadmin-module/yadmin-mall</module>
         <module>yadmin-module/yadmin-chat</module>
+        <module>yadmin-module/yadmin-es</module>
+        <module>yadmin-amq</module>
 
     </modules>
 
