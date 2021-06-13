@@ -10,7 +10,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>yadmin-oss</artifactId>
+    <artifactId>yadmin-tool</artifactId>
 
 
 </project>

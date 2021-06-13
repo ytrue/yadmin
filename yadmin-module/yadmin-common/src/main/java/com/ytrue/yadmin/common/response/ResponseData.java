@@ -1,14 +1,9 @@
 package com.ytrue.yadmin.common.response;
 
-import com.alibaba.fastjson.JSON;
-import com.ytrue.yadmin.common.json.JsonUtil;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-
-import javax.servlet.http.HttpServletResponse;
-import java.io.PrintWriter;
 
 /**
  * @author ytrue
@@ -156,29 +151,4 @@ public class ResponseData<T> {
         return resp;
     }
 
-
-    /**
-     * 通过HttpServletResponse 返回 json
-     *
-     * @param response
-     * @param result
-     */
-    public static void jsonOut(HttpServletResponse response, ResponseData<Object> result) {
-        PrintWriter out = null;
-        try {
-            //设置200，方便前端处理
-            response.setStatus(ResponseCode.SUCCESS.getCode());
-            response.setCharacterEncoding("UTF-8");
-            response.setContentType("application/json");
-            out = response.getWriter();
-            out.println(JsonUtil.toJsonString(result));
-        } catch (Exception e) {
-            log.error(e + "输出JSON出错");
-        } finally {
-            if (out != null) {
-                out.flush();
-                out.close();
-            }
-        }
-    }
 }

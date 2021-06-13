@@ -11,19 +11,20 @@
     <modules>
         <module>yadmin-admin</module>
         <module>yadmin-api</module>
-        <module>yadmin-common</module>
+        <module>yadmin-amq</module>
         <module>yadmin-monitor</module>
-
 
         <module>yadmin-module</module>
         <module>yadmin-module/yadmin-security</module>
         <module>yadmin-module/yadmin-sys</module>
         <module>yadmin-module/yadmin-quartz</module>
-        <module>yadmin-module/yadmin-oss</module>
+        <module>yadmin-module/yadmin-tool</module>
         <module>yadmin-module/yadmin-mall</module>
         <module>yadmin-module/yadmin-chat</module>
         <module>yadmin-module/yadmin-es</module>
-        <module>yadmin-amq</module>
+        <module>yadmin-module/yadmin-common</module>
+        <module>yadmin-module/yadmin-tool</module>
+
 
     </modules>
 
@@ -67,6 +68,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+            <version>1.18.10</version>
             <scope>provided</scope>
         </dependency>
 

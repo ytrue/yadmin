@@ -6,6 +6,7 @@
         <artifactId>yadmin</artifactId>
         <groupId>com.ytrue</groupId>
         <version>1.0-SNAPSHOT</version>
+        <relativePath>../../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -34,10 +35,7 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-        </dependency>
+
 
         <dependency>
             <groupId>com.google.code.gson</groupId>

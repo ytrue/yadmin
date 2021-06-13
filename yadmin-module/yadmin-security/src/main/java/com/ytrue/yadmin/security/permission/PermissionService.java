@@ -28,7 +28,7 @@ public class PermissionService {
             return false;
         }
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        log.info("PermissionService触发: " + authentication);
+        //log.info("PermissionService触发: " + authentication);
         if (authentication == null) {
             return false;
         }

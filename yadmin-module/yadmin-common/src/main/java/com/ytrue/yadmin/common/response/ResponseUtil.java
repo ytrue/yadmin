@@ -1,6 +1,6 @@
 package com.ytrue.yadmin.common.response;
 
-import com.ytrue.yadmin.common.json.JsonUtil;
+import com.ytrue.yadmin.common.utils.GsonUtils;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.http.HttpServletResponse;
@@ -31,8 +31,7 @@ public final class ResponseUtil {
      * @param object   发送的字符串
      */
     public static void renderJson(HttpServletResponse response, Object object) {
-
-        render(response, "application/json;charset=UTF-8", JsonUtil.toJsonString(object));
+        render(response, "application/json;charset=UTF-8",   GsonUtils.to(object));
     }
 
     /**

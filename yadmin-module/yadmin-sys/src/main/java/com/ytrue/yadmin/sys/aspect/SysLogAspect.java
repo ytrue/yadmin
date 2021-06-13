@@ -2,7 +2,7 @@ package com.ytrue.yadmin.sys.aspect;
 
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.date.SystemClock;
-import com.ytrue.yadmin.common.json.JsonUtil;
+import com.ytrue.yadmin.common.utils.GsonUtils;
 import com.ytrue.yadmin.common.utils.IpHelper;
 import com.ytrue.yadmin.common.utils.JwtUtils;
 import com.ytrue.yadmin.sys.dao.SysLogMapper;
@@ -67,7 +67,9 @@ public class SysLogAspect {
         //请求的参数
         Object[] args = joinPoint.getArgs();
 
-        String params = JsonUtil.toJsonString(args[0]);
+       // String params = JsonUtil.toJsonString(args[0]);
+        String params = GsonUtils.to(args[0]);
+
         sysLogEntity.setParams(params);
 
         //设置IP地址

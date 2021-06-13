@@ -4,12 +4,10 @@ package com.ytrue.yadmin.common.aspect;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.StrUtil;
-import com.alibaba.fastjson.JSONObject;
 import com.ytrue.yadmin.common.annotation.AutoValid;
 import com.ytrue.yadmin.common.annotation.AutoValids;
 import com.ytrue.yadmin.common.exeption.AutoValidException;
-import com.ytrue.yadmin.common.json.JsonEnum;
-import com.ytrue.yadmin.common.json.JsonUtil;
+import com.ytrue.yadmin.common.utils.GsonUtils;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
@@ -87,7 +85,8 @@ public class AutoValidAspect {
         Set<ConstraintViolation<Object>> violationSet = null;
         //判断是否为空，并且第一个次数不能为null
         if (ArrayUtil.isNotEmpty(point.getArgs()) && point.getArgs()[0] != null) {
-            Object object = JsonUtil.toPojo(getParams(point, valid), valid.entity());
+            Object object = GsonUtils.from(getParams(point, valid), valid.entity());
+
             if (ArrayUtil.isEmpty(valid.groups())) {
                 violationSet = Validation.buildDefaultValidatorFactory().getValidator().validate(object);
             } else {
@@ -113,7 +112,8 @@ public class AutoValidAspect {
                 errorList.add(objectConstraintViolation.getMessage());
             });
             //这里要抛异，不能往下走
-            throw new AutoValidException(JsonUtil.toJsonString(errorList));
+
+            throw new AutoValidException(GsonUtils.to(errorList));
         }
     }
 
@@ -125,13 +125,14 @@ public class AutoValidAspect {
      * @return
      */
     private String getParams(JoinPoint point, AutoValid valid) {
+
         if (StrUtil.isBlank(valid.key())) {
-            return JsonUtil.toJsonString(point.getArgs()[0]);
+            return GsonUtils.to(point.getArgs()[0]);
         } else {
-            JsonUtil.initJson(JsonEnum.FASTJSON);
-            JSONObject object = JsonUtil.toPojo(JsonUtil.toJsonString(point.getArgs()[0]), JSONObject.class);
-            if (object.containsKey(valid.key())) {
-                return object.getString(valid.key());
+            //这里是判断一个属性是否存在
+            String value = GsonUtils.getAsString(GsonUtils.to(point.getArgs()[0]), valid.key());
+            if (!StrUtil.hasEmpty(value)) {
+                return value;
             }
         }
         return EMPTY_STRING;
