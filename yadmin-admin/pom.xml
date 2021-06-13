@@ -32,6 +32,12 @@
         </dependency>
 
 
+        <dependency>
+            <groupId>com.ytrue</groupId>
+            <artifactId>yadmin-mall</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/de.codecentric/spring-boot-admin-starter-client -->
         <dependency>
             <groupId>de.codecentric</groupId>

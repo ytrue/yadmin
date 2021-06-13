@@ -3,9 +3,9 @@ package com.ytrue.yadmin.common.exeption.handle;
 
 import com.ytrue.yadmin.common.exeption.AutoValidException;
 import com.ytrue.yadmin.common.exeption.YadminException;
-import com.ytrue.yadmin.common.response.ResponseCode;
-import com.ytrue.yadmin.common.response.ResponseData;
-import com.ytrue.yadmin.common.response.ResponseUtil;
+import com.ytrue.yadmin.common.enums.ResponseCode;
+import com.ytrue.yadmin.common.utils.ResponseData;
+import com.ytrue.yadmin.common.utils.ResponseUtils;
 import com.ytrue.yadmin.common.utils.GsonUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -35,7 +35,7 @@ public class OtherExceptionHandle {
             YadminException exception,
             HttpServletResponse response
     ) {
-        ResponseUtil.renderJson(response, ResponseData.fail(
+        ResponseUtils.renderJson(response, ResponseData.fail(
                 ResponseCode.EXCEPTION.getCode(),
                 exception.getMessage()
         ));
@@ -52,7 +52,7 @@ public class OtherExceptionHandle {
             AutoValidException exception,
             HttpServletResponse response
     ) {
-        ResponseUtil.renderJson(response, ResponseData.fail(
+        ResponseUtils.renderJson(response, ResponseData.fail(
                 ResponseCode.BAD_REQUEST.getCode(),
                 ResponseCode.BAD_REQUEST.getMessage(),
                 GsonUtils.fromList(exception.getMessage(), String.class)

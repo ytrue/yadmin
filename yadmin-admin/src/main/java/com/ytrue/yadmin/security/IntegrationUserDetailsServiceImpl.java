@@ -8,8 +8,8 @@ import com.ytrue.yadmin.security.integration.IntegrationAuthenticationContext;
 import com.ytrue.yadmin.security.integration.IntegrationAuthenticationEntity;
 import com.ytrue.yadmin.security.integration.authenticator.IntegrationAuthenticator;
 import com.ytrue.yadmin.sys.constant.Constant;
-import com.ytrue.yadmin.sys.dao.SysMenuMapper;
-import com.ytrue.yadmin.sys.dao.SysUserMapper;
+import com.ytrue.yadmin.sys.dao.SysMenuDao;
+import com.ytrue.yadmin.sys.dao.SysUserDao;
 import com.ytrue.yadmin.sys.model.SysMenu;
 import com.ytrue.yadmin.sys.model.SysUser;
 import lombok.extern.slf4j.Slf4j;
@@ -40,10 +40,10 @@ public class IntegrationUserDetailsServiceImpl implements UserDetailsService {
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    private SysMenuMapper sysMenuMapper;
+    private SysMenuDao sysMenuDao;
 
     @Autowired
-    private SysUserMapper sysUserMapper;
+    private SysUserDao SysUserDao;
 
     private List<IntegrationAuthenticator> authenticators;
 
@@ -80,10 +80,10 @@ public class IntegrationUserDetailsServiceImpl implements UserDetailsService {
         List<String> permsList;
         //系统管理员，拥有最高权限
         if (userId == Constant.SUPER_ADMIN_ID) {
-            List<SysMenu> menuList = sysMenuMapper.selectList(Wrappers.emptyWrapper());
+            List<SysMenu> menuList = sysMenuDao.selectList(Wrappers.emptyWrapper());
             permsList = menuList.stream().map(SysMenu::getPerms).collect(Collectors.toList());
         } else {
-            permsList = sysUserMapper.queryAllPerms(userId);
+            permsList = SysUserDao.queryAllPerms(userId);
         }
         return permsList.stream().flatMap((perms) -> {
                     if (StrUtil.isBlank(perms)) {

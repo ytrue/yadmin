@@ -1,10 +1,5 @@
 package com.ytrue.yadmin.controller.sys;
 
-import cn.hutool.core.collection.CollUtil;
-import cn.hutool.core.convert.Convert;
-import cn.hutool.core.lang.tree.TreeNode;
-import cn.hutool.core.lang.tree.TreeNodeConfig;
-import cn.hutool.core.lang.tree.TreeUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -14,10 +9,8 @@ import com.ytrue.yadmin.common.annotation.AutoValid;
 import com.ytrue.yadmin.common.annotation.SysLog;
 import com.ytrue.yadmin.common.annotation.WrapResp;
 import com.ytrue.yadmin.common.exeption.YadminException;
-import com.ytrue.yadmin.common.response.ResponseData;
 import com.ytrue.yadmin.common.search.SearchModel;
 import com.ytrue.yadmin.common.utils.JwtUtils;
-import com.ytrue.yadmin.sys.model.SysMenu;
 import com.ytrue.yadmin.sys.model.SysUser;
 import com.ytrue.yadmin.sys.service.SysMenuService;
 import com.ytrue.yadmin.sys.service.SysRoleService;
@@ -31,7 +24,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
-import java.util.function.Consumer;
 
 /**
  * @author ytrue
@@ -41,7 +33,7 @@ import java.util.function.Consumer;
 @Slf4j
 @WrapResp
 @RestController
-@RequestMapping("/sys/user")
+@RequestMapping("sys/user")
 @AllArgsConstructor
 public class SysUserController {
 
@@ -59,7 +51,7 @@ public class SysUserController {
      * @param searchModel
      * @return
      */
-    @PostMapping("/page")
+    @PostMapping("page")
     @PreAuthorize("@pms.hasPermission('sys:user:page')")
     public IPage<SysUser> page(@RequestBody SearchModel<SysUser> searchModel) {
         return sysUserService.page(searchModel.getPage(), searchModel.getQueryModel().orderByDesc("user_id"));
@@ -72,7 +64,7 @@ public class SysUserController {
      * @param userId
      * @return
      */
-    @GetMapping("/{userId}")
+    @GetMapping("{userId}")
     @PreAuthorize("@pms.hasPermission('sys:user:info')")
     public SysUser info(@PathVariable("userId") Long userId) {
         SysUser sysUser = sysUserService.getById(userId);

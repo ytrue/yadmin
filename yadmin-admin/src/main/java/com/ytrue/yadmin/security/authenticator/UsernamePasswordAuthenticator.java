@@ -4,7 +4,7 @@ import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 
 import com.ytrue.yadmin.common.exeption.YadminException;
-import com.ytrue.yadmin.sys.dao.SysUserMapper;
+import com.ytrue.yadmin.sys.dao.SysUserDao;
 import com.ytrue.yadmin.sys.model.SysUser;
 import com.ytrue.yadmin.security.integration.IntegrationAuthenticationEntity;
 import com.ytrue.yadmin.security.integration.authenticator.AbstractPreparableIntegrationAuthenticator;
@@ -29,7 +29,7 @@ import org.springframework.util.StringUtils;
 public class UsernamePasswordAuthenticator extends AbstractPreparableIntegrationAuthenticator {
 
 
-    private final SysUserMapper sysUserMapper;
+    private final SysUserDao SysUserDao;
 
     /**
      * 预处理
@@ -44,7 +44,7 @@ public class UsernamePasswordAuthenticator extends AbstractPreparableIntegration
         if (StrUtil.hasBlank(username) || StrUtil.hasBlank(password)) {
             throw new YadminException("用户名或密码不能为空");
         }
-        SysUser user = sysUserMapper.selectOne(new QueryWrapper<SysUser>().eq("username", username));
+        SysUser user = SysUserDao.selectOne(new QueryWrapper<SysUser>().eq("username", username));
         if (user == null) {
             throw new YadminException("用户不存在");
         }

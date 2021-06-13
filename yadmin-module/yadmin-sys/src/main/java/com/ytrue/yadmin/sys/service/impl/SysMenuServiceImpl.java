@@ -9,9 +9,8 @@ import cn.hutool.core.lang.tree.TreeNodeConfig;
 import cn.hutool.core.lang.tree.TreeUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
-import com.ytrue.yadmin.sys.constant.Constant;
-import com.ytrue.yadmin.sys.dao.SysMenuMapper;
-import com.ytrue.yadmin.sys.dao.SysRoleMenuMapper;
+import com.ytrue.yadmin.sys.dao.SysMenuDao;
+import com.ytrue.yadmin.sys.dao.SysRoleMenuDao;
 import com.ytrue.yadmin.sys.model.SysMenu;
 import com.ytrue.yadmin.sys.service.SysMenuService;
 import lombok.AllArgsConstructor;
@@ -27,11 +26,11 @@ import java.util.Map;
  */
 @Service("sysMenuService")
 @AllArgsConstructor
-public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> implements SysMenuService {
+public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenu> implements SysMenuService {
 
-    private final SysRoleMenuMapper sysRoleMenuMapper;
+    private final SysRoleMenuDao sysRoleMenuDao;
 
-    private final SysMenuMapper sysMenuMapper;
+    private final SysMenuDao sysMenuDao;
 
 
     @Override
@@ -40,19 +39,19 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
         //删除菜单
         this.removeById(menuId);
         //删除菜单与角色关联
-        sysRoleMenuMapper.deleteByMenuId(menuId);
+        sysRoleMenuDao.deleteByMenuId(menuId);
     }
 
 
     @Override
     public List<Long> listMenuIdByRoleId(Long roleId) {
-        return sysMenuMapper.listMenuIdByRoleId(roleId);
+        return sysMenuDao.listMenuIdByRoleId(roleId);
     }
 
 
     @Override
     public List<SysMenu> listChildrenMenuByParentId(Long parentId) {
-        return sysMenuMapper.listChildrenMenuByParentId(parentId);
+        return sysMenuDao.listChildrenMenuByParentId(parentId);
     }
 
     @Override

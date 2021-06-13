@@ -4,7 +4,7 @@ import cn.hutool.core.date.DateUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
 import com.ytrue.yadmin.quartz.config.ScheduleManager;
-import com.ytrue.yadmin.quartz.dao.ScheduleJobMapper;
+import com.ytrue.yadmin.quartz.dao.ScheduleJobDao;
 import com.ytrue.yadmin.quartz.enums.ScheduleStatus;
 import com.ytrue.yadmin.quartz.model.ScheduleJob;
 import com.ytrue.yadmin.quartz.service.ScheduleJobService;
@@ -26,10 +26,10 @@ import java.util.List;
 @Service
 @Slf4j
 @AllArgsConstructor
-public class ScheduleJobServiceImpl extends ServiceImpl<ScheduleJobMapper, ScheduleJob> implements ScheduleJobService {
+public class ScheduleJobServiceImpl extends ServiceImpl<ScheduleJobDao, ScheduleJob> implements ScheduleJobService {
 
 
-    private final ScheduleJobMapper scheduleJobMapper;
+    private final ScheduleJobDao scheduleJobDao;
 
     private final ScheduleManager scheduleManager;
 
@@ -57,7 +57,7 @@ public class ScheduleJobServiceImpl extends ServiceImpl<ScheduleJobMapper, Sched
     public void saveAndStart(ScheduleJob scheduleJob) {
         scheduleJob.setCreateTime(DateUtil.date());
         scheduleJob.setStatus(ScheduleStatus.NORMAL.getType());
-        scheduleJobMapper.insert(scheduleJob);
+        scheduleJobDao.insert(scheduleJob);
 
         scheduleManager.createScheduleJob(scheduleJob);
     }
@@ -66,7 +66,7 @@ public class ScheduleJobServiceImpl extends ServiceImpl<ScheduleJobMapper, Sched
     @Transactional(rollbackFor = Exception.class)
     public void updateScheduleJob(ScheduleJob scheduleJob) {
         scheduleManager.updateScheduleJob(scheduleJob);
-        scheduleJobMapper.updateById(scheduleJob);
+        scheduleJobDao.updateById(scheduleJob);
     }
 
     @Override
@@ -76,19 +76,19 @@ public class ScheduleJobServiceImpl extends ServiceImpl<ScheduleJobMapper, Sched
         this.listByIds(ids).forEach(scheduleJob -> {
             scheduleManager.deleteScheduleJob(scheduleJob);
         });
-        scheduleJobMapper.deleteBatchIds(ids);
+        scheduleJobDao.deleteBatchIds(ids);
     }
 
     @Override
     public int updateBatch(Long[] jobIds, int status) {
-        return scheduleJobMapper.updateBatch(jobIds, status);
+        return scheduleJobDao.updateBatch(jobIds, status);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void run(Long[] jobIds) {
         for (Long jobId : jobIds) {
-            scheduleManager.run(scheduleJobMapper.selectById(jobId));
+            scheduleManager.run(scheduleJobDao.selectById(jobId));
         }
     }
 

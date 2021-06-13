@@ -2,7 +2,7 @@ package com.ytrue.yadmin.sys.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
-import com.ytrue.yadmin.sys.dao.SysConfigMapper;
+import com.ytrue.yadmin.sys.dao.SysConfigDao;
 import com.ytrue.yadmin.sys.model.SysConfig;
 import com.ytrue.yadmin.sys.service.SysConfigService;
 import lombok.AllArgsConstructor;
@@ -13,23 +13,23 @@ import org.springframework.stereotype.Service;
  */
 @Service("sysConfigService")
 @AllArgsConstructor
-public class SysConfigServiceImpl extends ServiceImpl<SysConfigMapper, SysConfig> implements SysConfigService {
+public class SysConfigServiceImpl extends ServiceImpl<SysConfigDao, SysConfig> implements SysConfigService {
 
-	private final SysConfigMapper sysConfigMapper;
+	private final SysConfigDao sysConfigDao;
 
 	@Override
 	public void updateValueByKey(String key, String value) {
-		sysConfigMapper.updateValueByKey(key, value);
+		sysConfigDao.updateValueByKey(key, value);
 	}
 
 	@Override
 	public void deleteBatch(Long[] ids) {
-		sysConfigMapper.deleteBatch(ids);
+		sysConfigDao.deleteBatch(ids);
 	}
 
 	@Override
 	public String getValue(String key) {
-		SysConfig config = sysConfigMapper.queryByKey(key);
+		SysConfig config = sysConfigDao.queryByKey(key);
 		return config == null ? null : config.getParamValue();
 	}
 }

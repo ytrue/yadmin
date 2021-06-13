@@ -22,7 +22,7 @@ import java.util.List;
  */
 @WrapResp
 @RestController
-@RequestMapping("/sys/role")
+@RequestMapping("sys/role")
 @AllArgsConstructor
 public class SysRoleController {
 
@@ -37,7 +37,7 @@ public class SysRoleController {
      * @param userSearchModel
      * @return
      */
-    @PostMapping("/page")
+    @PostMapping("page")
     @PreAuthorize("@pms.hasPermission('sys:role:page')")
     public IPage<SysRole> page(@RequestBody SearchModel<SysRole> userSearchModel) {
         return sysRoleService.page(userSearchModel.getPage(), userSearchModel.getQueryModel());
@@ -48,7 +48,7 @@ public class SysRoleController {
      *
      * @return
      */
-    @GetMapping("/list")
+    @GetMapping("list")
     @PreAuthorize("@pms.hasPermission('sys:role:list')")
     public List<SysRole> list() {
         return sysRoleService.list();
@@ -60,7 +60,7 @@ public class SysRoleController {
      * @param roleId
      * @return
      */
-    @GetMapping("/{roleId}")
+    @GetMapping("{roleId}")
     @PreAuthorize("@pms.hasPermission('sys:role:info')")
     public SysRole info(@PathVariable("roleId") Long roleId) {
         SysRole role = sysRoleService.getById(roleId);

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @description 系统日志
  */
 @RestController
-@RequestMapping("/sys/log")
+@RequestMapping("sys/log")
 @WrapResp
 @AllArgsConstructor
 public class SysLogController {
@@ -32,7 +32,7 @@ public class SysLogController {
      * @param sysLogSearchModel
      * @return
      */
-    @PostMapping("/page")
+    @PostMapping("page")
     @PreAuthorize("@pms.hasPermission('sys:log:page')")
     public IPage<SysLog> page(@RequestBody SearchModel<SysLog> sysLogSearchModel) {
         return sysLogService.page(

@@ -19,6 +19,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 @MapperScan(value = {
         "com.ytrue.yadmin.sys.dao",
         "com.ytrue.yadmin.quartz.dao",
+        "com.ytrue.yadmin.mall.dao",
 })
 public class AdminApplication {
     public static void main(String[] args) {

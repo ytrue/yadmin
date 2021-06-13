@@ -5,8 +5,8 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.ytrue.yadmin.sys.dao.SysUserMapper;
-import com.ytrue.yadmin.sys.dao.SysUserRoleMapper;
+import com.ytrue.yadmin.sys.dao.SysUserDao;
+import com.ytrue.yadmin.sys.dao.SysUserRoleDao;
 import com.ytrue.yadmin.sys.model.SysUser;
 import com.ytrue.yadmin.sys.model.SysUserRole;
 import com.ytrue.yadmin.sys.service.SysUserService;
@@ -23,11 +23,11 @@ import org.springframework.transaction.annotation.Transactional;
 @Service("sysUserService")
 @AllArgsConstructor
 @Transactional(rollbackFor = Exception.class)
-public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements SysUserService {
+public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUser> implements SysUserService {
 
-    private SysUserRoleMapper sysUserRoleMapper;
+    private SysUserRoleDao sysUserRoleDao;
 
-    private SysUserMapper sysUserMapper;
+    private SysUserDao SysUserDao;
 
     @Override
     public void saveUserAndUserRole(SysUser user) {
@@ -37,7 +37,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
             return;
         }
         //保存用户与角色关系
-        sysUserRoleMapper.insertUserAndUserRole(user.getUserId(), user.getRoleIdList());
+        sysUserRoleDao.insertUserAndUserRole(user.getUserId(), user.getRoleIdList());
     }
 
     @Override
@@ -46,13 +46,13 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         // 更新用户
         updateById(user);
         //先删除用户与角色关系
-        sysUserRoleMapper.delete(new QueryWrapper<SysUserRole>().eq("user_id", user.getUserId()));
+        sysUserRoleDao.delete(new QueryWrapper<SysUserRole>().eq("user_id", user.getUserId()));
 
         if (CollUtil.isEmpty(user.getRoleIdList())) {
             return;
         }
         //保存用户与角色关系
-        sysUserRoleMapper.insertUserAndUserRole(user.getUserId(), user.getRoleIdList());
+        sysUserRoleDao.insertUserAndUserRole(user.getUserId(), user.getRoleIdList());
     }
 
     @Override
@@ -60,6 +60,6 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         SysUser user = new SysUser();
         user.setPassword(newPassword);
         user.setUserId(userId);
-        sysUserMapper.updateById(user);
+        SysUserDao.updateById(user);
     }
 }

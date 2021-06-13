@@ -5,7 +5,7 @@ import cn.hutool.core.date.SystemClock;
 import com.ytrue.yadmin.common.utils.GsonUtils;
 import com.ytrue.yadmin.common.utils.IpHelper;
 import com.ytrue.yadmin.common.utils.JwtUtils;
-import com.ytrue.yadmin.sys.dao.SysLogMapper;
+import com.ytrue.yadmin.sys.dao.SysLogDao;
 import com.ytrue.yadmin.sys.model.SysLog;
 import lombok.AllArgsConstructor;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -28,11 +28,11 @@ import javax.servlet.http.HttpServletRequest;
 public class SysLogAspect {
 
 
-    private final SysLogMapper sysLogMapper;
+    private final SysLogDao sysLogDao;
 
-    private final HttpServletRequest request;
+    //private final HttpServletRequest request;
 
-    private final JwtUtils jwtUtils;
+    //private final JwtUtils jwtUtils;
 
 
     /**
@@ -80,7 +80,7 @@ public class SysLogAspect {
         sysLogEntity.setTime(time);
         sysLogEntity.setCreateDate(DateUtil.date());
         //保存系统日志
-        sysLogMapper.insert(sysLogEntity);
+        sysLogDao.insert(sysLogEntity);
         return result;
     }
 

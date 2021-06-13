@@ -1,8 +1,8 @@
 package com.ytrue.yadmin.common.exeption.handle;
 
 
-import com.ytrue.yadmin.common.response.ResponseCode;
-import com.ytrue.yadmin.common.response.ResponseData;
+import com.ytrue.yadmin.common.enums.ResponseCode;
+import com.ytrue.yadmin.common.utils.ResponseData;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.web.error.ErrorAttributeOptions;

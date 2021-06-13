@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.ytrue.yadmin.common.annotation.AutoValid;
 import com.ytrue.yadmin.common.annotation.WrapResp;
 import com.ytrue.yadmin.common.exeption.YadminException;
-import com.ytrue.yadmin.common.response.ResponseData;
+import com.ytrue.yadmin.common.utils.ResponseData;
 import com.ytrue.yadmin.common.annotation.SysLog;
 import com.ytrue.yadmin.sys.constant.Constant;
 import com.ytrue.yadmin.sys.model.SysMenu;
@@ -26,7 +26,7 @@ import java.util.Objects;
  */
 @WrapResp
 @RestController
-@RequestMapping("/sys/menu")
+@RequestMapping("sys/menu")
 @AllArgsConstructor
 public class SysMenuController {
 
@@ -37,7 +37,7 @@ public class SysMenuController {
      *
      * @return
      */
-    @GetMapping("/table")
+    @GetMapping("table")
     public List<SysMenu> table() {
         return sysMenuService.list(new QueryWrapper<SysMenu>().orderByAsc("order_num"));
     }
@@ -49,7 +49,7 @@ public class SysMenuController {
      *
      * @return
      */
-    @GetMapping("/list")
+    @GetMapping("list")
     public List<SysMenu> list() {
         return sysMenuService.list(
                 new QueryWrapper<SysMenu>().ne("level", 3).orderByAsc("order_num"));
@@ -58,7 +58,7 @@ public class SysMenuController {
     /**
      * 菜单信息
      */
-    @GetMapping("/{menuId}")
+    @GetMapping("{menuId}")
     @PreAuthorize("@pms.hasPermission('sys:menu:info')")
     public SysMenu info(@PathVariable("menuId") Long menuId) {
         return sysMenuService.getById(menuId);

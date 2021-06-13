@@ -4,9 +4,9 @@ import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.date.DateUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
-import com.ytrue.yadmin.sys.dao.SysRoleMapper;
-import com.ytrue.yadmin.sys.dao.SysRoleMenuMapper;
-import com.ytrue.yadmin.sys.dao.SysUserRoleMapper;
+import com.ytrue.yadmin.sys.dao.SysRoleDao;
+import com.ytrue.yadmin.sys.dao.SysRoleMenuDao;
+import com.ytrue.yadmin.sys.dao.SysUserRoleDao;
 import com.ytrue.yadmin.sys.model.SysRole;
 import com.ytrue.yadmin.sys.service.SysRoleService;
 import lombok.AllArgsConstructor;
@@ -23,10 +23,10 @@ import java.util.List;
  */
 @Service("sysRoleService")
 @AllArgsConstructor
-public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> implements SysRoleService {
-    private final SysRoleMenuMapper sysRoleMenuMapper;
-    private final SysUserRoleMapper sysUserRoleMapper;
-    private final SysRoleMapper sysRoleMapper;
+public class SysRoleServiceImpl extends ServiceImpl<SysRoleDao, SysRole> implements SysRoleService {
+    private final SysRoleMenuDao sysRoleMenuDao;
+    private final SysUserRoleDao sysUserRoleDao;
+    private final SysRoleDao SysRoleDao;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -37,37 +37,37 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
             return;
         }
         //保存角色与菜单关系
-        sysRoleMenuMapper.insertRoleAndRoleMenu(role.getRoleId(), role.getMenuIdList());
+        sysRoleMenuDao.insertRoleAndRoleMenu(role.getRoleId(), role.getMenuIdList());
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void updateRoleAndRoleMenu(SysRole role) {
         // 更新角色
-        sysRoleMapper.updateById(role);
+        SysRoleDao.updateById(role);
         //先删除角色与菜单关系
-        sysRoleMenuMapper.deleteBatch(new Long[]{role.getRoleId()});
+        sysRoleMenuDao.deleteBatch(new Long[]{role.getRoleId()});
         if (CollectionUtil.isEmpty(role.getMenuIdList())) {
             return;
         }
         //保存角色与菜单关系
-        sysRoleMenuMapper.insertRoleAndRoleMenu(role.getRoleId(), role.getMenuIdList());
+        sysRoleMenuDao.insertRoleAndRoleMenu(role.getRoleId(), role.getMenuIdList());
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void deleteBatch(Long[] roleIds) {
         //删除角色
-        sysRoleMapper.deleteBatch(roleIds);
+        SysRoleDao.deleteBatch(roleIds);
         //删除角色与菜单关联
-        sysRoleMenuMapper.deleteBatch(roleIds);
+        sysRoleMenuDao.deleteBatch(roleIds);
         //删除角色与用户关联
-        sysUserRoleMapper.deleteBatch(roleIds);
+        sysUserRoleDao.deleteBatch(roleIds);
     }
 
     @Override
     public List<Long> listRoleIdByUserId(Long userId) {
-        return sysRoleMapper.listRoleIdByUserId(userId);
+        return SysRoleDao.listRoleIdByUserId(userId);
     }
 
 }

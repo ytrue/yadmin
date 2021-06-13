@@ -2,7 +2,7 @@ package com.ytrue.yadmin.common.annotation.handle;
 
 
 import com.ytrue.yadmin.common.annotation.WrapResp;
-import com.ytrue.yadmin.common.response.ResponseData;
+import com.ytrue.yadmin.common.utils.ResponseData;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;

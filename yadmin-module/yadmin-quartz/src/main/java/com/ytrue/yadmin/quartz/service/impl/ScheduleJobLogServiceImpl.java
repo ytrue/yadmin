@@ -2,7 +2,7 @@ package com.ytrue.yadmin.quartz.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
-import com.ytrue.yadmin.quartz.dao.ScheduleJobLogMapper;
+import com.ytrue.yadmin.quartz.dao.ScheduleJobLogDao;
 import com.ytrue.yadmin.quartz.model.ScheduleJobLog;
 import com.ytrue.yadmin.quartz.service.ScheduleJobLogService;
 import org.springframework.stereotype.Service;
@@ -13,6 +13,6 @@ import org.springframework.stereotype.Service;
  * @description ScheduleJobLogServiceImpl
  */
 @Service("scheduleJobLogService")
-public class ScheduleJobLogServiceImpl extends ServiceImpl<ScheduleJobLogMapper, ScheduleJobLog> implements ScheduleJobLogService {
+public class ScheduleJobLogServiceImpl extends ServiceImpl<ScheduleJobLogDao, ScheduleJobLog> implements ScheduleJobLogService {
 
 }
