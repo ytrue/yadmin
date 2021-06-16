@@ -29,6 +29,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     /**
      * 配置
+     *
      * @param http
      * @throws Exception
      */
@@ -42,7 +43,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers(
-                        "/actuator/**", "/svg/**", "/passport/**").permitAll()
+                        "/favicon.ico","/actuator/**", "/svg/**", "/passport/**").permitAll()
                 .and()
                 .cors() //资源服务解决跨域，需要添加此配置项
                 .and()
@@ -62,4 +63,6 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         resources.authenticationEntryPoint(customAuthenticationEntryPoint)
                 .accessDeniedHandler(customAccessDeniedHandler);
     }
+
+
 }

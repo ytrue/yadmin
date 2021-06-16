@@ -25,7 +25,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/oauth/**", "/login/**", "/logout/**")
+                .antMatchers( "/oauth/**", "/login/**", "/logout/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
@@ -33,9 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .permitAll();
 
-        /**
-         * 配置oauth/token跨域问题
-         */
+        //配置oauth/token跨域问题
         http.requestMatchers().antMatchers(HttpMethod.OPTIONS, "/oauth/**")
                 .and()
                 .cors()

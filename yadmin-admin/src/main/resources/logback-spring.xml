@@ -9,9 +9,7 @@
         <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
             <!-- encoder 可以指定字符集，对于中文输出有意义 -->
             <encoder charset="UTF-8">
-                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %magenta([%thread]) %customColor(%-5level) %cyan(%logger{15}) -
-                    %msg%n
-                </pattern>
+                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %magenta([%thread]) %customColor(%-5level) %cyan(%logger{15}) - %msg%n</pattern>
             </encoder>
         </appender>
 
