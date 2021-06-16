@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author ytrue
@@ -54,6 +55,21 @@ public class SysUserController {
     @PostMapping("page")
     @PreAuthorize("@pms.hasPermission('sys:user:page')")
     public IPage<SysUser> page(@RequestBody SearchModel<SysUser> searchModel) {
+
+
+        //创建一个线程
+        for (int i = 0; i < 1000; i++) {
+            new Thread(() -> {
+                try {
+                    log.info("我是一条日志");
+                    TimeUnit.SECONDS.sleep(1);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }).start();
+        }
+
+
         return sysUserService.page(searchModel.getPage(), searchModel.getQueryModel().orderByDesc("user_id"));
     }
 

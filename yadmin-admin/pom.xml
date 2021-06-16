@@ -12,6 +12,16 @@
     <artifactId>yadmin-admin</artifactId>
 
     <dependencies>
+
+
+        <!-- https://mvnrepository.com/artifact/net.logstash.logback/logstash-logback-encoder -->
+        <dependency>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+            <version>6.6</version>
+        </dependency>
+
+
         <dependency>
             <groupId>com.ytrue</groupId>
             <artifactId>yadmin-security</artifactId>
