@@ -2,6 +2,8 @@ package com.ytrue.yadmin.mall.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.ytrue.yadmin.mall.model.UploadFile;
+import com.ytrue.yadmin.mall.service.dto.MoveGroupParamDTO;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * @author ytrue
@@ -11,5 +13,17 @@ import com.ytrue.yadmin.mall.model.UploadFile;
 
 public interface UploadFileService extends IService<UploadFile> {
 
+    /**
+     * 上传文件
+     *
+     * @param file
+     */
+    void uploadFile(MultipartFile file);
 
+    /**
+     * 修改图片的组
+     *
+     * @param paramDTO
+     */
+    void moveGroup(MoveGroupParamDTO paramDTO);
 }

@@ -15,6 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
 
 
 /**
@@ -67,7 +68,7 @@ public class SysLogAspect {
         //请求的参数
         Object[] args = joinPoint.getArgs();
 
-       // String params = JsonUtil.toJsonString(args[0]);
+        // String params = JsonUtil.toJsonString(args[0]);
         String params = GsonUtils.to(args[0]);
 
         sysLogEntity.setParams(params);
@@ -78,7 +79,7 @@ public class SysLogAspect {
         //这里使用SecurityContextHolder的上下文来获取用户名
         sysLogEntity.setUsername((String) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         sysLogEntity.setTime(time);
-        sysLogEntity.setCreateDate(DateUtil.date());
+        sysLogEntity.setCreateDate(LocalDateTime.now());
         //保存系统日志
         sysLogDao.insert(sysLogEntity);
         return result;

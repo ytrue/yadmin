@@ -2,7 +2,6 @@ package com.ytrue.yadmin.sys.service.impl;
 
 
 import cn.hutool.core.collection.CollUtil;
-import cn.hutool.core.date.DateUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ytrue.yadmin.sys.dao.SysUserDao;
@@ -13,6 +12,8 @@ import com.ytrue.yadmin.sys.service.SysUserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDateTime;
 
 
 /**
@@ -25,13 +26,13 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(rollbackFor = Exception.class)
 public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUser> implements SysUserService {
 
-    private SysUserRoleDao sysUserRoleDao;
+    private final SysUserRoleDao sysUserRoleDao;
 
-    private SysUserDao SysUserDao;
+    private final SysUserDao SysUserDao;
 
     @Override
     public void saveUserAndUserRole(SysUser user) {
-        user.setCreateTime(DateUtil.date());
+        user.setCreateTime(LocalDateTime.now());
         save(user);
         if (CollUtil.isEmpty(user.getRoleIdList())) {
             return;

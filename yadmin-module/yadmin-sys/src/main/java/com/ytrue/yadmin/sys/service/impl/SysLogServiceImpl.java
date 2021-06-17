@@ -15,5 +15,4 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class SysLogServiceImpl extends ServiceImpl<SysLogDao, SysLog> implements SysLogService {
 
-    private final SysLogDao sysLogMapper;
 }

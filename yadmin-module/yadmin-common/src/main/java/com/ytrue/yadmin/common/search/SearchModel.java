@@ -73,6 +73,9 @@ public class SearchModel<T> {
                     case eq:
                         queryWrapper.eq(true, field.getColumn(), field.getValue());
                         break;
+                    case ne:
+                        queryWrapper.ne(true, field.getColumn(), field.getValue());
+                        break;
                     case like:
                         queryWrapper.like(true, field.getColumn(), field.getValue());
                         break;

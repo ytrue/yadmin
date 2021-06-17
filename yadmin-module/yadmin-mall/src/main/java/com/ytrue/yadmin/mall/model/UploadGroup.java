@@ -1,12 +1,14 @@
 package com.ytrue.yadmin.mall.model;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
+import javax.validation.constraints.NotBlank;
+import java.time.LocalDateTime;
 
 /**
  * @author ytrue
@@ -25,6 +27,7 @@ public class UploadGroup {
     /**
      * 分组名称
      */
+    @NotBlank(message = "名称不能为空")
     @TableField("name")
     private String name;
     /**
@@ -37,28 +40,19 @@ public class UploadGroup {
      */
     @TableField("sort")
     private Integer sort;
-    /**
-     * 是否删除
-     */
-    @TableField("is_delete")
-    private Integer isDelete;
-    /**
-     * 创建时间
-     */
+
+
     /**
      * 创建时间
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @TableField("create_time")
-    private Date createTime;
+    @TableField(value = "create_time", fill = FieldFill.INSERT)
+    private LocalDateTime createTime;
 
     /**
      * 更新时间
      */
-    /**
-     * 创建时间
-     */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @TableField("update_time")
-    private Date updateTime;
+    @TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE)
+    private LocalDateTime updateTime;
 }

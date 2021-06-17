@@ -9,7 +9,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 /**
- * @author lgh
+ * @author ytrue
  */
 @Service("sysConfigService")
 @AllArgsConstructor

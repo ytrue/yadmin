@@ -24,4 +24,10 @@ public class Engine {
      * 腾讯云配置
      */
     private QCloud qcloud;
+
+
+    /**
+     * 本地上传配置
+     */
+    private Local local;
 }

@@ -1,12 +1,13 @@
 package com.ytrue.yadmin.mall.model;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 
 /**
@@ -29,16 +30,7 @@ public class UploadFile {
      */
     @TableField("group_id")
     private Integer groupId;
-    /**
-     * 上传来源(10商户后台 20用户端)
-     */
-    @TableField("channel")
-    private Integer channel;
-    /**
-     * 存储方式
-     */
-    @TableField("storage")
-    private String storage;
+
     /**
      * 文件类型(10图片 20附件 30视频)
      */
@@ -55,47 +47,27 @@ public class UploadFile {
     @TableField("file_path")
     private String filePath;
     /**
-     * 文件大小(字节)
+     * 文件大小
      */
     @TableField("file_size")
-    private Integer fileSize;
+    private String fileSize;
     /**
      * 文件扩展名
      */
     @TableField("file_ext")
     private String fileExt;
-    /**
-     * 文件封面
-     */
-    @TableField("cover")
-    private String cover;
-    /**
-     * 是否在回收站
-     */
-    @TableField("is_recycle")
-    private Integer isRecycle;
-    /**
-     * 是否删除
-     */
-    @TableField("is_delete")
-    private Integer isDelete;
-    /**
-     * 创建时间
-     */
-    /**
-     * 创建时间
-     */
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @TableField("create_time")
-    private Date createTime;
 
     /**
-     * 更新时间
-     */
-    /**
-     * 创建时间
+     * 创建时间,这里使用自动填充
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @TableField("update_time")
-    private Date updateTime;
+    @TableField(value = "create_time", fill = FieldFill.INSERT)
+    private LocalDateTime createTime;
+
+    /**
+     * 更新时间,这里使用自动填充
+     */
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE)
+    private LocalDateTime updateTime;
 }

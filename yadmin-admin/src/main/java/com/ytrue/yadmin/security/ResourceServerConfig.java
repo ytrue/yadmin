@@ -43,7 +43,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers(
-                        "/favicon.ico","/actuator/**", "/svg/**", "/passport/**").permitAll()
+                        "/upload/**","/favicon.ico","/actuator/**", "/svg/**", "/passport/**").permitAll()
                 .and()
                 .cors() //资源服务解决跨域，需要添加此配置项
                 .and()

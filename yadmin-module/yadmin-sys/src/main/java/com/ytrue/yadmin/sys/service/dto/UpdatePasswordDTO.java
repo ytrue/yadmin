@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
  * @author ytrue
  */
 @Data
-public class UpdatePasswordDto {
+public class UpdatePasswordDTO {
 
 	/**
 	 * 旧密码

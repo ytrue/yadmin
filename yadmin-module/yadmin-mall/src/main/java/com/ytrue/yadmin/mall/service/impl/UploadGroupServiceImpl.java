@@ -1,12 +1,17 @@
 package com.ytrue.yadmin.mall.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.ytrue.yadmin.mall.dao.UploadFileDAO;
 import com.ytrue.yadmin.mall.dao.UploadGroupDAO;
+import com.ytrue.yadmin.mall.model.UploadFile;
 import com.ytrue.yadmin.mall.model.UploadGroup;
 import com.ytrue.yadmin.mall.service.UploadGroupService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * @author ytrue
@@ -20,7 +25,16 @@ import org.springframework.transaction.annotation.Transactional;
 public class UploadGroupServiceImpl extends ServiceImpl<UploadGroupDAO, UploadGroup> implements UploadGroupService {
 
 
-    private final UploadGroupDAO uploadGroupDAO;
+    private final UploadFileDAO uploadFileDAO;
 
 
+    @Override
+    public void deleteGroup(List<Long> groupIds) {
+        UploadFile uploadFile = new UploadFile();
+        uploadFile.setGroupId(0);
+        groupIds.forEach(groupId -> uploadFileDAO.update(uploadFile, new QueryWrapper<UploadFile>().eq("group_id", groupId)));
+        //删除文件组
+        removeByIds(groupIds);
+
+    }
 }

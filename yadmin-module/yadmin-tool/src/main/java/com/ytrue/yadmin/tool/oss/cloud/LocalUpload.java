@@ -41,10 +41,11 @@ public class LocalUpload extends AbstractStrategyUpload {
             );
             out.write(data);
             out.flush();
-            return
-                    "/upload"
-                            + "/" + sdf.format(new Date())
-                            + "/" + fileName;
+            return uploadSetting.getEngine().getLocal().getDomain() +
+                    "/upload/" +
+                    sdf.format(new Date()) +
+                    "/" +
+                    fileName;
 
         } catch (IOException e) {
             throw new YadminException("上传文件失败" + e.getMessage());

@@ -13,6 +13,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -31,7 +32,7 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleDao, SysRole> impleme
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void saveRoleAndRoleMenu(SysRole role) {
-        role.setCreateTime(DateUtil.date());
+        role.setCreateTime(LocalDateTime.now());
         this.save(role);
         if (CollectionUtil.isEmpty(role.getMenuIdList())) {
             return;
