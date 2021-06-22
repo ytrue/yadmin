@@ -31,7 +31,7 @@
 
         <dependency>
             <groupId>com.ytrue</groupId>
-            <artifactId>yadmin-sys</artifactId>
+            <artifactId>yadmin-system</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 

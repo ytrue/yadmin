@@ -2,13 +2,12 @@ package com.ytrue.yadmin.controller.sys;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.ytrue.yadmin.common.annotation.AutoValid;
-import com.ytrue.yadmin.common.annotation.AutoValids;
 import com.ytrue.yadmin.common.annotation.WrapResp;
 import com.ytrue.yadmin.common.search.SearchModel;
 import com.ytrue.yadmin.common.annotation.SysLog;
-import com.ytrue.yadmin.sys.model.SysRole;
-import com.ytrue.yadmin.sys.service.SysMenuService;
-import com.ytrue.yadmin.sys.service.SysRoleService;
+import com.ytrue.yadmin.system.model.SysRole;
+import com.ytrue.yadmin.system.service.SysMenuService;
+import com.ytrue.yadmin.system.service.SysRoleService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;

@@ -14,14 +14,9 @@
         <module>yadmin-monitor</module>
         <module>yadmin-common</module>
         <module>yadmin-tools</module>
-
-        <module>yadmin-module</module>
-        <module>yadmin-module/yadmin-security</module>
-        <module>yadmin-module/yadmin-sys</module>
-        <module>yadmin-module/yadmin-quartz</module>
-        <module>yadmin-module/yadmin-mall</module>
-        <module>yadmin-module/yadmin-chat</module>
-        <module>yadmin-module/yadmin-es</module>
+        <module>yadmin-security</module>
+        <module>yadmin-system</module>
+        <module>yadmin-quartz</module>
 
 
 

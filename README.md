@@ -9,16 +9,11 @@ yadmin 基于springboot 开发后台
 yadmin-admin			  	后台
 yadmin-api					api
 yadmin-monitor		   		Spring Boot Admin
-yadmin-amq                  消息中间件
-yadmin-module		   		模块
-    yadmin-common		 	公共
-	yadmin-sys			   	系统
-	yadmin-quartz		 	定时任务
-	yadmin-mall			 	商城
-	yadmin-chat			 	聊天
-	yadmin-oss			   	第三方上传
-	yadmin-security	   		oauth2安全
-    yadmin-es               elasticsearch搜索
+yadmin-common		 	    公共
+yadmin-sys			   	    系统  
+yadmin-quartz		 	    定时任务
+yadmin-security	   		    oauth2安全	
+yadmin-tools			   	工具库
 ```
 
 # 3.截图
