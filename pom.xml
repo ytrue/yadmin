@@ -15,8 +15,7 @@
         <module>yadmin-common</module>
         <module>yadmin-tools</module>
         <module>yadmin-security</module>
-        <module>yadmin-system</module>
-        <module>yadmin-quartz</module>
+
 
 
 

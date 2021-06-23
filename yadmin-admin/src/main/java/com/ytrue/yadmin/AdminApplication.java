@@ -17,9 +17,9 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 @SpringBootApplication
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @MapperScan(value = {
-        "com.ytrue.yadmin.system.dao",
-        "com.ytrue.yadmin.quartz.dao",
-        "com.ytrue.yadmin.mall.dao",
+        "com.ytrue.yadmin.modules.system.dao",
+        "com.ytrue.yadmin.modules.quartz.dao",
+        "com.ytrue.yadmin.modules.files.dao",
 })
 public class AdminApplication {
     public static void main(String[] args) {
