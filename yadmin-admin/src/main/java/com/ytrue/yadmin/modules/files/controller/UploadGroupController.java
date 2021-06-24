@@ -1,9 +1,11 @@
 package com.ytrue.yadmin.modules.files.controller;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.ytrue.yadmin.common.annotation.AutoValid;
 import com.ytrue.yadmin.common.annotation.SysLog;
 import com.ytrue.yadmin.common.annotation.WrapResp;
 
+import com.ytrue.yadmin.model.files.UploadFile;
 import com.ytrue.yadmin.model.files.UploadGroup;
 import com.ytrue.yadmin.modules.files.service.UploadGroupService;
 import lombok.AllArgsConstructor;
@@ -27,7 +29,7 @@ public class UploadGroupController {
     /**
      * 列表
      *
-     * @return
+     * @return {@link List<UploadGroup>}
      */
     @PostMapping("list")
     //@PreAuthorize("@pms.hasPermission('file:group:list')")

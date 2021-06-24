@@ -30,8 +30,8 @@ public class UploadFileController {
     /**
      * 列表
      *
-     * @param uploadFile
-     * @return
+     * @param uploadFile 查询的数据
+     * @return {@link IPage<UploadFile>}
      */
     @PostMapping("page")
     //@PreAuthorize("@pms.hasPermission('file:page')")
