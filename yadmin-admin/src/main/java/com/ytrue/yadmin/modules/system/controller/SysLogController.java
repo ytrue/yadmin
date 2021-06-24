@@ -3,7 +3,7 @@ package com.ytrue.yadmin.modules.system.controller;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.ytrue.yadmin.common.annotation.WrapResp;
 import com.ytrue.yadmin.common.search.SearchModel;
-import com.ytrue.yadmin.modules.system.model.SysLog;
+import com.ytrue.yadmin.model.system.SysLog;
 import com.ytrue.yadmin.modules.system.service.SysLogService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;

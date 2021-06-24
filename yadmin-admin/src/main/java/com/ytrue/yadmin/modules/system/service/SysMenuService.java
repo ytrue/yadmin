@@ -3,7 +3,7 @@ package com.ytrue.yadmin.modules.system.service;
 
 import cn.hutool.core.lang.tree.Tree;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.ytrue.yadmin.modules.system.model.SysMenu;
+import com.ytrue.yadmin.model.system.SysMenu;
 
 
 import java.util.List;

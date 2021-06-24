@@ -1,7 +1,7 @@
 package com.ytrue.yadmin.modules.files.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.ytrue.yadmin.modules.files.model.UploadGroup;
+import com.ytrue.yadmin.model.files.UploadGroup;
 
 import java.util.List;
 

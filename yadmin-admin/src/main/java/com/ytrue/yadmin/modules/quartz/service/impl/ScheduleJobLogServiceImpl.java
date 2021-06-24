@@ -2,8 +2,8 @@ package com.ytrue.yadmin.modules.quartz.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
-import com.ytrue.yadmin.modules.quartz.dao.ScheduleJobLogDao;
-import com.ytrue.yadmin.modules.quartz.model.ScheduleJobLog;
+import com.ytrue.yadmin.dao.quartz.ScheduleJobLogDao;
+import com.ytrue.yadmin.model.quartz.ScheduleJobLog;
 import com.ytrue.yadmin.modules.quartz.service.ScheduleJobLogService;
 import org.springframework.stereotype.Service;
 

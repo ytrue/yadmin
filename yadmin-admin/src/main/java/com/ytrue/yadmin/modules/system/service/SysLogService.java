@@ -2,7 +2,7 @@ package com.ytrue.yadmin.modules.system.service;
 
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.ytrue.yadmin.modules.system.model.SysLog;
+import com.ytrue.yadmin.model.system.SysLog;
 
 
 /**

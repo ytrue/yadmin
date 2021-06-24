@@ -2,7 +2,7 @@ package com.ytrue.yadmin.modules.quartz.config;
 
 
 import com.ytrue.yadmin.modules.quartz.enums.ScheduleStatus;
-import com.ytrue.yadmin.modules.quartz.model.ScheduleJob;
+import com.ytrue.yadmin.model.quartz.ScheduleJob;
 import lombok.AllArgsConstructor;
 import org.quartz.*;
 import org.springframework.stereotype.Component;

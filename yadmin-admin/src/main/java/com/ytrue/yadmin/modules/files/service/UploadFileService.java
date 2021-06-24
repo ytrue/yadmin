@@ -1,7 +1,7 @@
 package com.ytrue.yadmin.modules.files.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.ytrue.yadmin.modules.files.model.UploadFile;
+import com.ytrue.yadmin.model.files.UploadFile;
 import com.ytrue.yadmin.modules.system.service.dto.MoveGroupParamDTO;
 import org.springframework.web.multipart.MultipartFile;
 

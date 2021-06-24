@@ -4,7 +4,7 @@ import com.ytrue.yadmin.common.annotation.AutoValid;
 import com.ytrue.yadmin.common.annotation.SysLog;
 import com.ytrue.yadmin.common.annotation.WrapResp;
 
-import com.ytrue.yadmin.modules.files.model.UploadGroup;
+import com.ytrue.yadmin.model.files.UploadGroup;
 import com.ytrue.yadmin.modules.files.service.UploadGroupService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;

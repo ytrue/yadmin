@@ -3,7 +3,7 @@ package com.ytrue.yadmin.modules.quartz.controller;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.ytrue.yadmin.common.annotation.WrapResp;
 import com.ytrue.yadmin.common.search.SearchModel;
-import com.ytrue.yadmin.modules.quartz.model.ScheduleJobLog;
+import com.ytrue.yadmin.model.quartz.ScheduleJobLog;
 import com.ytrue.yadmin.modules.quartz.service.ScheduleJobLogService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;

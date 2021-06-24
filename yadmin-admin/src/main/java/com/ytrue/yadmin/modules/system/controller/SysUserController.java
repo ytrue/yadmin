@@ -11,7 +11,7 @@ import com.ytrue.yadmin.common.annotation.WrapResp;
 import com.ytrue.yadmin.common.exeption.YadminException;
 import com.ytrue.yadmin.common.search.SearchModel;
 import com.ytrue.yadmin.common.utils.JwtUtils;
-import com.ytrue.yadmin.modules.system.model.SysUser;
+import com.ytrue.yadmin.model.system.SysUser;
 import com.ytrue.yadmin.modules.system.service.SysMenuService;
 import com.ytrue.yadmin.modules.system.service.SysRoleService;
 import com.ytrue.yadmin.modules.system.service.SysUserService;

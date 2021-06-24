@@ -7,7 +7,7 @@ import com.ytrue.yadmin.common.exeption.YadminException;
 import com.ytrue.yadmin.common.utils.ResponseData;
 import com.ytrue.yadmin.common.annotation.SysLog;
 import com.ytrue.yadmin.modules.system.constant.Constant;
-import com.ytrue.yadmin.modules.system.model.SysMenu;
+import com.ytrue.yadmin.model.system.SysMenu;
 import com.ytrue.yadmin.modules.system.service.SysMenuService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;

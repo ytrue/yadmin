@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.ytrue.yadmin.common.annotation.SysLog;
 import com.ytrue.yadmin.common.annotation.WrapResp;
 import com.ytrue.yadmin.common.search.SearchModel;
-import com.ytrue.yadmin.modules.files.model.UploadFile;
+import com.ytrue.yadmin.model.files.UploadFile;
 import com.ytrue.yadmin.modules.files.service.UploadFileService;
 import com.ytrue.yadmin.modules.system.service.dto.MoveGroupParamDTO;
 import lombok.AllArgsConstructor;

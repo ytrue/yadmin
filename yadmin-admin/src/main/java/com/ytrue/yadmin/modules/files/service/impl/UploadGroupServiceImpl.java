@@ -2,10 +2,10 @@ package com.ytrue.yadmin.modules.files.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.ytrue.yadmin.modules.files.dao.UploadFileDAO;
-import com.ytrue.yadmin.modules.files.dao.UploadGroupDAO;
-import com.ytrue.yadmin.modules.files.model.UploadFile;
-import com.ytrue.yadmin.modules.files.model.UploadGroup;
+import com.ytrue.yadmin.dao.files.UploadFileDAO;
+import com.ytrue.yadmin.dao.files.UploadGroupDAO;
+import com.ytrue.yadmin.model.files.UploadFile;
+import com.ytrue.yadmin.model.files.UploadGroup;
 import com.ytrue.yadmin.modules.files.service.UploadGroupService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

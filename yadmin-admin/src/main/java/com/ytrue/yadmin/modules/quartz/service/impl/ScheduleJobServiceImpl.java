@@ -4,9 +4,9 @@ import cn.hutool.core.date.DateUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
 import com.ytrue.yadmin.modules.quartz.config.ScheduleManager;
-import com.ytrue.yadmin.modules.quartz.dao.ScheduleJobDao;
+import com.ytrue.yadmin.dao.quartz.ScheduleJobDao;
 import com.ytrue.yadmin.modules.quartz.enums.ScheduleStatus;
-import com.ytrue.yadmin.modules.quartz.model.ScheduleJob;
+import com.ytrue.yadmin.model.quartz.ScheduleJob;
 import com.ytrue.yadmin.modules.quartz.service.ScheduleJobService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

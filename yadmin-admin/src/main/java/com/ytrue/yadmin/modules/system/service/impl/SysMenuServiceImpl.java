@@ -9,9 +9,9 @@ import cn.hutool.core.lang.tree.TreeNodeConfig;
 import cn.hutool.core.lang.tree.TreeUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
-import com.ytrue.yadmin.modules.system.dao.SysMenuDao;
-import com.ytrue.yadmin.modules.system.dao.SysRoleMenuDao;
-import com.ytrue.yadmin.modules.system.model.SysMenu;
+import com.ytrue.yadmin.dao.system.SysMenuDao;
+import com.ytrue.yadmin.dao.system.SysRoleMenuDao;
+import com.ytrue.yadmin.model.system.SysMenu;
 import com.ytrue.yadmin.modules.system.service.SysMenuService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

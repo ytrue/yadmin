@@ -5,7 +5,7 @@ import com.ytrue.yadmin.common.annotation.AutoValid;
 import com.ytrue.yadmin.common.annotation.WrapResp;
 import com.ytrue.yadmin.common.search.SearchModel;
 import com.ytrue.yadmin.common.annotation.SysLog;
-import com.ytrue.yadmin.modules.system.model.SysRole;
+import com.ytrue.yadmin.model.system.SysRole;
 import com.ytrue.yadmin.modules.system.service.SysMenuService;
 import com.ytrue.yadmin.modules.system.service.SysRoleService;
 import lombok.AllArgsConstructor;

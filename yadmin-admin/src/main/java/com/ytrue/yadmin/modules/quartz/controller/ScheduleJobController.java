@@ -6,7 +6,7 @@ import com.ytrue.yadmin.common.annotation.AutoValid;
 import com.ytrue.yadmin.common.annotation.WrapResp;
 import com.ytrue.yadmin.common.exeption.YadminException;
 import com.ytrue.yadmin.common.search.SearchModel;
-import com.ytrue.yadmin.modules.quartz.model.ScheduleJob;
+import com.ytrue.yadmin.model.quartz.ScheduleJob;
 import com.ytrue.yadmin.modules.quartz.service.ScheduleJobService;
 import com.ytrue.yadmin.common.annotation.SysLog;
 import lombok.AllArgsConstructor;
