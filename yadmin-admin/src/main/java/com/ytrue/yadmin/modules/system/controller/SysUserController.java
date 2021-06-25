@@ -1,30 +1,25 @@
 package com.ytrue.yadmin.modules.system.controller;
 
-import cn.hutool.core.util.StrUtil;
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.google.common.collect.ImmutableMap;
 import com.ytrue.yadmin.common.annotation.AutoValid;
 import com.ytrue.yadmin.common.annotation.SysLog;
 import com.ytrue.yadmin.common.annotation.WrapResp;
-import com.ytrue.yadmin.common.exeption.YadminException;
 import com.ytrue.yadmin.common.search.SearchModel;
 import com.ytrue.yadmin.common.utils.JwtUtils;
 import com.ytrue.yadmin.model.system.SysUser;
 import com.ytrue.yadmin.modules.system.service.SysMenuService;
 import com.ytrue.yadmin.modules.system.service.SysRoleService;
 import com.ytrue.yadmin.modules.system.service.SysUserService;
+
+import com.ytrue.yadmin.modules.system.vo.UserInfoVO;
 import io.jsonwebtoken.Claims;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.*;
-import java.util.concurrent.TimeUnit;
+import java.util.List;
 
 /**
  * @author ytrue
@@ -55,21 +50,6 @@ public class SysUserController {
     @PostMapping("page")
     @PreAuthorize("@pms.hasPermission('sys:user:page')")
     public IPage<SysUser> page(@RequestBody SearchModel<SysUser> searchModel) {
-
-
-        //创建一个线程
-        for (int i = 0; i < 1000; i++) {
-            new Thread(() -> {
-                try {
-                    log.info("我是一条日志");
-                    TimeUnit.SECONDS.sleep(1);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }).start();
-        }
-
-
         return sysUserService.page(searchModel.getPage(), searchModel.getQueryModel().orderByDesc("user_id"));
     }
 
@@ -99,14 +79,6 @@ public class SysUserController {
     @AutoValid(entity = SysUser.class)
     @PreAuthorize("@pms.hasPermission('sys:user:save')")
     public void save(@RequestBody SysUser user) {
-        String username = user.getUsername();
-        SysUser dbUser = sysUserService.getOne(new LambdaQueryWrapper<SysUser>()
-                .eq(SysUser::getUsername, username));
-        if (dbUser != null) {
-            throw new YadminException("该用户已存在");
-        }
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
         sysUserService.saveUserAndUserRole(user);
     }
 
@@ -121,17 +93,6 @@ public class SysUserController {
     @AutoValid(entity = SysUser.class)
     @PreAuthorize("@pms.hasPermission('sys:user:update')")
     public void update(@RequestBody SysUser user) {
-        String password = user.getPassword();
-        SysUser dbUserNameInfo = sysUserService.getOne(new QueryWrapper<SysUser>().eq("username", user.getUsername()));
-        if (dbUserNameInfo != null && !Objects.equals(dbUserNameInfo.getUserId(), user.getUserId())) {
-            throw new YadminException("该用户已存在");
-        }
-        if (StrUtil.isBlank(password)) {
-            user.setPassword(null);
-        } else {
-            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
-        }
         sysUserService.updateUserAndUserRole(user);
     }
 
@@ -144,15 +105,6 @@ public class SysUserController {
     @DeleteMapping
     @PreAuthorize("@pms.hasPermission('sys:user:delete')")
     public void delete(@RequestBody List<Long> userIds) {
-        if (userIds.size() == 0) {
-            throw new YadminException("请选择需要删除的用户");
-        }
-        if (userIds.contains(1L)) {
-            throw new YadminException("系统管理员不能删除");
-        }
-//        if (userIds.contains(Convert.toLong(jwtParseToken.getUserInfo().get("userId")))) {
-//            return ResponseData.fail("当前用户不能删除");
-//        }
         sysUserService.removeByIds(userIds);
     }
 
@@ -164,23 +116,11 @@ public class SysUserController {
      * @return
      */
     @GetMapping("router")
-    public Map<String, Object> userInfo(HttpServletRequest request) {
+    public UserInfoVO userInfo(HttpServletRequest request) {
         //获得token
         String header = request.getHeader("Authorization");
         String token = header.substring(header.indexOf("bearer") + 7);
         Claims claimsFromToken = jwtUtils.getClaimsFromToken(token);
-
-        //去获得用户名和头像
-        String userName = (String) claimsFromToken.get("user_name");
-        SysUser username = sysUserService.getOne(new QueryWrapper<SysUser>().eq("username", userName));
-        //获得了该角色的权限
-        List<?> authorities = (List<?>) claimsFromToken.get("authorities");
-        //返回数据
-        return ImmutableMap.of(
-                "nickname", username.getNickname(),
-                "avatar", username.getAvatar(),
-                "permissions", authorities,
-                "menu", sysMenuService.myMenuTree(username.getUserId(), 2)
-        );
+        return sysUserService.getUserInfo(claimsFromToken);
     }
 }

@@ -3,15 +3,14 @@ package com.ytrue.yadmin.security;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.ytrue.yadmin.common.exeption.YadminException;
-import com.ytrue.yadmin.security.dto.SysUserDetails;
-import com.ytrue.yadmin.security.integration.IntegrationAuthenticationContext;
-import com.ytrue.yadmin.security.integration.IntegrationAuthenticationEntity;
-import com.ytrue.yadmin.security.integration.authenticator.IntegrationAuthenticator;
-import com.ytrue.yadmin.modules.system.constant.Constant;
 import com.ytrue.yadmin.dao.system.SysMenuDao;
 import com.ytrue.yadmin.dao.system.SysUserDao;
 import com.ytrue.yadmin.model.system.SysMenu;
 import com.ytrue.yadmin.model.system.SysUser;
+import com.ytrue.yadmin.security.dto.SysUserDetails;
+import com.ytrue.yadmin.security.integration.IntegrationAuthenticationContext;
+import com.ytrue.yadmin.security.integration.IntegrationAuthenticationEntity;
+import com.ytrue.yadmin.security.integration.authenticator.IntegrationAuthenticator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -47,6 +46,11 @@ public class IntegrationUserDetailsServiceImpl implements UserDetailsService {
 
     private List<IntegrationAuthenticator> authenticators;
 
+    /**
+     * 系统管理员id
+     */
+    private final static int SUPER_ADMIN_ID = 1;
+
 
     @Autowired(required = false)
     public void setIntegrationAuthenticators(List<IntegrationAuthenticator> authenticators) {
@@ -79,7 +83,7 @@ public class IntegrationUserDetailsServiceImpl implements UserDetailsService {
     private Set<String> getUserPermissions(Long userId) {
         List<String> permsList;
         //系统管理员，拥有最高权限
-        if (userId == Constant.SUPER_ADMIN_ID) {
+        if (userId == SUPER_ADMIN_ID) {
             List<SysMenu> menuList = sysMenuDao.selectList(Wrappers.emptyWrapper());
             permsList = menuList.stream().map(SysMenu::getPerms).collect(Collectors.toList());
         } else {

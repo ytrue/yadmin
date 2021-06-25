@@ -8,7 +8,7 @@ import cn.hutool.core.lang.tree.TreeNode;
 import cn.hutool.core.lang.tree.TreeNodeConfig;
 import cn.hutool.core.lang.tree.TreeUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-
+import com.ytrue.yadmin.common.exeption.YadminException;
 import com.ytrue.yadmin.dao.system.SysMenuDao;
 import com.ytrue.yadmin.dao.system.SysRoleMenuDao;
 import com.ytrue.yadmin.model.system.SysMenu;
@@ -36,6 +36,11 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenu> impleme
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void deleteMenuAndRoleMenu(Long menuId) {
+        //判断是否有子菜单或按钮
+        List<SysMenu> menuList = listChildrenMenuByParentId(menuId);
+        if (menuList.size() > 0) {
+            throw new YadminException("请先删除子菜单或按钮");
+        }
         //删除菜单
         this.removeById(menuId);
         //删除菜单与角色关联

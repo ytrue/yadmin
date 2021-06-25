@@ -1,6 +1,7 @@
 package com.ytrue.yadmin.model.system;
 
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
@@ -32,7 +33,6 @@ public class SysMenu implements Serializable {
     /**
      * 路由名称
      */
-    @NotBlank(message = "路由名称不能为空")
     private String router;
 
     /**
@@ -62,6 +62,7 @@ public class SysMenu implements Serializable {
     /**
      * 排序
      */
+    @TableField("order_num")
     private Integer orderNum;
 
     /**
@@ -72,7 +73,8 @@ public class SysMenu implements Serializable {
     /**
      * 级别，一共四级
      */
-    private Integer level;
+    @TableField("menu_type")
+    private Integer menuType;
 
     /**
      * icon

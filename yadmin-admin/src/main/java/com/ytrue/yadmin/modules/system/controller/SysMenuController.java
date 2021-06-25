@@ -2,21 +2,18 @@ package com.ytrue.yadmin.modules.system.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.ytrue.yadmin.common.annotation.AutoValid;
+import com.ytrue.yadmin.common.annotation.SysLog;
 import com.ytrue.yadmin.common.annotation.WrapResp;
 import com.ytrue.yadmin.common.exeption.YadminException;
-import com.ytrue.yadmin.common.utils.ResponseData;
-import com.ytrue.yadmin.common.annotation.SysLog;
-import com.ytrue.yadmin.modules.system.constant.Constant;
 import com.ytrue.yadmin.model.system.SysMenu;
 import com.ytrue.yadmin.modules.system.service.SysMenuService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
-import java.util.Objects;
+import java.util.function.Consumer;
 
 
 /**
@@ -24,6 +21,7 @@ import java.util.Objects;
  * @date 2021/4/8 15:36
  * @description 系统菜单
  */
+@Slf4j
 @WrapResp
 @RestController
 @RequestMapping("sys/menu")
@@ -35,7 +33,7 @@ public class SysMenuController {
     /**
      * 获取菜单页面的表
      *
-     * @return
+     * @return {@link List<SysMenu>}
      */
     @GetMapping("table")
     public List<SysMenu> table() {
@@ -47,12 +45,12 @@ public class SysMenuController {
      * 获取用户所拥有的菜单(不包括按钮)
      * 所有菜单列表(用于新建、修改角色时 获取菜单的信息)
      *
-     * @return
+     * @return {@link List<SysMenu>}
      */
     @GetMapping("list")
     public List<SysMenu> list() {
         return sysMenuService.list(
-                new QueryWrapper<SysMenu>().ne("level", 3).orderByAsc("order_num"));
+                new QueryWrapper<SysMenu>().ne("menu_type", 3).orderByAsc("order_num"));
     }
 
     /**
@@ -68,14 +66,13 @@ public class SysMenuController {
      * 保存
      *
      * @param menu
-     * @param b
      */
     @SysLog("保存菜单")
     @PostMapping
     @AutoValid(entity = SysMenu.class)
     @PreAuthorize("@pms.hasPermission('sys:menu:save')")
-    public void save(@Valid @RequestBody SysMenu menu, BindingResult b) {
-        //数据校验
+    public void save(@RequestBody SysMenu menu) {
+        verifyForm(menu);
         sysMenuService.save(menu);
     }
 
@@ -84,42 +81,26 @@ public class SysMenuController {
      * 修改
      *
      * @param menu
-     * @param b
-     * @return
      */
     @SysLog("修改菜单")
     @PutMapping
+    @AutoValid(entity = SysMenu.class)
     @PreAuthorize("@pms.hasPermission('sys:menu:update')")
-    public ResponseData<String> update(@Valid @RequestBody SysMenu menu, BindingResult b) {
-        //数据校验
+    public void update(@RequestBody SysMenu menu) {
         verifyForm(menu);
-//        if (menu.getType() == MenuType.MENU.getValue()) {
-//            if (StrUtil.isBlank(menu.getUrl())) {
-//                return ResponseData.fail("菜单URL不能为空");
-//            }
-//        }
         sysMenuService.updateById(menu);
-        return ResponseData.success();
     }
 
     /**
      * 删除
      *
-     * @param menuId
+     * @param menuIds
      */
     @SysLog("删除菜单")
-    @DeleteMapping("/{menuId}")
+    @DeleteMapping
     @PreAuthorize("@pms.hasPermission('sys:menu:delete')")
-    public void delete(@PathVariable Long menuId) {
-        if (menuId <= Constant.SYS_MENU_MAX_ID) {
-            throw new YadminException("系统菜单，不能删除");
-        }
-        //判断是否有子菜单或按钮
-        List<SysMenu> menuList = sysMenuService.listChildrenMenuByParentId(menuId);
-        if (menuList.size() > 0) {
-            throw new YadminException("请先删除子菜单或按钮");
-        }
-        sysMenuService.deleteMenuAndRoleMenu(menuId);
+    public void delete(@RequestBody List<Long> menuIds) {
+        menuIds.forEach(sysMenuService::deleteMenuAndRoleMenu);
     }
 
 
@@ -127,39 +108,21 @@ public class SysMenuController {
      * 验证参数是否正确
      *
      * @param menu
+     * @throws {@link YadminException}
      */
     private void verifyForm(SysMenu menu) {
-
-//        if (menu.getType() == MenuType.MENU.getValue()) {
-//            if (StrUtil.isBlank(menu.getUrl())) {
-//                throw new YadminException("菜单URL不能为空");
-//            }
-//        }
-        if (Objects.equals(menu.getMenuId(), menu.getParentId())) {
+        if (menu.getParentId().equals(menu.getMenuId()) && menu.getMenuId() != 0) {
             throw new YadminException("自己不能是自己的上级");
         }
-
-//        //上级菜单类型
-//        int parentType = MenuType.CATALOG.getValue();
-//        if (menu.getParentId() != 0) {
-//            SysMenu parentMenu = sysMenuService.getById(menu.getParentId());
-//            parentType = parentMenu.getType();
-//        }
-//
-//        //目录、菜单
-//        if (menu.getType() == MenuType.CATALOG.getValue() ||
-//                menu.getType() == MenuType.MENU.getValue()) {
-//            if (parentType != MenuType.CATALOG.getValue()) {
-//                throw new YadminException("上级菜单只能为目录类型");
-//            }
-//            return;
-//        }
-
-//        //按钮
-//        if (menu.getType() == MenuType.BUTTON.getValue()) {
-//            if (parentType != MenuType.MENU.getValue()) {
-//                throw new YadminException("上级菜单只能为菜单类型");
-//            }
-//        }
+        if (menu.getParentId() == 0 && menu.getMenuType() != 0) {
+            throw new YadminException("菜单类型只能是头部菜单");
+        }
+        SysMenu parentMenu = sysMenuService.getById(menu.getParentId());
+        if (null != parentMenu) {
+            Integer superMenuType = menu.getMenuType() - 1;
+            if (!parentMenu.getMenuType().equals(superMenuType)) {
+                throw new YadminException("请选择对应的菜单类型");
+            }
+        }
     }
 }

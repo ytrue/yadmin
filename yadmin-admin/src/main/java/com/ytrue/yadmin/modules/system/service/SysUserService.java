@@ -2,6 +2,8 @@ package com.ytrue.yadmin.modules.system.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.ytrue.yadmin.model.system.SysUser;
+import com.ytrue.yadmin.modules.system.vo.UserInfoVO;
+import io.jsonwebtoken.Claims;
 
 
 /**
@@ -10,14 +12,6 @@ import com.ytrue.yadmin.model.system.SysUser;
  * @description SysRoleService 系统用户
  */
 public interface SysUserService extends IService<SysUser> {
-
-    /**
-     * 修改密码
-     *
-     * @param userId      用户ID
-     * @param newPassword 新密码
-     */
-    void updatePasswordByUserId(Long userId, String newPassword);
 
     /**
      * 保存用户与用户角色关系
@@ -33,4 +27,13 @@ public interface SysUserService extends IService<SysUser> {
      * @param user
      */
     void updateUserAndUserRole(SysUser user);
+
+
+    /**
+     * 获得我的基本信息，菜单，权限
+     *
+     * @param claims
+     * @return
+     */
+    UserInfoVO getUserInfo(Claims claims);
 }

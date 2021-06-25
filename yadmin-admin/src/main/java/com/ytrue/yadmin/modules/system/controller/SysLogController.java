@@ -17,18 +17,20 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2021/4/8 15:36
  * @description 系统日志
  */
-@RestController
-@RequestMapping("sys/log")
+
 @WrapResp
 @AllArgsConstructor
+@RestController
+@RequestMapping("sys/log")
 public class SysLogController {
 
     private final SysLogService sysLogService;
 
     /**
      * 列表
-     *
+     * <p>
      * hasAuthority
+     *
      * @param sysLogSearchModel
      * @return
      */
