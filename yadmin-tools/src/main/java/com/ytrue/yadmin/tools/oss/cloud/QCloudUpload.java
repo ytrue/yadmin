@@ -1,4 +1,4 @@
-package com.ytrue.yadmin.tools.module.oss.cloud;
+package com.ytrue.yadmin.tools.oss.cloud;
 
 import com.qcloud.cos.COSClient;
 import com.qcloud.cos.ClientConfig;
@@ -7,9 +7,9 @@ import com.qcloud.cos.auth.COSCredentials;
 import com.qcloud.cos.model.PutObjectRequest;
 import com.qcloud.cos.region.Region;
 import com.ytrue.yadmin.common.exeption.YadminException;
-import com.ytrue.yadmin.tools.module.oss.enums.UploadType;
-import com.ytrue.yadmin.tools.module.oss.dto.UploadSetting;
-import com.ytrue.yadmin.tools.module.oss.factory.StrategyUploadFactory;
+import com.ytrue.yadmin.tools.oss.enums.UploadType;
+import com.ytrue.yadmin.tools.oss.dto.UploadSetting;
+import com.ytrue.yadmin.tools.oss.factory.StrategyUploadFactory;
 import org.springframework.stereotype.Component;
 
 import java.io.ByteArrayInputStream;

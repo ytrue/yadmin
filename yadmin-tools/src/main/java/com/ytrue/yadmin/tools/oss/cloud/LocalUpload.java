@@ -1,9 +1,9 @@
-package com.ytrue.yadmin.tools.module.oss.cloud;
+package com.ytrue.yadmin.tools.oss.cloud;
 
 import com.ytrue.yadmin.common.exeption.YadminException;
-import com.ytrue.yadmin.tools.module.oss.enums.UploadType;
-import com.ytrue.yadmin.tools.module.oss.dto.UploadSetting;
-import com.ytrue.yadmin.tools.module.oss.factory.StrategyUploadFactory;
+import com.ytrue.yadmin.tools.oss.enums.UploadType;
+import com.ytrue.yadmin.tools.oss.dto.UploadSetting;
+import com.ytrue.yadmin.tools.oss.factory.StrategyUploadFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ResourceUtils;
 

@@ -1,4 +1,4 @@
-package com.ytrue.yadmin.tools.module.oss.dto;
+package com.ytrue.yadmin.tools.oss.dto;
 
 import lombok.Data;
 

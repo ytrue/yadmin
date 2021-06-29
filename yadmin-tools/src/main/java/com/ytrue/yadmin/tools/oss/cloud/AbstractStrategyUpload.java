@@ -1,7 +1,7 @@
-package com.ytrue.yadmin.tools.module.oss.cloud;
+package com.ytrue.yadmin.tools.oss.cloud;
 
 
-import com.ytrue.yadmin.tools.module.oss.dto.UploadSetting;
+import com.ytrue.yadmin.tools.oss.dto.UploadSetting;
 import org.springframework.beans.factory.InitializingBean;
 
 

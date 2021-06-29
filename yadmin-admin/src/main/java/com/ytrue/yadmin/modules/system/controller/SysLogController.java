@@ -7,6 +7,7 @@ import com.ytrue.yadmin.model.system.SysLog;
 import com.ytrue.yadmin.modules.system.service.SysLogService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,9 +38,10 @@ public class SysLogController {
     @PostMapping("page")
     @PreAuthorize("@pms.hasPermission('sys:log:page')")
     public IPage<SysLog> page(@RequestBody SearchModel<SysLog> sysLogSearchModel) {
+        String username = ((String) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         return sysLogService.page(
                 sysLogSearchModel.getPage(),
-                sysLogSearchModel.getQueryModel().orderByDesc("id")
+                sysLogSearchModel.getQueryModel().orderByDesc("id").eq("username", username)
         );
     }
 }

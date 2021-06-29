@@ -1,7 +1,7 @@
-package com.ytrue.yadmin.tools.module.oss.factory;
+package com.ytrue.yadmin.tools.oss.factory;
 
 import com.google.common.collect.Maps;
-import com.ytrue.yadmin.tools.module.oss.cloud.AbstractStrategyUpload;
+import com.ytrue.yadmin.tools.oss.cloud.AbstractStrategyUpload;
 import org.springframework.util.StringUtils;
 
 import java.util.Map;

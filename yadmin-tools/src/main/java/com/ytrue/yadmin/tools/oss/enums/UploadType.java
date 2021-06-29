@@ -1,4 +1,4 @@
-package com.ytrue.yadmin.tools.module.oss.enums;
+package com.ytrue.yadmin.tools.oss.enums;
 
 import lombok.Getter;
 
