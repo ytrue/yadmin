@@ -10,13 +10,7 @@ import com.ytrue.yadmin.model.system.SysUser;
 import com.ytrue.yadmin.modules.system.service.SysMenuService;
 import com.ytrue.yadmin.modules.system.service.SysRoleService;
 import com.ytrue.yadmin.modules.system.service.SysUserService;
-
 import com.ytrue.yadmin.modules.system.vo.UserInfoVO;
-import com.ytrue.yadmin.oss.parameter.cloud.AliyunUpload;
-import com.ytrue.yadmin.oss.parameter.cloud.AbstractUpload;
-import com.ytrue.yadmin.oss.parameter.properties.AliyunProperties;
-import com.ytrue.yadmin.oss.parameter.factory.UploadFactory;
-import com.ytrue.yadmin.oss.parameter.utils.OssUtils;
 import io.jsonwebtoken.Claims;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -46,11 +40,6 @@ public class SysUserController {
 
     private final JwtUtils jwtUtils;
 
-
-    private final AliyunUpload aliyunUpload;
-
-    private final OssUtils ossUtils;
-
     /**
      * 所有用户列表
      *
@@ -61,23 +50,6 @@ public class SysUserController {
     @PostMapping("page")
     @PreAuthorize("@pms.hasPermission('sys:user:page')")
     public IPage<SysUser> page(@RequestBody SearchModel<SysUser> searchModel) {
-
-        //自动
-        aliyunUpload.upload("12121".getBytes(), "123");
-
-        //手动
-        AbstractUpload aliyun = UploadFactory.getInvokeStrategy("aliyun1");
-        AliyunProperties aliyunProperties = new AliyunProperties();
-        aliyunProperties.setBucket("12312");
-        aliyunProperties.setAccessKeyId("312321");
-        aliyunProperties.setAccessKeySecret("3123");
-        aliyunProperties.setDomain("xxxxxx");
-        aliyun.upload(aliyunProperties, "312312".getBytes(), "3123132");
-
-
-        ossUtils.upload("12121".getBytes(), "123");
-
-
         return sysUserService.page(searchModel.getPage(), searchModel.getQueryModel().orderByDesc("user_id"));
     }
 

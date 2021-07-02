@@ -8,10 +8,11 @@ import com.qcloud.cos.auth.COSCredentials;
 import com.qcloud.cos.model.PutObjectRequest;
 import com.qcloud.cos.region.Region;
 import com.ytrue.yadmin.common.exeption.YadminException;
-import com.ytrue.yadmin.oss.parameter.properties.BaseProperties;
-import com.ytrue.yadmin.oss.parameter.properties.QcloudProperties;
+import com.ytrue.yadmin.oss.parameter.dto.Engine;
 import com.ytrue.yadmin.oss.parameter.enums.UploadType;
 import com.ytrue.yadmin.oss.parameter.factory.UploadFactory;
+import com.ytrue.yadmin.oss.parameter.properties.BaseProperties;
+import com.ytrue.yadmin.oss.parameter.properties.QcloudProperties;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -32,6 +33,12 @@ import java.util.Date;
 public class QcloudUpload extends AbstractUpload {
 
     private QcloudProperties qcloudProperties;
+
+
+    @Override
+    public String upload(Engine engine, byte[] data, String fileName) {
+        return upload(engine.getQcloud(), data, fileName);
+    }
 
     @Override
     public String upload(byte[] data, String fileName) {

@@ -1,6 +1,7 @@
 package com.ytrue.yadmin.oss.parameter.cloud;
 
 
+import com.ytrue.yadmin.oss.parameter.dto.Engine;
 import com.ytrue.yadmin.oss.parameter.properties.BaseProperties;
 import org.springframework.beans.factory.InitializingBean;
 
@@ -36,5 +37,15 @@ public abstract class AbstractUpload implements InitializingBean {
         throw new UnsupportedOperationException();
     }
 
-
+    /**
+     * 手动传参数
+     *
+     * @param engine
+     * @param data
+     * @param fileName
+     * @return
+     */
+    public String upload(Engine engine, byte[] data, String fileName) {
+        throw new UnsupportedOperationException();
+    }
 }

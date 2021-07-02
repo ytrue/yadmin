@@ -8,7 +8,15 @@ import com.ytrue.yadmin.common.search.SearchModel;
 import com.ytrue.yadmin.model.files.UploadFile;
 import com.ytrue.yadmin.modules.files.service.UploadFileService;
 import com.ytrue.yadmin.modules.system.service.dto.MoveGroupParamDTO;
+import com.ytrue.yadmin.oss.parameter.dto.Engine;
+import com.ytrue.yadmin.oss.parameter.dto.UploadSetting;
+import com.ytrue.yadmin.oss.parameter.properties.AliyunProperties;
+import com.ytrue.yadmin.oss.parameter.properties.LocalProperties;
+import com.ytrue.yadmin.oss.parameter.properties.QcloudProperties;
+import com.ytrue.yadmin.oss.parameter.properties.QiniuProperties;
+import com.ytrue.yadmin.oss.parameter.utils.OssUtils;
 import lombok.AllArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -27,6 +35,7 @@ public class UploadFileController {
 
     private final UploadFileService uploadFileService;
 
+
     /**
      * 列表
      *
@@ -42,16 +51,26 @@ public class UploadFileController {
         );
     }
 
+
+    private final OssUtils ossUtils;
+
     /**
      * 上传文件
      *
      * @param file
      */
+    @SneakyThrows
     @SysLog("上传文件")
     @PostMapping("upload")
     //@PreAuthorize("@pms.hasPermission('file:upload')")
     public void uploadFiles(@RequestParam("file") MultipartFile file) {
-        uploadFileService.uploadFile(file);
+        //uploadFileService.uploadFile(file);
+
+
+
+        // ossUtils.upload(uploadSetting,file.getBytes(),"123233432432432.png");
+
+        ossUtils.upload(file.getBytes(), "xxxxx.png");
     }
 
     /**

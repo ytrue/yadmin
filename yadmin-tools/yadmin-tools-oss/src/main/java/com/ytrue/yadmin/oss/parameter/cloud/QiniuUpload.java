@@ -1,16 +1,17 @@
 package com.ytrue.yadmin.oss.parameter.cloud;
 
+import cn.hutool.core.convert.Convert;
 import com.qiniu.http.Response;
 import com.qiniu.storage.Configuration;
 import com.qiniu.storage.Region;
 import com.qiniu.storage.UploadManager;
 import com.qiniu.util.Auth;
-import cn.hutool.core.convert.Convert;
 import com.ytrue.yadmin.common.exeption.YadminException;
-import com.ytrue.yadmin.oss.parameter.properties.BaseProperties;
-import com.ytrue.yadmin.oss.parameter.properties.QiniuProperties;
+import com.ytrue.yadmin.oss.parameter.dto.Engine;
 import com.ytrue.yadmin.oss.parameter.enums.UploadType;
 import com.ytrue.yadmin.oss.parameter.factory.UploadFactory;
+import com.ytrue.yadmin.oss.parameter.properties.BaseProperties;
+import com.ytrue.yadmin.oss.parameter.properties.QiniuProperties;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +27,11 @@ import lombok.extern.slf4j.Slf4j;
 public class QiniuUpload extends AbstractUpload {
 
     private QiniuProperties qiniuProperties;
+
+    @Override
+    public String upload(Engine engine, byte[] data, String fileName) {
+        return upload(engine.getQiniu(), data, fileName);
+    }
 
     @Override
     public String upload(byte[] data, String fileName) {

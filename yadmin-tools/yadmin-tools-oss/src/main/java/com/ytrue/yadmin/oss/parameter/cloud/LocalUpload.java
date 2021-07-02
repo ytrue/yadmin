@@ -2,9 +2,9 @@ package com.ytrue.yadmin.oss.parameter.cloud;
 
 import cn.hutool.core.convert.Convert;
 import com.ytrue.yadmin.common.exeption.YadminException;
+import com.ytrue.yadmin.oss.parameter.dto.Engine;
 import com.ytrue.yadmin.oss.parameter.enums.UploadType;
 import com.ytrue.yadmin.oss.parameter.factory.UploadFactory;
-import com.ytrue.yadmin.oss.parameter.properties.AliyunProperties;
 import com.ytrue.yadmin.oss.parameter.properties.BaseProperties;
 import com.ytrue.yadmin.oss.parameter.properties.LocalProperties;
 import lombok.AllArgsConstructor;
@@ -27,6 +27,11 @@ import java.util.Date;
 public class LocalUpload extends AbstractUpload {
 
     private LocalProperties localProperties;
+
+    @Override
+    public String upload(Engine engine, byte[] data, String fileName) {
+        return upload(engine.getLocal(), data, fileName);
+    }
 
     @Override
     public String upload(byte[] data, String fileName) {

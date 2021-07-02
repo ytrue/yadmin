@@ -29,7 +29,7 @@ class OssConfiguration {
     }
 
     @Bean
-    public LocalUpload aliyunUpload(LocalProperties localProperties) {
+    public LocalUpload localUpload(LocalProperties localProperties) {
         return new LocalUpload(localProperties);
     }
 

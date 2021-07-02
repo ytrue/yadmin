@@ -1,7 +1,9 @@
 package com.ytrue.yadmin.oss.parameter.utils;
 
-import com.ytrue.yadmin.oss.parameter.properties.OssProperties;
+
+import com.ytrue.yadmin.oss.parameter.dto.UploadSetting;
 import com.ytrue.yadmin.oss.parameter.factory.UploadFactory;
+import com.ytrue.yadmin.oss.parameter.properties.OssProperties;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -17,7 +19,21 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 @EnableConfigurationProperties({OssProperties.class})
 public class OssUtils {
 
+
     private OssProperties ossProperties;
+
+
+    /**
+     * 上传
+     *
+     * @param setting
+     * @param b
+     * @param fileName
+     * @return
+     */
+    public String upload(UploadSetting setting, byte[] b, String fileName) {
+        return UploadFactory.getInvokeStrategy(setting.getDefaultEngine()).upload(setting.getEngine(), b, fileName);
+    }
 
     /**
      * 上传
