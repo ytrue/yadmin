@@ -16,6 +16,11 @@
         <module>yadmin-tools</module>
         <module>yadmin-security</module>
         <module>yadmin-db</module>
+        <module>yadmin-tools/yadmin-tools-log</module>
+        <module>yadmin-tools/yadmin-tools-swagger2</module>
+        <module>yadmin-tools/yadmin-tools-oss</module>
+        <module>yadmin-tools/yadmin-tools-xss</module>
+        <module>yadmin-tools/yadmin-tools-log</module>
 
 
     </modules>

@@ -13,14 +13,29 @@
 
     <dependencies>
 
+<!--        <dependency>-->
+<!--            <groupId>com.aliyun.oss</groupId>-->
+<!--            <artifactId>aliyun-sdk-oss</artifactId>-->
+<!--        </dependency>-->
 
-        <!-- https://mvnrepository.com/artifact/net.logstash.logback/logstash-logback-encoder -->
+<!--        <dependency>-->
+<!--            <groupId>com.qiniu</groupId>-->
+<!--            <artifactId>qiniu-java-sdk</artifactId>-->
+<!--        </dependency>-->
+
+<!--        &lt;!&ndash;腾讯云COS&ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>com.qcloud</groupId>-->
+<!--            <artifactId>cos_api</artifactId>-->
+<!--            <version>5.6.8</version>-->
+<!--        </dependency>-->
+
+
         <dependency>
-            <groupId>net.logstash.logback</groupId>
-            <artifactId>logstash-logback-encoder</artifactId>
-            <version>6.6</version>
+            <groupId>com.ytrue</groupId>
+            <artifactId>yadmin-tools-oss</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
-
 
         <dependency>
             <groupId>com.ytrue</groupId>
@@ -29,10 +44,15 @@
         </dependency>
 
 
+        <dependency>
+            <groupId>com.ytrue</groupId>
+            <artifactId>yadmin-tools-xss</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
 
         <dependency>
             <groupId>com.ytrue</groupId>
-            <artifactId>yadmin-tools</artifactId>
+            <artifactId>yadmin-tools-log</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 

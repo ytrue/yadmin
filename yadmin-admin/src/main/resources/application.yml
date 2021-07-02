@@ -8,3 +8,16 @@ spring:
   resources:
     #这个要配置下，不然本地上传访问不到文件
     static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,classpath:/static/upload
+ytrue:
+  oss:
+    engine: qiniu1
+    aliyun:
+      access-key-id: 123
+      bucket: 3213123
+      domain: 23423423
+      access-key-secret: 342423423
+    qiniu:
+      access-key: 1312312
+      domain: 234432432
+      bucket: 234423432
+      secret-key: 42423423423
