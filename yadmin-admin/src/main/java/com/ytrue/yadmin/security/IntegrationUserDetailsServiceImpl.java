@@ -7,7 +7,7 @@ import com.ytrue.yadmin.dao.system.SysMenuDao;
 import com.ytrue.yadmin.dao.system.SysUserDao;
 import com.ytrue.yadmin.model.system.SysMenu;
 import com.ytrue.yadmin.model.system.SysUser;
-import com.ytrue.yadmin.security.dto.SysUserDetails;
+import com.ytrue.yadmin.security.user.SysUserDetails;
 import com.ytrue.yadmin.security.integration.IntegrationAuthenticationContext;
 import com.ytrue.yadmin.security.integration.IntegrationAuthenticationEntity;
 import com.ytrue.yadmin.security.integration.authenticator.IntegrationAuthenticator;

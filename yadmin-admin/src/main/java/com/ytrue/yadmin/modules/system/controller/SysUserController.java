@@ -5,12 +5,12 @@ import com.ytrue.yadmin.common.annotation.AutoValid;
 import com.ytrue.yadmin.common.annotation.SysLog;
 import com.ytrue.yadmin.common.annotation.WrapResp;
 import com.ytrue.yadmin.common.search.SearchModel;
-import com.ytrue.yadmin.common.utils.JwtUtils;
 import com.ytrue.yadmin.model.system.SysUser;
 import com.ytrue.yadmin.modules.system.service.SysMenuService;
 import com.ytrue.yadmin.modules.system.service.SysRoleService;
 import com.ytrue.yadmin.modules.system.service.SysUserService;
 import com.ytrue.yadmin.modules.system.vo.UserInfoVO;
+import com.ytrue.yadmin.security.utils.JwtUtils;
 import io.jsonwebtoken.Claims;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -116,7 +116,7 @@ public class SysUserController {
      * @return
      */
     @GetMapping("router")
-    public UserInfoVO userInfo(HttpServletRequest request) {
+    public void userInfo(HttpServletRequest request) {
         //获得token
         String header = request.getHeader("Authorization");
         String token = header.substring(header.indexOf("bearer") + 7);
@@ -125,6 +125,10 @@ public class SysUserController {
 
         System.out.println(claimsFromToken);
 
-        return sysUserService.getUserInfo(claimsFromToken);
+
+
+//        System.out.println(claimsFromToken);
+//
+//        return sysUserService.getUserInfo(claimsFromToken);
     }
 }

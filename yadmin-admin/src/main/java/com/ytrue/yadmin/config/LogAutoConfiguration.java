@@ -24,4 +24,5 @@ public class LogAutoConfiguration {
     public SysLogListener sysLogListener(LogService logService) {
         return new SysLogListener(logService::saveLog);
     }
+
 }
