@@ -6,7 +6,7 @@ import com.qiniu.storage.Configuration;
 import com.qiniu.storage.Region;
 import com.qiniu.storage.UploadManager;
 import com.qiniu.util.Auth;
-import com.ytrue.yadmin.common.exeption.YadminException;
+import com.ytrue.yadmin.exeption.YadminException;
 import com.ytrue.yadmin.oss.dto.Engine;
 import com.ytrue.yadmin.oss.enums.UploadType;
 import com.ytrue.yadmin.oss.factory.UploadFactory;

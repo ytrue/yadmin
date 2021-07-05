@@ -4,7 +4,7 @@ import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.StrUtil;
 
 
-import com.ytrue.yadmin.common.utils.GsonUtils;
+import com.ytrue.yadmin.utils.GsonUtils;
 import com.ytrue.yadmin.xss.wrapper.XssRequestWrapper;
 import lombok.extern.slf4j.Slf4j;
 

@@ -7,7 +7,7 @@ import com.qcloud.cos.auth.BasicCOSCredentials;
 import com.qcloud.cos.auth.COSCredentials;
 import com.qcloud.cos.model.PutObjectRequest;
 import com.qcloud.cos.region.Region;
-import com.ytrue.yadmin.common.exeption.YadminException;
+import com.ytrue.yadmin.exeption.YadminException;
 import com.ytrue.yadmin.oss.dto.Engine;
 import com.ytrue.yadmin.oss.enums.UploadType;
 import com.ytrue.yadmin.oss.factory.UploadFactory;

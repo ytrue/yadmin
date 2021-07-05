@@ -1,7 +1,7 @@
 package com.ytrue.yadmin.security.controller;
 
 
-import com.ytrue.yadmin.common.annotation.WrapResp;
+import com.ytrue.yadmin.annotation.WrapResp;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;

@@ -5,9 +5,9 @@ import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.core.util.URLUtil;
 import cn.hutool.extra.servlet.ServletUtil;
-import com.ytrue.yadmin.common.enums.ResponseCode;
-import com.ytrue.yadmin.common.utils.GsonUtils;
-import com.ytrue.yadmin.common.utils.ResponseData;
+import com.ytrue.yadmin.exeption.code.ExceptionCode;
+import com.ytrue.yadmin.utils.GsonUtils;
+import com.ytrue.yadmin.utils.R;
 import com.ytrue.yadmin.log.entity.OptLogDTO;
 import com.ytrue.yadmin.log.event.SysLogEvent;
 import com.ytrue.yadmin.log.utils.LogUtil;
@@ -137,7 +137,7 @@ public class SysLogAspect {
     @AfterReturning(returning = "ret", pointcut = "sysLogAspect()")
     public void doAfterReturning(Object ret) {
         tryCatch((aaa) -> {
-            ResponseData r = Convert.convert(ResponseData.class, ret);
+            R r = Convert.convert(R.class, ret);
             OptLogDTO sysLog = get();
             if (r == null) {
                 sysLog.setType("OPT");
@@ -145,7 +145,7 @@ public class SysLogAspect {
                 if (r.getCode() == null) {
                     sysLog.setType("OPT");
                 } else {
-                    if (r.getCode().equals(ResponseCode.SUCCESS.getCode())) {
+                    if (r.getCode().equals(ExceptionCode.SUCCESS.getCode())) {
                         sysLog.setType("OPT");
                     } else {
                         sysLog.setType("EX");

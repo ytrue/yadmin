@@ -1,8 +1,8 @@
 package com.ytrue.yadmin.modules.system.aspect;
 
 import cn.hutool.core.date.SystemClock;
-import com.ytrue.yadmin.common.utils.GsonUtils;
-import com.ytrue.yadmin.common.utils.IpHelper;
+import com.ytrue.yadmin.utils.GsonUtils;
+import com.ytrue.yadmin.utils.IpHelper;
 import com.ytrue.yadmin.dao.system.SysLogDao;
 import com.ytrue.yadmin.model.system.SysLog;
 import lombok.AllArgsConstructor;
@@ -42,7 +42,7 @@ public class SysLogAspect {
      * @throws Throwable
      */
     @Around("@annotation(sysLog)")
-    public Object around(ProceedingJoinPoint joinPoint, com.ytrue.yadmin.common.annotation.SysLog sysLog) throws Throwable {
+    public Object around(ProceedingJoinPoint joinPoint, com.ytrue.yadmin.annotation.SysLog sysLog) throws Throwable {
 
         long beginTime = SystemClock.now();
         //执行方法

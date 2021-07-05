@@ -1,7 +1,7 @@
 package com.ytrue.yadmin.oss.cloud;
 
 import cn.hutool.core.convert.Convert;
-import com.ytrue.yadmin.common.exeption.YadminException;
+import com.ytrue.yadmin.exeption.YadminException;
 import com.ytrue.yadmin.oss.dto.Engine;
 import com.ytrue.yadmin.oss.enums.UploadType;
 import com.ytrue.yadmin.oss.factory.UploadFactory;

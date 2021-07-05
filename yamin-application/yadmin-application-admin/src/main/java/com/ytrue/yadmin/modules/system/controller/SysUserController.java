@@ -1,23 +1,24 @@
 package com.ytrue.yadmin.modules.system.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.ytrue.yadmin.common.annotation.AutoValid;
-import com.ytrue.yadmin.common.annotation.SysLog;
-import com.ytrue.yadmin.common.annotation.WrapResp;
-import com.ytrue.yadmin.common.search.SearchModel;
+import com.ytrue.yadmin.annotation.SysLog;
+import com.ytrue.yadmin.annotation.WrapResp;
 import com.ytrue.yadmin.model.system.SysUser;
 import com.ytrue.yadmin.modules.system.service.SysMenuService;
 import com.ytrue.yadmin.modules.system.service.SysRoleService;
 import com.ytrue.yadmin.modules.system.service.SysUserService;
 import com.ytrue.yadmin.modules.system.vo.UserInfoVO;
+import com.ytrue.yadmin.search.SearchModel;
 import com.ytrue.yadmin.security.utils.JwtUtils;
 import io.jsonwebtoken.Claims;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -76,10 +77,11 @@ public class SysUserController {
      */
     @SysLog("保存用户")
     @PostMapping
-    @AutoValid(entity = SysUser.class)
     @PreAuthorize("@pms.hasPermission('sys:user:save')")
-    public void save(@RequestBody SysUser user) {
-        sysUserService.saveUserAndUserRole(user);
+    public void save(@Valid @RequestBody SysUser user) {
+
+        System.out.println("ok");
+        // sysUserService.saveUserAndUserRole(user);
     }
 
 
@@ -90,9 +92,8 @@ public class SysUserController {
      */
     @SysLog("修改用户")
     @PutMapping
-    @AutoValid(entity = SysUser.class)
     @PreAuthorize("@pms.hasPermission('sys:user:update')")
-    public void update(@RequestBody SysUser user) {
+    public void update(@Validated @RequestBody SysUser user) {
         sysUserService.updateUserAndUserRole(user);
     }
 

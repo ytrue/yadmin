@@ -6,7 +6,7 @@ import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.ytrue.yadmin.common.exeption.YadminException;
+import com.ytrue.yadmin.exeption.YadminException;
 import com.ytrue.yadmin.dao.system.SysUserDao;
 import com.ytrue.yadmin.dao.system.SysUserRoleDao;
 import com.ytrue.yadmin.model.system.SysUser;

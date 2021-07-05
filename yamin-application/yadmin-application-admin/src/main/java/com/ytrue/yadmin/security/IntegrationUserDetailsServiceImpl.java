@@ -2,7 +2,7 @@ package com.ytrue.yadmin.security;
 
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.ytrue.yadmin.common.exeption.YadminException;
+import com.ytrue.yadmin.exeption.YadminException;
 import com.ytrue.yadmin.dao.system.SysMenuDao;
 import com.ytrue.yadmin.dao.system.SysUserDao;
 import com.ytrue.yadmin.model.system.SysMenu;

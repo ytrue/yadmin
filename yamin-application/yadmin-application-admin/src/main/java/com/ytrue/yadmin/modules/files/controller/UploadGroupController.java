@@ -1,14 +1,11 @@
 package com.ytrue.yadmin.modules.files.controller;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.ytrue.yadmin.common.annotation.AutoValid;
-import com.ytrue.yadmin.common.annotation.SysLog;
-import com.ytrue.yadmin.common.annotation.WrapResp;
-
-import com.ytrue.yadmin.model.files.UploadFile;
+import com.ytrue.yadmin.annotation.SysLog;
+import com.ytrue.yadmin.annotation.WrapResp;
 import com.ytrue.yadmin.model.files.UploadGroup;
 import com.ytrue.yadmin.modules.files.service.UploadGroupService;
 import lombok.AllArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -45,9 +42,8 @@ public class UploadGroupController {
      */
     @SysLog("保存文件分组")
     @PostMapping
-    @AutoValid(entity = UploadGroup.class)
     //@PreAuthorize("@pms.hasPermission('file:group:save')")
-    public void save(@RequestBody UploadGroup uploadGroup) {
+    public void save(@Validated @RequestBody UploadGroup uploadGroup) {
         uploadGroupService.save(uploadGroup);
     }
 
@@ -59,9 +55,8 @@ public class UploadGroupController {
      */
     @SysLog("修改文件分组")
     @PutMapping
-    @AutoValid(entity = UploadGroup.class)
     //@PreAuthorize("@pms.hasPermission('file:group:update')")
-    public void update(@RequestBody UploadGroup uploadGroup) {
+    public void update(@Validated @RequestBody UploadGroup uploadGroup) {
         uploadGroupService.updateById(uploadGroup);
     }
 

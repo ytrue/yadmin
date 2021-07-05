@@ -8,7 +8,7 @@ import cn.hutool.core.lang.tree.TreeNode;
 import cn.hutool.core.lang.tree.TreeNodeConfig;
 import cn.hutool.core.lang.tree.TreeUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.ytrue.yadmin.common.exeption.YadminException;
+import com.ytrue.yadmin.exeption.YadminException;
 import com.ytrue.yadmin.dao.system.SysMenuDao;
 import com.ytrue.yadmin.dao.system.SysRoleMenuDao;
 import com.ytrue.yadmin.model.system.SysMenu;

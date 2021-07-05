@@ -4,7 +4,7 @@ import cn.hutool.core.convert.Convert;
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
 import com.aliyun.oss.model.PutObjectRequest;
-import com.ytrue.yadmin.common.exeption.YadminException;
+import com.ytrue.yadmin.exeption.YadminException;
 import com.ytrue.yadmin.oss.dto.Engine;
 import com.ytrue.yadmin.oss.enums.UploadType;
 import com.ytrue.yadmin.oss.factory.UploadFactory;
