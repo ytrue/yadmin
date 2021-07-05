@@ -3,7 +3,7 @@
 
 yadmin 基于springboot 开发后台
 
-[后台基于 Ant Design Vue  hi实现 ](https://github.com/ytrue/yadmin-web)
+[后台基于 Ant Design Vue  实现 ](https://github.com/ytrue/yadmin-web)
 
 # 2. 目录结构
 
@@ -13,10 +13,10 @@ yadmin
 │   └── yadmin-application-admin             # 后台应用
 │   └── yadmin-application-api               # api应用
 │   └── yadmin-application-monitor           # spring boot admin 监控
-│   
-├── yadmin-db                # 实体类和dao文件
 │
-├── yadmin-common            # 公共库
+├── yadmin-common                            # 公共库
+│   └── yadmin-common-core                   # 基础库,tools都又依赖这个库
+│   └── yadmin-common-db                     # 存放dao和实体
 │  
 ├── yadmin-tools                             # 工具库此模块下都是启动器
 │   └── yamin-tools-document                 # knife4j文档整合             
