@@ -20,6 +20,7 @@ import lombok.SneakyThrows;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -111,7 +112,7 @@ public class UploadFileController {
 
         // ossUtils.upload(uploadSetting,file.getBytes(),"123233432432432.png");
 
-        ossUtils.upload(file.getBytes(), "xxxxx.png");
+        ossUtils.upload(file.getBytes(), new Date().getTime() + ".png");
     }
 
     /**

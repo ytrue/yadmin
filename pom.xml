@@ -9,7 +9,7 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>yadmin-common</module>
+
         <module>yadmin-tools</module>
         <module>yadmin-db</module>
         <module>yadmin-tools/yadmin-tools-log</module>
@@ -23,6 +23,9 @@
         <module>yamin-application/yadmin-application-admin</module>
         <module>yamin-application/yadmin-application-api</module>
         <module>yamin-application/yadmin-application-monitor</module>
+        <module>yadmin-common</module>
+        <module>yadmin-common/yadmin-common-core</module>
+        <module>yadmin-common/yadmin-common-db</module>
 
 
     </modules>

@@ -29,7 +29,7 @@ public enum UploadType {
     /**
      * 本地
      */
-    LOCAL("loca");
+    LOCAL("local");
 
     /**
      * 类型

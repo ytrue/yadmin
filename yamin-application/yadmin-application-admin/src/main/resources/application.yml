@@ -11,7 +11,7 @@ spring:
 
 ytrue:
   oss:
-    engine: local1
+    engine: local
     aliyun:
       access-key-id: LTAI4G8W2u1s2hXaNTRzu7jP
       bucket: php-yangyi-images

@@ -32,9 +32,9 @@ public class UploadFactory {
      * @param str
      * @param handler
      */
-    public static void register(String str, AbstractUpload handler) {
+    public static void register(String str, AbstractUpload handler) throws RuntimeException {
         if (StringUtils.isEmpty(str) || null == handler) {
-            return;
+            throw new RuntimeException("未定义oss类型");
         }
         MAP.put(str, handler);
     }

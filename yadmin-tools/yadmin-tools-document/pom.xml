@@ -17,10 +17,9 @@
 
         <dependency>
             <groupId>com.ytrue</groupId>
-            <artifactId>yadmin-common</artifactId>
+            <artifactId>yadmin-common-core</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-
         <!--导入这个就可以了-->
         <dependency>
             <groupId>com.github.xiaoymin</groupId>
