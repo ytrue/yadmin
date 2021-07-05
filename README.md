@@ -9,32 +9,21 @@ yadmin 基于springboot 开发后台
 
 ```
 yadmin
-├── yadmin-admin             # 后台api
-│   └── config               # 配置
-│   └── modules              # 模块
-│       ├── chat             # 聊天模块
-│       ├── files            # 文件库模块
-│       ├── mall             # 商城模块
-│       ├── system           # rbac模块
-│       ├── quartz           # 定时任务模块
-│   └── security             # oauth2资源端
+├── yadmin-application
+│   └── yadmin-application-admin             # 后台应用
+│   └── yadmin-application-api               # api应用
+│   └── yadmin-application-monitor           # spring boot admin 监控
 │   
-├── yadmin-api               # api
-│   └── config               # 配置
-│   └── modules              # 模块
-│       ├── mall             # 商城模块
-│       ├── chat             # 聊天模块
-│   └── security             # oauth2资源端
-│
 ├── yadmin-db                # 实体类和dao文件
 │
 ├── yadmin-common            # 公共库
 │  
-├── yadmin-monitor           # spring boot admin
-│  
-├── yadmin-security          # oauth2服务端
-│  
-├── yadmin-tools             # 工具库
+├── yadmin-tools                             # 工具库此模块下都是启动器
+│   └── yamin-tools-document                 # knife4j文档整合             
+│   └── yamin-tools-log                      # 操作日志库
+│   └── yamin-tools-oss                      # aliyun,qcloud,qiniu,本地 上传（目前只有上传）
+│   └── yamin-tools-security                 # oauth2 + jwt+ spring security 安全
+│   └── yamin-tools-xss                      # xss过滤
 ```
 
 # 3.截图

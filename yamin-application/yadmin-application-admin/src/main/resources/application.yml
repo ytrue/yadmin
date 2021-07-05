@@ -1,0 +1,49 @@
+spring:
+  # 环境 dev|test|prod quart定时任务
+  profiles:
+    active: dev,quartz
+  main:
+    ##当遇到同样名字的时候，是否允许覆盖注
+    allow-bean-definition-overriding: true
+  resources:
+    #这个要配置下，不然本地上传访问不到文件
+    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,classpath:/static/upload
+
+ytrue:
+  oss:
+    engine: local1
+    aliyun:
+      access-key-id: LTAI4G8W2u1s2hXaNTRzu7jP
+      bucket: php-yangyi-images
+      domain: https://oss-cn-shenzhen.aliyuncs.com
+      access-key-secret: uVs78nQ4wgdjH0fToD8aOGFyOMHbzB
+      file-host: test/file
+    qiniu:
+      access-key: v9vizwHCQrvxrySUNi36vd4MKn5s24A2JCr6837C
+      domain: http://qvmh35u4n.hn-bkt.clouddn.com
+      bucket: test-yangyi-images
+      secret-key: tigkSWysBE5d6lH0k6B1TkO4x-C2cRWJJ0zIERL2
+    qcloud:
+      bucket: ytrue-php-java-1304614471
+      region: ap-nanjing
+      domain: https://ytrue-php-java-1304614471.cos.ap-nanjing.myqcloud.com
+      file-host: test/file
+      secret-id: AKIDIBwSq5Q9VgnkljrCDbq06OVNkBfuEWGk
+      secret-key: pPbdcKpyiFerUu8LMkuMjtVugLncAzeS
+    local:
+      file-host: upload/file
+      domain:
+  security:
+    client-id: admin
+    client-secret:
+    jwt:
+      signing-key: 432432hdfgdhg@676@&*&*(&*)(*)$3543ktjn45j6h546%$^%$hgfhmf
+  document:
+    enabled: true
+    basic:
+      enable: true
+      username: yang
+      password: yang
+    title: yadmin后台文档
+    description: yadmin后台在线文档
+    version: 1.0
