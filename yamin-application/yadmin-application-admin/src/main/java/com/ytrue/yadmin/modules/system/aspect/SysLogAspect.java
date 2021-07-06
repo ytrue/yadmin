@@ -3,7 +3,7 @@ package com.ytrue.yadmin.modules.system.aspect;
 import cn.hutool.core.date.SystemClock;
 import com.ytrue.yadmin.utils.GsonUtils;
 import com.ytrue.yadmin.utils.IpHelper;
-import com.ytrue.yadmin.dao.system.SysLogDao;
+import com.ytrue.yadmin.modules.system.dao.SysLogDao;
 import com.ytrue.yadmin.model.system.SysLog;
 import lombok.AllArgsConstructor;
 import org.aspectj.lang.ProceedingJoinPoint;

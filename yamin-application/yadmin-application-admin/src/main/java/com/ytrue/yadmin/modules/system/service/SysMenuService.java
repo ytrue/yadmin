@@ -4,6 +4,7 @@ package com.ytrue.yadmin.modules.system.service;
 import cn.hutool.core.lang.tree.Tree;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.ytrue.yadmin.model.system.SysMenu;
+import org.apache.ibatis.annotations.Select;
 
 
 import java.util.List;
@@ -29,16 +30,9 @@ public interface SysMenuService extends IService<SysMenu> {
      * @param roleId 角色id
      * @return 角色所拥有的菜单id列表
      */
+
     List<Long> listMenuIdByRoleId(Long roleId);
 
-
-    /**
-     * 根据一级菜单id 获取二级菜单
-     *
-     * @param parentId 一级菜单id
-     * @return 二级菜单列表
-     */
-    List<SysMenu> listChildrenMenuByParentId(Long parentId);
 
 
     /**

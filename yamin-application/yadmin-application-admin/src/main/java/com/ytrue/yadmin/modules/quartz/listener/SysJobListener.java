@@ -4,8 +4,8 @@ import cn.hutool.core.date.SystemClock;
 import cn.hutool.core.util.StrUtil;
 
 import com.ytrue.yadmin.modules.quartz.event.ScheduleJobEvent;
-import com.ytrue.yadmin.model.quartz.ScheduleJob;
-import com.ytrue.yadmin.model.quartz.ScheduleJobLog;
+import com.ytrue.yadmin.modules.quartz.model.ScheduleJob;
+import com.ytrue.yadmin.modules.quartz.model.ScheduleJobLog;
 import com.ytrue.yadmin.modules.quartz.service.ScheduleJobLogService;
 import com.ytrue.yadmin.modules.quartz.util.SpringBeanTaskUtil;
 import lombok.AllArgsConstructor;

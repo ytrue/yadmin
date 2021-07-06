@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.ytrue.yadmin.annotation.SysLog;
 import com.ytrue.yadmin.annotation.WrapResp;
 import com.ytrue.yadmin.exeption.YadminException;
-import com.ytrue.yadmin.model.quartz.ScheduleJob;
+import com.ytrue.yadmin.modules.quartz.model.ScheduleJob;
 import com.ytrue.yadmin.modules.quartz.service.ScheduleJobService;
 import com.ytrue.yadmin.search.SearchModel;
 import lombok.AllArgsConstructor;

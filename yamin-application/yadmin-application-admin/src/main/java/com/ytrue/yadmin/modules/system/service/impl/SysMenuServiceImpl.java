@@ -7,10 +7,11 @@ import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.lang.tree.TreeNode;
 import cn.hutool.core.lang.tree.TreeNodeConfig;
 import cn.hutool.core.lang.tree.TreeUtil;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ytrue.yadmin.exeption.YadminException;
-import com.ytrue.yadmin.dao.system.SysMenuDao;
-import com.ytrue.yadmin.dao.system.SysRoleMenuDao;
+import com.ytrue.yadmin.modules.system.dao.SysMenuDao;
+import com.ytrue.yadmin.modules.system.dao.SysRoleMenuDao;
 import com.ytrue.yadmin.model.system.SysMenu;
 import com.ytrue.yadmin.modules.system.service.SysMenuService;
 import lombok.AllArgsConstructor;
@@ -37,7 +38,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenu> impleme
     @Transactional(rollbackFor = Exception.class)
     public void deleteMenuAndRoleMenu(Long menuId) {
         //判断是否有子菜单或按钮
-        List<SysMenu> menuList = listChildrenMenuByParentId(menuId);
+        List<SysMenu> menuList = sysMenuDao.selectList(new QueryWrapper<SysMenu>().eq("parent_id", menuId));
         if (menuList.size() > 0) {
             throw new YadminException("请先删除子菜单或按钮");
         }
@@ -53,11 +54,6 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenu> impleme
         return sysMenuDao.listMenuIdByRoleId(roleId);
     }
 
-
-    @Override
-    public List<SysMenu> listChildrenMenuByParentId(Long parentId) {
-        return sysMenuDao.listChildrenMenuByParentId(parentId);
-    }
 
     @Override
     public List<Tree<String>> myMenuTree(Long userId, Integer deep) {

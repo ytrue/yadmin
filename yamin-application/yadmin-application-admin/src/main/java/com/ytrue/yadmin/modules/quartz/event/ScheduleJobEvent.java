@@ -1,7 +1,7 @@
 package com.ytrue.yadmin.modules.quartz.event;
 
 
-import com.ytrue.yadmin.model.quartz.ScheduleJob;
+import com.ytrue.yadmin.modules.quartz.model.ScheduleJob;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

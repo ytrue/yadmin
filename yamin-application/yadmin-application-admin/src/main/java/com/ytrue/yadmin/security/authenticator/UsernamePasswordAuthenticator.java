@@ -3,7 +3,7 @@ package com.ytrue.yadmin.security.authenticator;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.ytrue.yadmin.exeption.YadminException;
-import com.ytrue.yadmin.dao.system.SysUserDao;
+import com.ytrue.yadmin.modules.system.dao.SysUserDao;
 import com.ytrue.yadmin.model.system.SysUser;
 import com.ytrue.yadmin.security.integration.IntegrationAuthenticationEntity;
 import com.ytrue.yadmin.security.integration.authenticator.AbstractPreparableIntegrationAuthenticator;

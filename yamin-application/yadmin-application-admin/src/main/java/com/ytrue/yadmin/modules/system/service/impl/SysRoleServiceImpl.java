@@ -3,9 +3,9 @@ package com.ytrue.yadmin.modules.system.service.impl;
 import cn.hutool.core.collection.CollectionUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
-import com.ytrue.yadmin.dao.system.SysRoleDao;
-import com.ytrue.yadmin.dao.system.SysRoleMenuDao;
-import com.ytrue.yadmin.dao.system.SysUserRoleDao;
+import com.ytrue.yadmin.modules.system.dao.SysRoleDao;
+import com.ytrue.yadmin.modules.system.dao.SysRoleMenuDao;
+import com.ytrue.yadmin.modules.system.dao.SysUserRoleDao;
 import com.ytrue.yadmin.model.system.SysRole;
 import com.ytrue.yadmin.modules.system.service.SysRoleService;
 import lombok.AllArgsConstructor;

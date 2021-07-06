@@ -4,9 +4,9 @@ import cn.hutool.core.date.DateUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
 import com.ytrue.yadmin.modules.quartz.config.ScheduleManager;
-import com.ytrue.yadmin.dao.quartz.ScheduleJobDao;
+import com.ytrue.yadmin.modules.quartz.dao.ScheduleJobDao;
 import com.ytrue.yadmin.modules.quartz.enums.ScheduleStatus;
-import com.ytrue.yadmin.model.quartz.ScheduleJob;
+import com.ytrue.yadmin.modules.quartz.model.ScheduleJob;
 import com.ytrue.yadmin.modules.quartz.service.ScheduleJobService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -73,9 +73,7 @@ public class ScheduleJobServiceImpl extends ServiceImpl<ScheduleJobDao, Schedule
     @Transactional(rollbackFor = Exception.class)
     public void deleteBatch(Long[] jobIds) {
         List<Long> ids = Arrays.asList(jobIds);
-        this.listByIds(ids).forEach(scheduleJob -> {
-            scheduleManager.deleteScheduleJob(scheduleJob);
-        });
+        this.listByIds(ids).forEach(scheduleManager::deleteScheduleJob);
         scheduleJobDao.deleteBatchIds(ids);
     }
 
@@ -95,19 +93,14 @@ public class ScheduleJobServiceImpl extends ServiceImpl<ScheduleJobDao, Schedule
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void pause(Long[] jobIds) {
-        this.listByIds(Arrays.asList(jobIds)).forEach(scheduleJob -> {
-            scheduleManager.pauseJob(scheduleJob);
-        });
-
+        this.listByIds(Arrays.asList(jobIds)).forEach(scheduleManager::pauseJob);
         updateBatch(jobIds, ScheduleStatus.PAUSE.getType());
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void resume(Long[] jobIds) {
-        this.listByIds(Arrays.asList(jobIds)).forEach(scheduleJob -> {
-            scheduleManager.resumeJob(scheduleJob);
-        });
+        this.listByIds(Arrays.asList(jobIds)).forEach(scheduleManager::resumeJob);
 
         updateBatch(jobIds, ScheduleStatus.NORMAL.getType());
     }
