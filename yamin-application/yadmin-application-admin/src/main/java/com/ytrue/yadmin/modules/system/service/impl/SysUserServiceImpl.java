@@ -9,8 +9,9 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ytrue.yadmin.exeption.YadminException;
 import com.ytrue.yadmin.modules.system.dao.SysUserDao;
 import com.ytrue.yadmin.modules.system.dao.SysUserRoleDao;
-import com.ytrue.yadmin.model.system.SysUser;
-import com.ytrue.yadmin.model.system.SysUserRole;
+
+import com.ytrue.yadmin.modules.system.model.SysUser;
+import com.ytrue.yadmin.modules.system.model.SysUserRole;
 import com.ytrue.yadmin.modules.system.service.SysMenuService;
 import com.ytrue.yadmin.modules.system.service.SysUserService;
 import com.ytrue.yadmin.modules.system.vo.UserInfoVO;

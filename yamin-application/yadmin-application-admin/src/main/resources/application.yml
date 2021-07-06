@@ -9,3 +9,24 @@ spring:
     #这个要配置下，不然本地上传访问不到文件
     static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,classpath:/static/upload
 
+ytrue:
+  oss:
+    engine: local
+
+    local:
+      file-host: upload/file
+      domain:
+  security:
+    client-id: admin
+    client-secret:
+    jwt:
+      signing-key: 432432hdfgdhg@676@&*&*(&*)(*)$3543ktjn45j6h546%$^%$hgfhmf
+  document:
+    enabled: true
+    basic:
+      enable: true
+      username: yang
+      password: yang
+    title: yadmin后台文档
+    description: yadmin后台在线文档
+    version: 1.0

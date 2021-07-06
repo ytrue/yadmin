@@ -1,6 +1,6 @@
 package com.ytrue.yadmin.security.authenticator;
 
-import com.ytrue.yadmin.model.system.SysUser;
+import com.ytrue.yadmin.modules.system.model.SysUser;
 import com.ytrue.yadmin.security.integration.IntegrationAuthenticationEntity;
 import com.ytrue.yadmin.security.integration.authenticator.AbstractPreparableIntegrationAuthenticator;
 import org.springframework.security.oauth2.common.exceptions.OAuth2Exception;
@@ -23,6 +23,7 @@ public class SmsAuthenticator extends AbstractPreparableIntegrationAuthenticator
 
     /**
      * 预处理
+     *
      * @param entity 集成认证实体
      * @return
      */

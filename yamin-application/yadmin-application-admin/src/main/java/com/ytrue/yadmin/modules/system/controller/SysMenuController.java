@@ -4,7 +4,8 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.ytrue.yadmin.annotation.SysLog;
 import com.ytrue.yadmin.annotation.WrapResp;
 import com.ytrue.yadmin.exeption.YadminException;
-import com.ytrue.yadmin.model.system.SysMenu;
+
+import com.ytrue.yadmin.modules.system.model.SysMenu;
 import com.ytrue.yadmin.modules.system.service.SysMenuService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

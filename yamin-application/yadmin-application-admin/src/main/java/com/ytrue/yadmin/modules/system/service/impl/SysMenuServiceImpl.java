@@ -12,7 +12,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ytrue.yadmin.exeption.YadminException;
 import com.ytrue.yadmin.modules.system.dao.SysMenuDao;
 import com.ytrue.yadmin.modules.system.dao.SysRoleMenuDao;
-import com.ytrue.yadmin.model.system.SysMenu;
+import com.ytrue.yadmin.modules.system.model.SysMenu;
 import com.ytrue.yadmin.modules.system.service.SysMenuService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

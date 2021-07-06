@@ -3,9 +3,7 @@ package com.ytrue.yadmin.modules.system.service;
 
 import cn.hutool.core.lang.tree.Tree;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.ytrue.yadmin.model.system.SysMenu;
-import org.apache.ibatis.annotations.Select;
-
+import com.ytrue.yadmin.modules.system.model.SysMenu;
 
 import java.util.List;
 
@@ -32,7 +30,6 @@ public interface SysMenuService extends IService<SysMenu> {
      */
 
     List<Long> listMenuIdByRoleId(Long roleId);
-
 
 
     /**

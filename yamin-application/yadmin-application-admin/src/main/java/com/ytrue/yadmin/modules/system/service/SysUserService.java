@@ -1,7 +1,7 @@
 package com.ytrue.yadmin.modules.system.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.ytrue.yadmin.model.system.SysUser;
+import com.ytrue.yadmin.modules.system.model.SysUser;
 import com.ytrue.yadmin.modules.system.vo.UserInfoVO;
 import io.jsonwebtoken.Claims;
 

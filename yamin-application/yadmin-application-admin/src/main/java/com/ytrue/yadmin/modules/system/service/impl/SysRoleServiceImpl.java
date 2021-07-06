@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ytrue.yadmin.modules.system.dao.SysRoleDao;
 import com.ytrue.yadmin.modules.system.dao.SysRoleMenuDao;
 import com.ytrue.yadmin.modules.system.dao.SysUserRoleDao;
-import com.ytrue.yadmin.model.system.SysRole;
+import com.ytrue.yadmin.modules.system.model.SysRole;
 import com.ytrue.yadmin.modules.system.service.SysRoleService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -3,7 +3,8 @@ package com.ytrue.yadmin.modules.system.controller;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.ytrue.yadmin.annotation.SysLog;
 import com.ytrue.yadmin.annotation.WrapResp;
-import com.ytrue.yadmin.model.system.SysUser;
+
+import com.ytrue.yadmin.modules.system.model.SysUser;
 import com.ytrue.yadmin.modules.system.service.SysMenuService;
 import com.ytrue.yadmin.modules.system.service.SysRoleService;
 import com.ytrue.yadmin.modules.system.service.SysUserService;
