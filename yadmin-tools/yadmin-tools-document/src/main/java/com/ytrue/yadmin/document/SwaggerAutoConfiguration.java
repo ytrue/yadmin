@@ -233,11 +233,11 @@ public class SwaggerAutoConfiguration implements BeanFactoryAware {
      */
     private List<ResponseMessage> getResponseMessages() {
         List<ResponseMessage> collect = Arrays.asList(
-                new ResponseMessageBuilder().code(0).message("成功").build(),
-                new ResponseMessageBuilder().code(-1).message("系统繁忙").build(),
-                new ResponseMessageBuilder().code(-2).message("服务超时").build(),
-                new ResponseMessageBuilder().code(40001).message("会话超时，请重新登录").build(),
-                new ResponseMessageBuilder().code(40003).message("缺少token参数").build()
+                new ResponseMessageBuilder().code(200).message("成功").build(),
+                new ResponseMessageBuilder().code(500).message("服务器错误").build(),
+                new ResponseMessageBuilder().code(900).message("错误请求").build(),
+                new ResponseMessageBuilder().code(903).message("未登录").build(),
+                new ResponseMessageBuilder().code(403).message("权限不足").build()
         );
         return collect;
     }

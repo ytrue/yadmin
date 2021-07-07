@@ -97,6 +97,11 @@
             <artifactId>mapstruct-processor</artifactId>
             <version>1.4.1.Final</version>
         </dependency>
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>1.5.22</version>
+        </dependency>
 
     </dependencies>
 

@@ -9,6 +9,10 @@ import com.ytrue.yadmin.modules.system.service.UploadFileService;
 import com.ytrue.yadmin.modules.system.service.dto.MoveGroupParamDTO;
 import com.ytrue.yadmin.oss.utils.OssUtils;
 import com.ytrue.yadmin.search.SearchModel;
+import com.ytrue.yadmin.utils.R;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +30,7 @@ import java.util.List;
 @RequestMapping("file")
 @WrapResp
 @AllArgsConstructor
+@Api(tags = "文件库记录控制器")
 public class UploadFileController {
 
     private final UploadFileService uploadFileService;
@@ -38,12 +43,14 @@ public class UploadFileController {
      * @return {@link IPage<UploadFile>}
      */
     @PostMapping("page")
+    @ApiOperation(value = "分页查询数据")
     //@PreAuthorize("@pms.hasPermission('file:page')")
-    public IPage<UploadFile> page(@RequestBody SearchModel<UploadFile> uploadFile) {
-        return uploadFileService.page(
+    public R<IPage<UploadFile>> page(@RequestBody SearchModel<UploadFile> uploadFile) {
+        IPage<UploadFile> page = uploadFileService.page(
                 uploadFile.getPage(),
                 uploadFile.getQueryModel().lambda().orderByDesc(UploadFile::getFileId)
         );
+        return R.success(page);
     }
 
 
@@ -57,11 +64,10 @@ public class UploadFileController {
     @SneakyThrows
     @SysLog("上传文件")
     @PostMapping("upload")
+    @ApiOperation("上传文件")
     //@PreAuthorize("@pms.hasPermission('file:upload')")
     public void uploadFiles(@RequestParam("file") MultipartFile file) {
         //uploadFileService.uploadFile(file);
-
-
         // ossUtils.upload(uploadSetting,file.getBytes(),"123233432432432.png");
 
         ossUtils.upload(file.getBytes(), new Date().getTime() + ".png");
@@ -74,6 +80,7 @@ public class UploadFileController {
      */
     @SysLog("移动图片组")
     @PostMapping("move")
+    @ApiOperation("移动图片组")
     //@PreAuthorize("@pms.hasPermission('file:move')")
     public void moveGroup(@RequestBody MoveGroupParamDTO paramDTO) {
         uploadFileService.moveGroup(paramDTO);
@@ -81,8 +88,12 @@ public class UploadFileController {
 
     @SysLog("删除文件")
     @DeleteMapping
+    @ApiOperation(value = "删除文件")
     //@PreAuthorize("@pms.hasPermission('file:delete')")
-    public void delete(@RequestBody List<Long> fileIds) {
+    public void delete(
+            @ApiParam(required = true, name = "id集合")
+            @RequestBody List<Long> fileIds
+    ) {
         uploadFileService.removeByIds(fileIds);
     }
 }

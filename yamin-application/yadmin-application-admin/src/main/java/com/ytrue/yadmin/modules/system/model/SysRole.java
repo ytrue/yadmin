@@ -4,6 +4,8 @@ package com.ytrue.yadmin.modules.system.model;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -19,34 +21,38 @@ import java.util.List;
  */
 @Data
 @TableName("sys_role")
+@ApiModel(value = "角色")
 public class SysRole implements Serializable {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * 角色ID
-	 *
-	 */
-	@TableId
+    /**
+     * 角色ID
+     */
+    @TableId
+    @ApiModelProperty(value = "主键")
+    private Long roleId;
 
-	private Long roleId;
+    /**
+     * 角色名称
+     */
+    @ApiModelProperty(value = "角色名称",required = true)
+    @NotBlank(message = "角色名称不能为空")
+    private String roleName;
 
-	/**
-	 * 角色名称
-	 */
-	@NotBlank(message="角色名称不能为空")
-	private String roleName;
+    /**
+     * 备注
+     */
+    @ApiModelProperty(value = "备注")
+    private String remark;
 
-	/**
-	 * 备注
-	 */
-	private String remark;
+    @ApiModelProperty(hidden = true)
+    @TableField(exist = false)
+    private List<Long> menuIdList;
 
-	@TableField(exist=false)
-	private List<Long> menuIdList;
-
-	/**
-	 * 创建时间
-	 */
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	private LocalDateTime createTime;
+    /**
+     * 创建时间
+     */
+    @ApiModelProperty(value = "创建时间")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime createTime;
 }

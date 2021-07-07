@@ -4,6 +4,9 @@ import com.ytrue.yadmin.log.annotation.SysLog;
 import com.ytrue.yadmin.annotation.WrapResp;
 import com.ytrue.yadmin.modules.system.service.UploadGroupService;
 import com.ytrue.yadmin.modules.system.model.UploadGroup;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +22,7 @@ import java.util.List;
 @RequestMapping("file.group")
 @WrapResp
 @AllArgsConstructor
+@Api(tags = "文件库分组记录控制器")
 public class UploadGroupController {
 
     private final UploadGroupService uploadGroupService;
@@ -29,6 +33,7 @@ public class UploadGroupController {
      * @return {@link List<UploadGroup>}
      */
     @PostMapping("list")
+    @ApiOperation("查询所有件库分组")
     //@PreAuthorize("@pms.hasPermission('file:group:list')")
     public List<UploadGroup> page() {
         return uploadGroupService.list();
@@ -42,6 +47,7 @@ public class UploadGroupController {
      */
     @SysLog("保存文件分组")
     @PostMapping
+    @ApiOperation("保存文件分组")
     //@PreAuthorize("@pms.hasPermission('file:group:save')")
     public void save(@Validated @RequestBody UploadGroup uploadGroup) {
         uploadGroupService.save(uploadGroup);
@@ -55,6 +61,7 @@ public class UploadGroupController {
      */
     @SysLog("修改文件分组")
     @PutMapping
+    @ApiOperation("修改文件分组")
     //@PreAuthorize("@pms.hasPermission('file:group:update')")
     public void update(@Validated @RequestBody UploadGroup uploadGroup) {
         uploadGroupService.updateById(uploadGroup);
@@ -67,8 +74,12 @@ public class UploadGroupController {
      */
     @SysLog("删除文件分组")
     @DeleteMapping
+    @ApiOperation("删除文件分组")
     //@PreAuthorize("@pms.hasPermission('file:group:delete')")
-    public void delete(@RequestBody List<Long> groupIds) {
+    public void delete(
+            @ApiParam(required = true, name = "id集合")
+            @RequestBody List<Long> groupIds
+    ) {
         uploadGroupService.deleteGroup(groupIds);
     }
 

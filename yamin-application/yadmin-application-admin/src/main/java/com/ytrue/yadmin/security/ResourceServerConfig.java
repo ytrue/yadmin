@@ -49,6 +49,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                         "/svg/**",
                         "/passport/**",
                         //这个是swagger文档的，要开放出来
+                        "/v2/api-docs**",
                         "/webjars/**",
                         "/doc.html**",
                         "/swagger**"

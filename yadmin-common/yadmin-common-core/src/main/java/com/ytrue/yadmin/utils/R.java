@@ -1,6 +1,8 @@
 package com.ytrue.yadmin.utils;
 
 import com.ytrue.yadmin.exeption.code.ExceptionCode;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,12 +17,16 @@ import lombok.extern.slf4j.Slf4j;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@ApiModel(value = "统一返回")
 public class R<T> {
 
+    @ApiModelProperty(value = "状态", example = "200")
     private Integer code;
 
+    @ApiModelProperty(value = "信息", example = "成功")
     private String message;
 
+    @ApiModelProperty(value = "内容")
     private T data;
 
     public R(T data) {

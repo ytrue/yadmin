@@ -7,6 +7,8 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.metadata.OrderItem;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ytrue.yadmin.exeption.YadminException;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.util.List;
@@ -17,26 +19,32 @@ import java.util.List;
  * @description 核心
  */
 @Data
+@ApiModel(value = "查询实体")
 public class SearchModel<T> {
     /**
      * 当前页码，默认是1
      */
+    @ApiModelProperty(value = "当前页码，默认是1")
     private Integer currentPage = 1;
     /**
      * 每页取多少条，默认是10
      */
+    @ApiModelProperty(value = "当前页码，默认是10")
     private Integer limit = 10;
     /**
      * 字段条件
      */
+    @ApiModelProperty(value = "字段条件")
     private List<Field> fields;
     /**
      * 排序的字段
      */
+    @ApiModelProperty(value = "排序的字段")
     private String orderField;
     /**
      * 什么风格的
      */
+    @ApiModelProperty(value = "什么风格的")
     private boolean isAsc;
 
 
