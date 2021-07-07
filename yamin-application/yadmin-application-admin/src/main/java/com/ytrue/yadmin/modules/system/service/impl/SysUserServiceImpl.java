@@ -14,7 +14,7 @@ import com.ytrue.yadmin.modules.system.model.SysUser;
 import com.ytrue.yadmin.modules.system.model.SysUserRole;
 import com.ytrue.yadmin.modules.system.service.SysMenuService;
 import com.ytrue.yadmin.modules.system.service.SysUserService;
-import com.ytrue.yadmin.modules.system.vo.UserInfoVO;
+import com.ytrue.yadmin.modules.system.model.vo.UserInfoVO;
 import io.jsonwebtoken.Claims;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

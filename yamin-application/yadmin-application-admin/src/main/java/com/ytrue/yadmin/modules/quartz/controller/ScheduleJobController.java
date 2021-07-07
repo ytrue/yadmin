@@ -2,7 +2,7 @@ package com.ytrue.yadmin.modules.quartz.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.ytrue.yadmin.annotation.SysLog;
+import com.ytrue.yadmin.log.annotation.SysLog;
 import com.ytrue.yadmin.annotation.WrapResp;
 import com.ytrue.yadmin.exeption.YadminException;
 import com.ytrue.yadmin.modules.quartz.model.ScheduleJob;

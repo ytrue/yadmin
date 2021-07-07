@@ -1,6 +1,6 @@
 package com.ytrue.yadmin.modules.system.controller;
 
-import com.ytrue.yadmin.annotation.SysLog;
+import com.ytrue.yadmin.log.annotation.SysLog;
 import com.ytrue.yadmin.annotation.WrapResp;
 import com.ytrue.yadmin.modules.system.service.UploadGroupService;
 import com.ytrue.yadmin.modules.system.model.UploadGroup;

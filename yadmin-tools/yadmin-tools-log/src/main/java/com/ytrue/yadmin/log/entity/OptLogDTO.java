@@ -36,7 +36,7 @@ public class OptLogDTO {
     /**
      * 操作人
      */
-    private String userName;
+    private String username;
 
     /**
      * 操作描述
@@ -103,8 +103,5 @@ public class OptLogDTO {
      * 浏览器
      */
     private String ua;
-
-    private Long createUser;
-
 
 }

@@ -2,19 +2,13 @@ package com.ytrue.yadmin.modules.system.controller;
 
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.ytrue.yadmin.annotation.SysLog;
 import com.ytrue.yadmin.annotation.WrapResp;
+import com.ytrue.yadmin.log.annotation.SysLog;
 import com.ytrue.yadmin.modules.system.model.UploadFile;
-import com.ytrue.yadmin.search.SearchModel;
 import com.ytrue.yadmin.modules.system.service.UploadFileService;
 import com.ytrue.yadmin.modules.system.service.dto.MoveGroupParamDTO;
-import com.ytrue.yadmin.oss.dto.Engine;
-import com.ytrue.yadmin.oss.dto.UploadSetting;
-import com.ytrue.yadmin.oss.properties.AliyunProperties;
-import com.ytrue.yadmin.oss.properties.LocalProperties;
-import com.ytrue.yadmin.oss.properties.QcloudProperties;
-import com.ytrue.yadmin.oss.properties.QiniuProperties;
 import com.ytrue.yadmin.oss.utils.OssUtils;
+import com.ytrue.yadmin.search.SearchModel;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.web.bind.annotation.*;
@@ -48,7 +42,7 @@ public class UploadFileController {
     public IPage<UploadFile> page(@RequestBody SearchModel<UploadFile> uploadFile) {
         return uploadFileService.page(
                 uploadFile.getPage(),
-                uploadFile.getQueryModel().orderByDesc("file_id")
+                uploadFile.getQueryModel().lambda().orderByDesc(UploadFile::getFileId)
         );
     }
 

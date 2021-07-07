@@ -1,6 +1,6 @@
 package com.ytrue.yadmin.log.aspect;
 
-
+import io.swagger.annotations.Api;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.core.util.URLUtil;
@@ -16,6 +16,7 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -65,18 +66,19 @@ public class SysLogAspect {
         tryCatch((val) -> {
             // 开始时间
             OptLogDTO sysLog = get();
-            sysLog.setCreateUser(1L);
-            sysLog.setUserName((String) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+            sysLog.setUsername((String) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+
             String controllerDescription = "";
 
-           /* Api api = joinPoint.getTarget().getClass().getAnnotation(Api.class);
+            Api api = joinPoint.getTarget().getClass().getAnnotation(Api.class);
 
             if (api != null) {
                 String[] tags = api.tags();
-                if (tags != null && tags.length > 0) {
+                if (tags.length > 0) {
                     controllerDescription = tags[0];
                 }
-            }*/
+            }
+
             String controllerMethodDescription = LogUtil.getControllerMethodDescription(joinPoint);
             if (StrUtil.isEmpty(controllerDescription)) {
                 sysLog.setDescription(controllerMethodDescription);
@@ -106,13 +108,10 @@ public class SysLogAspect {
                 }
             }
             sysLog.setParams(getText(strArgs));
-
-            if (request != null) {
-                sysLog.setRequestIp(ServletUtil.getClientIP(request));
-                sysLog.setRequestUri(URLUtil.getPath(request.getRequestURI()));
-                sysLog.setHttpMethod(request.getMethod());
-                sysLog.setUa(StrUtil.sub(request.getHeader("user-agent"), 0, 500));
-            }
+            sysLog.setRequestIp(ServletUtil.getClientIP(request));
+            sysLog.setRequestUri(URLUtil.getPath(request.getRequestURI()));
+            sysLog.setHttpMethod(request.getMethod());
+            sysLog.setUa(StrUtil.sub(request.getHeader("user-agent"), 0, 500));
             sysLog.setStartTime(LocalDateTime.now());
             THREAD_LOCAL.set(sysLog);
         });

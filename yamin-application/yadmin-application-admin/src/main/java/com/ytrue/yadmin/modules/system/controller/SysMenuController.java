@@ -1,7 +1,7 @@
 package com.ytrue.yadmin.modules.system.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.ytrue.yadmin.annotation.SysLog;
+import com.ytrue.yadmin.log.annotation.SysLog;
 import com.ytrue.yadmin.annotation.WrapResp;
 import com.ytrue.yadmin.exeption.YadminException;
 
@@ -37,7 +37,7 @@ public class SysMenuController {
      */
     @GetMapping("table")
     public List<SysMenu> table() {
-        return sysMenuService.list(new QueryWrapper<SysMenu>().orderByAsc("order_num"));
+        return sysMenuService.list(new QueryWrapper<SysMenu>().lambda().orderByAsc(SysMenu::getOrderNum));
     }
 
 
@@ -50,7 +50,7 @@ public class SysMenuController {
     @GetMapping("list")
     public List<SysMenu> list() {
         return sysMenuService.list(
-                new QueryWrapper<SysMenu>().ne("menu_type", 3).orderByAsc("order_num"));
+                new QueryWrapper<SysMenu>().ne("menu_type", 3).lambda().orderByAsc(SysMenu::getOrderNum));
     }
 
     /**

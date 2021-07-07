@@ -1,4 +1,4 @@
-package com.ytrue.yadmin.modules.system.vo;
+package com.ytrue.yadmin.modules.system.model.vo;
 
 import cn.hutool.core.lang.tree.Tree;
 import lombok.Data;

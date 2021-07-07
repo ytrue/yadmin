@@ -1,14 +1,15 @@
 package com.ytrue.yadmin.modules.system.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.ytrue.yadmin.annotation.SysLog;
+
 import com.ytrue.yadmin.annotation.WrapResp;
 
+import com.ytrue.yadmin.log.annotation.SysLog;
 import com.ytrue.yadmin.modules.system.model.SysUser;
 import com.ytrue.yadmin.modules.system.service.SysMenuService;
 import com.ytrue.yadmin.modules.system.service.SysRoleService;
 import com.ytrue.yadmin.modules.system.service.SysUserService;
-import com.ytrue.yadmin.modules.system.vo.UserInfoVO;
+import com.ytrue.yadmin.modules.system.model.vo.UserInfoVO;
 import com.ytrue.yadmin.search.SearchModel;
 import com.ytrue.yadmin.security.utils.JwtUtils;
 import io.jsonwebtoken.Claims;
@@ -48,11 +49,11 @@ public class SysUserController {
      * @param searchModel
      * @return
      */
-    @com.ytrue.yadmin.log.annotation.SysLog("查询用户")
+    @SysLog("查询用户")
     @PostMapping("page")
     @PreAuthorize("@pms.hasPermission('sys:user:page')")
     public IPage<SysUser> page(@RequestBody SearchModel<SysUser> searchModel) {
-        return sysUserService.page(searchModel.getPage(), searchModel.getQueryModel().orderByDesc("user_id"));
+        return sysUserService.page(searchModel.getPage(), searchModel.getQueryModel().lambda().orderByDesc(SysUser::getUserId));
     }
 
 
