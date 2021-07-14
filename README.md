@@ -24,6 +24,7 @@ yadmin
 │   └── yamin-tools-oss                      # aliyun,qcloud,qiniu,本地 上传（目前只有上传）
 │   └── yamin-tools-security                 # oauth2 + jwt+ spring security 安全
 │   └── yamin-tools-xss                      # xss过滤
+│   └── yadmin-tools-unified-dispose         # 统一包装响应和异常返回
 ```
 
 # 3.截图

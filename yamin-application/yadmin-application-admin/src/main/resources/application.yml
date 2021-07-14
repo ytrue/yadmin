@@ -29,3 +29,11 @@ ytrue:
     title: yadmin后台文档
     description: yadmin后台在线文档
     version: 1.0
+    production: false
+  unified:
+    dispose:
+      exception:
+        enabled: true
+      response-data:
+        enabled: true
+        advice-filter-url: [/v2/api-docs,/swagger-resources]

@@ -16,7 +16,7 @@ public class UnifiedDisposeExceptionProperties {
     /**
      * 是否开启
      */
-    private Boolean enabled = false;
+    private Boolean enabled = true;
 
     /**
      * 是否生产环境

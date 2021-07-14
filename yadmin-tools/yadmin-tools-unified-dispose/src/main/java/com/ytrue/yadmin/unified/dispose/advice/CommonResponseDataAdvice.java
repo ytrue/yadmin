@@ -15,6 +15,9 @@ import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -33,6 +36,10 @@ public class CommonResponseDataAdvice implements ResponseBodyAdvice<Object> {
      */
     @Autowired
     private UnifiedDisposeResponseDataProperties unifiedDisposeResponseDataProperties;
+
+
+    @Autowired
+    private HttpServletRequest request;
 
     /**
      * 判断是否要执行beforeBodyWrite方法，true为执行，false不执行
@@ -96,6 +103,12 @@ public class CommonResponseDataAdvice implements ResponseBodyAdvice<Object> {
         //是否开启
         Boolean enabled = unifiedDisposeResponseDataProperties.getEnabled();
         if (!enabled) {
+            return false;
+        }
+
+        //过滤url
+        List<String> adviceFilterUrl = unifiedDisposeResponseDataProperties.getAdviceFilterUrl();
+        if (adviceFilterUrl.contains(request.getRequestURI())) {
             return false;
         }
 

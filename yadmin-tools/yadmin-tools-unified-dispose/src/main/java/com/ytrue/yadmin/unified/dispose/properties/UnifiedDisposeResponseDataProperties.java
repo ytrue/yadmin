@@ -29,4 +29,10 @@ public class UnifiedDisposeResponseDataProperties {
      * 统一返回过滤类
      */
     private List<String> adviceFilterClass = new ArrayList<>();
+
+
+    /**
+     * 统一返回url,后面新增正则匹配
+     */
+    private List<String> adviceFilterUrl = new ArrayList<>();
 }
