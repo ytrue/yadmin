@@ -19,10 +19,10 @@ yadmin
 │   └── yadmin-common-db                     # 存放dao和实体
 │  
 ├── yadmin-tools                             # 工具库此模块下都是启动器
-│   └── yamin-tools-document                 # knife4j文档整合             
-│   └── yamin-tools-log                      # 操作日志库
-│   └── yamin-tools-oss                      # aliyun,qcloud,qiniu,本地 上传（目前只有上传）
-│   └── yamin-tools-security                 # oauth2 + jwt+ spring security 安全
+│   └── yadmin-tools-document                # knife4j文档整合             
+│   └── yadmin-tools-log                     # 操作日志库
+│   └── yadmin-tools-oss                     # aliyun,qcloud,qiniu,本地 上传（目前只有上传）
+│   └── yadmin-tools-security                # oauth2 + jwt+ spring security 安全
 │   └── yamin-tools-xss                      # xss过滤
 │   └── yadmin-tools-unified-dispose         # 统一包装响应和异常返回
 ```
