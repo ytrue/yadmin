@@ -1,7 +1,6 @@
 package com.ytrue.yadmin.security.controller;
 
 
-import com.ytrue.yadmin.annotation.WrapResp;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
@@ -22,7 +21,6 @@ import java.util.Map;
 @RestController
 @RequestMapping("oauth")
 @Slf4j
-@WrapResp
 public class CustomOauth2Controller {
 
     @Autowired

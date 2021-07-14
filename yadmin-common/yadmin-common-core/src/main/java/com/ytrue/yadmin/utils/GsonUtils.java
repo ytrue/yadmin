@@ -5,7 +5,6 @@ import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.ytrue.yadmin.exeption.GsonException;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
@@ -84,7 +83,7 @@ public class GsonUtils {
             JsonReader reader = new JsonReader(new FileReader(file));
             return gson.fromJson(reader, type);
         } catch (FileNotFoundException e) {
-            throw new GsonException("gson from error, file path: " + file.getPath() + ", type: " + type, e);
+            throw new RuntimeException("gson from error, file path: " + file.getPath() + ", type: " + type, e);
         }
     }
 
@@ -96,7 +95,7 @@ public class GsonUtils {
             JsonReader reader = new JsonReader(new FileReader(file));
             return gson.fromJson(reader, typeToken.getType());
         } catch (FileNotFoundException e) {
-            throw new GsonException(e.getMessage(),e);
+            throw new RuntimeException(e.getMessage(),e);
         }
     }
 
@@ -109,7 +108,7 @@ public class GsonUtils {
             TypeToken<List<V>> typeToken = (TypeToken<List<V>>) TypeToken.getParameterized(ArrayList.class, type);
             return gson.fromJson(reader, typeToken.getType());
         } catch (FileNotFoundException e) {
-           throw new GsonException(e.getMessage(),e);
+           throw new RuntimeException(e.getMessage(),e);
         }
     }
 
@@ -178,7 +177,7 @@ public class GsonUtils {
             reader.setLenient(true);
             return gson.fromJson(reader, type);
         } catch (FileNotFoundException e) {
-           throw new GsonException(e.getMessage(),e);
+           throw new RuntimeException(e.getMessage(),e);
         }
     }
 
@@ -192,7 +191,7 @@ public class GsonUtils {
             TypeToken<List<V>> typeToken = (TypeToken<List<V>>) TypeToken.getParameterized(ArrayList.class, type);
             return gson.fromJson(reader, typeToken.getType());
         } catch (FileNotFoundException e) {
-           throw new GsonException(e.getMessage(),e);
+           throw new RuntimeException(e.getMessage(),e);
         }
     }
 
@@ -268,7 +267,7 @@ public class GsonUtils {
             }.getType(), jsonWriter);
             jsonWriter.flush();
         } catch (Exception e) {
-           throw new GsonException(e.getMessage(),e);
+           throw new RuntimeException(e.getMessage(),e);
         }
     }
 
@@ -280,7 +279,7 @@ public class GsonUtils {
             gson.toJson(v, v.getClass(), jsonWriter);
             jsonWriter.flush();
         } catch (Exception e) {
-           throw new GsonException(e.getMessage(),e);
+           throw new RuntimeException(e.getMessage(),e);
         }
     }
 
@@ -322,7 +321,7 @@ public class GsonUtils {
         try {
             return jsonByKey.getAsInt();
         } catch (Exception e) {
-           throw new GsonException(e.getMessage(),e);
+           throw new RuntimeException(e.getMessage(),e);
         }
     }
 
@@ -342,7 +341,7 @@ public class GsonUtils {
         try {
             return jsonByKey.getAsLong();
         } catch (Exception e) {
-           throw new GsonException(e.getMessage(),e);
+           throw new RuntimeException(e.getMessage(),e);
         }
     }
 
@@ -362,7 +361,7 @@ public class GsonUtils {
         try {
             return jsonByKey.getAsDouble();
         } catch (Exception e) {
-           throw new GsonException(e.getMessage(),e);
+           throw new RuntimeException(e.getMessage(),e);
         }
     }
 
@@ -382,7 +381,7 @@ public class GsonUtils {
         try {
             return jsonByKey.getAsBigInteger();
         } catch (Exception e) {
-           throw new GsonException(e.getMessage(),e);
+           throw new RuntimeException(e.getMessage(),e);
         }
     }
 
@@ -402,7 +401,7 @@ public class GsonUtils {
         try {
             return jsonByKey.getAsBigDecimal();
         } catch (Exception e) {
-           throw new GsonException(e.getMessage(),e);
+           throw new RuntimeException(e.getMessage(),e);
         }
     }
 
@@ -435,7 +434,7 @@ public class GsonUtils {
                 }
             }
         } catch (Exception e) {
-           throw new GsonException(e.getMessage(),e);
+           throw new RuntimeException(e.getMessage(),e);
         }
     }
 
@@ -455,7 +454,7 @@ public class GsonUtils {
         try {
             return jsonByKey.getAsByte();
         } catch (Exception e) {
-           throw new GsonException(e.getMessage(),e);
+           throw new RuntimeException(e.getMessage(),e);
         }
     }
 
@@ -475,7 +474,7 @@ public class GsonUtils {
         try {
             return from(jsonByKey.getAsString(), type);
         } catch (Exception e) {
-           throw new GsonException(e.getMessage(),e);
+           throw new RuntimeException(e.getMessage(),e);
         }
     }
 
@@ -497,7 +496,7 @@ public class GsonUtils {
             TypeToken<List<V>> typeToken = (TypeToken<List<V>>) TypeToken.getParameterized(ArrayList.class, type);
             return from(jsonArray.toString(), typeToken);
         } catch (Exception e) {
-           throw new GsonException(e.getMessage(),e);
+           throw new RuntimeException(e.getMessage(),e);
         }
     }
 
@@ -510,7 +509,7 @@ public class GsonUtils {
             JsonObject jsonObj = element.getAsJsonObject();
             return jsonObj.get(key);
         } catch (JsonSyntaxException e) {
-           throw new GsonException(e.getMessage(),e);
+           throw new RuntimeException(e.getMessage(),e);
         }
     }
 

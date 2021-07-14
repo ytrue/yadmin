@@ -1,7 +1,6 @@
 package com.ytrue.yadmin.modules.system.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.ytrue.yadmin.annotation.WrapResp;
 import com.ytrue.yadmin.modules.system.model.SysLog;
 import com.ytrue.yadmin.search.SearchModel;
 
@@ -20,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
  * @description 系统日志
  */
 
-@WrapResp
 @AllArgsConstructor
 @RestController
 @RequestMapping("sys/log")

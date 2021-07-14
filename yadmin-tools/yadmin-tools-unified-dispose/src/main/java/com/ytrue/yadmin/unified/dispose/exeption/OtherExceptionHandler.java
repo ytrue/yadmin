@@ -1,15 +1,16 @@
-package com.ytrue.yadmin.exeption.handle;
+package com.ytrue.yadmin.unified.dispose.exeption;
+
 
 import com.ytrue.yadmin.exeption.code.ExceptionCode;
+import com.ytrue.yadmin.unified.dispose.properties.UnifiedDisposeExceptionProperties;
 import com.ytrue.yadmin.utils.R;
-import org.springframework.stereotype.Controller;
+import lombok.SneakyThrows;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
@@ -18,15 +19,23 @@ import java.util.Set;
 
 /**
  * @author ytrue
- * @date 2021/7/5 16:55
- * @description 验证异常处理 主要针对 @Validated 和 Valid的错误处理
+ * @date 2021/7/14 11:35
+ * @description 其他验证异常
  */
-
 @ResponseBody
-@ControllerAdvice(annotations = {RestController.class, Controller.class})
-public class ExceptionConfiguration {
+public class OtherExceptionHandler {
 
 
+    @Autowired
+    private UnifiedDisposeExceptionProperties unifiedDisposeExceptionProperties;
+
+    /**
+     * 验证异常处理 主要针对 @Validated 和 Valid的错误处理
+     *
+     * @param ex
+     * @return
+     */
+    @SneakyThrows
     @ExceptionHandler({
             //这个暂时不明确
             ConstraintViolationException.class,
@@ -36,10 +45,8 @@ public class ExceptionConfiguration {
             MethodArgumentNotValidException.class
     })
     public R<ArrayList<String>> validateException(Exception ex) {
-        //ex.printStackTrace();
-
+        errorDispose(ex);
         ArrayList<String> list = new ArrayList<>();
-
         if (ex instanceof ConstraintViolationException) {
 
             ConstraintViolationException constraintViolationException = (ConstraintViolationException) ex;
@@ -60,9 +67,21 @@ public class ExceptionConfiguration {
             BindingResult bindingResult = ((MethodArgumentNotValidException) ex).getBindingResult();
             list = getErrorList(bindingResult);
         }
-        return R.fail(ExceptionCode.BAD_REQUEST.getCode(), ExceptionCode.BAD_REQUEST.getMessage() + "新版本", list);
+        return R.fail(ExceptionCode.ARGUMENT_NOT_VALID, list);
     }
 
+    /**
+     * 是否开启全局异常处理
+     *
+     * @param e
+     * @param <T>
+     * @throws Throwable
+     */
+    private <T extends Throwable> void errorDispose(T e) throws Throwable {
+        if (!unifiedDisposeExceptionProperties.getEnabled()) {
+            throw e;
+        }
+    }
 
     /**
      * 获得错误集合

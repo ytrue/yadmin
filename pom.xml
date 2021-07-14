@@ -25,7 +25,7 @@
         <module>yadmin-common</module>
         <module>yadmin-common/yadmin-common-core</module>
         <module>yadmin-common/yadmin-common-db</module>
-
+        <module>yadmin-tools/yadmin-tools-unified-dispose</module>
 
     </modules>
 

@@ -2,7 +2,6 @@ package com.ytrue.yadmin.modules.system.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.ytrue.yadmin.log.annotation.SysLog;
-import com.ytrue.yadmin.annotation.WrapResp;
 import com.ytrue.yadmin.exeption.YadminException;
 
 import com.ytrue.yadmin.modules.system.model.SysMenu;
@@ -22,7 +21,6 @@ import java.util.List;
  * @description 系统菜单
  */
 @Slf4j
-@WrapResp
 @RestController
 @RequestMapping("sys/menu")
 @AllArgsConstructor

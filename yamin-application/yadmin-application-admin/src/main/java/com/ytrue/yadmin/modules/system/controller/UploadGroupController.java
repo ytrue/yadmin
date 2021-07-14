@@ -1,7 +1,6 @@
 package com.ytrue.yadmin.modules.system.controller;
 
 import com.ytrue.yadmin.log.annotation.SysLog;
-import com.ytrue.yadmin.annotation.WrapResp;
 import com.ytrue.yadmin.modules.system.service.UploadGroupService;
 import com.ytrue.yadmin.modules.system.model.UploadGroup;
 import io.swagger.annotations.Api;
@@ -20,9 +19,8 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("file.group")
-@WrapResp
 @AllArgsConstructor
-@Api(tags = "文件库分组记录控制器")
+@Api(tags = "文件库分组记录")
 public class UploadGroupController {
 
     private final UploadGroupService uploadGroupService;

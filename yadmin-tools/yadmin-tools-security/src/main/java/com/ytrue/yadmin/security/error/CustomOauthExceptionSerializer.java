@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import com.ytrue.yadmin.security.exeption.CustomOauthException;
+import lombok.extern.slf4j.Slf4j;
 
 
 import java.io.IOException;
@@ -14,6 +15,7 @@ import java.util.Map;
  * @date 2021/2/28 12:47
  * @description 认证服务器错误数据返回格式
  */
+@Slf4j
 public class CustomOauthExceptionSerializer extends StdSerializer<CustomOauthException> {
 
     public CustomOauthExceptionSerializer() {
@@ -22,6 +24,7 @@ public class CustomOauthExceptionSerializer extends StdSerializer<CustomOauthExc
 
     @Override
     public void serialize(CustomOauthException value, JsonGenerator gen, SerializerProvider provider) throws IOException {
+
         gen.writeStartObject();
         gen.writeStringField("code", String.valueOf(value.getHttpErrorCode()));
         gen.writeStringField("message", value.getMessage());

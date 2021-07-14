@@ -2,7 +2,6 @@ package com.ytrue.yadmin.modules.system.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 
-import com.ytrue.yadmin.annotation.WrapResp;
 
 import com.ytrue.yadmin.log.annotation.SysLog;
 import com.ytrue.yadmin.modules.system.model.SysUser;
@@ -29,7 +28,6 @@ import java.util.List;
  * @description 系统用户控制器
  */
 @Slf4j
-@WrapResp
 @RestController
 @RequestMapping("sys/user")
 @AllArgsConstructor

@@ -1,5 +1,6 @@
 package com.ytrue.yadmin.utils;
 
+import com.ytrue.yadmin.exeption.code.BaseExceptionCode;
 import com.ytrue.yadmin.exeption.code.ExceptionCode;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -97,6 +98,37 @@ public class R<T> {
     }
 
     /**
+     * 成功返回，自定义 BaseExceptionCode
+     *
+     * @param baseExceptionCode
+     * @param <T>
+     * @return
+     */
+    public static <T> R<T> success(BaseExceptionCode baseExceptionCode) {
+        R<T> resp = new R<>(null);
+        //操作成功
+        resp.setCode(baseExceptionCode.getCode());
+        resp.setMessage(baseExceptionCode.getMessage());
+        return resp;
+    }
+
+    /**
+     * 成功返回，BaseExceptionCode, data
+     *
+     * @param baseExceptionCode
+     * @param data
+     * @param <T>
+     * @return
+     */
+    public static <T> R<T> success(BaseExceptionCode baseExceptionCode, T data) {
+        R<T> resp = new R<>(data);
+        //操作成功
+        resp.setCode(baseExceptionCode.getCode());
+        resp.setMessage(baseExceptionCode.getMessage());
+        return resp;
+    }
+
+    /**
      * 失败返回，默认
      *
      * @param <T>
@@ -155,6 +187,38 @@ public class R<T> {
         //操作失败
         resp.setCode(code);
         resp.setMessage(message);
+        return resp;
+    }
+
+
+    /**
+     * 失败返回,自定义 baseExceptionCode
+     *
+     * @param baseExceptionCode
+     * @param <T>
+     * @return
+     */
+    public static <T> R<T> fail(BaseExceptionCode baseExceptionCode) {
+        R<T> resp = new R<>();
+        //操作失败
+        resp.setCode(baseExceptionCode.getCode());
+        resp.setMessage(baseExceptionCode.getMessage());
+        return resp;
+    }
+
+    /**
+     * 失败返回,自定义 baseExceptionCode,data
+     *
+     * @param baseExceptionCode
+     * @param data
+     * @param <T>
+     * @return
+     */
+    public static <T> R<T> fail(BaseExceptionCode baseExceptionCode, T data) {
+        R<T> resp = new R<>(data);
+        //操作失败
+        resp.setCode(baseExceptionCode.getCode());
+        resp.setMessage(baseExceptionCode.getMessage());
         return resp;
     }
 

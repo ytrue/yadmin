@@ -1,22 +1,21 @@
 package com.ytrue.yadmin.log.aspect;
 
-import io.swagger.annotations.Api;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.core.util.URLUtil;
 import cn.hutool.extra.servlet.ServletUtil;
 import com.ytrue.yadmin.exeption.code.ExceptionCode;
-import com.ytrue.yadmin.utils.GsonUtils;
-import com.ytrue.yadmin.utils.R;
 import com.ytrue.yadmin.log.entity.OptLogDTO;
 import com.ytrue.yadmin.log.event.SysLogEvent;
 import com.ytrue.yadmin.log.utils.LogUtil;
+import com.ytrue.yadmin.utils.GsonUtils;
+import com.ytrue.yadmin.utils.R;
+import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -128,7 +127,7 @@ public class SysLogAspect {
     }
 
     /**
-     * 返回通知
+     * 返回通知,目前后置处理器我想去掉它，不使用失败响应，全部抛异常是可以的
      *
      * @param ret
      * @throws Throwable

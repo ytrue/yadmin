@@ -12,7 +12,6 @@ spring:
 ytrue:
   oss:
     engine: local
-
     local:
       file-host: upload/file
       domain:

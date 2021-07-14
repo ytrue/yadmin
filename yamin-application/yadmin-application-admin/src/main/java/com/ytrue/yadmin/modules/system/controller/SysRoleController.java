@@ -2,7 +2,6 @@ package com.ytrue.yadmin.modules.system.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.ytrue.yadmin.log.annotation.SysLog;
-import com.ytrue.yadmin.annotation.WrapResp;
 
 import com.ytrue.yadmin.modules.system.model.SysRole;
 import com.ytrue.yadmin.modules.system.service.SysMenuService;
@@ -20,7 +19,6 @@ import java.util.List;
  * @date 2021/4/8 15:36
  * @description 角色管理
  */
-@WrapResp
 @RestController
 @RequestMapping("sys/role")
 @AllArgsConstructor

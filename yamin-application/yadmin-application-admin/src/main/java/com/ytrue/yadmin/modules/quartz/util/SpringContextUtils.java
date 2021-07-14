@@ -1,4 +1,4 @@
-package com.ytrue.yadmin.utils;
+package com.ytrue.yadmin.modules.quartz.util;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

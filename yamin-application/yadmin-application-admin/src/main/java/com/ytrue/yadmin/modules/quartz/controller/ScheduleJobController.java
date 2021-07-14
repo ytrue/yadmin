@@ -3,7 +3,6 @@ package com.ytrue.yadmin.modules.quartz.controller;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.ytrue.yadmin.log.annotation.SysLog;
-import com.ytrue.yadmin.annotation.WrapResp;
 import com.ytrue.yadmin.exeption.YadminException;
 import com.ytrue.yadmin.modules.quartz.model.ScheduleJob;
 import com.ytrue.yadmin.modules.quartz.service.ScheduleJobService;
@@ -20,7 +19,6 @@ import org.springframework.web.bind.annotation.*;
  * @description 定时任务控制器
  */
 @Slf4j
-@WrapResp
 @RestController
 @AllArgsConstructor
 @RequestMapping("/sys/schedule")

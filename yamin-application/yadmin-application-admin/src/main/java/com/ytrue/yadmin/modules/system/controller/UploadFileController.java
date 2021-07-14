@@ -2,7 +2,6 @@ package com.ytrue.yadmin.modules.system.controller;
 
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.ytrue.yadmin.annotation.WrapResp;
 import com.ytrue.yadmin.log.annotation.SysLog;
 import com.ytrue.yadmin.modules.system.model.UploadFile;
 import com.ytrue.yadmin.modules.system.service.UploadFileService;
@@ -28,9 +27,8 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("file")
-@WrapResp
 @AllArgsConstructor
-@Api(tags = "文件库记录控制器")
+@Api(tags = "文件库记录")
 public class UploadFileController {
 
     private final UploadFileService uploadFileService;
