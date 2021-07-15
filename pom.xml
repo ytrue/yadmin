@@ -62,6 +62,15 @@
         <!--json解析-->
         <fastjson.version>1.2.49</fastjson.version>
         <gson-version>2.8.6</gson-version>
+        <!--swagger文档-->
+        <knife4j-version>2.0.9</knife4j-version>
+        <swagger-annotations-version>1.5.22</swagger-annotations-version>
+        <!--common库-->
+        <commons-io-version>2.5</commons-io-version>
+        <commons-logging-version>1.2</commons-logging-version>
+
+        <!--bean转化 mapstruct-->
+        <mapstruct-version>1.4.1.Final</mapstruct-version>
     </properties>
 
     <dependencies>
@@ -179,6 +188,43 @@
                 <groupId>com.qcloud</groupId>
                 <artifactId>cos_api</artifactId>
                 <version>${qcloud.cos.version}</version>
+            </dependency>
+
+            <!--swagger文档-->
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-spring-boot-starter</artifactId>
+                <version>${knife4j-version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>${swagger-annotations-version}</version>
+            </dependency>
+
+            <!--common库-->
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons-io-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-logging</groupId>
+                <artifactId>commons-logging</artifactId>
+                <version>${commons-logging-version}</version>
+            </dependency>
+
+            <!--bean转化 mapstruct-->
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${mapstruct-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-processor</artifactId>
+                <version>${mapstruct-version}</version>
             </dependency>
 
         </dependencies>

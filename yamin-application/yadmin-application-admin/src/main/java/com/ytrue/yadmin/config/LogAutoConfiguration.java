@@ -49,7 +49,6 @@ public class LogAutoConfiguration {
 
         private final SysUserDao sysUserDao;
 
-
         /**
          * 保存日志
          *
@@ -57,7 +56,6 @@ public class LogAutoConfiguration {
          */
         public void saveLog(OptLogDTO optLogDTO) {
             SysLog sysLog = logManager.toEntity(optLogDTO);
-
             //获取id
             if (!StrUtil.hasEmpty(sysLog.getUsername())) {
                 SysUser sysUser = sysUserDao.selectOne(

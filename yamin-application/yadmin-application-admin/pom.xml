@@ -60,9 +60,6 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
-
-
-
         <!--quartz依赖-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

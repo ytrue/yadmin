@@ -3,6 +3,7 @@ package com.ytrue.yadmin.modules.system.controller;
 import com.ytrue.yadmin.log.annotation.SysLog;
 import com.ytrue.yadmin.modules.system.service.UploadGroupService;
 import com.ytrue.yadmin.modules.system.model.UploadGroup;
+import com.ytrue.yadmin.utils.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -31,10 +32,10 @@ public class UploadGroupController {
      * @return {@link List<UploadGroup>}
      */
     @PostMapping("list")
-    @ApiOperation("查询所有件库分组")
+    @ApiOperation(value = "查询所有件库分组")
     //@PreAuthorize("@pms.hasPermission('file:group:list')")
-    public List<UploadGroup> page() {
-        return uploadGroupService.list();
+    public R<List<UploadGroup>> page() {
+        return R.success(uploadGroupService.list());
     }
 
 
@@ -45,7 +46,7 @@ public class UploadGroupController {
      */
     @SysLog("保存文件分组")
     @PostMapping
-    @ApiOperation("保存文件分组")
+    @ApiOperation(value = "保存文件分组", response = R.class)
     //@PreAuthorize("@pms.hasPermission('file:group:save')")
     public void save(@Validated @RequestBody UploadGroup uploadGroup) {
         uploadGroupService.save(uploadGroup);
@@ -59,7 +60,7 @@ public class UploadGroupController {
      */
     @SysLog("修改文件分组")
     @PutMapping
-    @ApiOperation("修改文件分组")
+    @ApiOperation(value = "修改文件分组", response = R.class)
     //@PreAuthorize("@pms.hasPermission('file:group:update')")
     public void update(@Validated @RequestBody UploadGroup uploadGroup) {
         uploadGroupService.updateById(uploadGroup);
@@ -72,7 +73,7 @@ public class UploadGroupController {
      */
     @SysLog("删除文件分组")
     @DeleteMapping
-    @ApiOperation("删除文件分组")
+    @ApiOperation(value = "删除文件分组", response = R.class)
     //@PreAuthorize("@pms.hasPermission('file:group:delete')")
     public void delete(
             @ApiParam(required = true, name = "id集合")

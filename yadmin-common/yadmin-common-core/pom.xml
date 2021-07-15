@@ -82,25 +82,18 @@
             <artifactId>commons-lang3</artifactId>
         </dependency>
 
-
-
-        <!-- https://mvnrepository.com/artifact/org.mapstruct/mapstruct -->
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
-            <version>1.4.1.Final</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.mapstruct/mapstruct-processor -->
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct-processor</artifactId>
-            <version>1.4.1.Final</version>
         </dependency>
         <dependency>
             <groupId>io.swagger</groupId>
             <artifactId>swagger-annotations</artifactId>
-            <version>1.5.22</version>
         </dependency>
 
     </dependencies>
