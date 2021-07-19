@@ -1,5 +1,6 @@
 package com.ytrue.yadmin.modules.system.controller;
 
+import cn.hutool.core.lang.Assert;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 
 
@@ -65,6 +66,7 @@ public class SysUserController {
     @PreAuthorize("@pms.hasPermission('sys:user:info')")
     public SysUser info(@PathVariable("userId") Long userId) {
         SysUser sysUser = sysUserService.getById(userId);
+        Assert.notNull(sysUser, "数据不存在");
         List<Long> roleIdList = sysRoleService.listRoleIdByUserId(userId);
         sysUser.setRoleIdList(roleIdList);
         return sysUser;
@@ -79,9 +81,7 @@ public class SysUserController {
     @PostMapping
     @PreAuthorize("@pms.hasPermission('sys:user:save')")
     public void save(@Valid @RequestBody SysUser user) {
-
-        System.out.println("ok");
-        // sysUserService.saveUserAndUserRole(user);
+        sysUserService.saveUserAndUserRole(user);
     }
 
 

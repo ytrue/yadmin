@@ -3,6 +3,7 @@ package com.ytrue.yadmin.modules.system.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.convert.Convert;
+import cn.hutool.core.lang.Assert;
 import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.lang.tree.TreeNode;
 import cn.hutool.core.lang.tree.TreeNodeConfig;
@@ -38,10 +39,8 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenu> impleme
     @Transactional(rollbackFor = Exception.class)
     public void deleteMenuAndRoleMenu(Long menuId) {
         //判断是否有子菜单或按钮
-        List<SysMenu> menuList = sysMenuDao.selectList(new QueryWrapper<SysMenu>().eq("parent_id", menuId));
-        if (menuList.size() > 0) {
-            throw new YadminException("请先删除子菜单或按钮");
-        }
+        Integer count = sysMenuDao.selectCount(new QueryWrapper<SysMenu>().eq("parent_id", menuId));
+        Assert.isFalse(Convert.toBool(count), "请先删除子菜单或按钮");
         //删除菜单
         this.removeById(menuId);
         //删除菜单与角色关联

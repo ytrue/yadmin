@@ -1,5 +1,6 @@
 package com.ytrue.yadmin.modules.system.controller;
 
+import cn.hutool.core.lang.Assert;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.ytrue.yadmin.log.annotation.SysLog;
 import com.ytrue.yadmin.exeption.YadminException;
@@ -57,7 +58,9 @@ public class SysMenuController {
     @GetMapping("{menuId}")
     @PreAuthorize("@pms.hasPermission('sys:menu:info')")
     public SysMenu info(@PathVariable("menuId") Long menuId) {
-        return sysMenuService.getById(menuId);
+        SysMenu sysMenu = sysMenuService.getById(menuId);
+        Assert.notNull(sysMenu, "数据不存在");
+        return sysMenu;
     }
 
     /**

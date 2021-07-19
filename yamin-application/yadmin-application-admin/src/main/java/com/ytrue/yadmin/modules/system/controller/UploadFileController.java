@@ -1,6 +1,7 @@
 package com.ytrue.yadmin.modules.system.controller;
 
 
+import cn.hutool.core.convert.Convert;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.ytrue.yadmin.log.annotation.SysLog;
 import com.ytrue.yadmin.modules.system.model.UploadFile;
@@ -44,6 +45,7 @@ public class UploadFileController {
     @ApiOperation(value = "分页查询数据")
     //@PreAuthorize("@pms.hasPermission('file:page')")
     public R<IPage<UploadFile>> page(@RequestBody SearchModel<UploadFile> uploadFile) {
+
         IPage<UploadFile> page = uploadFileService.page(
                 uploadFile.getPage(),
                 uploadFile.getQueryModel().lambda().orderByDesc(UploadFile::getFileId)
@@ -65,10 +67,7 @@ public class UploadFileController {
     @ApiOperation("上传文件")
     //@PreAuthorize("@pms.hasPermission('file:upload')")
     public void uploadFiles(@RequestParam("file") MultipartFile file) {
-        //uploadFileService.uploadFile(file);
-        // ossUtils.upload(uploadSetting,file.getBytes(),"123233432432432.png");
-
-        ossUtils.upload(file.getBytes(), new Date().getTime() + ".png");
+        uploadFileService.uploadFile(file);
     }
 
     /**

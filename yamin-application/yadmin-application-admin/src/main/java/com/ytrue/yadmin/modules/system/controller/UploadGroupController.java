@@ -1,5 +1,6 @@
 package com.ytrue.yadmin.modules.system.controller;
 
+import com.ytrue.yadmin.exeption.YadminException;
 import com.ytrue.yadmin.log.annotation.SysLog;
 import com.ytrue.yadmin.modules.system.service.UploadGroupService;
 import com.ytrue.yadmin.modules.system.model.UploadGroup;
@@ -34,7 +35,7 @@ public class UploadGroupController {
     @PostMapping("list")
     @ApiOperation(value = "查询所有件库分组")
     //@PreAuthorize("@pms.hasPermission('file:group:list')")
-    public R<List<UploadGroup>> page() {
+    public R<List<UploadGroup>> list() {
         return R.success(uploadGroupService.list());
     }
 
@@ -63,7 +64,16 @@ public class UploadGroupController {
     @ApiOperation(value = "修改文件分组", response = R.class)
     //@PreAuthorize("@pms.hasPermission('file:group:update')")
     public void update(@Validated @RequestBody UploadGroup uploadGroup) {
+        if (uploadGroup.getGroupId().equals(uploadGroup.getParentId())) {
+            throw new YadminException("自己不能是自己的上级");
+        }
         uploadGroupService.updateById(uploadGroup);
+    }
+
+
+    @GetMapping("{groupId}")
+    public UploadGroup info(@PathVariable("groupId") Long groupId) {
+        return uploadGroupService.getById(groupId);
     }
 
     /**
@@ -75,10 +85,7 @@ public class UploadGroupController {
     @DeleteMapping
     @ApiOperation(value = "删除文件分组", response = R.class)
     //@PreAuthorize("@pms.hasPermission('file:group:delete')")
-    public void delete(
-            @ApiParam(required = true, name = "id集合")
-            @RequestBody List<Long> groupIds
-    ) {
+    public void delete(@ApiParam(required = true, name = "id集合") @RequestBody List<Long> groupIds) {
         uploadGroupService.deleteGroup(groupIds);
     }
 

@@ -14,7 +14,7 @@ ytrue:
     engine: local
     local:
       file-host: upload/file
-      domain:
+      domain: http://127.0.0.1:9995
   security:
     client-id: admin
     client-secret:

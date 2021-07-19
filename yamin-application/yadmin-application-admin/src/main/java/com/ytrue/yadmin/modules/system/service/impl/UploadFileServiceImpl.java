@@ -1,5 +1,6 @@
 package com.ytrue.yadmin.modules.system.service.impl;
 
+import cn.hutool.core.io.FileUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ytrue.yadmin.modules.system.dao.UploadFileDAO;
@@ -7,11 +8,15 @@ import com.ytrue.yadmin.modules.system.dao.UploadGroupDAO;
 import com.ytrue.yadmin.modules.system.model.UploadFile;
 import com.ytrue.yadmin.modules.system.service.UploadFileService;
 import com.ytrue.yadmin.modules.system.service.dto.MoveGroupParamDTO;
+import com.ytrue.yadmin.oss.utils.OssUtils;
+import com.ytrue.yadmin.utils.FileUtils;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.UUID;
 
 /**
  * @author ytrue
@@ -26,34 +31,26 @@ public class UploadFileServiceImpl extends ServiceImpl<UploadFileDAO, UploadFile
 
     private final UploadGroupDAO uploadGroupDAO;
 
+    private final OssUtils ossUtils;
+
     @SneakyThrows
     @Override
     public void uploadFile(MultipartFile file) {
-        //先模拟一个json数据
-
-//        //获得设置
-//        UploadSetting uploadSetting = GsonUtils.from(data, UploadSetting.class);
-//        //重命名文件名
-//        String extName = FileUtil.extName(file.getOriginalFilename());
-//        assert extName != null;
-//        String fileName = UUID.randomUUID() + "." + extName;
-//        //调用业务
-//        String engine = uploadSetting.getDefaultEngine();
-//        AbstractStrategyUpload strategyUpload = StrategyUploadFactory.getInvokeStrategy(engine);
-//        //返回的url路径
-//        String path = strategyUpload.upload(uploadSetting, file.getBytes(), fileName);
-//        //插入数据
-//        UploadFile uploadFile = new UploadFile();
-//        //获得文件的名称
-//        uploadFile.setFileName(file.getOriginalFilename());
-//        //文件的路径
-//        uploadFile.setFilePath(path);
-//        //获得文件大小
-//        uploadFile.setFileSize(FileUtils.getPrintSize(file.getSize()));
-//        //后缀名称
-//        uploadFile.setFileExt(extName);
-//        //插入数据
-//        save(uploadFile);
+        String extName = FileUtil.extName(file.getOriginalFilename());
+        String fileName = UUID.randomUUID() + "." + extName;
+        String uploadPath = ossUtils.upload(file.getBytes(), fileName);
+        //插入数据
+        UploadFile uploadFile = new UploadFile();
+        //获得文件的名称
+        uploadFile.setFileName(file.getOriginalFilename());
+        //文件的路径
+        uploadFile.setFilePath(uploadPath);
+        //获得文件大小
+        uploadFile.setFileSize(FileUtils.getPrintSize(file.getSize()));
+        //后缀名称
+        uploadFile.setFileExt(extName);
+        //插入数据
+        save(uploadFile);
     }
 
     @Override
