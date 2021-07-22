@@ -36,4 +36,4 @@ ytrue:
         enabled: true
       response-data:
         enabled: true
-        advice-filter-url: [/v2/api-docs,/swagger-resources]
+        advice-filter-url: [/v2/api-docs,/swagger-resources,/actuator/**]

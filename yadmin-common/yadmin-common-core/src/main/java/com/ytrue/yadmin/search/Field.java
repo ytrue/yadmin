@@ -18,10 +18,10 @@ public class Field {
     private String column;
 
     /**
-     * 内容
+     * 内容 ,一般是 string和int
      */
     @ApiModelProperty(value = "内容")
-    private String value;
+    private Object value;
 
     /**
      * 类型

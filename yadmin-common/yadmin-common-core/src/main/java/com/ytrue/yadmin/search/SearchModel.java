@@ -1,6 +1,7 @@
 package com.ytrue.yadmin.search;
 
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -74,7 +75,7 @@ public class SearchModel<T> {
         //要判断一下是否为空，不然会报空指针异常
         if (CollUtil.isNotEmpty(fields)) {
             fields.forEach(field -> {
-                if (StrUtil.hasBlank(field.getValue())) {
+                if (StrUtil.hasBlank((Convert.toStr(field.getValue())))) {
                     return;
                 }
                 switch (field.getType()) {
@@ -88,7 +89,7 @@ public class SearchModel<T> {
                         queryWrapper.like(true, field.getColumn(), field.getValue());
                         break;
                     case betweenDate:
-                        String[] arr = field.getValue().split(",");
+                        String[] arr = Convert.toStr(field.getValue()).split(",");
                         if (2 != arr.length) {
                             throw new YadminException("日期参数不正确");
                         }

@@ -1,13 +1,11 @@
 package com.ytrue.yadmin.modules.system.controller;
 
 
-import cn.hutool.core.convert.Convert;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.ytrue.yadmin.log.annotation.SysLog;
 import com.ytrue.yadmin.modules.system.model.UploadFile;
 import com.ytrue.yadmin.modules.system.service.UploadFileService;
 import com.ytrue.yadmin.modules.system.service.dto.MoveGroupParamDTO;
-import com.ytrue.yadmin.oss.utils.OssUtils;
 import com.ytrue.yadmin.search.SearchModel;
 import com.ytrue.yadmin.utils.R;
 import io.swagger.annotations.Api;
@@ -15,11 +13,12 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author ytrue
@@ -45,7 +44,6 @@ public class UploadFileController {
     @ApiOperation(value = "分页查询数据")
     //@PreAuthorize("@pms.hasPermission('file:page')")
     public R<IPage<UploadFile>> page(@RequestBody SearchModel<UploadFile> uploadFile) {
-
         IPage<UploadFile> page = uploadFileService.page(
                 uploadFile.getPage(),
                 uploadFile.getQueryModel().lambda().orderByDesc(UploadFile::getFileId)
@@ -53,8 +51,6 @@ public class UploadFileController {
         return R.success(page);
     }
 
-
-    private final OssUtils ossUtils;
 
     /**
      * 上传文件
@@ -67,8 +63,22 @@ public class UploadFileController {
     @ApiOperation("上传文件")
     //@PreAuthorize("@pms.hasPermission('file:upload')")
     public void uploadFiles(@RequestParam("file") MultipartFile file) {
+        TimeUnit.SECONDS.sleep(3);
         uploadFileService.uploadFile(file);
     }
+
+
+    @GetMapping("{fileId}")
+    public UploadFile info(@PathVariable("fileId") Long fileId) {
+        return uploadFileService.getById(fileId);
+    }
+
+    @SysLog("修改文件文件")
+    @PutMapping
+    public void update(@Validated @RequestBody UploadFile uploadFile) {
+        uploadFileService.updateById(uploadFile);
+    }
+
 
     /**
      * 移动图片组
@@ -82,6 +92,7 @@ public class UploadFileController {
     public void moveGroup(@RequestBody MoveGroupParamDTO paramDTO) {
         uploadFileService.moveGroup(paramDTO);
     }
+
 
     @SysLog("删除文件")
     @DeleteMapping

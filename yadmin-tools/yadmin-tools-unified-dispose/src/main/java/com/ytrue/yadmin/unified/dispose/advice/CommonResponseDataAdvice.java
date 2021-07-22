@@ -12,6 +12,8 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.lang.Nullable;
+import org.springframework.util.AntPathMatcher;
+import org.springframework.util.PathMatcher;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
@@ -19,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 
 /**
  * @author ytrue
@@ -108,9 +111,14 @@ public class CommonResponseDataAdvice implements ResponseBodyAdvice<Object> {
 
         //过滤url
         List<String> adviceFilterUrl = unifiedDisposeResponseDataProperties.getAdviceFilterUrl();
-        if (adviceFilterUrl.contains(request.getRequestURI())) {
-            return false;
+        PathMatcher matcher = new AntPathMatcher();
+        String uri = request.getRequestURI();
+        for (String s : adviceFilterUrl) {
+            if (matcher.match(s, uri)) {
+                return false;
+            }
         }
+
 
         Class<?> declaringClass = methodParameter.getDeclaringClass();
         // 检查过滤包路径
@@ -129,4 +137,6 @@ public class CommonResponseDataAdvice implements ResponseBodyAdvice<Object> {
         }
         return !Objects.requireNonNull(methodParameter.getMethod()).isAnnotationPresent(IgnoreResponseAdvice.class);
     }
+
+
 }
