@@ -59,7 +59,7 @@ public class SysRoleController {
      * @param roleId
      * @return
      */
-    @GetMapping("{roleId}")
+    @GetMapping("{roleId}/info")
     @PreAuthorize("@pms.hasPermission('sys:role:info')")
     public SysRole info(@PathVariable("roleId") Long roleId) {
         SysRole role = sysRoleService.getById(roleId);

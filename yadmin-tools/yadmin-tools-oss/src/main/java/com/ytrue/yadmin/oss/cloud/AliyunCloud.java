@@ -27,7 +27,7 @@ import java.util.Date;
 @Slf4j
 @AllArgsConstructor
 @NoArgsConstructor
-public class AliyunUpload extends AbstractUpload {
+public class AliyunCloud extends AbstractCloud {
 
     private AliyunProperties aliyunProperties;
 

@@ -44,7 +44,7 @@ public class ScheduleJobController {
      * @param jobId
      * @return
      */
-    @GetMapping("/{jobId}")
+    @GetMapping("/{jobId}/info")
     @PreAuthorize("@pms.hasPermission('sys:schedule:info')")
     public ScheduleJob info(@PathVariable("jobId") Long jobId) {
         return scheduleJobService.getById(jobId);

@@ -2,14 +2,11 @@ package com.ytrue.yadmin.modules.system.controller;
 
 import cn.hutool.core.lang.Assert;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-
-
 import com.ytrue.yadmin.log.annotation.SysLog;
 import com.ytrue.yadmin.modules.system.model.SysUser;
-import com.ytrue.yadmin.modules.system.service.SysMenuService;
+import com.ytrue.yadmin.modules.system.model.vo.UserInfoVO;
 import com.ytrue.yadmin.modules.system.service.SysRoleService;
 import com.ytrue.yadmin.modules.system.service.SysUserService;
-import com.ytrue.yadmin.modules.system.model.vo.UserInfoVO;
 import com.ytrue.yadmin.search.SearchModel;
 import com.ytrue.yadmin.security.utils.JwtUtils;
 import io.jsonwebtoken.Claims;
@@ -38,8 +35,6 @@ public class SysUserController {
 
     private final SysRoleService sysRoleService;
 
-    private final SysMenuService sysMenuService;
-
     private final JwtUtils jwtUtils;
 
     /**
@@ -62,7 +57,7 @@ public class SysUserController {
      * @param userId
      * @return
      */
-    @GetMapping("{userId}")
+    @GetMapping("{userId}/info")
     @PreAuthorize("@pms.hasPermission('sys:user:info')")
     public SysUser info(@PathVariable("userId") Long userId) {
         SysUser sysUser = sysUserService.getById(userId);

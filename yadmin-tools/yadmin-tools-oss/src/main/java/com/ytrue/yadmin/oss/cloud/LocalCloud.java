@@ -19,12 +19,12 @@ import java.util.Date;
 /**
  * @author ytrue
  * @date 2021/7/2 15:47
- * @description LocalUpload
+ * @description LocalCloud
  */
 @Slf4j
 @AllArgsConstructor
 @NoArgsConstructor
-public class LocalUpload extends AbstractUpload {
+public class LocalCloud extends AbstractCloud {
 
     private LocalProperties localProperties;
 

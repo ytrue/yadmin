@@ -229,17 +229,16 @@ public class SwaggerAutoConfiguration implements BeanFactoryAware {
     /**
      * 全局响应
      *
-     * @return
+     * @return 
      */
     private List<ResponseMessage> getResponseMessages() {
-        List<ResponseMessage> collect = Arrays.asList(
+        return Arrays.asList(
                 new ResponseMessageBuilder().code(200).message("成功").build(),
                 new ResponseMessageBuilder().code(500).message("服务器错误").build(),
                 new ResponseMessageBuilder().code(900).message("错误请求").build(),
                 new ResponseMessageBuilder().code(903).message("未登录").build(),
                 new ResponseMessageBuilder().code(403).message("权限不足").build()
         );
-        return collect;
     }
 
     @Override
@@ -303,7 +302,7 @@ public class SwaggerAutoConfiguration implements BeanFactoryAware {
      *
      * @param globalOperationParameters
      * @param docketOperationParameters
-     * @return
+     * @return List<Parameter>
      */
     private List<Parameter> assemblyGlobalOperationParameters(
             List<SwaggerProperties.GlobalOperationParameter> globalOperationParameters,

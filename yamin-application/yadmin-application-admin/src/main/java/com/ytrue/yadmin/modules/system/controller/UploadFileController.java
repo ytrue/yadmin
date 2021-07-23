@@ -26,7 +26,7 @@ import java.util.concurrent.TimeUnit;
  * @description 文件库记录表
  */
 @RestController
-@RequestMapping("file")
+@RequestMapping("files/file")
 @AllArgsConstructor
 @Api(tags = "文件库记录")
 public class UploadFileController {
@@ -68,7 +68,7 @@ public class UploadFileController {
     }
 
 
-    @GetMapping("{fileId}")
+    @GetMapping("{fileId}/info")
     public UploadFile info(@PathVariable("fileId") Long fileId) {
         return uploadFileService.getById(fileId);
     }

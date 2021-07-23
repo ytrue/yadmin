@@ -20,7 +20,7 @@ import java.util.List;
  * @description 文件库分组记录表
  */
 @RestController
-@RequestMapping("file.group")
+@RequestMapping("files/group")
 @AllArgsConstructor
 @Api(tags = "文件库分组记录")
 public class UploadGroupController {
@@ -32,7 +32,7 @@ public class UploadGroupController {
      *
      * @return {@link List<UploadGroup>}
      */
-    @PostMapping("list")
+    @GetMapping("list")
     @ApiOperation(value = "查询所有件库分组")
     //@PreAuthorize("@pms.hasPermission('file:group:list')")
     public R<List<UploadGroup>> list() {

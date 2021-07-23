@@ -24,7 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @AllArgsConstructor
 @NoArgsConstructor
-public class QiniuUpload extends AbstractUpload {
+public class QiniuCloud extends AbstractCloud {
 
     private QiniuProperties qiniuProperties;
 

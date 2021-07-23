@@ -55,7 +55,7 @@ public class SysMenuController {
     /**
      * 菜单信息
      */
-    @GetMapping("{menuId}")
+    @GetMapping("{menuId}/info")
     @PreAuthorize("@pms.hasPermission('sys:menu:info')")
     public SysMenu info(@PathVariable("menuId") Long menuId) {
         SysMenu sysMenu = sysMenuService.getById(menuId);

@@ -1,7 +1,7 @@
 package com.ytrue.yadmin.oss.factory;
 
 import com.google.common.collect.Maps;
-import com.ytrue.yadmin.oss.cloud.AbstractUpload;
+import com.ytrue.yadmin.oss.cloud.AbstractCloud;
 import org.springframework.util.StringUtils;
 
 import java.util.concurrent.ConcurrentMap;
@@ -14,7 +14,7 @@ import java.util.concurrent.ConcurrentMap;
  */
 public class UploadFactory {
 
-    private final static ConcurrentMap<String, AbstractUpload> MAP = Maps.newConcurrentMap();
+    private final static ConcurrentMap<String, AbstractCloud> MAP = Maps.newConcurrentMap();
 
     /**
      * 获得实例
@@ -22,7 +22,7 @@ public class UploadFactory {
      * @param str
      * @return
      */
-    public static AbstractUpload getInvokeStrategy(String str) {
+    public static AbstractCloud getInvokeStrategy(String str) {
         return MAP.get(str);
     }
 
@@ -32,7 +32,7 @@ public class UploadFactory {
      * @param str
      * @param handler
      */
-    public static void register(String str, AbstractUpload handler) throws RuntimeException {
+    public static void register(String str, AbstractCloud handler) throws RuntimeException {
         if (StringUtils.isEmpty(str) || null == handler) {
             throw new RuntimeException("未定义oss类型");
         }

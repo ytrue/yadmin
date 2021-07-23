@@ -30,7 +30,7 @@ import java.util.Date;
 @Slf4j
 @AllArgsConstructor
 @NoArgsConstructor
-public class QcloudUpload extends AbstractUpload {
+public class QcloudCloud extends AbstractCloud {
 
     private QcloudProperties qcloudProperties;
 

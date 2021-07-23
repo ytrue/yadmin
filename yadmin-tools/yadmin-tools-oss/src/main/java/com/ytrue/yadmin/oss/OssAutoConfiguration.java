@@ -1,9 +1,8 @@
 package com.ytrue.yadmin.oss;
 
-import com.ytrue.yadmin.oss.cloud.AliyunUpload;
-import com.ytrue.yadmin.oss.cloud.LocalUpload;
-import com.ytrue.yadmin.oss.cloud.QcloudUpload;
-import com.ytrue.yadmin.oss.cloud.QiniuUpload;
+import com.ytrue.yadmin.oss.cloud.*;
+import com.ytrue.yadmin.oss.cloud.QcloudCloud;
+import com.ytrue.yadmin.oss.cloud.QiniuCloud;
 import com.ytrue.yadmin.oss.properties.*;
 import com.ytrue.yadmin.oss.utils.OssUtils;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -29,22 +28,22 @@ class OssAutoConfiguration {
     }
 
     @Bean
-    public LocalUpload localUpload(LocalProperties localProperties) {
-        return new LocalUpload(localProperties);
+    public LocalCloud localUpload(LocalProperties localProperties) {
+        return new LocalCloud(localProperties);
     }
 
     @Bean
-    public AliyunUpload aliyunUpload(AliyunProperties aliyunProperties) {
-        return new AliyunUpload(aliyunProperties);
+    public AliyunCloud aliyunUpload(AliyunProperties aliyunProperties) {
+        return new AliyunCloud(aliyunProperties);
     }
 
     @Bean
-    public QcloudUpload qcloudUpload(QcloudProperties qcloudProperties) {
-        return new QcloudUpload(qcloudProperties);
+    public QcloudCloud qcloudUpload(QcloudProperties qcloudProperties) {
+        return new QcloudCloud(qcloudProperties);
     }
 
     @Bean
-    public QiniuUpload qiniuUpload(QiniuProperties qiniuProperties) {
-        return new QiniuUpload(qiniuProperties);
+    public QiniuCloud qiniuUpload(QiniuProperties qiniuProperties) {
+        return new QiniuCloud(qiniuProperties);
     }
 }

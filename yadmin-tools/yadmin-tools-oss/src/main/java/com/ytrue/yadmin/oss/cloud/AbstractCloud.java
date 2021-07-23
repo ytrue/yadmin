@@ -11,7 +11,7 @@ import org.springframework.beans.factory.InitializingBean;
  * @date 2021/6/13 18:58
  * @description 模板方法设计模式
  */
-public abstract class AbstractUpload implements InitializingBean {
+public abstract class AbstractCloud implements InitializingBean {
 
     /**
      * 上传
