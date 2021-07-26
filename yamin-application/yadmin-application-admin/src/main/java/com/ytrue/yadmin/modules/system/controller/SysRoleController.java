@@ -8,6 +8,8 @@ import com.ytrue.yadmin.modules.system.model.SysRole;
 import com.ytrue.yadmin.modules.system.service.SysMenuService;
 import com.ytrue.yadmin.modules.system.service.SysRoleService;
 import com.ytrue.yadmin.search.SearchModel;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
@@ -20,6 +22,8 @@ import java.util.List;
  * @date 2021/4/8 15:36
  * @description 角色管理
  */
+
+@Api(tags = "角色")
 @RestController
 @RequestMapping("sys/role")
 @AllArgsConstructor
@@ -30,36 +34,22 @@ public class SysRoleController {
 
     private final SysMenuService sysMenuService;
 
-    /**
-     * 角色列表
-     *
-     * @param userSearchModel
-     * @return
-     */
     @PostMapping("page")
+    @ApiOperation("分页查询数据")
     @PreAuthorize("@pms.hasPermission('sys:role:page')")
     public IPage<SysRole> page(@RequestBody SearchModel<SysRole> userSearchModel) {
         return sysRoleService.page(userSearchModel.getPage(), userSearchModel.getQueryModel());
     }
 
-    /**
-     * 角色列表
-     *
-     * @return
-     */
     @GetMapping("list")
+    @ApiOperation("所有角色列表")
     @PreAuthorize("@pms.hasPermission('sys:role:list')")
     public List<SysRole> list() {
         return sysRoleService.list();
     }
 
-    /**
-     * 角色信息
-     *
-     * @param roleId
-     * @return
-     */
     @GetMapping("{roleId}/info")
+    @ApiOperation("角色信息")
     @PreAuthorize("@pms.hasPermission('sys:role:info')")
     public SysRole info(@PathVariable("roleId") Long roleId) {
         SysRole role = sysRoleService.getById(roleId);
@@ -70,38 +60,29 @@ public class SysRoleController {
         return role;
     }
 
-    /**
-     * 保存角色
-     *
-     * @param role
-     */
-    @SysLog("保存角色")
+
+
     @PostMapping
+    @SysLog("保存角色")
+    @ApiOperation("保存角色")
     @PreAuthorize("@pms.hasPermission('sys:role:save')")
     public void save(@Validated @RequestBody SysRole role) {
         sysRoleService.saveRoleAndRoleMenu(role);
-
     }
 
-    /**
-     * 修改角色
-     *
-     * @param role
-     */
-    @SysLog("修改角色")
+
+
     @PutMapping
+    @SysLog("修改角色")
+    @ApiOperation("修改角色")
     @PreAuthorize("@pms.hasPermission('sys:role:update')")
     public void update(@Validated @RequestBody SysRole role) {
         sysRoleService.updateRoleAndRoleMenu(role);
     }
 
-    /**
-     * 删除角色
-     *
-     * @param roleIds
-     */
-    @SysLog("删除角色")
     @DeleteMapping
+    @SysLog("删除角色")
+    @ApiOperation("删除角色")
     @PreAuthorize("@pms.hasPermission('sys:role:delete')")
     public void delete(@RequestBody Long[] roleIds) {
         sysRoleService.deleteBatch(roleIds);

@@ -28,20 +28,14 @@ import java.util.concurrent.TimeUnit;
 @RestController
 @RequestMapping("files/file")
 @AllArgsConstructor
-@Api(tags = "文件库记录")
+@Api(tags = "文件管理")
 public class UploadFileController {
 
     private final UploadFileService uploadFileService;
 
 
-    /**
-     * 列表
-     *
-     * @param uploadFile 查询的数据
-     * @return {@link IPage<UploadFile>}
-     */
     @PostMapping("page")
-    @ApiOperation(value = "分页查询数据")
+    @ApiOperation("分页查询数据")
     //@PreAuthorize("@pms.hasPermission('file:page')")
     public R<IPage<UploadFile>> page(@RequestBody SearchModel<UploadFile> uploadFile) {
         IPage<UploadFile> page = uploadFileService.page(
@@ -52,14 +46,9 @@ public class UploadFileController {
     }
 
 
-    /**
-     * 上传文件
-     *
-     * @param file
-     */
     @SneakyThrows
-    @SysLog("上传文件")
     @PostMapping("upload")
+    @SysLog("上传文件")
     @ApiOperation("上传文件")
     //@PreAuthorize("@pms.hasPermission('file:upload')")
     public void uploadFiles(@RequestParam("file") MultipartFile file) {
@@ -68,35 +57,30 @@ public class UploadFileController {
     }
 
 
+    @ApiOperation("文件信息")
     @GetMapping("{fileId}/info")
     public UploadFile info(@PathVariable("fileId") Long fileId) {
         return uploadFileService.getById(fileId);
     }
 
-    @SysLog("修改文件文件")
     @PutMapping
+    @SysLog("修改文件")
+    @ApiOperation("修改文件")
     public void update(@Validated @RequestBody UploadFile uploadFile) {
         uploadFileService.updateById(uploadFile);
     }
 
-
-    /**
-     * 移动图片组
-     *
-     * @param paramDTO
-     */
-    @SysLog("移动图片组")
     @PostMapping("move")
-    @ApiOperation("移动图片组")
+    @SysLog("移动文件组")
+    @ApiOperation("移动文件组")
     //@PreAuthorize("@pms.hasPermission('file:move')")
     public void moveGroup(@RequestBody MoveGroupParamDTO paramDTO) {
         uploadFileService.moveGroup(paramDTO);
     }
 
-
-    @SysLog("删除文件")
     @DeleteMapping
-    @ApiOperation(value = "删除文件")
+    @SysLog("删除文件")
+    @ApiOperation("删除文件")
     //@PreAuthorize("@pms.hasPermission('file:delete')")
     public void delete(
             @ApiParam(required = true, name = "id集合")

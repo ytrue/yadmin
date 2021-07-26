@@ -63,7 +63,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     }
 
     /**
-     * 定制返回错误信息-- 未登录访问权限控制和登录过后的权限不足
+     * 定制返回错误信息-- 未登录访问权限控制和登录过后的权限不足-这个处理
      *
      * @param resources
      * @throws Exception

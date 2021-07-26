@@ -7,6 +7,8 @@ import com.ytrue.yadmin.exeption.YadminException;
 import com.ytrue.yadmin.modules.quartz.model.ScheduleJob;
 import com.ytrue.yadmin.modules.quartz.service.ScheduleJobService;
 import com.ytrue.yadmin.search.SearchModel;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -21,42 +23,32 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @AllArgsConstructor
+@Api(tags = "定时任务")
 @RequestMapping("/sys/schedule")
 public class ScheduleJobController {
 
     private final ScheduleJobService scheduleJobService;
 
-    /**
-     * 定时任务列表
-     *
-     * @param searchModel
-     * @return
-     */
+
     @PostMapping("/page")
+    @ApiOperation("分页查询数据")
     @PreAuthorize("@pms.hasPermission('sys:schedule:page')")
     public IPage<ScheduleJob> page(@RequestBody SearchModel<ScheduleJob> searchModel) {
         return scheduleJobService.page(searchModel.getPage(), searchModel.getQueryModel());
     }
 
-    /**
-     * 定时任务信息
-     *
-     * @param jobId
-     * @return
-     */
+
     @GetMapping("/{jobId}/info")
+    @ApiOperation("定时任务信息")
     @PreAuthorize("@pms.hasPermission('sys:schedule:info')")
     public ScheduleJob info(@PathVariable("jobId") Long jobId) {
         return scheduleJobService.getById(jobId);
     }
 
-    /**
-     * 保存定时任务
-     *
-     * @param scheduleJob
-     */
-    @SysLog("保存定时任务")
+
     @PostMapping
+    @SysLog("保存定时任务")
+    @ApiOperation("保存定时任务")
     @PreAuthorize("@pms.hasPermission('sys:schedule:save')")
     public void save(@Validated @RequestBody ScheduleJob scheduleJob) {
         int dbAlikeCount = scheduleJobService.count(new LambdaQueryWrapper<ScheduleJob>().eq(ScheduleJob::getBeanName, scheduleJob.getBeanName()).eq(ScheduleJob::getMethodName, scheduleJob.getMethodName()));
@@ -66,13 +58,10 @@ public class ScheduleJobController {
         scheduleJobService.saveAndStart(scheduleJob);
     }
 
-    /**
-     * 修改定时任务
-     *
-     * @param scheduleJob
-     */
-    @SysLog("修改定时任务")
+
     @PutMapping
+    @SysLog("修改定时任务")
+    @ApiOperation("修改定时任务")
     @PreAuthorize("@pms.hasPermission('sys:schedule:update')")
     public void update(@Validated @RequestBody ScheduleJob scheduleJob) {
 
@@ -83,49 +72,37 @@ public class ScheduleJobController {
         scheduleJobService.updateScheduleJob(scheduleJob);
     }
 
-    /**
-     * 删除定时任务
-     *
-     * @param jobIds
-     */
-    @SysLog("删除定时任务")
+
     @DeleteMapping
+    @SysLog("删除定时任务")
+    @ApiOperation("删除定时任务")
     @PreAuthorize("@pms.hasPermission('sys:schedule:delete')")
     public void delete(@RequestBody Long[] jobIds) {
         scheduleJobService.deleteBatch(jobIds);
     }
 
-    /**
-     * 立即执行任务
-     *
-     * @param jobIds
-     */
-    @SysLog("立即执行任务")
+
     @PostMapping("/run")
+    @SysLog("立即执行任务")
+    @ApiOperation("立即执行任务")
     @PreAuthorize("@pms.hasPermission('sys:schedule:run')")
     public void run(@RequestBody Long[] jobIds) {
         scheduleJobService.run(jobIds);
     }
 
-    /**
-     * 暂停定时任务
-     *
-     * @param jobIds
-     */
-    @SysLog("暂停定时任务")
+
     @PostMapping("/pause")
+    @SysLog("暂停定时任务")
+    @ApiOperation("暂停定时任务")
     @PreAuthorize("@pms.hasPermission('sys:schedule:pause')")
     public void pause(@RequestBody Long[] jobIds) {
         scheduleJobService.pause(jobIds);
     }
 
-    /**
-     * 恢复定时任务
-     *
-     * @param jobIds
-     */
-    @SysLog("恢复定时任务")
+
     @PostMapping("/resume")
+    @SysLog("恢复定时任务")
+    @ApiOperation("恢复定时任务")
     @PreAuthorize("@pms.hasPermission('sys:schedule:resume')")
     public void resume(@RequestBody Long[] jobIds) {
         scheduleJobService.resume(jobIds);

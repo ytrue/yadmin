@@ -5,6 +5,8 @@ import com.ytrue.yadmin.modules.system.model.SysLog;
 import com.ytrue.yadmin.search.SearchModel;
 
 import com.ytrue.yadmin.modules.system.service.SysLogService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @description 系统日志
  */
 
+@Api(tags = "操作日志")
 @AllArgsConstructor
 @RestController
 @RequestMapping("sys/log")
@@ -26,15 +29,9 @@ public class SysLogController {
 
     private final SysLogService sysLogService;
 
-    /**
-     * 列表
-     * <p>
-     * hasAuthority
-     *
-     * @param sysLogSearchModel
-     * @return
-     */
+
     @PostMapping("page")
+    @ApiOperation("分页查询数据")
     @PreAuthorize("@pms.hasPermission('sys:log:page')")
     public IPage<SysLog> page(@RequestBody SearchModel<SysLog> sysLogSearchModel) {
         String username = ((String) SecurityContextHolder.getContext().getAuthentication().getPrincipal());

@@ -10,6 +10,8 @@ import com.ytrue.yadmin.modules.system.service.SysUserService;
 import com.ytrue.yadmin.search.SearchModel;
 import com.ytrue.yadmin.security.utils.JwtUtils;
 import io.jsonwebtoken.Claims;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -26,6 +28,7 @@ import java.util.List;
  * @description 系统用户控制器
  */
 @Slf4j
+@Api(tags = "系统用户")
 @RestController
 @RequestMapping("sys/user")
 @AllArgsConstructor
@@ -37,27 +40,19 @@ public class SysUserController {
 
     private final JwtUtils jwtUtils;
 
-    /**
-     * 所有用户列表
-     *
-     * @param searchModel
-     * @return
-     */
-    @SysLog("查询用户")
+
     @PostMapping("page")
+    @SysLog("查询用户")
+    @ApiOperation("分页查询数据")
     @PreAuthorize("@pms.hasPermission('sys:user:page')")
     public IPage<SysUser> page(@RequestBody SearchModel<SysUser> searchModel) {
         return sysUserService.page(searchModel.getPage(), searchModel.getQueryModel().lambda().orderByDesc(SysUser::getUserId));
     }
 
 
-    /**
-     * 用户信息
-     *
-     * @param userId
-     * @return
-     */
+
     @GetMapping("{userId}/info")
+    @ApiOperation("用户信息")
     @PreAuthorize("@pms.hasPermission('sys:user:info')")
     public SysUser info(@PathVariable("userId") Long userId) {
         SysUser sysUser = sysUserService.getById(userId);
@@ -67,51 +62,37 @@ public class SysUserController {
         return sysUser;
     }
 
-    /**
-     * 保存用户
-     *
-     * @param user
-     */
-    @SysLog("保存用户")
+
+
     @PostMapping
+    @SysLog("保存用户")
+    @ApiOperation("保存用户")
     @PreAuthorize("@pms.hasPermission('sys:user:save')")
     public void save(@Valid @RequestBody SysUser user) {
         sysUserService.saveUserAndUserRole(user);
     }
 
-
-    /**
-     * 修改用户
-     *
-     * @param user
-     */
-    @SysLog("修改用户")
     @PutMapping
+    @SysLog("修改用户")
+    @ApiOperation("修改用户")
     @PreAuthorize("@pms.hasPermission('sys:user:update')")
     public void update(@Validated @RequestBody SysUser user) {
         sysUserService.updateUserAndUserRole(user);
     }
 
-    /**
-     * 删除用户
-     *
-     * @param userIds
-     */
-    @SysLog("删除用户")
     @DeleteMapping
+    @SysLog("删除用户")
+    @ApiOperation("删除用户")
     @PreAuthorize("@pms.hasPermission('sys:user:delete')")
     public void delete(@RequestBody List<Long> userIds) {
         sysUserService.removeByIds(userIds);
     }
 
 
-    /**
-     * 获得我的基本信息
-     *
-     * @param request
-     * @return
-     */
+
+
     @GetMapping("router")
+    @ApiOperation("通过token获得我的基本信息")
     public UserInfoVO userInfo(HttpServletRequest request) {
         //获得token
         String header = request.getHeader("Authorization");

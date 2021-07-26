@@ -43,7 +43,7 @@ public class SwaggerAutoConfiguration implements BeanFactoryAware {
 
 
     /**
-     * 配置是否是生成模式,暂时写死哈
+     * 配置是否是生成模式
      *
      * @return
      */
@@ -229,7 +229,7 @@ public class SwaggerAutoConfiguration implements BeanFactoryAware {
     /**
      * 全局响应
      *
-     * @return 
+     * @return
      */
     private List<ResponseMessage> getResponseMessages() {
         return Arrays.asList(
@@ -255,7 +255,6 @@ public class SwaggerAutoConfiguration implements BeanFactoryAware {
         contexts.add(securityContext);
         return contexts;
     }
-
 
     private List<SecurityReference> defaultAuth() {
         AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");

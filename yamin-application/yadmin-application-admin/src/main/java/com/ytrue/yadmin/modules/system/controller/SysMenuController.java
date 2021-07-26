@@ -7,6 +7,8 @@ import com.ytrue.yadmin.exeption.YadminException;
 
 import com.ytrue.yadmin.modules.system.model.SysMenu;
 import com.ytrue.yadmin.modules.system.service.SysMenuService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -22,6 +24,7 @@ import java.util.List;
  * @description 系统菜单
  */
 @Slf4j
+@Api(tags = "菜单")
 @RestController
 @RequestMapping("sys/menu")
 @AllArgsConstructor
@@ -29,12 +32,9 @@ public class SysMenuController {
 
     private final SysMenuService sysMenuService;
 
-    /**
-     * 获取菜单页面的表
-     *
-     * @return {@link List<SysMenu>}
-     */
+
     @GetMapping("table")
+    @ApiOperation("获取菜单页面的表")
     public List<SysMenu> table() {
         return sysMenuService.list(new QueryWrapper<SysMenu>().lambda().orderByAsc(SysMenu::getOrderNum));
     }
@@ -47,15 +47,14 @@ public class SysMenuController {
      * @return {@link List<SysMenu>}
      */
     @GetMapping("list")
+    @ApiOperation("获取用户所拥有的菜单(不包括按钮)")
     public List<SysMenu> list() {
         return sysMenuService.list(
                 new QueryWrapper<SysMenu>().ne("menu_type", 3).lambda().orderByAsc(SysMenu::getOrderNum));
     }
 
-    /**
-     * 菜单信息
-     */
     @GetMapping("{menuId}/info")
+    @ApiOperation("菜单信息")
     @PreAuthorize("@pms.hasPermission('sys:menu:info')")
     public SysMenu info(@PathVariable("menuId") Long menuId) {
         SysMenu sysMenu = sysMenuService.getById(menuId);
@@ -63,13 +62,9 @@ public class SysMenuController {
         return sysMenu;
     }
 
-    /**
-     * 保存
-     *
-     * @param menu
-     */
-    @SysLog("保存菜单")
     @PostMapping
+    @SysLog("保存菜单")
+    @ApiOperation("保存菜单")
     @PreAuthorize("@pms.hasPermission('sys:menu:save')")
     public void save(@Validated @RequestBody SysMenu menu) {
         verifyForm(menu);
@@ -77,27 +72,19 @@ public class SysMenuController {
     }
 
 
-    /**
-     * 修改
-     *
-     * @param menu
-     */
-    @SysLog("修改菜单")
     @PutMapping
-
+    @SysLog("修改菜单")
+    @ApiOperation("修改菜单")
     @PreAuthorize("@pms.hasPermission('sys:menu:update')")
     public void update(@Validated @RequestBody SysMenu menu) {
         verifyForm(menu);
         sysMenuService.updateById(menu);
     }
 
-    /**
-     * 删除
-     *
-     * @param menuIds
-     */
-    @SysLog("删除菜单")
+
     @DeleteMapping
+    @SysLog("删除菜单")
+    @ApiOperation("删除菜单")
     @PreAuthorize("@pms.hasPermission('sys:menu:delete')")
     public void delete(@RequestBody List<Long> menuIds) {
         menuIds.forEach(sysMenuService::deleteMenuAndRoleMenu);

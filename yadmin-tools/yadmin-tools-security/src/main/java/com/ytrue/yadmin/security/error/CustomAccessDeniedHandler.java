@@ -23,7 +23,7 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException e) {
-//        throw new AccessDeniedException("权限不足");
+     //   throw new AccessDeniedException("权限不足");
         ResponseUtils.renderJson(response,
                 R.fail(ExceptionCode.NOT_PERMISSION.getCode(), ExceptionCode.NOT_PERMISSION.getMessage()));
     }
