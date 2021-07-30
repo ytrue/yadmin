@@ -40,10 +40,9 @@ public class SysUserController {
 
     private final JwtUtils jwtUtils;
 
-
+    @SysLog
     @PostMapping("page")
-    @SysLog("查询用户")
-    @ApiOperation("分页查询数据")
+    @ApiOperation("分页查询")
     @PreAuthorize("@pms.hasPermission('sys:user:page')")
     public IPage<SysUser> page(@RequestBody SearchModel<SysUser> searchModel) {
         return sysUserService.page(searchModel.getPage(), searchModel.getQueryModel().lambda().orderByDesc(SysUser::getUserId));
@@ -62,8 +61,8 @@ public class SysUserController {
     }
 
 
+    @SysLog
     @PostMapping
-    @SysLog("保存用户")
     @ApiOperation("保存用户")
     @PreAuthorize("@pms.hasPermission('sys:user:save')")
     public void save(@Valid @RequestBody SysUser user) {
@@ -71,15 +70,15 @@ public class SysUserController {
     }
 
     @PutMapping
-    @SysLog("修改用户")
+    @SysLog
     @ApiOperation("修改用户")
     @PreAuthorize("@pms.hasPermission('sys:user:update')")
     public void update(@Validated @RequestBody SysUser user) {
         sysUserService.updateUserAndUserRole(user);
     }
 
+    @SysLog
     @DeleteMapping
-    @SysLog("删除用户")
     @ApiOperation("删除用户")
     @PreAuthorize("@pms.hasPermission('sys:user:delete')")
     public void delete(@RequestBody List<Long> userIds) {

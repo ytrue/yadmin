@@ -61,9 +61,8 @@ public class SysRoleController {
     }
 
 
-
+    @SysLog
     @PostMapping
-    @SysLog("保存角色")
     @ApiOperation("保存角色")
     @PreAuthorize("@pms.hasPermission('sys:role:save')")
     public void save(@Validated @RequestBody SysRole role) {
@@ -71,17 +70,16 @@ public class SysRoleController {
     }
 
 
-
+    @SysLog
     @PutMapping
-    @SysLog("修改角色")
     @ApiOperation("修改角色")
     @PreAuthorize("@pms.hasPermission('sys:role:update')")
     public void update(@Validated @RequestBody SysRole role) {
         sysRoleService.updateRoleAndRoleMenu(role);
     }
 
+    @SysLog
     @DeleteMapping
-    @SysLog("删除角色")
     @ApiOperation("删除角色")
     @PreAuthorize("@pms.hasPermission('sys:role:delete')")
     public void delete(@RequestBody Long[] roleIds) {

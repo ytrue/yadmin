@@ -17,7 +17,7 @@ public @interface SysLog {
      *
      * @return {String}
      */
-    String value();
+    String value() default "";
 
     /**
      * 记录执行参数

@@ -37,7 +37,7 @@ public class UploadGroupController {
     }
 
 
-    @SysLog("保存文件分组")
+    @SysLog
     @PostMapping
     @ApiOperation("保存文件分组")
     //@PreAuthorize("@pms.hasPermission('file:group:save')")
@@ -45,9 +45,8 @@ public class UploadGroupController {
         uploadGroupService.save(uploadGroup);
     }
 
-
+    @SysLog
     @PutMapping
-    @SysLog("修改文件分组")
     @ApiOperation("修改文件分组")
     //@PreAuthorize("@pms.hasPermission('file:group:update')")
     public void update(@Validated @RequestBody UploadGroup uploadGroup) {
@@ -64,8 +63,8 @@ public class UploadGroupController {
         return uploadGroupService.getById(groupId);
     }
 
+    @SysLog
     @DeleteMapping
-    @SysLog("删除文件分组")
     @ApiOperation("删除文件分组")
     //@PreAuthorize("@pms.hasPermission('file:group:delete')")
     public void delete(@ApiParam(required = true, name = "id集合") @RequestBody List<Long> groupIds) {

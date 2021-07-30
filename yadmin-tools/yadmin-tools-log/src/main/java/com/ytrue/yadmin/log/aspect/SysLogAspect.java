@@ -5,15 +5,19 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.core.util.URLUtil;
 import cn.hutool.extra.servlet.ServletUtil;
 import com.ytrue.yadmin.exeption.code.ExceptionCode;
+import com.ytrue.yadmin.log.annotation.SysLog;
 import com.ytrue.yadmin.log.entity.OptLogDTO;
 import com.ytrue.yadmin.log.event.SysLogEvent;
 import com.ytrue.yadmin.log.utils.LogUtil;
 import com.ytrue.yadmin.utils.GsonUtils;
 import com.ytrue.yadmin.utils.R;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,6 +25,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.lang.reflect.Method;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
@@ -60,6 +65,7 @@ public class SysLogAspect {
         return sysLog;
     }
 
+
     @Before(value = "sysLogAspect()")
     public void recordLog(JoinPoint joinPoint) {
         tryCatch((val) -> {
@@ -71,6 +77,7 @@ public class SysLogAspect {
 
             Api api = joinPoint.getTarget().getClass().getAnnotation(Api.class);
 
+
             if (api != null) {
                 String[] tags = api.tags();
                 if (tags.length > 0) {
@@ -79,6 +86,22 @@ public class SysLogAspect {
             }
 
             String controllerMethodDescription = LogUtil.getControllerMethodDescription(joinPoint);
+            //判断这个sysLog注解的value是否为空,等于空就去获取ApiOperation注解的value
+            if (StrUtil.isEmpty(controllerMethodDescription)) {
+                //获得切面方法上的指定注解
+                Class<?> clazz = joinPoint.getTarget().getClass();
+                String methodName = joinPoint.getSignature().getName();
+                Class<?>[] parameterTypes = ((MethodSignature) joinPoint.getSignature()).getMethod().getParameterTypes();
+                Method method;
+                try {
+                    method = clazz.getMethod(methodName, parameterTypes);
+                    controllerMethodDescription = method.getAnnotation(ApiOperation.class).value();
+                } catch (NoSuchMethodException e) {
+                    controllerMethodDescription = "";
+                }
+            }
+
+
             if (StrUtil.isEmpty(controllerDescription)) {
                 sysLog.setDescription(controllerMethodDescription);
             } else {

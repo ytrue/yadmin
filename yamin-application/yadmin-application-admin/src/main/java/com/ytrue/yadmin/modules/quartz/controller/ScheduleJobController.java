@@ -46,8 +46,8 @@ public class ScheduleJobController {
     }
 
 
+    @SysLog
     @PostMapping
-    @SysLog("保存定时任务")
     @ApiOperation("保存定时任务")
     @PreAuthorize("@pms.hasPermission('sys:schedule:save')")
     public void save(@Validated @RequestBody ScheduleJob scheduleJob) {
@@ -59,8 +59,8 @@ public class ScheduleJobController {
     }
 
 
+    @SysLog
     @PutMapping
-    @SysLog("修改定时任务")
     @ApiOperation("修改定时任务")
     @PreAuthorize("@pms.hasPermission('sys:schedule:update')")
     public void update(@Validated @RequestBody ScheduleJob scheduleJob) {
@@ -73,17 +73,16 @@ public class ScheduleJobController {
     }
 
 
+    @SysLog
     @DeleteMapping
-    @SysLog("删除定时任务")
     @ApiOperation("删除定时任务")
     @PreAuthorize("@pms.hasPermission('sys:schedule:delete')")
     public void delete(@RequestBody Long[] jobIds) {
         scheduleJobService.deleteBatch(jobIds);
     }
 
-
+    @SysLog
     @PostMapping("/run")
-    @SysLog("立即执行任务")
     @ApiOperation("立即执行任务")
     @PreAuthorize("@pms.hasPermission('sys:schedule:run')")
     public void run(@RequestBody Long[] jobIds) {
@@ -91,8 +90,8 @@ public class ScheduleJobController {
     }
 
 
+    @SysLog
     @PostMapping("/pause")
-    @SysLog("暂停定时任务")
     @ApiOperation("暂停定时任务")
     @PreAuthorize("@pms.hasPermission('sys:schedule:pause')")
     public void pause(@RequestBody Long[] jobIds) {
@@ -100,8 +99,8 @@ public class ScheduleJobController {
     }
 
 
+    @SysLog
     @PostMapping("/resume")
-    @SysLog("恢复定时任务")
     @ApiOperation("恢复定时任务")
     @PreAuthorize("@pms.hasPermission('sys:schedule:resume')")
     public void resume(@RequestBody Long[] jobIds) {

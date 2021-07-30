@@ -46,9 +46,9 @@ public class UploadFileController {
     }
 
 
+    @SysLog
     @SneakyThrows
     @PostMapping("upload")
-    @SysLog("上传文件")
     @ApiOperation("上传文件")
     //@PreAuthorize("@pms.hasPermission('file:upload')")
     public void uploadFiles(@RequestParam("file") MultipartFile file) {
@@ -63,23 +63,23 @@ public class UploadFileController {
         return uploadFileService.getById(fileId);
     }
 
+    @SysLog
     @PutMapping
-    @SysLog("修改文件")
     @ApiOperation("修改文件")
     public void update(@Validated @RequestBody UploadFile uploadFile) {
         uploadFileService.updateById(uploadFile);
     }
 
+    @SysLog
     @PostMapping("move")
-    @SysLog("移动文件组")
     @ApiOperation("移动文件组")
     //@PreAuthorize("@pms.hasPermission('file:move')")
     public void moveGroup(@RequestBody MoveGroupParamDTO paramDTO) {
         uploadFileService.moveGroup(paramDTO);
     }
 
+    @SysLog
     @DeleteMapping
-    @SysLog("删除文件")
     @ApiOperation("删除文件")
     //@PreAuthorize("@pms.hasPermission('file:delete')")
     public void delete(

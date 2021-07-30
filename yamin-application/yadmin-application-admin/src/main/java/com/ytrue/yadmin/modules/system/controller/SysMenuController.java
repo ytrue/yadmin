@@ -62,8 +62,8 @@ public class SysMenuController {
         return sysMenu;
     }
 
+    @SysLog
     @PostMapping
-    @SysLog("保存菜单")
     @ApiOperation("保存菜单")
     @PreAuthorize("@pms.hasPermission('sys:menu:save')")
     public void save(@Validated @RequestBody SysMenu menu) {
@@ -72,8 +72,8 @@ public class SysMenuController {
     }
 
 
+    @SysLog
     @PutMapping
-    @SysLog("修改菜单")
     @ApiOperation("修改菜单")
     @PreAuthorize("@pms.hasPermission('sys:menu:update')")
     public void update(@Validated @RequestBody SysMenu menu) {
@@ -81,9 +81,8 @@ public class SysMenuController {
         sysMenuService.updateById(menu);
     }
 
-
+    @SysLog
     @DeleteMapping
-    @SysLog("删除菜单")
     @ApiOperation("删除菜单")
     @PreAuthorize("@pms.hasPermission('sys:menu:delete')")
     public void delete(@RequestBody List<Long> menuIds) {
