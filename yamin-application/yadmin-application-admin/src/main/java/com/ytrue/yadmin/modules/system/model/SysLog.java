@@ -60,37 +60,39 @@ public class SysLog {
     /**
      * 请求地址
      */
-    @ApiModelProperty(value = "请求地址")
+    @ApiModelProperty(value = "方法名")
     @TableField("action_method")
     private String actionMethod;
     /**
      * 请求类型
      */
-    @ApiModelProperty(value = "请求类型")
+    @ApiModelProperty(value = "请求url")
     @TableField("request_uri")
     private String requestUri;
     /**
      * 请求参数
      */
-    @ApiModelProperty(value = "请求参数")
+    @ApiModelProperty(value = "请求方法")
     @TableField("http_method")
     private String httpMethod;
     /**
      * 返回值,项目使用了注解返回包装，拿不到值，所先注释
      */
-    @ApiModelProperty(value = "返回值,项目使用了注解返回包装，拿不到值，所先注释")
+   // @ApiModelProperty(value = "返回值,项目使用了注解返回包装，拿不到值，所先注释")
     @TableField("params")
+    @ApiModelProperty(value = "请求参数")
     private String params;
     /**
      * 异常详情信息
      */
-    @ApiModelProperty(value = "异常详情信息")
+    @ApiModelProperty(value = "异常描述")
     @TableField("ex_desc")
     private String exDesc;
     /**
      * 异常描述
      */
-    @ApiModelProperty(value = "异常描述")
+
+    @ApiModelProperty(value = "异常详情信息")
     @TableField("ex_detail")
     private String exDetail;
     /**

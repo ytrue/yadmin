@@ -50,7 +50,6 @@ public class SysUserController {
     }
 
 
-
     @GetMapping("{userId}/info")
     @ApiOperation("用户信息")
     @PreAuthorize("@pms.hasPermission('sys:user:info')")
@@ -61,7 +60,6 @@ public class SysUserController {
         sysUser.setRoleIdList(roleIdList);
         return sysUser;
     }
-
 
 
     @PostMapping
@@ -87,8 +85,6 @@ public class SysUserController {
     public void delete(@RequestBody List<Long> userIds) {
         sysUserService.removeByIds(userIds);
     }
-
-
 
 
     @GetMapping("router")

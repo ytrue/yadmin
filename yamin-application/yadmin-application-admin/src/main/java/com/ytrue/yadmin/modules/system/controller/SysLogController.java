@@ -37,7 +37,7 @@ public class SysLogController {
         String username = ((String) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         return sysLogService.page(
                 sysLogSearchModel.getPage(),
-                sysLogSearchModel.getQueryModel().lambda().orderByDesc(SysLog::getUserId).eq(SysLog::getUsername, username)
+                sysLogSearchModel.getQueryModel().lambda().orderByDesc(SysLog::getLogId).eq(SysLog::getUsername, username)
         );
     }
 }

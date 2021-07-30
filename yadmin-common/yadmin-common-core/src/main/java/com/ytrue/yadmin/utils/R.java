@@ -18,16 +18,15 @@ import lombok.extern.slf4j.Slf4j;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel(value = "统一返回")
 public class R<T> {
 
-    @ApiModelProperty(value = "状态", example = "200")
+
     private Integer code;
 
-    @ApiModelProperty(value = "信息", example = "成功")
+
     private String message;
 
-    @ApiModelProperty(value = "内容")
+
     private T data;
 
     public R(T data) {
