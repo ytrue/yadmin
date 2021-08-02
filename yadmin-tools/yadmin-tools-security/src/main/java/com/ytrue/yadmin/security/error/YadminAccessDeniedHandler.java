@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Component
 @Slf4j
-public class CustomAccessDeniedHandler implements AccessDeniedHandler {
+public class YadminAccessDeniedHandler implements AccessDeniedHandler {
 
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException e) {

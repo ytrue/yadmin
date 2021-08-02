@@ -1,8 +1,8 @@
 package com.ytrue.yadmin.security;
 
 
-import com.ytrue.yadmin.security.error.CustomAccessDeniedHandler;
-import com.ytrue.yadmin.security.error.CustomAuthenticationEntryPoint;
+import com.ytrue.yadmin.security.error.YadminAccessDeniedHandler;
+import com.ytrue.yadmin.security.error.YadminAuthenticationEntryPoint;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -22,10 +22,10 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Res
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
 
-    private final CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
+    private final YadminAuthenticationEntryPoint yadminAuthenticationEntryPoint;
 
 
-    private final CustomAccessDeniedHandler customAccessDeniedHandler;
+    private final YadminAccessDeniedHandler customAccessDeniedHandler;
 
     /**
      * 配置
@@ -70,7 +70,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
      */
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
-        resources.authenticationEntryPoint(customAuthenticationEntryPoint)
+        resources.authenticationEntryPoint(yadminAuthenticationEntryPoint)
                 .accessDeniedHandler(customAccessDeniedHandler);
     }
 

@@ -1,14 +1,15 @@
 package com.ytrue.yadmin.security.authenticator;
 
+import cn.hutool.core.lang.Assert;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.ytrue.yadmin.exeption.YadminException;
 import com.ytrue.yadmin.modules.system.dao.SysUserDao;
 import com.ytrue.yadmin.modules.system.model.SysUser;
 import com.ytrue.yadmin.security.integration.IntegrationAuthenticationEntity;
 import com.ytrue.yadmin.security.integration.authenticator.AbstractPreparableIntegrationAuthenticator;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Primary;
+import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -33,23 +34,24 @@ public class UsernamePasswordAuthenticator extends AbstractPreparableIntegration
     /**
      * 预处理
      *
-     * @param entity 集成认证实体
+     * @param entity 集成认证实体,UsernameNotFoundException这个异常不能抛
      * @return
      */
     @Override
     public SysUser authenticate(IntegrationAuthenticationEntity entity) {
         String username = entity.getAuthParameter("username");
         String password = entity.getAuthParameter("password");
+
         if (StrUtil.hasBlank(username) || StrUtil.hasBlank(password)) {
-            throw new YadminException("用户名或密码不能为空");
+            throw new InternalAuthenticationServiceException("用户名或密码不能为空");
         }
         SysUser user = SysUserDao.selectOne(new QueryWrapper<SysUser>().eq("username", username));
-        if (user == null) {
-            throw new YadminException("用户不存在");
+        if (null == user) {
+            throw new InternalAuthenticationServiceException("账号不存在");
         }
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         if (!passwordEncoder.matches(password, user.getPassword())) {
-            throw new YadminException("密码不正确");
+            throw new InternalAuthenticationServiceException("密码错误");
         }
         return user;
     }

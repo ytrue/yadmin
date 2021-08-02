@@ -2,7 +2,6 @@ package com.ytrue.yadmin.security;
 
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.ytrue.yadmin.exeption.YadminException;
 import com.ytrue.yadmin.modules.system.dao.SysMenuDao;
 import com.ytrue.yadmin.modules.system.dao.SysUserDao;
 import com.ytrue.yadmin.modules.system.model.SysMenu;
@@ -11,8 +10,11 @@ import com.ytrue.yadmin.security.integration.IntegrationAuthenticationContext;
 import com.ytrue.yadmin.security.integration.IntegrationAuthenticationEntity;
 import com.ytrue.yadmin.security.integration.authenticator.IntegrationAuthenticator;
 import com.ytrue.yadmin.security.user.SysUserDetails;
+import com.ytrue.yadmin.utils.R;
+import com.ytrue.yadmin.utils.ResponseUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,6 +23,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
@@ -112,6 +115,6 @@ public class IntegrationUserDetailsServiceImpl implements UserDetailsService {
                 }
             }
         }
-        throw new YadminException("无效的auth_type参数值！");
+        throw new InternalAuthenticationServiceException("无效的auth_type参数值！");
     }
 }

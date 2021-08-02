@@ -1,5 +1,6 @@
 package com.ytrue.yadmin.security.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -22,6 +23,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Order(-1)
 public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
@@ -40,6 +42,7 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .cors()
                 .and()
                 .csrf().disable();
+
     }
 
     @Override

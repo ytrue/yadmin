@@ -1,12 +1,12 @@
 package com.ytrue.yadmin.unified.dispose.exeption;
 
 
-
 import com.ytrue.yadmin.exeption.code.ExceptionCode;
 import com.ytrue.yadmin.unified.dispose.annotation.IgnoreResponseAdvice;
 import com.ytrue.yadmin.unified.dispose.properties.UnifiedDisposeExceptionProperties;
 import com.ytrue.yadmin.utils.R;
 import com.ytrue.yadmin.utils.ResponseUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ErrorProperties;
 import org.springframework.boot.autoconfigure.web.servlet.error.AbstractErrorController;
@@ -15,6 +15,7 @@ import org.springframework.boot.web.servlet.error.ErrorAttributes;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -32,7 +33,7 @@ import java.util.Map;
  * @date 2020/6/15 16:27
  * @description 全局异常处理类, 照搬BasicErrorController，在此基础上增加自己的处理
  */
-
+@Slf4j
 @Controller
 @IgnoreResponseAdvice
 @RequestMapping({"${server.error.path:${error.path:/error}}"})
@@ -118,10 +119,11 @@ public class GlobalDefaultExceptionHandler extends AbstractErrorController {
      * @param req
      */
     private R<Object> myHandle(HttpServletResponse response, WebRequest req) {
-        if (unifiedDisposeExceptionProperties.getProduction()) {
-            ExceptionCode codeByExceptionCode = ExceptionCode.getCodeByExceptionCode(response.getStatus());
-            return R.fail(codeByExceptionCode);
-        }
+//        if (unifiedDisposeExceptionProperties.getProduction()) {
+//            ExceptionCode codeByExceptionCode = ExceptionCode.getCodeByExceptionCode(response.getStatus());
+//            return R.fail(codeByExceptionCode);
+//        }
+
         Map<String, Object> errorAttributes = this.errorAttributes.getErrorAttributes(req,
                 ErrorAttributeOptions.of(
                         ErrorAttributeOptions.Include.EXCEPTION,
@@ -129,9 +131,15 @@ public class GlobalDefaultExceptionHandler extends AbstractErrorController {
                         ErrorAttributeOptions.Include.STACK_TRACE,
                         ErrorAttributeOptions.Include.BINDING_ERRORS
                 ));
+
+        String message = (String) errorAttributes.get("message");
+        //针对oauth2登录失败处理
+        Throwable error = this.errorAttributes.getError(req);
+        if (error instanceof InternalAuthenticationServiceException) {
+            message = error.getMessage();
+        }
         return R.
-                fail((Integer) errorAttributes.get("status"),
-                        errorAttributes.get("error") + "：" + errorAttributes.get("message"));
+                fail((Integer) errorAttributes.get("status"), message);
     }
 
 

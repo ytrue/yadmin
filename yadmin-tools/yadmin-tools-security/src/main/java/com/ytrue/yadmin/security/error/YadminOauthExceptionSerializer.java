@@ -16,9 +16,9 @@ import java.util.Map;
  * @description 认证服务器错误数据返回格式
  */
 @Slf4j
-public class CustomOauthExceptionSerializer extends StdSerializer<CustomOauthException> {
+public class YadminOauthExceptionSerializer extends StdSerializer<CustomOauthException> {
 
-    public CustomOauthExceptionSerializer() {
+    public YadminOauthExceptionSerializer() {
         super(CustomOauthException.class);
     }
 

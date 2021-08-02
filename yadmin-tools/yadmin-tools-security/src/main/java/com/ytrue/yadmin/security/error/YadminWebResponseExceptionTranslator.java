@@ -13,12 +13,12 @@ import org.springframework.stereotype.Component;
  * @description 自定义认证服务器Web响应异常转换器, 获取access_token失败返回的数据格式
  */
 @Slf4j
-@Component("customWebResponseExceptionTranslator")
-public class CustomWebResponseExceptionTranslator implements WebResponseExceptionTranslator<OAuth2Exception> {
+@Component("yadminWebResponseExceptionTranslator")
+public class YadminWebResponseExceptionTranslator implements WebResponseExceptionTranslator<OAuth2Exception> {
 
     @Override
     public ResponseEntity<OAuth2Exception> translate(Exception e) throws Exception {
-        log.error("CustomWebResponseExceptionTranslator 我被触发了" + e.getMessage());
+        log.error("YadminWebResponseExceptionTranslator 我被触发了" + e.getMessage());
         OAuth2Exception oAuth2Exception = (OAuth2Exception) e;
         return ResponseEntity
                 .status(oAuth2Exception.getHttpErrorCode())

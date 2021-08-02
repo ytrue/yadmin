@@ -21,5 +21,5 @@ public class UnifiedDisposeExceptionProperties {
     /**
      * 是否生产环境
      */
-    private Boolean production = false;
+  // private Boolean production = false;
 }

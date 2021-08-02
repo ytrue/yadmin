@@ -6,6 +6,7 @@ import com.ytrue.yadmin.unified.dispose.properties.UnifiedDisposeExceptionProper
 import com.ytrue.yadmin.utils.R;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;

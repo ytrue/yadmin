@@ -24,13 +24,13 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Component
 @Slf4j
-public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint {
+public class YadminAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
 
     @Override
     @SneakyThrows
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException e) {
-       // throw new AuthenticationCredentialsNotFoundException("未登录");
+        // throw new AuthenticationCredentialsNotFoundException("未登录");
         ResponseUtils.renderJson(response,
                 R.fail(ExceptionCode.NOT_LOGIN.getCode(), ExceptionCode.NOT_LOGIN.getMessage()));
     }
