@@ -3,6 +3,7 @@ package com.ytrue.yadmin.document;
 import com.github.xiaoymin.knife4j.spring.filter.ProductionSecurityFilter;
 import com.github.xiaoymin.knife4j.spring.filter.SecurityBasicAuthFilter;
 import com.google.common.collect.Lists;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.BeanFactoryAware;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -140,6 +141,8 @@ public class SwaggerAutoConfiguration implements BeanFactoryAware {
                     .groupName(docketInfo.getGroup())
                     .select()
                     .apis(RequestHandlerSelectors.basePackage(docketInfo.getBasePackage()))
+                    //加了ApiOperation注解的类，才生成接口文档
+                    .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
                     .paths(PathSelectors.any())
 //                    .paths(
 //                            Predicates.and(
@@ -207,6 +210,8 @@ public class SwaggerAutoConfiguration implements BeanFactoryAware {
                 .select()
 
                 .apis(RequestHandlerSelectors.basePackage(swaggerProperties.getBasePackage()))
+                //加了ApiOperation注解的类，才生成接口文档
+                .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
                 .paths(PathSelectors.any())
 //                .paths(
 //                        Predicates.and(

@@ -52,7 +52,6 @@ public class UploadFileController {
     @ApiOperation("上传文件")
     //@PreAuthorize("@pms.hasPermission('file:upload')")
     public void uploadFiles(@RequestParam("file") MultipartFile file) {
-        TimeUnit.SECONDS.sleep(3);
         uploadFileService.uploadFile(file);
     }
 

@@ -29,14 +29,22 @@ yadmin
 
 # 3.截图
 
-![](https://php-yangyi-images.oss-cn-shenzhen.aliyuncs.com/mydocs/yadmin-01.png)
+![](https://php-yangyi-images.oss-cn-shenzhen.aliyuncs.com/mydocs/1.png)
 
-![](https://php-yangyi-images.oss-cn-shenzhen.aliyuncs.com/mydocs/yadmin-02.png)
+![](https://php-yangyi-images.oss-cn-shenzhen.aliyuncs.com/mydocs/2.png)
 
-![](https://php-yangyi-images.oss-cn-shenzhen.aliyuncs.com/mydocs/yadmin-03.png)
+![](https://php-yangyi-images.oss-cn-shenzhen.aliyuncs.com/mydocs/3.png)
 
-![](https://php-yangyi-images.oss-cn-shenzhen.aliyuncs.com/mydocs/yadmin-04.png)
+![](https://php-yangyi-images.oss-cn-shenzhen.aliyuncs.com/mydocs/4.png)
 
-![](https://php-yangyi-images.oss-cn-shenzhen.aliyuncs.com/mydocs/yadmin-05.png)
+![](https://php-yangyi-images.oss-cn-shenzhen.aliyuncs.com/mydocs/5.png)
 
-![](https://php-yangyi-images.oss-cn-shenzhen.aliyuncs.com/mydocs/yadmin-06.png)
+![](https://php-yangyi-images.oss-cn-shenzhen.aliyuncs.com/mydocs/6.png)
+
+![](https://php-yangyi-images.oss-cn-shenzhen.aliyuncs.com/mydocs/7.png)
+
+![](https://php-yangyi-images.oss-cn-shenzhen.aliyuncs.com/mydocs/8.png)
+
+![](https://php-yangyi-images.oss-cn-shenzhen.aliyuncs.com/mydocs/9.png)
+
+![](https://php-yangyi-images.oss-cn-shenzhen.aliyuncs.com/mydocs/10.png)

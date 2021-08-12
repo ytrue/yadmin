@@ -5,6 +5,7 @@ import com.ytrue.yadmin.modules.system.model.SysLog;
 import com.ytrue.yadmin.search.SearchModel;
 
 import com.ytrue.yadmin.modules.system.service.SysLogService;
+import com.ytrue.yadmin.utils.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
@@ -29,9 +30,8 @@ public class SysLogController {
 
     private final SysLogService sysLogService;
 
-
     @PostMapping("page")
-    @ApiOperation("分页查询数据")
+    @ApiOperation(value = "分页查询数据")
     @PreAuthorize("@pms.hasPermission('sys:log:page')")
     public IPage<SysLog> page(@RequestBody SearchModel<SysLog> sysLogSearchModel) {
         String username = ((String) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
