@@ -2,8 +2,8 @@ package com.ytrue.yadmin.modules.mall.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ytrue.yadmin.dao.mall.goods.GoodsServiceDAO;
-import com.ytrue.yadmin.model.mall.goods.GoodsService;
-import com.ytrue.yadmin.modules.mall.service.GoodsServiceService;
+import com.ytrue.yadmin.model.mall.goods.GoodsPromise;
+import com.ytrue.yadmin.modules.mall.service.GoodsPromiseService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional(rollbackFor = Exception.class)
-public class GoodsServiceServiceImpl extends ServiceImpl<GoodsServiceDAO, GoodsService> implements GoodsServiceService {
+public class GoodsPromiseServiceImpl extends ServiceImpl<GoodsServiceDAO, GoodsPromise> implements GoodsPromiseService {
 
 
 }

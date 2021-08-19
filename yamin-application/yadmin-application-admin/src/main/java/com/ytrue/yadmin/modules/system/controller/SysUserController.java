@@ -40,7 +40,7 @@ public class SysUserController {
 
     private final JwtUtils jwtUtils;
 
-    @SysLog
+
     @PostMapping("page")
     @ApiOperation("分页查询")
     @PreAuthorize("@pms.hasPermission('sys:user:page')")

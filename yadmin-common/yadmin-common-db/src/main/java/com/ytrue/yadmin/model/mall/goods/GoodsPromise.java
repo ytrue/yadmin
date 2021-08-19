@@ -14,7 +14,7 @@ import java.util.Date;
  */
 @Data
 @TableName("goods_service")
-public class GoodsService {
+public class GoodsPromise {
     /**
      * 商品服务ID
      */

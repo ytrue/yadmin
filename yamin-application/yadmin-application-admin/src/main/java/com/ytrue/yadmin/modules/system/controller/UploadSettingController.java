@@ -7,8 +7,6 @@ import com.ytrue.yadmin.oss.dto.UploadSetting;
 import com.ytrue.yadmin.utils.GsonUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -21,10 +19,13 @@ import org.springframework.web.bind.annotation.*;
 @Api(tags = "上传设置")
 public class UploadSettingController {
 
-    @Autowired
-    private SettingDao settingDao;
-
     private final static String STORAGE = "storage";
+
+    private final SettingDao settingDao;
+
+    public UploadSettingController(SettingDao settingDao) {
+        this.settingDao = settingDao;
+    }
 
     @GetMapping
     @ApiOperation(value = "获得上传设置")
