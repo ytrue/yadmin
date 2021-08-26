@@ -1,10 +1,10 @@
 package com.ytrue.yadmin.model.mall.goods;
 
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -32,15 +32,15 @@ public class GoodsCategory {
     @TableField("parent_id")
     private Integer parentId;
     /**
-     * 分类图片ID
+     * 分类图片ID,改空值,把字段修改成空
      */
-    @TableField("image")
+    @TableField(value = "image",updateStrategy = FieldStrategy.IGNORED)
     private String image;
     /**
      * 状态(1显示 0隐藏)
      */
     @TableField("status")
-    private Integer status;
+    private Boolean status;
     /**
      * 排序方式(数字越小越靠前)
      */
@@ -49,11 +49,13 @@ public class GoodsCategory {
     /**
      * 创建时间
      */
-    @TableField("create_time")
-    private Date createTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @TableField(value = "create_time", fill = FieldFill.INSERT)
+    private LocalDateTime createTime;
     /**
      * 更新时间
      */
-    @TableField("update_time")
-    private Date updateTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE)
+    private LocalDateTime updateTime;
 }

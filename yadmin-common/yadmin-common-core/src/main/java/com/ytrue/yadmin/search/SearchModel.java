@@ -49,6 +49,9 @@ public class SearchModel<T> {
     private boolean isAsc;
 
 
+    private final static int TWO = 2;
+
+
     /**
      * 组合page
      *
@@ -90,7 +93,7 @@ public class SearchModel<T> {
                         break;
                     case betweenDate:
                         String[] arr = Convert.toStr(field.getValue()).split(",");
-                        if (2 != arr.length) {
+                        if (TWO != arr.length) {
                             throw new YadminException("日期参数不正确");
                         }
                         queryWrapper.apply(true, "DATE_FORMAT( " + field.getColumn() + ", '%Y-%m-%d %H:%i:%s' ) " +

@@ -4,6 +4,8 @@ import cn.hutool.core.lang.Assert;
 import com.ytrue.yadmin.log.annotation.SysLog;
 import com.ytrue.yadmin.model.mall.goods.GoodsCategory;
 import com.ytrue.yadmin.modules.mall.service.GoodsCategoryService;
+import com.ytrue.yadmin.modules.system.model.SysUser;
+import com.ytrue.yadmin.search.SearchModel;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
@@ -25,10 +27,10 @@ public class GoodsCategoryController {
 
     private final GoodsCategoryService goodsCategoryService;
 
-    @GetMapping("list")
+    @PostMapping("list")
     @ApiOperation("商品分类列表")
-    public List<GoodsCategory> list() {
-        return goodsCategoryService.list();
+    public List<GoodsCategory> list(@RequestBody SearchModel<GoodsCategory> searchModel) {
+        return goodsCategoryService.list(searchModel.getQueryModel().lambda().orderByDesc(GoodsCategory::getSort));
     }
 
 
@@ -51,6 +53,7 @@ public class GoodsCategoryController {
     @PutMapping
     @ApiOperation("修改商品分类")
     public void update(@Valid @RequestBody GoodsCategory category) {
+        //如果去掉图片的话那就是没有
         goodsCategoryService.updateById(category);
     }
 
