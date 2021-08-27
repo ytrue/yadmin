@@ -1,5 +1,6 @@
 # 1.简介
-此项目开发中, 变化比较大,不稳定, 看看就好....
+此项目开发中,目前在添加商品模块，基本的后台功能已完成
+，如需使用基本后台，可删除商品模块相关的代码（yadmin-common-db和yadmin-application-admin）
 
 yadmin 基于springboot 开发后台
 
