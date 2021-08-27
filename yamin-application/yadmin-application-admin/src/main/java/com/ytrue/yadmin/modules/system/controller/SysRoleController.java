@@ -2,6 +2,7 @@ package com.ytrue.yadmin.modules.system.controller;
 
 import cn.hutool.core.lang.Assert;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.ytrue.yadmin.enums.StrPool;
 import com.ytrue.yadmin.log.annotation.SysLog;
 
 import com.ytrue.yadmin.modules.system.model.SysRole;
@@ -53,7 +54,7 @@ public class SysRoleController {
     @PreAuthorize("@pms.hasPermission('sys:role:info')")
     public SysRole info(@PathVariable("roleId") Long roleId) {
         SysRole role = sysRoleService.getById(roleId);
-        Assert.notNull(role, "数据不存在");
+        Assert.notNull(role, StrPool.DATA_DOES_NOT_EXIST.getMessage());
         //查询角色对应的菜单
         List<Long> menuList = sysMenuService.listMenuIdByRoleId(roleId);
         role.setMenuIdList(menuList);

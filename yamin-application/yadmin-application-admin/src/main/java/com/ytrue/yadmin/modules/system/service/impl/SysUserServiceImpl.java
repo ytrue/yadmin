@@ -6,15 +6,15 @@ import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.ytrue.yadmin.enums.StrPool;
 import com.ytrue.yadmin.exeption.YadminException;
 import com.ytrue.yadmin.modules.system.dao.SysUserDao;
 import com.ytrue.yadmin.modules.system.dao.SysUserRoleDao;
-
 import com.ytrue.yadmin.modules.system.model.SysUser;
 import com.ytrue.yadmin.modules.system.model.SysUserRole;
+import com.ytrue.yadmin.modules.system.model.vo.UserInfoVO;
 import com.ytrue.yadmin.modules.system.service.SysMenuService;
 import com.ytrue.yadmin.modules.system.service.SysUserService;
-import com.ytrue.yadmin.modules.system.model.vo.UserInfoVO;
 import io.jsonwebtoken.Claims;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -45,9 +45,9 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUser> impleme
     public void saveUserAndUserRole(SysUser user) {
         String username = user.getUsername();
         SysUser dbUser = getOne(new LambdaQueryWrapper<SysUser>()
-                .eq(SysUser::getUsername, username));
+                .eq(SysUser::getUsername, username),false);
         if (dbUser != null) {
-            throw new YadminException("该用户已存在");
+            throw new YadminException(StrPool.THE_USER_ALREADY_EXISTS.getMessage());
         }
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -64,9 +64,9 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUser> impleme
     @Transactional(rollbackFor = Exception.class)
     public void updateUserAndUserRole(SysUser user) {
         String password = user.getPassword();
-        SysUser dbUserNameInfo = getOne(new QueryWrapper<SysUser>().eq("username", user.getUsername()));
+        SysUser dbUserNameInfo = getOne(new QueryWrapper<SysUser>().eq("username", user.getUsername()),false);
         if (dbUserNameInfo != null && !Objects.equals(dbUserNameInfo.getUserId(), user.getUserId())) {
-            throw new YadminException("该用户已存在");
+            throw new YadminException(StrPool.THE_USER_ALREADY_EXISTS.getMessage());
         }
         if (StrUtil.isBlank(password)) {
             user.setPassword(null);
@@ -90,7 +90,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUser> impleme
     public UserInfoVO getUserInfo(Claims claims) {
         //去获得用户名和头像
         String userName = (String) claims.get("user_name");
-        SysUser username = getOne(new QueryWrapper<SysUser>().eq("username", userName));
+        SysUser username = getOne(new QueryWrapper<SysUser>().eq("username", userName),false);
         //获得了该角色的权限
         List<?> authorities = (List<?>) claims.get("authorities");
         UserInfoVO userInfoVO = new UserInfoVO();

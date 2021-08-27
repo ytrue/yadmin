@@ -32,9 +32,6 @@ import java.util.UUID;
 @AllArgsConstructor
 public class UploadFileServiceImpl extends ServiceImpl<UploadFileDAO, UploadFile> implements UploadFileService {
 
-
-    private final UploadGroupDAO uploadGroupDAO;
-
     private final OssUtils ossUtils;
 
     private final SettingDao settingDao;
@@ -76,7 +73,7 @@ public class UploadFileServiceImpl extends ServiceImpl<UploadFileDAO, UploadFile
         uploadFile.setGroupId(groupId);
         //循环修改
         paramDTO.getFileIds().forEach(fileId -> {
-            update(uploadFile, new QueryWrapper<UploadFile>().eq("file_id", fileId));
+            update(uploadFile, new QueryWrapper<UploadFile>().lambda().eq(UploadFile::getFileId, fileId));
         });
     }
 }

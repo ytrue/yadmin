@@ -2,6 +2,7 @@ package com.ytrue.yadmin.modules.system.controller;
 
 import cn.hutool.core.lang.Assert;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.ytrue.yadmin.enums.StrPool;
 import com.ytrue.yadmin.log.annotation.SysLog;
 import com.ytrue.yadmin.modules.system.model.SysUser;
 import com.ytrue.yadmin.modules.system.model.vo.UserInfoVO;
@@ -54,7 +55,7 @@ public class SysUserController {
     @PreAuthorize("@pms.hasPermission('sys:user:info')")
     public SysUser info(@PathVariable("userId") Long userId) {
         SysUser sysUser = sysUserService.getById(userId);
-        Assert.notNull(sysUser, "数据不存在");
+        Assert.notNull(sysUser, StrPool.DATA_DOES_NOT_EXIST.getMessage());
         List<Long> roleIdList = sysRoleService.listRoleIdByUserId(userId);
         sysUser.setRoleIdList(roleIdList);
         return sysUser;

@@ -2,6 +2,7 @@ package com.ytrue.yadmin.modules.mall.controller;
 
 import cn.hutool.core.lang.Assert;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.ytrue.yadmin.enums.StrPool;
 import com.ytrue.yadmin.log.annotation.SysLog;
 import com.ytrue.yadmin.model.mall.goods.GoodsPromise;
 import com.ytrue.yadmin.modules.mall.service.GoodsPromiseService;
@@ -51,7 +52,7 @@ public class GoodsPromiseController {
     @ApiOperation("商品承诺信息")
     public GoodsPromise info(@PathVariable("promiseId") Long promiseId) {
         GoodsPromise goodsPromise = goodsPromiseService.getById(promiseId);
-        Assert.notNull(goodsPromise, "数据不存在");
+        Assert.notNull(goodsPromise, StrPool.DATA_DOES_NOT_EXIST.getMessage());
         return goodsPromise;
     }
 

@@ -1,5 +1,6 @@
 package com.ytrue.yadmin.modules.system.controller;
 
+import com.ytrue.yadmin.enums.StrPool;
 import com.ytrue.yadmin.exeption.YadminException;
 import com.ytrue.yadmin.log.annotation.SysLog;
 import com.ytrue.yadmin.modules.system.service.UploadGroupService;
@@ -51,7 +52,7 @@ public class UploadGroupController {
     //@PreAuthorize("@pms.hasPermission('file:group:update')")
     public void update(@Validated @RequestBody UploadGroup uploadGroup) {
         if (uploadGroup.getGroupId().equals(uploadGroup.getParentId())) {
-            throw new YadminException("自己不能是自己的上级");
+            throw new YadminException(StrPool.YOU_CANT_BE_YOUR_SUPERIOR.getMessage());
         }
         uploadGroupService.updateById(uploadGroup);
     }

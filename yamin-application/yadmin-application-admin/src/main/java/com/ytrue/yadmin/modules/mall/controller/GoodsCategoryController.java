@@ -1,10 +1,10 @@
 package com.ytrue.yadmin.modules.mall.controller;
 
 import cn.hutool.core.lang.Assert;
+import com.ytrue.yadmin.enums.StrPool;
 import com.ytrue.yadmin.log.annotation.SysLog;
 import com.ytrue.yadmin.model.mall.goods.GoodsCategory;
 import com.ytrue.yadmin.modules.mall.service.GoodsCategoryService;
-import com.ytrue.yadmin.modules.system.model.SysUser;
 import com.ytrue.yadmin.search.SearchModel;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -45,7 +45,7 @@ public class GoodsCategoryController {
     @ApiOperation("商品分类信息")
     public GoodsCategory info(@PathVariable("categoryId") Long categoryId) {
         GoodsCategory category = goodsCategoryService.getById(categoryId);
-        Assert.notNull(category, "数据不存在");
+        Assert.notNull(category, StrPool.DATA_DOES_NOT_EXIST.getMessage());
         return category;
     }
 
@@ -53,7 +53,6 @@ public class GoodsCategoryController {
     @PutMapping
     @ApiOperation("修改商品分类")
     public void update(@Valid @RequestBody GoodsCategory category) {
-        //如果去掉图片的话那就是没有
         goodsCategoryService.updateById(category);
     }
 
@@ -61,6 +60,6 @@ public class GoodsCategoryController {
     @DeleteMapping
     @ApiOperation("删除商品分类")
     public void delete(@RequestBody List<Long> categoryIds) {
-        goodsCategoryService.removeByIds(categoryIds);
+        goodsCategoryService.deleteGoodsCategory(categoryIds);
     }
 }

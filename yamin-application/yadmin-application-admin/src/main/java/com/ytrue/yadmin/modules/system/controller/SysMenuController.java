@@ -2,6 +2,7 @@ package com.ytrue.yadmin.modules.system.controller;
 
 import cn.hutool.core.lang.Assert;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.ytrue.yadmin.enums.StrPool;
 import com.ytrue.yadmin.log.annotation.SysLog;
 import com.ytrue.yadmin.exeption.YadminException;
 
@@ -58,7 +59,7 @@ public class SysMenuController {
     @PreAuthorize("@pms.hasPermission('sys:menu:info')")
     public SysMenu info(@PathVariable("menuId") Long menuId) {
         SysMenu sysMenu = sysMenuService.getById(menuId);
-        Assert.notNull(sysMenu, "数据不存在");
+        Assert.notNull(sysMenu, StrPool.DATA_DOES_NOT_EXIST.getMessage());
         return sysMenu;
     }
 
@@ -98,16 +99,16 @@ public class SysMenuController {
      */
     private void verifyForm(SysMenu menu) {
         if (menu.getParentId().equals(menu.getMenuId()) && menu.getMenuId() != 0) {
-            throw new YadminException("自己不能是自己的上级");
+            throw new YadminException(StrPool.YOU_CANT_BE_YOUR_SUPERIOR.getMessage());
         }
         if (menu.getParentId() == 0 && menu.getMenuType() != 0) {
-            throw new YadminException("菜单类型只能是头部菜单");
+            throw new YadminException(StrPool.MENU_TYPE_CAN_ONLY_BE_HEADER_MENU.getMessage());
         }
         SysMenu parentMenu = sysMenuService.getById(menu.getParentId());
         if (null != parentMenu) {
             Integer superMenuType = menu.getMenuType() - 1;
             if (!parentMenu.getMenuType().equals(superMenuType)) {
-                throw new YadminException("请选择对应的菜单类型");
+                throw new YadminException(StrPool.PLEASE_SELECT_THE_CORRESPONDING_MENU_TYPE.getMessage());
             }
         }
     }
