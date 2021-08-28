@@ -14,7 +14,6 @@
         <module>yadmin-tools/yadmin-tools-log</module>
         <module>yadmin-tools/yadmin-tools-oss</module>
         <module>yadmin-tools/yadmin-tools-xss</module>
-        <module>yadmin-tools/yadmin-tools-log</module>
         <module>yadmin-tools/yadmin-tools-document</module>
         <module>yadmin-tools/yadmin-tools-security</module>
 
@@ -22,6 +21,7 @@
         <module>yamin-application/yadmin-application-admin</module>
         <module>yamin-application/yadmin-application-api</module>
         <module>yamin-application/yadmin-application-monitor</module>
+
         <module>yadmin-common</module>
         <module>yadmin-common/yadmin-common-core</module>
         <module>yadmin-common/yadmin-common-db</module>

@@ -37,6 +37,7 @@ public class GoodsPromiseController {
                         searchModel.getQueryModel()
                                 .lambda()
                                 .orderByDesc(GoodsPromise::getSort)
+                                .orderByDesc(GoodsPromise::getServiceId)
                 );
     }
 
