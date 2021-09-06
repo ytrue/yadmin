@@ -2,6 +2,7 @@ package com.ytrue.yadmin.model.mall.goods;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
@@ -105,6 +106,7 @@ public class Goods {
     /**
      * 是否删除
      */
+    @TableLogic
     @TableField("is_delete")
     private Integer isDelete;
     /**
