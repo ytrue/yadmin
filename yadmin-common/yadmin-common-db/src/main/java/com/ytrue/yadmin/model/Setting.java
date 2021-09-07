@@ -6,6 +6,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * @author ytrue
  * @date 2021/8/3 15:25
@@ -14,7 +16,9 @@ import lombok.Data;
 @Data
 @ApiModel(value = "系统设置")
 @TableName("setting")
-public class Setting {
+public class Setting implements Serializable {
+
+    private static final long serialVersionUID = -5683203397642102900L;
 
     /**
      * 设置项标示

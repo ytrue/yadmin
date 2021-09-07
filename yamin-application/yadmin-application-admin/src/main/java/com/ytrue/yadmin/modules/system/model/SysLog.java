@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -19,7 +20,8 @@ import java.time.LocalDateTime;
 @ApiModel(value = "操作日志")
 @Data
 @TableName("optlogdto")
-public class SysLog {
+public class SysLog implements Serializable {
+    private static final long serialVersionUID = 6701724385116244971L;
     /**
      * id
      */
@@ -78,7 +80,7 @@ public class SysLog {
     /**
      * 返回值,项目使用了注解返回包装，拿不到值，所先注释
      */
-   // @ApiModelProperty(value = "返回值,项目使用了注解返回包装，拿不到值，所先注释")
+    // @ApiModelProperty(value = "返回值,项目使用了注解返回包装，拿不到值，所先注释")
     @TableField("params")
     @ApiModelProperty(value = "请求参数")
     private String params;

@@ -23,8 +23,8 @@ import java.util.List;
 @TableName("sys_role")
 @ApiModel(value = "角色")
 public class SysRole implements Serializable {
-    private static final long serialVersionUID = 1L;
 
+    private static final long serialVersionUID = 6432050663873058679L;
     /**
      * 角色ID
      */

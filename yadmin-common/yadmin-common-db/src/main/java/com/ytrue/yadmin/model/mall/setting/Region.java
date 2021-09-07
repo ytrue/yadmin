@@ -5,8 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
-import java.util.List;
-import java.util.Map;
+import java.io.Serializable;
 
 /**
  * @author ytrue
@@ -15,7 +14,10 @@ import java.util.Map;
  */
 @Data
 @TableName("region")
-public class Region {
+public class Region implements Serializable {
+
+    private static final long serialVersionUID = 6305538045600134630L;
+    
     /**
      * 区划信息ID
      */
@@ -42,8 +44,6 @@ public class Region {
      */
     @TableField("level")
     private Integer level;
-
-
 
 
 }

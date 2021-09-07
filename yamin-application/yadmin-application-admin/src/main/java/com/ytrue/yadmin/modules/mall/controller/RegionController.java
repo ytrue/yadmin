@@ -3,7 +3,9 @@ package com.ytrue.yadmin.modules.mall.controller;
 import com.ytrue.yadmin.dto.ProvinceDTO;
 import com.ytrue.yadmin.modules.mall.service.RegionService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,11 +27,13 @@ public class RegionController {
 
 
     /**
-     * 返回tree格式的,这个要加入redis 缓存
+     * 查询所有,返回tree格式，加入@Cacheable注解，使用返回，提高速度
      *
      * @return
      */
     @PostMapping("tree")
+    @Cacheable(value = "treeList")
+    @ApiOperation(value = "查询所有,返回tree格式")
     public HashMap<Integer, ProvinceDTO> tree() {
         return regionService.treeList();
     }

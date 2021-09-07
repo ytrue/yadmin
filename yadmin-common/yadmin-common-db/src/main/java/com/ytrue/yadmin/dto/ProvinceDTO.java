@@ -16,6 +16,8 @@ import java.util.Map;
 @EqualsAndHashCode(callSuper = true)
 public class ProvinceDTO extends Region {
 
+    private static final long serialVersionUID = 2396053620700955988L;
+
     private Map<Integer, CityDTO> city;
 
 }

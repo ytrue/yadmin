@@ -27,9 +27,7 @@ import java.util.List;
 @TableName("sys_user")
 @ApiModel(value = "系统用户")
 public class SysUser implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
+    private static final long serialVersionUID = 5689655046656567373L;
     /**
      * 用户ID
      */

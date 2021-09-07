@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -14,7 +15,8 @@ import java.util.Date;
  */
 @Data
 @TableName("goods_category")
-public class GoodsCategory {
+public class GoodsCategory implements Serializable {
+    private static final long serialVersionUID = 5254014488659406254L;
     /**
      * 商品分类ID
      */
@@ -34,7 +36,7 @@ public class GoodsCategory {
     /**
      * 分类图片ID,改空值,把字段修改成空
      */
-    @TableField(value = "image",updateStrategy = FieldStrategy.IGNORED)
+    @TableField(value = "image", updateStrategy = FieldStrategy.IGNORED)
     private String image;
     /**
      * 状态(1显示 0隐藏)

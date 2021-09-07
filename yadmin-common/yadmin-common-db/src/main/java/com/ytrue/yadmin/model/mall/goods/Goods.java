@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -16,7 +17,8 @@ import java.util.Date;
  */
 @Data
 @TableName("goods")
-public class Goods {
+public class Goods implements Serializable {
+    private static final long serialVersionUID = -8683232630198296482L;
     /**
      * 商品ID
      */

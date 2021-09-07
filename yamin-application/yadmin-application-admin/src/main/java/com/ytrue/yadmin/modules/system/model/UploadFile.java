@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 
@@ -21,7 +22,8 @@ import java.time.LocalDateTime;
 @Data
 @TableName("upload_file")
 @ApiModel(value = "文件库记录")
-public class UploadFile {
+public class UploadFile implements Serializable {
+    private static final long serialVersionUID = -1977241509435137545L;
     /**
      * 文件ID
      */

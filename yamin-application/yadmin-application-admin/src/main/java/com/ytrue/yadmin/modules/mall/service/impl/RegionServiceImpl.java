@@ -45,7 +45,7 @@ public class RegionServiceImpl extends ServiceImpl<RegionDAO, Region> implements
                 treeList.put(province.getId(), province);
                 //删除
                 list.remove(i);
-                //// 因为位置发生改变，所以必须修改i的位置
+                //因为位置发生改变，所以必须修改i的位置
                 i--;
                 //第二次循环
                 HashMap<Integer, CityDTO> cityMap = new HashMap<>(16);

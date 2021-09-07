@@ -19,7 +19,7 @@ import java.io.Serializable;
 @ApiModel(value = "角色与菜单对应关系")
 public class SysRoleMenu implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -6540582735752440397L;
 
 	@TableId
 	@ApiModelProperty(value = "主键")

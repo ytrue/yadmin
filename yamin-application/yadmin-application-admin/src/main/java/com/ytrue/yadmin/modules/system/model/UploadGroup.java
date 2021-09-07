@@ -10,6 +10,7 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -20,7 +21,8 @@ import java.time.LocalDateTime;
 @Data
 @TableName("upload_group")
 @ApiModel(value = "文件库分组记录")
-public class UploadGroup {
+public class UploadGroup  implements Serializable {
+    private static final long serialVersionUID = 6914215265817006956L;
     /**
      * 分组ID
      */

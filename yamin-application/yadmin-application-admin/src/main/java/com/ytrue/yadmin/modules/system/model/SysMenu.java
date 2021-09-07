@@ -20,8 +20,8 @@ import java.io.Serializable;
 @TableName("sys_menu")
 @ApiModel(value = "菜单")
 public class SysMenu implements Serializable {
-    private static final long serialVersionUID = 1L;
 
+    private static final long serialVersionUID = 1616676968007770238L;
     /**
      * 菜单ID
      */

@@ -19,7 +19,7 @@ import java.io.Serializable;
 @ApiModel(value = "用户与角色对应关系")
 public class SysUserRole implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -2914947113641513218L;
 
     @TableId
     @ApiModelProperty(value = "主键",required = true)

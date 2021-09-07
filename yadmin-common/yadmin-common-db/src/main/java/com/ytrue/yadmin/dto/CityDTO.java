@@ -16,6 +16,8 @@ import java.util.Map;
 @EqualsAndHashCode(callSuper = true)
 public class CityDTO extends Region {
 
+    private static final long serialVersionUID = -7779406077284876994L;
+
     @TableField(exist = false)
     private Map<Integer, Region> region;
 

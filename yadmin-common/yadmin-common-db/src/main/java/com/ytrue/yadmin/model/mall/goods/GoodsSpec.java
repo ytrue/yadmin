@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -14,7 +15,8 @@ import java.util.Date;
  */
 @Data
 @TableName("goods_spec")
-public class GoodsSpec {
+public class GoodsSpec implements Serializable {
+    private static final long serialVersionUID = 6182920975164060346L;
     /**
      * 规格组ID
      */

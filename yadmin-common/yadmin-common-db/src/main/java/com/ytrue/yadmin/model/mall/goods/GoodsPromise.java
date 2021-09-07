@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -17,7 +18,8 @@ import java.util.Date;
  */
 @Data
 @TableName("goods_service")
-public class GoodsPromise {
+public class GoodsPromise implements Serializable {
+    private static final long serialVersionUID = 4423496623568406504L;
     /**
      * 商品服务ID
      */
