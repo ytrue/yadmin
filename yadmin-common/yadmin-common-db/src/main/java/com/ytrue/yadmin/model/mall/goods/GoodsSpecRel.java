@@ -13,7 +13,7 @@ import java.io.Serializable;
  * @description 商品与规格值关系记录表
  */
 @Data
-@TableName("goods_spec_rel")
+@TableName("mall_goods_spec_rel")
 public class GoodsSpecRel implements Serializable {
     private static final long serialVersionUID = -805479633775154332L;
     /**

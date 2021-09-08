@@ -8,6 +8,7 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -16,7 +17,7 @@ import java.util.Date;
  * @description 商品记录表
  */
 @Data
-@TableName("goods")
+@TableName("mall_goods")
 public class Goods implements Serializable {
     private static final long serialVersionUID = -8683232630198296482L;
     /**
@@ -115,10 +116,10 @@ public class Goods implements Serializable {
      * 创建时间
      */
     @TableField("create_time")
-    private Date createTime;
+    private LocalDateTime createTime;
     /**
      * 更新时间
      */
     @TableField("update_time")
-    private Date updateTime;
+    private LocalDateTime updateTime;
 }

@@ -28,14 +28,14 @@ public class Setting implements Serializable {
     private String key;
 
     /**
-     * 设置项描述
+     * 设置内容（json格式）
      */
     @TableField("`values`")
-    @ApiModelProperty(value = "设置项描述", required = true)
+    @ApiModelProperty(value = "设置内容（json格式）", required = true)
     private String values;
 
     /**
-     * 设置内容（json格式）
+     * 设置项描述
      */
     @TableField("`describe`")
     @ApiModelProperty(value = "设置内容（json格式")

@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 
 @ApiModel(value = "操作日志")
 @Data
-@TableName("optlogdto")
+@TableName("sys_log")
 public class SysLog implements Serializable {
     private static final long serialVersionUID = 6701724385116244971L;
     /**

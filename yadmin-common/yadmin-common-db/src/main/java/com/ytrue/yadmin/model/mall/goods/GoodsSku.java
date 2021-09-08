@@ -15,7 +15,7 @@ import java.util.Date;
  * @description 商品规格表
  */
 @Data
-@TableName("goods_sku")
+@TableName("mall_goods_sku")
 public class GoodsSku implements Serializable {
     private static final long serialVersionUID = -470323858960001824L;
     /**

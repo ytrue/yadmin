@@ -14,7 +14,7 @@ import java.util.Date;
  * @description 商品规格值记录表
  */
 @Data
-@TableName("goods_spec_value")
+@TableName("mall_goods_spec_value")
 public class GoodsSpecValue  implements Serializable {
     private static final long serialVersionUID = 764414731500335320L;
     /**

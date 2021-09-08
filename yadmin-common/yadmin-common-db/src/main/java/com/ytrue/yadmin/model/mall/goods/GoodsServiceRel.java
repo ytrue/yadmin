@@ -14,7 +14,7 @@ import java.util.Date;
  * @description 商品与服务承诺关系记录表
  */
 @Data
-@TableName("goods_service_rel")
+@TableName("mall_goods_service_rel")
 public class GoodsServiceRel implements Serializable {
     private static final long serialVersionUID = -8732602803915245167L;
     /**

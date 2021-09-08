@@ -13,11 +13,11 @@ import java.io.Serializable;
  * @description 省市区数据表
  */
 @Data
-@TableName("region")
+@TableName("mall_region")
 public class Region implements Serializable {
 
     private static final long serialVersionUID = 6305538045600134630L;
-    
+
     /**
      * 区划信息ID
      */

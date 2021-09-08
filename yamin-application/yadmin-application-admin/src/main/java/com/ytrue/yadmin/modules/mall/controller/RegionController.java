@@ -6,7 +6,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,7 +31,7 @@ public class RegionController {
      *
      * @return
      */
-    @PostMapping("tree")
+    @GetMapping("tree")
     @Cacheable(value = "treeList")
     @ApiOperation(value = "查询所有,返回tree格式")
     public HashMap<Integer, ProvinceDTO> tree() {

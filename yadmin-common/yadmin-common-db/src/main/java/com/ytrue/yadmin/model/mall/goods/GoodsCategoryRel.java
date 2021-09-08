@@ -14,7 +14,7 @@ import java.util.Date;
  * @description 商品与分类关系记录表
  */
 @Data
-@TableName("goods_category_rel")
+@TableName("mall_goods_category_rel")
 public class GoodsCategoryRel implements Serializable {
     private static final long serialVersionUID = 1678818822765036176L;
     /**
