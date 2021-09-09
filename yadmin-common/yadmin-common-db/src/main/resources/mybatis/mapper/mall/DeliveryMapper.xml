@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ytrue.yadmin.dao.mall.setting.DeliveryDAO">
+    <!--DeliveryVO-->
+    <resultMap id="deliveryVO" type="com.ytrue.yadmin.vo.DeliveryVO">
+        <id column="d_delivery_id" property="deliveryId"/>
+        <result column="name" property="name"/>
+        <result column="method" property="method"/>
+        <result column="sort" property="sort"/>
+        <collection
+                property="rules"
+                javaType="ArrayList"
+                column="dr_delivery_id"
+                ofType="com.ytrue.yadmin.model.mall.setting.DeliveryRule">
+            <id column="rule_id" property="ruleId"/>
+            <result column="region" property="region"/>
+            <result column="region_text" property="regionText"/>
+            <result column="first" property="first"/>
+            <result column="first_fee" property="firstFee"/>
+            <result column="additional" property="additional"/>
+            <result column="additional_fee" property="additionalFee"/>
+            <result column="create_time" property="createTime"/>
+        </collection>
+    </resultMap>
+
+    <!--根据deliveryId 获得  Delivery 和 DeliveryRule 一对多的数据-->
+    <select id="getDeliveryDetailsById" resultMap="deliveryVO" parameterType="Long">
+        SELECT d.delivery_id  as d_delivery_id,
+               d.`name`,
+               d.method,
+               d.sort,
+               d.is_delete,
+               d.create_time,
+               d.update_time,
+               dr.rule_id,
+               dr.region,
+               dr.delivery_id as dr_delivery_id,
+               dr.region_text,
+               dr.`first`,
+               dr.first_fee,
+               dr.additional,
+               dr.additional_fee,
+               dr.create_time
+        FROM mall_delivery AS d
+                     INNER JOIN mall_delivery_rule AS dr ON d.delivery_id = dr.delivery_id
+        WHERE d.delivery_id = #{deliveryId}
+    </select>
+</mapper>

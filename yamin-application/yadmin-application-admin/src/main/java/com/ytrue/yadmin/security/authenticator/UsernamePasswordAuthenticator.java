@@ -1,6 +1,5 @@
 package com.ytrue.yadmin.security.authenticator;
 
-import cn.hutool.core.lang.Assert;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.ytrue.yadmin.modules.system.dao.SysUserDao;

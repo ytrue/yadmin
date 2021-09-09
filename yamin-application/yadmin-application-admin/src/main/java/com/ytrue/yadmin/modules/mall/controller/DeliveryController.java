@@ -1,6 +1,8 @@
 package com.ytrue.yadmin.modules.mall.controller;
 
+import cn.hutool.core.lang.Assert;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.ytrue.yadmin.enums.StrPool;
 import com.ytrue.yadmin.log.annotation.SysLog;
 import com.ytrue.yadmin.model.mall.setting.Delivery;
 import com.ytrue.yadmin.modules.mall.service.DeliveryService;
@@ -27,6 +29,7 @@ public class DeliveryController {
 
     private final DeliveryService deliveryService;
 
+
     @PostMapping("page")
     @ApiOperation("分页查询")
     public IPage<Delivery> page(@RequestBody SearchModel<Delivery> searchModel) {
@@ -47,6 +50,14 @@ public class DeliveryController {
         deliveryService.saveDelivery(deliveryVO);
     }
 
+
+    @GetMapping("{deliveryId}/info")
+    @ApiOperation("配送模板信息")
+    public DeliveryVO info(@PathVariable("deliveryId") Long deliveryId) {
+        DeliveryVO deliveryVO = deliveryService.getDeliveryDetailsById(deliveryId);
+        Assert.notNull(deliveryVO, StrPool.DATA_DOES_NOT_EXIST.getMessage());
+        return deliveryVO;
+    }
 
     @SysLog
     @PutMapping

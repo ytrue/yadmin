@@ -28,4 +28,11 @@ public interface DeliveryService extends IService<Delivery> {
     void updateDelivery(DeliveryVO deliveryVO);
 
 
+    /**
+     *根据deliveryId 获得  Delivery 和 DeliveryRule 一对多的数据
+     *
+     * @param deliveryId
+     * @return
+     */
+    DeliveryVO getDeliveryDetailsById(Long deliveryId);
 }

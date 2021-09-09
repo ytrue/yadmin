@@ -1,9 +1,7 @@
 package com.ytrue.yadmin.vo;
 
-import com.ytrue.yadmin.model.mall.setting.Delivery;
 import com.ytrue.yadmin.model.mall.setting.DeliveryRule;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 import java.util.List;
 
@@ -14,9 +12,25 @@ import java.util.List;
  */
 
 @Data
-@EqualsAndHashCode(callSuper = true)
-public class DeliveryVO extends Delivery {
+public class DeliveryVO {
     private static final long serialVersionUID = 864792229608151497L;
+
+    /**
+     * 模板ID
+     */
+    private Integer deliveryId;
+    /**
+     * 模板名称
+     */
+    private String name;
+    /**
+     * 计费方式(10按件数 20按重量)
+     */
+    private Integer method;
+    /**
+     * 排序方式(数字越小越靠前)
+     */
+    private Integer sort;
 
     /**
      * 规则集合
