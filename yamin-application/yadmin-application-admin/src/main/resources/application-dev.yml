@@ -75,6 +75,11 @@ spring:
   #spring-boot-start-cache 配置
   cache:
     type: redis
+    #redis:
+      #time-to-live: 3600000  #毫秒，在redis中存在的时间
+      #key-prefix: yadminCache_  #前缀 若配置则会使用他为前缀，若不配置则会使用我们自己命名的作为前缀
+      #use-key-prefix: true  #若为true则会使用前缀，若为false则不会使用前缀
+      #cache-null-values: true  #为true则允许存空值
 
 #mybatis plus配置
 mybatis-plus:

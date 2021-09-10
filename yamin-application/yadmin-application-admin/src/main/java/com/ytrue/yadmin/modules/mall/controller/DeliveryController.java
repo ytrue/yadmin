@@ -54,7 +54,7 @@ public class DeliveryController {
     @GetMapping("{deliveryId}/info")
     @ApiOperation("配送模板信息")
     public DeliveryVO info(@PathVariable("deliveryId") Long deliveryId) {
-        DeliveryVO deliveryVO = deliveryService.getDeliveryDetailsById(deliveryId);
+        DeliveryVO deliveryVO = deliveryService .getDeliveryDetailsById(deliveryId);
         Assert.notNull(deliveryVO, StrPool.DATA_DOES_NOT_EXIST.getMessage());
         return deliveryVO;
     }

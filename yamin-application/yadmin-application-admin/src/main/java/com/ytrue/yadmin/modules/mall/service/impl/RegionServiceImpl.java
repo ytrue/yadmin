@@ -9,6 +9,7 @@ import com.ytrue.yadmin.mapstruct.RegionMapper;
 import com.ytrue.yadmin.model.mall.setting.Region;
 import com.ytrue.yadmin.modules.mall.service.RegionService;
 import lombok.AllArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,6 +31,7 @@ public class RegionServiceImpl extends ServiceImpl<RegionDAO, Region> implements
     private final ProvinceMapper provinceMapper;
 
     @Override
+    @Cacheable(value = "treeList")
     public HashMap<Integer, ProvinceDTO> treeList() {
         //获得list
         List<Region> regionList = list();

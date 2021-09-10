@@ -32,7 +32,6 @@ public class RegionController {
      * @return
      */
     @GetMapping("tree")
-    @Cacheable(value = "treeList")
     @ApiOperation(value = "查询所有,返回tree格式")
     public HashMap<Integer, ProvinceDTO> tree() {
         return regionService.treeList();
