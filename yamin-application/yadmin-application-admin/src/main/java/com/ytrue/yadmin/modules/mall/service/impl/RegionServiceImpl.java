@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author ytrue
@@ -32,7 +33,7 @@ public class RegionServiceImpl extends ServiceImpl<RegionDAO, Region> implements
 
     @Override
     @Cacheable(value = "treeList")
-    public HashMap<Integer, ProvinceDTO> treeList() {
+    public Map<Integer, ProvinceDTO> treeList() {
         //获得list
         List<Region> regionList = list();
         //转化一下

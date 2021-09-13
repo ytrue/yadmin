@@ -5,12 +5,11 @@ import com.ytrue.yadmin.modules.mall.service.RegionService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author ytrue
@@ -20,7 +19,7 @@ import java.util.HashMap;
 @Api(tags = "省市区")
 @RestController
 @AllArgsConstructor
-@RequestMapping("region")
+@RequestMapping("mall/region")
 public class RegionController {
 
     private final RegionService regionService;
@@ -33,7 +32,7 @@ public class RegionController {
      */
     @GetMapping("tree")
     @ApiOperation(value = "查询所有,返回tree格式")
-    public HashMap<Integer, ProvinceDTO> tree() {
+    public Map<Integer, ProvinceDTO> tree() {
         return regionService.treeList();
     }
 }

@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.ytrue.yadmin.dto.ProvinceDTO;
 import com.ytrue.yadmin.model.mall.setting.Region;
 
-import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -19,5 +19,5 @@ public interface RegionService extends IService<Region> {
      *
      * @return
      */
-    HashMap<Integer, ProvinceDTO> treeList();
+    Map<Integer, ProvinceDTO> treeList();
 }
