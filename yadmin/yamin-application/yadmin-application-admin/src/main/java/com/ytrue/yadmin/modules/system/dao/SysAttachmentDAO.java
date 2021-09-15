@@ -1,7 +1,7 @@
 package com.ytrue.yadmin.modules.system.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.ytrue.yadmin.modules.system.model.UploadFile;
+import com.ytrue.yadmin.modules.system.model.SysAttachment;
 
 
 /**
@@ -9,6 +9,6 @@ import com.ytrue.yadmin.modules.system.model.UploadFile;
  * @date 2021/6/13 17:59
  * @description 文件库记录表
  */
-public interface UploadFileDAO extends BaseMapper<UploadFile> {
+public interface SysAttachmentDAO extends BaseMapper<SysAttachment> {
 
 }

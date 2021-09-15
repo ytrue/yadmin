@@ -19,9 +19,9 @@ import java.time.LocalDateTime;
  * @description 文件库分组记录表
  */
 @Data
-@TableName("upload_group")
+@TableName("sys_attachment_group")
 @ApiModel(value = "文件库分组记录")
-public class UploadGroup  implements Serializable {
+public class SysAttachmentGroup implements Serializable {
     private static final long serialVersionUID = 6914215265817006956L;
     /**
      * 分组ID

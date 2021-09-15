@@ -1,7 +1,7 @@
 package com.ytrue.yadmin.modules.system.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.ytrue.yadmin.modules.system.model.UploadGroup;
+import com.ytrue.yadmin.modules.system.model.SysAttachmentGroup;
 
 
 /**
@@ -10,6 +10,6 @@ import com.ytrue.yadmin.modules.system.model.UploadGroup;
  * @description 文件库分组记录表
  */
 
-public interface UploadGroupDAO extends BaseMapper<UploadGroup> {
+public interface SysAttachmentGroupDAO extends BaseMapper<SysAttachmentGroup> {
 
 }

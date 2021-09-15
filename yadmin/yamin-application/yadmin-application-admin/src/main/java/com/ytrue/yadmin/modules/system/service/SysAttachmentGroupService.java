@@ -1,7 +1,7 @@
 package com.ytrue.yadmin.modules.system.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.ytrue.yadmin.modules.system.model.UploadGroup;
+import com.ytrue.yadmin.modules.system.model.SysAttachmentGroup;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import java.util.List;
  * @description 文件库分组记录表
  */
 
-public interface UploadGroupService extends IService<UploadGroup> {
+public interface SysAttachmentGroupService extends IService<SysAttachmentGroup> {
 
 
     /**

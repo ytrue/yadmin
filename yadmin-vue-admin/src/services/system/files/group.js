@@ -1,6 +1,6 @@
 import {request, METHOD} from '@/utils/request'
 
-const apiPath = '/files/group'
+const apiPath = '/sys/attachmentGroup'
 
 /**
  * 获得列表数据

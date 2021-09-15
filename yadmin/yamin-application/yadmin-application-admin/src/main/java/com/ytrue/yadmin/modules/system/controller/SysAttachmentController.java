@@ -3,8 +3,8 @@ package com.ytrue.yadmin.modules.system.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.ytrue.yadmin.log.annotation.SysLog;
-import com.ytrue.yadmin.modules.system.model.UploadFile;
-import com.ytrue.yadmin.modules.system.service.UploadFileService;
+import com.ytrue.yadmin.modules.system.model.SysAttachment;
+import com.ytrue.yadmin.modules.system.service.SysAttachmentService;
 import com.ytrue.yadmin.modules.system.service.dto.MoveGroupParamDTO;
 import com.ytrue.yadmin.search.SearchModel;
 import com.ytrue.yadmin.utils.R;
@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author ytrue
@@ -26,21 +25,21 @@ import java.util.concurrent.TimeUnit;
  * @description 文件库记录表
  */
 @RestController
-@RequestMapping("files/file")
+@RequestMapping("sys/attachment")
 @AllArgsConstructor
 @Api(tags = "文件管理")
-public class UploadFileController {
+public class SysAttachmentController {
 
-    private final UploadFileService uploadFileService;
+    private final SysAttachmentService sysAttachmentService;
 
 
     @PostMapping("page")
     @ApiOperation("分页查询数据")
     //@PreAuthorize("@pms.hasPermission('file:page')")
-    public R<IPage<UploadFile>> page(@RequestBody SearchModel<UploadFile> uploadFile) {
-        IPage<UploadFile> page = uploadFileService.page(
+    public R<IPage<SysAttachment>> page(@RequestBody SearchModel<SysAttachment> uploadFile) {
+        IPage<SysAttachment> page = sysAttachmentService.page(
                 uploadFile.getPage(),
-                uploadFile.getQueryModel().lambda().orderByDesc(UploadFile::getFileId)
+                uploadFile.getQueryModel().lambda().orderByDesc(SysAttachment::getFileId)
         );
         return R.success(page);
     }
@@ -52,21 +51,21 @@ public class UploadFileController {
     @ApiOperation("上传文件")
     //@PreAuthorize("@pms.hasPermission('file:upload')")
     public void uploadFiles(@RequestParam("file") MultipartFile file) {
-        uploadFileService.uploadFile(file);
+        sysAttachmentService.uploadFile(file);
     }
 
 
     @ApiOperation("文件信息")
     @GetMapping("{fileId}/info")
-    public UploadFile info(@PathVariable("fileId") Long fileId) {
-        return uploadFileService.getById(fileId);
+    public SysAttachment info(@PathVariable("fileId") Long fileId) {
+        return sysAttachmentService.getById(fileId);
     }
 
     @SysLog
     @PutMapping
     @ApiOperation("修改文件")
-    public void update(@Validated @RequestBody UploadFile uploadFile) {
-        uploadFileService.updateById(uploadFile);
+    public void update(@Validated @RequestBody SysAttachment sysAttachment) {
+        sysAttachmentService.updateById(sysAttachment);
     }
 
     @SysLog
@@ -74,7 +73,7 @@ public class UploadFileController {
     @ApiOperation("移动文件组")
     //@PreAuthorize("@pms.hasPermission('file:move')")
     public void moveGroup(@RequestBody MoveGroupParamDTO paramDTO) {
-        uploadFileService.moveGroup(paramDTO);
+        sysAttachmentService.moveGroup(paramDTO);
     }
 
     @SysLog
@@ -85,6 +84,6 @@ public class UploadFileController {
             @ApiParam(required = true, name = "id集合")
             @RequestBody List<Long> fileIds
     ) {
-        uploadFileService.removeByIds(fileIds);
+        sysAttachmentService.removeByIds(fileIds);
     }
 }

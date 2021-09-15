@@ -20,9 +20,9 @@ import java.time.LocalDateTime;
  */
 
 @Data
-@TableName("upload_file")
+@TableName("sys_attachment")
 @ApiModel(value = "文件库记录")
-public class UploadFile implements Serializable {
+public class SysAttachment implements Serializable {
     private static final long serialVersionUID = -1977241509435137545L;
     /**
      * 文件ID

@@ -5,10 +5,9 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ytrue.yadmin.dao.SettingDao;
 import com.ytrue.yadmin.model.Setting;
-import com.ytrue.yadmin.modules.system.dao.UploadFileDAO;
-import com.ytrue.yadmin.modules.system.dao.UploadGroupDAO;
-import com.ytrue.yadmin.modules.system.model.UploadFile;
-import com.ytrue.yadmin.modules.system.service.UploadFileService;
+import com.ytrue.yadmin.modules.system.dao.SysAttachmentDAO;
+import com.ytrue.yadmin.modules.system.model.SysAttachment;
+import com.ytrue.yadmin.modules.system.service.SysAttachmentService;
 import com.ytrue.yadmin.modules.system.service.dto.MoveGroupParamDTO;
 import com.ytrue.yadmin.oss.dto.UploadSetting;
 import com.ytrue.yadmin.oss.utils.OssUtils;
@@ -30,7 +29,7 @@ import java.util.UUID;
 @Service
 @Transactional(rollbackFor = Exception.class)
 @AllArgsConstructor
-public class UploadFileServiceImpl extends ServiceImpl<UploadFileDAO, UploadFile> implements UploadFileService {
+public class SysAttachmentServiceImpl extends ServiceImpl<SysAttachmentDAO, SysAttachment> implements SysAttachmentService {
 
     private final OssUtils ossUtils;
 
@@ -51,17 +50,17 @@ public class UploadFileServiceImpl extends ServiceImpl<UploadFileDAO, UploadFile
         String uploadPath = ossUtils.upload(uploadSetting, file.getBytes(), fileName);
 
         //插入数据
-        UploadFile uploadFile = new UploadFile();
+        SysAttachment sysAttachment = new SysAttachment();
         //获得文件的名称
-        uploadFile.setFileName(file.getOriginalFilename());
+        sysAttachment.setFileName(file.getOriginalFilename());
         //文件的路径
-        uploadFile.setFilePath(uploadPath);
+        sysAttachment.setFilePath(uploadPath);
         //获得文件大小
-        uploadFile.setFileSize(FileUtils.getPrintSize(file.getSize()));
+        sysAttachment.setFileSize(FileUtils.getPrintSize(file.getSize()));
         //后缀名称
-        uploadFile.setFileExt(extName);
+        sysAttachment.setFileExt(extName);
         //插入数据
-        save(uploadFile);
+        save(sysAttachment);
     }
 
     @Override
@@ -69,11 +68,11 @@ public class UploadFileServiceImpl extends ServiceImpl<UploadFileDAO, UploadFile
         //获得组
         Integer groupId = paramDTO.getGroupId();
         //这是修改内容
-        UploadFile uploadFile = new UploadFile();
-        uploadFile.setGroupId(groupId);
+        SysAttachment sysAttachment = new SysAttachment();
+        sysAttachment.setGroupId(groupId);
         //循环修改
         paramDTO.getFileIds().forEach(fileId -> {
-            update(uploadFile, new QueryWrapper<UploadFile>().lambda().eq(UploadFile::getFileId, fileId));
+            update(sysAttachment, new QueryWrapper<SysAttachment>().lambda().eq(SysAttachment::getFileId, fileId));
         });
     }
 }

@@ -1,7 +1,7 @@
 package com.ytrue.yadmin.modules.system.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.ytrue.yadmin.modules.system.model.UploadFile;
+import com.ytrue.yadmin.modules.system.model.SysAttachment;
 import com.ytrue.yadmin.modules.system.service.dto.MoveGroupParamDTO;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
  * @description 文件库记录表
  */
 
-public interface UploadFileService extends IService<UploadFile> {
+public interface SysAttachmentService extends IService<SysAttachment> {
 
     /**
      * 上传文件
