@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!--开发环境  正式环境会添加elk，这里暂时先这样吧-->
+    <springProfile name="dev">
+        <!--自定义颜色配置-->
+        <conversionRule conversionWord="customColor"
+                        converterClass="com.ytrue.yadmin.config.LogBackColorFulConfig"/>
+        <!--控制台日志配置-->
+        <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+            <!-- encoder 可以指定字符集，对于中文输出有意义 -->
+            <encoder charset="UTF-8">
+                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %magenta([%thread]) %customColor(%-5level) %cyan(%logger{15}) - %msg%n</pattern>
+            </encoder>
+        </appender>
+
+        <!--全局日志等级-->
+        <root level="INFO">
+            <!--只配置控制台输出，文件输出暂不需要，后期会使用elk日志-->
+            <appender-ref ref="CONSOLE"/>
+        </root>
+        <!--自定义日志等级-->
+        <logger name="org.mybatis" level="DEBUG"/>
+        <logger name="com.ytrue.yadmin" level="DEBUG"/>
+        <logger name="org.apache.catalina.util.LifecycleBase" level="ERROR"/>
+        <logger name="org.apache.coyote.http11.Http11NioProtocol" level="WARN"/>
+        <logger name="org.apache.tomcat.util.net.NioSelectorPool" level="WARN"/>
+        <logger name="org.hibernate.validator.internal.util.Version" level="WARN"/>
+        <logger name="org.springframework.boot.actuate.endpoint.jmx" level="WARN"/>
+    </springProfile>
+
+</configuration>

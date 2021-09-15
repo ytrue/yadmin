@@ -1,0 +1,38 @@
+import Vue from 'vue'
+import App from './App.vue'
+import {initRouter} from './router'
+import './theme/index.less'
+import Antd from 'ant-design-vue'
+import Viser from 'viser-vue'
+import store from './store'
+import 'animate.css/source/animate.css'
+import Plugins from '@/plugins'
+import {initI18n} from '@/utils/i18n'
+import bootstrap from '@/bootstrap'
+import 'moment/locale/zh-cn'
+//加载全局样式
+import '@/assets/css/global.less'
+
+//基于vue,不依赖任何UI库的可拖拽弹窗组件---start--这个要废弃的
+import dragModalVue from "drag-modal-vue";
+import "drag-modal-vue/lib/main.css"
+
+Vue.use(dragModalVue);
+//基于vue,不依赖任何UI库的可拖拽弹窗组件---end
+
+const router = initRouter(store.state.setting.asyncRoutes)
+const i18n = initI18n('CN', 'US')
+
+Vue.use(Antd)
+Vue.config.productionTip = false
+Vue.use(Viser)
+Vue.use(Plugins)
+
+bootstrap({router, store, i18n, message: Vue.prototype.$message})
+
+new Vue({
+    router,
+    store,
+    i18n,
+    render: h => h(App),
+}).$mount('#app')

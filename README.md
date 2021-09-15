@@ -1,18 +1,21 @@
 # 1.简介
 此项目开发中,目前在添加商品模块，基本的后台功能已完成
-，如需使用基本后台，可删除商品模块相关的代码（yadmin-common-db和yadmin-application-admin）
 
 yadmin 基于springboot 开发后台
 
-[后台基于 Ant Design Vue  实现 ](https://github.com/ytrue/yadmin-web)
+vue后台基于ant design vue开发
 
 # 2. 目录结构
 
 ```
-yadmin
+yadmin-vue-chat                              # vue-聊天页面-暂未开发
+yadmin-vue-kefu                              # vue-客服工作-暂未开发
+yadmin-vue-admin                             # vue-总后台  -暂未开发
+
+yadmin       			                     # java后台					
 ├── yadmin-application
 │   └── yadmin-application-admin             # 后台应用
-│   └── yadmin-application-api               # api应用
+│   └── yadmin-application-api               # api应用,主要是商城和客服api
 │   └── yadmin-application-monitor           # spring boot admin 监控
 │
 ├── yadmin-common                            # 公共库
