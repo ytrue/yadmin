@@ -1,6 +1,6 @@
 import {request, METHOD} from '@/utils/request'
 
-const apiPath = '/files/setting'
+const apiPath = '/sys/attachmentSetting'
 
 /**
  * 获得信息

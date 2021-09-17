@@ -10,6 +10,16 @@ export async function page(data) {
     return request(`${apiPath}/page`, METHOD.POST, data)
 }
 
+
+/**
+ * 配送模板全部列表
+ * @returns {*}
+ */
+export function list() {
+    return request(`${apiPath}/list`, METHOD.GET)
+}
+
+
 /**
  * 新增或者編輯
  * @param params

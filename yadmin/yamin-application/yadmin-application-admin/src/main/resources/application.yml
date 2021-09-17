@@ -20,16 +20,28 @@ ytrue:
     client-secret:
     jwt:
       signing-key: 432432hdfgdhg@676@&*&*(&*)(*)$3543ktjn45j6h546%$^%$hgfhmf
+  #文档
   document:
     enabled: true
     basic:
       enable: true
       username: yang
       password: yang
-    title: yadmin后台文档
-    description: yadmin后台在线文档
-    version: 1.0
+#    title: yadmin后台文档
+#    description: yadmin后台在线文档
+#    version: 1.0
     production: false
+    docket:
+      system:
+        title: 系统模块
+        base-package: com.ytrue.yadmin.modules.system
+      mall:
+        title: 商城模块
+        base-package: com.ytrue.yadmin.modules.mall
+
+
+
+
   unified:
     dispose:
       exception:

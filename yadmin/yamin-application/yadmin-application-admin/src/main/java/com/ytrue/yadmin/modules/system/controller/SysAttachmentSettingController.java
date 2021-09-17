@@ -15,15 +15,15 @@ import org.springframework.web.bind.annotation.*;
  * @description UploadSettingController
  */
 @RestController
-@RequestMapping("files/setting")
+@RequestMapping("sys/attachmentSetting")
 @Api(tags = "上传设置")
-public class UploadSettingController {
+public class SysAttachmentSettingController {
 
     private final static String STORAGE = "storage";
 
     private final SettingDao settingDao;
 
-    public UploadSettingController(SettingDao settingDao) {
+    public SysAttachmentSettingController(SettingDao settingDao) {
         this.settingDao = settingDao;
     }
 
