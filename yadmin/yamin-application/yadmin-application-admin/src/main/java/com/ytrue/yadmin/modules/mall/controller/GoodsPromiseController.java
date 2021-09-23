@@ -4,16 +4,19 @@ import cn.hutool.core.lang.Assert;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.ytrue.yadmin.enums.StrPool;
 import com.ytrue.yadmin.log.annotation.SysLog;
+import com.ytrue.yadmin.model.mall.goods.GoodsCategory;
 import com.ytrue.yadmin.model.mall.goods.GoodsPromise;
 import com.ytrue.yadmin.modules.mall.service.GoodsPromiseService;
 import com.ytrue.yadmin.search.SearchModel;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author ytrue
@@ -39,6 +42,14 @@ public class GoodsPromiseController {
                                 .orderByDesc(GoodsPromise::getSort)
                                 .orderByDesc(GoodsPromise::getServiceId)
                 );
+    }
+
+
+    @GetMapping("list")
+    @ApiOperation("商品承诺列表")
+    @SneakyThrows
+    public List<GoodsPromise> list() {
+        return goodsPromiseService.list();
     }
 
 

@@ -11,6 +11,14 @@ export async function page(data) {
     return request(`${apiPath}/page`, METHOD.POST, data)
 }
 
+/**
+ * 获得列表数据
+ * @returns {Promise<*>}
+ */
+export async function list(data = {}) {
+    return request(`${apiPath}/list`, METHOD.GET, data)
+}
+
 
 /**
  * 新增或者編輯
@@ -18,7 +26,7 @@ export async function page(data) {
  * @returns {*}
  */
 export function saveAndUpdate(params) {
-    let method = params.roleId ? METHOD.PUT : METHOD.POST
+    let method = params.serviceId ? METHOD.PUT : METHOD.POST
     return request(apiPath, method, params)
 }
 

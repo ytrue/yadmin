@@ -4,7 +4,7 @@ import Cookie from 'js-cookie'
 // 跨域认证信息 header 名
 const xsrfHeaderName = 'Authorization'
 
-axios.defaults.timeout = 5000
+axios.defaults.timeout = 30000
 axios.defaults.withCredentials = true
 axios.defaults.xsrfHeaderName = xsrfHeaderName
 axios.defaults.xsrfCookieName = xsrfHeaderName
