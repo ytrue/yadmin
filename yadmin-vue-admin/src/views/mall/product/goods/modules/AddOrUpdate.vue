@@ -5,6 +5,7 @@
       :visible="visible"
       :confirmLoading="confirmLoading"
       :maskClosable="false"
+      @ok="handleSubmit"
       @cancel="handleCancel"
       :bodyStyle="bodyStyle"
   >
@@ -24,7 +25,7 @@
             <a-form-item label="商品名称" :labelCol="labelCol" :wrapperCol="wrapperCol">
               <a-input
                   placeholder="请输入商品名称"
-                  v-decorator="['goods_name', {rules: [{required: true, min: 2, message: '请输入至少2个字符'}]}]"
+                  v-decorator="['goodsName', {rules: [{required: true, min: 2, message: '请输入至少2个字符'}]}]"
               />
             </a-form-item>
 
@@ -67,13 +68,15 @@
                 extra="建议尺寸：750*750像素, 最多上传10张, 可拖拽图片调整顺序"
             >
               <SelectImage
+                  multiple
+                  :maxNum="10"
                   :initData="goodsImages"
                   v-decorator="['goodsImages',{rules: [{required: true, message: '请至少上传1张商品轮播图'}]}]"
               />
             </a-form-item>
 
             <a-form-item label="商品编码" :labelCol="labelCol" :wrapperCol="wrapperCol">
-              <a-input placeholder="请输入商品编码" v-decorator="['goods_no']"/>
+              <a-input placeholder="请输入商品编码" v-decorator="['goodsNo']"/>
             </a-form-item>
 
             <a-form-item label="配送模板" :labelCol="labelCol" :wrapperCol="wrapperCol">
@@ -225,7 +228,7 @@
                 :wrapperCol="wrapperCol"
                 extra="用户端展示的销量 = 初始销量 + 实际销量"
             >
-              <a-input-number v-decorator="['sales_initial', {initialValue: 0}]"/>
+              <a-input-number v-decorator="['salesInitial', {initialValue: 0}]"/>
             </a-form-item>
           </div>
         </div>
@@ -314,6 +317,9 @@ export default {
      *数据初始化，等待多个ajax异步操作执行完了后执行的方法，async 配合 await
      */
     async init(id) {
+
+
+
       this.visible = true
       // 获取分类列表
       await this.getCategoryList()
@@ -325,6 +331,38 @@ export default {
         this.confirmLoading = false
       })
     },
+
+
+    /**
+     * 确认按钮
+     */
+    handleSubmit(e) {
+      // if (this.confirmLoading === true) return
+      e.preventDefault()
+      const {form: {validateFields}} = this
+      // 表单验证
+      validateFields((errors, values) => {
+        // 提交到后端api
+        if (errors === null) {
+
+
+          // 验证多规格
+          if (values.specType === 20) {
+            const MultiSpec = this.$refs.MultiSpec
+            if (!MultiSpec.verifyForm()) {
+              this.tabKey = 1
+              return false
+            }
+            // 记录多规格数据
+            values.specData = MultiSpec.getFromSpecData()
+          }
+          console.log(values)
+
+        }
+      })
+    },
+
+
     // 切换tab选项卡
     handleTabs(key) {
       this.tabKey = key

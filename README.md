@@ -10,7 +10,7 @@ vue后台基于ant design vue开发
 ```
 yadmin-vue-chat                              # vue-聊天页面-暂未开发
 yadmin-vue-kefu                              # vue-客服工作-暂未开发
-yadmin-vue-admin                             # vue-总后台  -暂未开发
+yadmin-vue-admin                             # vue-总后台  -进行中
 
 yadmin       			                     # java后台					
 ├── yadmin-application
@@ -22,12 +22,13 @@ yadmin       			                     # java后台
 │   └── yadmin-common-core                   # 基础库,tools都又依赖这个库
 │   └── yadmin-common-db                     # 存放dao和实体
 │  
-├── yadmin-tools                             # 工具库此模块下都是启动器
+├── yadmin-tools                             # 工具库此模块下大部分是启动器
+│   └── yadmin-tools-cache                   # spring cache配置和增强可自定义过期时间
 │   └── yadmin-tools-document                # knife4j文档整合             
 │   └── yadmin-tools-log                     # 操作日志库
-│   └── yadmin-tools-oss                     # aliyun,qcloud,qiniu,本地 上传（目前只有上传）
+│   └── yadmin-tools-oss                     # 支持 阿里云,腾讯云,七牛云,本地 的文件存储
 │   └── yadmin-tools-security                # oauth2 + jwt+ spring security 安全
-│   └── yamin-tools-xss                      # xss过滤
+│   └── yadmin-tools-xss                     # xss过滤
 │   └── yadmin-tools-unified-dispose         # 统一包装响应和异常返回
 ```
 

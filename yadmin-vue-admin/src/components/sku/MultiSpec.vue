@@ -49,7 +49,8 @@
           class="spec-group-add-btn"
           icon="plus"
           @click="handleAddSpecGroup"
-      >添加规格组</a-button>
+      >添加规格组
+      </a-button>
     </a-form-item>
     <a-form-item
         v-show="multiSpecData.skuList.length"
@@ -84,7 +85,7 @@
             :min="0"
             :precision="2"
         />
-        <a-input v-model="multiSpecData.skuBatchForm.goods_sku_no" placeholder="sku编码" />
+        <a-input v-model="multiSpecData.skuBatchForm.goods_sku_no" placeholder="sku编码"/>
         <a-button @click="handleSkuBatch">立即设置</a-button>
       </div>
       <!-- sku列表table -->
@@ -97,32 +98,34 @@
           bordered
       >
         <!-- 预览图 -->
+        <!--v-model="item.image_id"-->
         <template slot="image" slot-scope="text, item">
+          {{ item }}
           <SelectImage
               v-model="item.image_id"
-              :defaultList="(item.image_id > 0 && item.image) ? [item.image] : []"
+              :initData="(item.image_id !== 0 ) ? [{filePath: item.image_id}] : []"
               :width="50"
           />
         </template>
         <!-- 商品价格 -->
         <template slot="goods_price" slot-scope="text, item">
-          <a-input-number v-model="item.goods_price" size="small" :min="0.01" :precision="2" />
+          <a-input-number v-model="item.goods_price" size="small" :min="0.01" :precision="2"/>
         </template>
         <!-- 划线价格 -->
         <template slot="line_price" slot-scope="text, item">
-          <a-input-number v-model="item.line_price" size="small" :min="0" :precision="2" />
+          <a-input-number v-model="item.line_price" size="small" :min="0" :precision="2"/>
         </template>
         <!-- 库存数量 -->
         <template slot="stock_num" slot-scope="text, item">
-          <a-input-number v-model="item.stock_num" size="small" :min="0" :precision="0" />
+          <a-input-number v-model="item.stock_num" size="small" :min="0" :precision="0"/>
         </template>
         <!-- 商品重量 -->
         <template slot="goods_weight" slot-scope="text, item">
-          <a-input-number v-model="item.goods_weight" size="small" :min="0" :precision="2" />
+          <a-input-number v-model="item.goods_weight" size="small" :min="0" :precision="2"/>
         </template>
         <!-- sku编码 -->
         <template slot="goods_sku_no" slot-scope="text, item">
-          <a-input v-model="item.goods_sku_no" size="small" />
+          <a-input v-model="item.goods_sku_no" size="small"/>
         </template>
       </a-table>
     </a-form-item>
@@ -144,12 +147,12 @@ export default {
     // 默认的SKU列表
     defaultSkuList: PropTypes.array.def([])
   },
-  data () {
+  data() {
     return {
       // 标签布局属性
-      labelCol: { span: 3 },
+      labelCol: {span: 3},
       // 输入框布局属性
-      wrapperCol: { span: 21 },
+      wrapperCol: {span: 21},
       // 商品多规格模型
       MultiSpecModel: new MultiSpecModel(),
       // MultiSpecModel: Object,
@@ -162,44 +165,44 @@ export default {
     }
   },
   watch: {
-    defaultSpecList (val) {
+    defaultSpecList(val) {
       if (val.length && this.MultiSpecModel.isEmpty()) {
         this.getData()
       }
     }
   },
   // 初始化数据
-  created () {
+  created() {
     // 获取规格及SKU信息
     this.getData()
   },
   methods: {
 
     // 获取规格及SKU信息(展示)
-    getData () {
-      const { defaultSpecList, defaultSkuList } = this
+    getData() {
+      const {defaultSpecList, defaultSkuList} = this
       this.multiSpecData = this.MultiSpecModel.getData(defaultSpecList, defaultSkuList)
     },
 
     // 获取规格及SKU信息(表单提交)
-    getFromSpecData () {
+    getFromSpecData() {
       return this.MultiSpecModel.getFromSpecData()
     },
 
     // 添加规格组
-    handleAddSpecGroup () {
+    handleAddSpecGroup() {
       if (this.checkSkuMaxNum()) {
         this.MultiSpecModel.handleAddSpecGroup()
       }
     },
 
     // 删除规格组
-    handleDeleteSpecGroup (groupIndex) {
+    handleDeleteSpecGroup(groupIndex) {
       const app = this
       const modal = this.$confirm({
         title: '您确定要删除该规格组吗?',
         content: '删除后不可恢复',
-        onOk () {
+        onOk() {
           // 删除元素
           app.MultiSpecModel.handleDeleteSpecGroup(groupIndex)
           // 关闭对话框
@@ -209,19 +212,19 @@ export default {
     },
 
     // 新增规格值
-    handleAddSpecValue (groupIndex) {
+    handleAddSpecValue(groupIndex) {
       if (this.checkSkuMaxNum()) {
         this.MultiSpecModel.handleAddSpecValue(groupIndex)
       }
     },
 
     // 删除规格值
-    handleDeleteSpecValue (groupIndex, valueIndex) {
+    handleDeleteSpecValue(groupIndex, valueIndex) {
       const app = this
       const modal = this.$confirm({
         title: '您确定要删除该规格值吗?',
         content: '删除后不可恢复',
-        onOk () {
+        onOk() {
           // 删除元素
           app.MultiSpecModel.handleDeleteSpecValue(groupIndex, valueIndex)
           // 关闭对话框
@@ -231,19 +234,19 @@ export default {
     },
 
     // 规格组输入框change事件
-    onChangeSpecGroupIpt () {
+    onChangeSpecGroupIpt() {
       // 更新skuList
       this.MultiSpecModel.onUpdate(true)
     },
 
     // 规格值输入框change事件
-    onChangeSpecValueIpt (event, itm) {
+    onChangeSpecValueIpt(event, itm) {
       // 更新skuList
       this.MultiSpecModel.onUpdate(true)
     },
 
     // 验证最大sku数量
-    checkSkuMaxNum () {
+    checkSkuMaxNum() {
       const skuList = this.multiSpecData.skuList
       if (skuList.length >= 50) {
         this.$message.error(`生成的sku列表数量不能大于50个，当前数量：${skuList.length}个`, 2.5)
@@ -253,12 +256,12 @@ export default {
     },
 
     // 批量设置sku事件
-    handleSkuBatch () {
+    handleSkuBatch() {
       this.MultiSpecModel.handleSkuBatch()
     },
 
     // 验证多规格表单
-    verifyForm () {
+    verifyForm() {
       if (!this.MultiSpecModel.verifyForm()) {
         this.$message.error(this.MultiSpecModel.getError(), 2)
         return false
@@ -364,17 +367,20 @@ export default {
 .sku-batch {
   line-height: 40px;
   margin-bottom: 12px;
+
   .title {
     line-height: 28px;
     margin-right: 15px;
     font-size: 14px;
   }
-  /deep/.ant-input,
-  /deep/.ant-input-number {
+
+  /deep/ .ant-input,
+  /deep/ .ant-input-number {
     width: 120px;
     margin-right: 15px;
   }
-  /deep/.ant-input {
+
+  /deep/ .ant-input {
     width: 140px;
   }
 }
@@ -382,19 +388,22 @@ export default {
 // sku列表
 .sku-list {
   width: 895px;
-  /deep/.ant-table-thead > tr > th,
-  /deep/.ant-table-tbody > tr > td {
+
+  /deep/ .ant-table-thead > tr > th,
+  /deep/ .ant-table-tbody > tr > td {
     white-space: nowrap;
   }
-  /deep/.ant-table-tbody > tr > td {
+
+  /deep/ .ant-table-tbody > tr > td {
     padding: 12px 18px;
   }
 
-  /deep/.ant-input-sm,
-  /deep/.ant-input-number-sm {
+  /deep/ .ant-input-sm,
+  /deep/ .ant-input-number-sm {
     height: 28px;
   }
-  /deep/.ant-input-number-sm input {
+
+  /deep/ .ant-input-number-sm input {
     height: 26px;
   }
 }

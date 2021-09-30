@@ -11,6 +11,8 @@ import org.springframework.context.ApplicationEvent;
  */
 public class SysLogEvent extends ApplicationEvent {
 
+    private static final long serialVersionUID = 1614899216507220792L;
+
     public SysLogEvent(OptLogDTO source) {
         super(source);
     }

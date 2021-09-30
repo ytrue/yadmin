@@ -20,7 +20,7 @@
         </root>
         <!--自定义日志等级-->
         <logger name="org.mybatis" level="DEBUG"/>
-        <logger name="com.ytrue.yadmin" level="DEBUG"/>
+        <logger name="com.ytrue.yadmin" level="INFO"/>
         <logger name="org.apache.catalina.util.LifecycleBase" level="ERROR"/>
         <logger name="org.apache.coyote.http11.Http11NioProtocol" level="WARN"/>
         <logger name="org.apache.tomcat.util.net.NioSelectorPool" level="WARN"/>

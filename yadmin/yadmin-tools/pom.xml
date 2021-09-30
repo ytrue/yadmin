@@ -9,6 +9,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
+    <modules>
+        <module>yadmin-tools-cache</module>
+    </modules>
 
     <artifactId>yadmin-tools</artifactId>
 

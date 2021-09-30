@@ -20,7 +20,7 @@ import java.util.function.Consumer;
 @AllArgsConstructor
 public class SysLogListener {
 
-    private Consumer<OptLogDTO> consumer;
+    private final Consumer<OptLogDTO> consumer;
 
     @Async
     @Order

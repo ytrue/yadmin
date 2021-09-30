@@ -69,9 +69,7 @@ public class OptLogDTO {
      */
     private String params;
 
-    /**
-     * 返回值,项目使用了注解返回包装，拿不到值，所先注释
-     */
+    //返回值,项目使用了注解返回包装，拿不到值，所先注释
     //private String result;
 
     /**

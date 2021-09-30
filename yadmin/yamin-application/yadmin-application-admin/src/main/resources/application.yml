@@ -3,7 +3,7 @@ spring:
   profiles:
     active: dev,quartz
   main:
-    ##当遇到同样名字的时候，是否允许覆盖注
+    #允许Bean重复注入，后者覆盖前者
     allow-bean-definition-overriding: true
   resources:
     #这个要配置下，不然本地上传访问不到文件

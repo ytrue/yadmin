@@ -1,6 +1,7 @@
 package com.ytrue.yadmin.oss.properties;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
@@ -9,7 +10,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @description AliyunProperties
  */
 
+
 @Data
+@EqualsAndHashCode(callSuper = true)
 @ConfigurationProperties(prefix = "ytrue.oss.aliyun")
 public class AliyunProperties extends BaseProperties {
 

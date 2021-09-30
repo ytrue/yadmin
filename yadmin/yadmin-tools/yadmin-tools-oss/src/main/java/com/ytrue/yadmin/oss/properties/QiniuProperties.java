@@ -1,6 +1,7 @@
 package com.ytrue.yadmin.oss.properties;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
@@ -8,7 +9,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @date 2021/7/2 09:12
  * @description QiniuProperties
  */
+
 @Data
+@EqualsAndHashCode(callSuper = true)
 @ConfigurationProperties(prefix = "ytrue.oss.qiniu")
 public class QiniuProperties extends BaseProperties {
 
