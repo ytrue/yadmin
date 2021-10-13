@@ -38,10 +38,6 @@ ytrue:
       mall:
         title: 商城模块
         base-package: com.ytrue.yadmin.modules.mall
-
-
-
-
   unified:
     dispose:
       exception:

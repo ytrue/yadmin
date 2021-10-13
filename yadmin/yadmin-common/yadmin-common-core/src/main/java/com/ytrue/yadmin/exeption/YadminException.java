@@ -1,7 +1,5 @@
 package com.ytrue.yadmin.exeption;
 
-import com.ytrue.yadmin.enums.StrPool;
-
 /**
  * @author yangyi
  * @date 2021/3/15 13:05
@@ -9,6 +7,8 @@ import com.ytrue.yadmin.enums.StrPool;
  */
 public class YadminException extends RuntimeException {
 
+
+    private static final long serialVersionUID = -3287102249803473517L;
 
     public YadminException(String message) {
         super(message);

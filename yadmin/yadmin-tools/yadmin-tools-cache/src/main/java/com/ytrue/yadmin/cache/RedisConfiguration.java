@@ -11,7 +11,10 @@ import org.springframework.data.redis.cache.RedisCacheWriter;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
+import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+
+import java.util.Objects;
 
 /**
  * @author ytrue
@@ -71,14 +74,15 @@ public class RedisConfiguration extends CachingConfigurerSupport {
     @Bean
     public RedisCacheManager redisCacheManager(RedisTemplate redisTemplate) {
         // 配置序列化,转成json格式
-        RedisCacheWriter redisCacheWriter = RedisCacheWriter.nonLockingRedisCacheWriter(redisTemplate.getConnectionFactory());
+        // Objects.requireNonNull只是进行了一个简单的判断, 如果所要判断的元素为 null, 则返回空指针异常 NullPointerException, 否则直接返回对应的对象.
+        RedisCacheWriter redisCacheWriter = RedisCacheWriter.nonLockingRedisCacheWriter(Objects.requireNonNull(redisTemplate.getConnectionFactory()));
 
+        RedisSerializer<?> valueSerializer = redisTemplate.getValueSerializer();
         RedisCacheConfiguration redisCacheConfiguration = RedisCacheConfiguration.defaultCacheConfig()
                 .serializeValuesWith(
                         RedisSerializationContext
                                 .SerializationPair
-                                .fromSerializer(redisTemplate.getValueSerializer()));
-
+                                .fromSerializer(valueSerializer));
         return new EnhanceRedisCacheManager(redisCacheWriter, redisCacheConfiguration);
     }
 }

@@ -6,7 +6,7 @@ import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.ytrue.yadmin.enums.StrPool;
+import com.ytrue.yadmin.contains.StrPool;
 import com.ytrue.yadmin.exeption.YadminException;
 import com.ytrue.yadmin.modules.system.dao.SysUserDao;
 import com.ytrue.yadmin.modules.system.dao.SysUserRoleDao;
@@ -47,7 +47,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUser> impleme
         SysUser dbUser = getOne(new LambdaQueryWrapper<SysUser>()
                 .eq(SysUser::getUsername, username),false);
         if (dbUser != null) {
-            throw new YadminException(StrPool.THE_USER_ALREADY_EXISTS.getMessage());
+            throw new YadminException(StrPool.THE_USER_ALREADY_EXISTS);
         }
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -66,7 +66,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUser> impleme
         String password = user.getPassword();
         SysUser dbUserNameInfo = getOne(new QueryWrapper<SysUser>().eq("username", user.getUsername()),false);
         if (dbUserNameInfo != null && !Objects.equals(dbUserNameInfo.getUserId(), user.getUserId())) {
-            throw new YadminException(StrPool.THE_USER_ALREADY_EXISTS.getMessage());
+            throw new YadminException(StrPool.THE_USER_ALREADY_EXISTS);
         }
         if (StrUtil.isBlank(password)) {
             user.setPassword(null);

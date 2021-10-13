@@ -7,6 +7,9 @@ package com.ytrue.yadmin.exeption.code;
  */
 public enum ExceptionCode implements BaseExceptionCode {
 
+    /**
+     * 状态码
+     */
     SUCCESS(200, "成功"),
     EXCEPTION(500, "服务器内部错误"),
     ARGUMENT_NOT_VALID(900, "方法参数无效"),

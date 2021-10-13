@@ -4,7 +4,7 @@
     <springProfile name="dev">
         <!--自定义颜色配置-->
         <conversionRule conversionWord="customColor"
-                        converterClass="com.ytrue.yadmin.config.LogBackColorFulConfig"/>
+                        converterClass="com.ytrue.yadmin.chat.config.LogBackColorFulConfiguration"/>
         <!--控制台日志配置-->
         <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
             <!-- encoder 可以指定字符集，对于中文输出有意义 -->

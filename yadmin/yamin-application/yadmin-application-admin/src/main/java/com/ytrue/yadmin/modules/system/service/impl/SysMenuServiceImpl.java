@@ -10,8 +10,7 @@ import cn.hutool.core.lang.tree.TreeNodeConfig;
 import cn.hutool.core.lang.tree.TreeUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.ytrue.yadmin.enums.StrPool;
-import com.ytrue.yadmin.exeption.YadminException;
+import com.ytrue.yadmin.contains.StrPool;
 import com.ytrue.yadmin.modules.system.dao.SysMenuDao;
 import com.ytrue.yadmin.modules.system.dao.SysRoleMenuDao;
 import com.ytrue.yadmin.modules.system.model.SysMenu;
@@ -41,7 +40,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenu> impleme
     public void deleteMenuAndRoleMenu(Long menuId) {
         //判断是否有子菜单或按钮
         Integer count = sysMenuDao.selectCount(new QueryWrapper<SysMenu>().eq("parent_id", menuId));
-        Assert.isFalse(Convert.toBool(count), StrPool.SUBCLASS_EXISTS_AND_CANNOT_BE_DELETED.getMessage());
+        Assert.isFalse(Convert.toBool(count), StrPool.SUBCLASS_EXISTS_AND_CANNOT_BE_DELETED);
         //删除菜单
         this.removeById(menuId);
         //删除菜单与角色关联
