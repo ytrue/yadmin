@@ -7,7 +7,7 @@ import com.ytrue.yadmin.chat.handle.session.RegisterSessionHandle;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
@@ -25,7 +25,7 @@ import org.springframework.web.socket.handler.AbstractWebSocketHandler;
 public class WebSocketServer extends AbstractWebSocketHandler {
 
 
-    private final RedisTemplate<String, Object> redisTemplate;
+    private final StringRedisTemplate redisTemplate;
 
     private final RegisterSessionHandle registerSessionHandle;
 
@@ -63,7 +63,6 @@ public class WebSocketServer extends AbstractWebSocketHandler {
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) {
         //关闭
-        log.error("关闭");
         closeSessionHandle.handle(session);
     }
 

@@ -19,8 +19,10 @@ public class MessageSend {
     @SneakyThrows
     public static void appoint(WebSocketSession session, String message) {
         //判断session是否是关闭的，关闭的就不发送
-        if (session.isOpen()) {
-            session.sendMessage(new TextMessage(message));
+        if (session !=null){
+            if (session.isOpen()) {
+                session.sendMessage(new TextMessage(message));
+            }
         }
     }
 
