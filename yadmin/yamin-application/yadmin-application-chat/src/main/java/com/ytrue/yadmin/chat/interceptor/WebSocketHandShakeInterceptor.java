@@ -42,20 +42,18 @@ public class WebSocketHandShakeInterceptor implements HandshakeInterceptor {
             WebSocketHandler webSocketHandler,
             Map<String, Object> map
     ) {
+        log.info("123xxxxxxxxxxxxxxxxxxx");
         // 获取请求参数
         Map<String, List<String>> urlParameters = HttpUtil.decodeParams(serverHttpRequest.getURI().getQuery(), UTF8);
-
-        //token
-        String token = urlParameters.get("token").get(0);
-        if (StrUtil.isNotBlank(token)) {
-            //验证token是否正确
-
-            //判断聊天人和被聊天的关系是否存在
-
-            //判断是否已经在线
-            return true;
+        List<String> tokens = urlParameters.get("token");
+        if (tokens != null) {
+            if (StrUtil.isNotBlank(tokens.get(0))) {
+                map.put("userId", 1);
+                log.info("验证成功");
+                return true;
+            }
         }
-
+        log.info("验证不通过");
         return false;
     }
 

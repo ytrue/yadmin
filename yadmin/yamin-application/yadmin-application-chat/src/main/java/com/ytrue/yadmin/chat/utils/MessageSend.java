@@ -2,9 +2,8 @@ package com.ytrue.yadmin.chat.utils;
 
 
 import lombok.SneakyThrows;
-
-import javax.websocket.Session;
-import java.util.List;
+import org.springframework.web.socket.TextMessage;
+import org.springframework.web.socket.WebSocketSession;
 
 /**
  * @author ytrue
@@ -18,28 +17,11 @@ public class MessageSend {
      * 指定session发送消息
      */
     @SneakyThrows
-    public static void appoint(Session session, String message) {
-        session.getBasicRemote().sendText(message);
-    }
-
-    /**
-     * 指定id发送消息
-     *
-     * @param userId
-     * @param message
-     */
-    public static void appoint(Long userId, String message) {
-
-    }
-
-    /**
-     * 批量id 发送消息
-     *
-     * @param userIds
-     * @param message
-     */
-    public static void appoint(List<Long> userIds, String message) {
-
+    public static void appoint(WebSocketSession session, String message) {
+        //判断session是否是关闭的，关闭的就不发送
+        if (session.isOpen()) {
+            session.sendMessage(new TextMessage(message));
+        }
     }
 
 

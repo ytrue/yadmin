@@ -14,11 +14,11 @@
 
     <dependencies>
         <!--spring boot admin client -->
-<!--        <dependency>-->
-<!--            <groupId>de.codecentric</groupId>-->
-<!--            <artifactId>spring-boot-admin-starter-client</artifactId>-->
-<!--            <version>2.3.1</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>de.codecentric</groupId>-->
+        <!--            <artifactId>spring-boot-admin-starter-client</artifactId>-->
+        <!--            <version>2.3.1</version>-->
+        <!--        </dependency>-->
 
 
         <!--websocket-->
@@ -31,6 +31,18 @@
             <groupId>com.ytrue</groupId>
             <artifactId>yadmin-tools-cache</artifactId>
             <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.ytrue</groupId>
+            <artifactId>yadmin-common-core</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.cloud</groupId>
+                    <artifactId>spring-cloud-starter-security</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>

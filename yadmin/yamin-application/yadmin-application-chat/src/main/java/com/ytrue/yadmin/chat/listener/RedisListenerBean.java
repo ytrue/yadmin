@@ -31,7 +31,7 @@ public class RedisListenerBean {
     public RedisMessageListenerContainer container(RedisConnectionFactory connectionFactory, MessageListenerAdapter listenerAdapter) {
         RedisMessageListenerContainer container = new RedisMessageListenerContainer();
         container.setConnectionFactory(connectionFactory);
-        container.addMessageListener(listenerAdapter, new PatternTopic(RedisKey.CHAT_SESSION_SUBJECT.name()));
+        container.addMessageListener(listenerAdapter, new PatternTopic(RedisKey.CHAT_SESSION_SUBJECT));
         log.info("订阅的Redis频道: chat-listener");
         return container;
     }

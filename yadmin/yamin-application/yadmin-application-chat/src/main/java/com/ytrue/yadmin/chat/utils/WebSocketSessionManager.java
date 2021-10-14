@@ -17,7 +17,7 @@ public class WebSocketSessionManager {
     /**
      * websocket 会话池
      */
-    private static ConcurrentHashMap<String, WebSocketSession> webSocketSessionMap = new ConcurrentHashMap<>();
+    private static ConcurrentHashMap<Long, WebSocketSession> webSocketSessionMap = new ConcurrentHashMap<>();
 
     /**
      * 添加 websocket 会话
@@ -25,7 +25,7 @@ public class WebSocketSessionManager {
      * @param key
      * @param session
      */
-    public static void add(String key, WebSocketSession session) {
+    public static void createOnlineSession(Long key, WebSocketSession session) {
         webSocketSessionMap.put(key, session);
     }
 
@@ -35,7 +35,7 @@ public class WebSocketSessionManager {
      * @param key
      * @return
      */
-    public static WebSocketSession remove(String key) {
+    public static WebSocketSession removeSession(Long key) {
         return webSocketSessionMap.remove(key);
     }
 
@@ -44,8 +44,8 @@ public class WebSocketSessionManager {
      *
      * @param key
      */
-    public static void removeAndClose(String key) {
-        WebSocketSession session = remove(key);
+    public static void removeSessionAndClose(Long key) {
+        WebSocketSession session = removeSession(key);
         if (session != null) {
             try {
                 session.close();
@@ -61,7 +61,7 @@ public class WebSocketSessionManager {
      * @param key
      * @return
      */
-    public static WebSocketSession get(String key) {
+    public static WebSocketSession getSessionByUserId(Long key) {
         return webSocketSessionMap.get(key);
     }
 
@@ -70,16 +70,8 @@ public class WebSocketSessionManager {
      *
      * @return
      */
-    public static ConcurrentHashMap<String, WebSocketSession> all() {
+    public static ConcurrentHashMap<Long, WebSocketSession> getOnlineSession() {
         return webSocketSessionMap;
     }
 
-    /**
-     * 获取会话数量
-     *
-     * @return
-     */
-    public static int count() {
-        return webSocketSessionMap.size();
-    }
 }
