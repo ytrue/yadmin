@@ -1,6 +1,4 @@
 # 1.简介
-此项目开发中,目前在添加商品模块，基本的后台功能已完成
-
 yadmin 基于springboot 开发后台
 
 vue后台基于ant design vue开发
@@ -8,14 +6,14 @@ vue后台基于ant design vue开发
 # 2. 目录结构
 
 ```
-yadmin-vue-chat                              # vue-聊天页面-暂未开发
-yadmin-vue-kefu                              # vue-客服工作-暂未开发
-yadmin-vue-admin                             # vue-总后台  -进行中
+yadmin-vue-chat                              # vue聊天前端去 
+yadmin-vue-admin                             # vue-总后台
 
 yadmin       			                     # java后台					
 ├── yadmin-application
 │   └── yadmin-application-admin             # 后台应用
-│   └── yadmin-application-api               # api应用,主要是商城和客服api
+│   └── yadmin-application-chat              # chat应用
+│   └── yadmin-application-api               # api应用
 │   └── yadmin-application-monitor           # spring boot admin 监控
 │
 ├── yadmin-common                            # 公共库
