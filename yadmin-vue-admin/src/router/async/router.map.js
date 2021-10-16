@@ -112,55 +112,6 @@ const routerMap = {
             },
     //系统--------------------------------------------------end
 
-    //商城--------------------------------------------------start
-    mall: {
-        path: 'mall',
-        name: '商城',
-        component: view.blank
-    },
-        mall_product: {
-            path: 'product',
-            name: '商品管理',
-            component: view.blank,
-        },
-            mall_product_goods: {
-                path: 'goods',
-                name: '商品列表',
-                component: () => import('@/views/mall/product/goods')
-            },
-            mall_product_category: {
-                path: 'category',
-                name: '商品分类',
-                component: () => import('@/views/mall/product/category')
-            },
-            mall_product_promise: {
-                path: 'promise',
-                name: '商品承诺',
-                component: () => import('@/views/mall/product/promise')
-            },
-            mall_product_comment: {
-                path: 'comment',
-                name: '商品评论',
-                component: () => import('@/views/mall/product/comment')
-            },
-
-        mall_delivery: {
-            path: 'setting',
-            name: '配送设置',
-            component: view.blank,
-        },
-            mall_delivery_template: {
-                path: 'delivery',
-                name: '配送模板',
-                component: () => import('@/views/mall/delivery/template')
-            },
-            mall_delivery_express: {
-                path: 'delivery',
-                name: '物流公司',
-                component: () => import('@/views/mall/delivery/express')
-            },
-    //商城--------------------------------------------------end
-
 
     form: {
         name: '表单页',

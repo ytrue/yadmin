@@ -21,4 +21,12 @@ public interface ChatContactService extends IService<ChatContact> {
      * @return
      */
     List<ContactVO> getMyContactById(Integer contactId);
+
+    /**
+     * 获得当前用户侧栏聊天消息列表，限制是前150条
+     *
+     * @param contactId
+     * @return
+     */
+    List<ContactVO> getMySidebarMessageById(Integer contactId);
 }

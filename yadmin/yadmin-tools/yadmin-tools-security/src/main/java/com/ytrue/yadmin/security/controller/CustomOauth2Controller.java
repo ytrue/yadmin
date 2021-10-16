@@ -1,6 +1,7 @@
 package com.ytrue.yadmin.security.controller;
 
 
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
@@ -18,13 +19,14 @@ import java.util.Map;
  * @date 2021/2/28 12:43
  * @description 自定义token返回格式
  */
+@Slf4j
 @RestController
 @RequestMapping("oauth")
-@Slf4j
+
+@AllArgsConstructor
 public class CustomOauth2Controller {
 
-    @Autowired
-    private TokenEndpoint tokenEndpoint;
+    private final TokenEndpoint tokenEndpoint;
 
     /**
      * get方法的
@@ -35,11 +37,11 @@ public class CustomOauth2Controller {
      * @throws HttpRequestMethodNotSupportedException
      */
     @GetMapping("token")
-    public HashMap<String, Object> getAccessToken(
+    public OAuth2AccessToken getAccessToken(
             Principal principal,
             @RequestParam Map<String, String> map
     ) throws HttpRequestMethodNotSupportedException {
-        return custom(tokenEndpoint.getAccessToken(principal, map).getBody());
+        return tokenEndpoint.getAccessToken(principal, map).getBody();
     }
 
     /**
@@ -51,26 +53,10 @@ public class CustomOauth2Controller {
      * @throws HttpRequestMethodNotSupportedException
      */
     @PostMapping("token")
-    public HashMap<String, Object> postAccessToken(
+    public OAuth2AccessToken postAccessToken(
             Principal principal,
             @RequestParam Map<String, String> map
     ) throws HttpRequestMethodNotSupportedException {
-        return custom(tokenEndpoint.postAccessToken(principal, map).getBody());
-    }
-
-    /**
-     * 自定义返回格式
-     *
-     * @param accessToken
-     * @return
-     */
-    private HashMap<String, Object> custom(OAuth2AccessToken accessToken) {
-        DefaultOAuth2AccessToken token = (DefaultOAuth2AccessToken) accessToken;
-        HashMap<String, Object> data = new HashMap<>(16);
-        data.put("accessToken", token.getValue());
-        if (token.getRefreshToken() != null) {
-            data.put("refreshToken", token.getRefreshToken().getValue());
-        }
-        return data;
+        return tokenEndpoint.postAccessToken(principal, map).getBody();
     }
 }
