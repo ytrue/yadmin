@@ -62,3 +62,11 @@ spring:
   cache:
     type: redis
 
+ytrue:
+  unified:
+    dispose:
+      exception:
+        enabled: true
+      response-data:
+        enabled: true
+        advice-filter-url: [/v2/api-docs,/swagger-resources,/actuator/**]

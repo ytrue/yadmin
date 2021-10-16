@@ -24,13 +24,12 @@ public interface SysRoleMenuDao extends BaseMapper<SysRoleMenu> {
      * </foreach>
      *
      * @param roleIds
-     * @return
      */
     @Delete("<script>" + "delete from sys_role_menu where role_id in\n" +
             "\t\t<foreach item=\"roleId\" collection=\"array\" open=\"(\" separator=\",\" close=\")\">\n" +
             "\t\t\t#{roleId}\n" +
             "\t\t</foreach>" + "</script>")
-    int deleteBatch(Long[] roleIds);
+    void deleteBatch(Long[] roleIds);
 
     /**
      * 根据菜单id 删除菜单关联角色信息
