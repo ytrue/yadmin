@@ -5,18 +5,19 @@ import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
-import java.util.List;
 
 /**
  * @author ytrue
- * @date 2021/4/8 15:36
- * @description SysUserDetails
+ * @date 2021/10/18 13:34
+ * @description UserDetails
  */
 @AllArgsConstructor
 @ToString
-public class SysUserDetails implements UserDetails {
+public class ChatUserDetails implements UserDetails {
 
-    private static final long serialVersionUID = -4768281022517328764L;
+    private static final long serialVersionUID = -7302624463854565830L;
+
+
     /**
      * 用户名
      */
@@ -28,24 +29,24 @@ public class SysUserDetails implements UserDetails {
     private final String password;
 
     /**
-     * 权限集合
-     */
-    private final List<GrantedAuthority> authorities;
-
-    /**
-     * 图片
-     */
-    private final String images;
-
-    /**
      * id
      */
     private final Long userId;
 
 
+    /**
+     * 用户id
+     *
+     * @return
+     */
+    @Override
+    public Long getUserId() {
+        return this.userId;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
+        return null;
     }
 
     @Override
@@ -76,15 +77,6 @@ public class SysUserDetails implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
-    }
-
-    public String getImages() {
-        return this.images;
-    }
-
-    @Override
-    public Long getUserId() {
-        return this.userId;
     }
 
 }

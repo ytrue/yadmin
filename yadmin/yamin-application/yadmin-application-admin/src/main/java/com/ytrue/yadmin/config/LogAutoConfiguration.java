@@ -1,4 +1,4 @@
-package com.ytrue.yadmin.chat.config;
+package com.ytrue.yadmin.config;
 
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;

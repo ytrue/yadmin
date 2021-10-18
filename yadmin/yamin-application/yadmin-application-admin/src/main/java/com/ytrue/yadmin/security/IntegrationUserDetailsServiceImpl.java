@@ -45,7 +45,7 @@ public class IntegrationUserDetailsServiceImpl implements UserDetailsService {
     private SysMenuDao sysMenuDao;
 
     @Autowired
-    private SysUserDao SysUserDao;
+    private SysUserDao sysUserDao;
 
     private List<IntegrationAuthenticator> authenticators;
 
@@ -90,7 +90,7 @@ public class IntegrationUserDetailsServiceImpl implements UserDetailsService {
             List<SysMenu> menuList = sysMenuDao.selectList(Wrappers.emptyWrapper());
             permsList = menuList.stream().map(SysMenu::getPerms).collect(Collectors.toList());
         } else {
-            permsList = SysUserDao.queryAllPerms(userId);
+            permsList = sysUserDao.queryAllPerms(userId);
         }
         return permsList.stream().flatMap((perms) -> {
                     if (StrUtil.isBlank(perms)) {

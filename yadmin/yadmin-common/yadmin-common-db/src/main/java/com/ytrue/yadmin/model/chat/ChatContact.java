@@ -3,8 +3,12 @@ package com.ytrue.yadmin.model.chat;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -23,6 +27,20 @@ public class ChatContact implements Serializable {
     @TableId
     @TableField("contact_id")
     private Integer contactId;
+
+
+    /**
+     * 用户名
+     */
+    @TableField("username")
+    private String username;
+
+    /**
+     * 密码
+     */
+    @TableField("password")
+    private String password;
+
     /**
      * 名称
      */

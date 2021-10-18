@@ -63,6 +63,7 @@ spring:
     type: redis
 
 ytrue:
+  #统一返回和异常处理
   unified:
     dispose:
       exception:
@@ -70,3 +71,9 @@ ytrue:
       response-data:
         enabled: true
         advice-filter-url: [/v2/api-docs,/swagger-resources,/actuator/**]
+  #安全
+  security:
+    client-id: admin
+    client-secret:
+    jwt:
+      signing-key: 432432hdfgdhg@676@&*&*(&*)(*)$3543ktjn45j6h546%$^%$hgfhmf

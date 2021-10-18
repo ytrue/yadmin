@@ -1,6 +1,5 @@
 package com.ytrue.yadmin.security;
 
-
 import com.ytrue.yadmin.security.error.YadminAccessDeniedHandler;
 import com.ytrue.yadmin.security.error.YadminAuthenticationEntryPoint;
 import lombok.AllArgsConstructor;
@@ -13,7 +12,7 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Res
 
 /**
  * @author ytrue
- * @date 2021/4/8 15:36
+ * @date 2021/10/18 13:34
  * @description 资源服务器配置
  */
 @Configuration
@@ -43,6 +42,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers(
+                        "/chat/**",
                         "/upload/**",
                         "/favicon.ico",
                         "/actuator/**",
@@ -72,6 +72,4 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         resources.authenticationEntryPoint(yadminAuthenticationEntryPoint)
                 .accessDeniedHandler(yadminAccessDeniedHandler);
     }
-
-
 }
