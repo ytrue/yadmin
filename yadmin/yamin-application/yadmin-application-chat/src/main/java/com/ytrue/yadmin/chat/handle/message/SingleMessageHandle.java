@@ -3,9 +3,9 @@ package com.ytrue.yadmin.chat.handle.message;
 import com.ytrue.yadmin.chat.constant.MessageStatus;
 import com.ytrue.yadmin.chat.constant.SendType;
 import com.ytrue.yadmin.chat.dto.Message;
-import com.ytrue.yadmin.chat.utils.MessageSend;
-import com.ytrue.yadmin.chat.utils.WebSocketSessionManager;
-import com.ytrue.yadmin.utils.GsonUtils;
+import com.ytrue.yadmin.chat.util.MessageSend;
+import com.ytrue.yadmin.chat.util.WebSocketSessionManager;
+import com.ytrue.yadmin.util.GsonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.WebSocketSession;
@@ -31,9 +31,9 @@ public class SingleMessageHandle extends AbstractMessageHandle {
         //xxxxxxxxxxxxxxxxxx
 
         //向接收者发送消息
-        MessageSend.appoint(toContactSession, GsonUtils.to(message));
+        MessageSend.appoint(toContactSession, GsonUtil.to(message));
         //向发送者发送消息，告诉它消息发送成功了
-        MessageSend.appoint(fromContactSession, GsonUtils.to(message));
+        MessageSend.appoint(fromContactSession, GsonUtil.to(message));
     }
 
     @Override

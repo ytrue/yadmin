@@ -1,4 +1,4 @@
-package com.ytrue.yadmin.chat.utils;
+package com.ytrue.yadmin.chat.util;
 
 
 import lombok.SneakyThrows;

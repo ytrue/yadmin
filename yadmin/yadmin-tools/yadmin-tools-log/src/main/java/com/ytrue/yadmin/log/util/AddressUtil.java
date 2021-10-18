@@ -1,4 +1,4 @@
-package com.ytrue.yadmin.log.utils;
+package com.ytrue.yadmin.log.util;
 
 import cn.hutool.core.io.resource.ResourceUtil;
 import cn.hutool.core.util.StrUtil;

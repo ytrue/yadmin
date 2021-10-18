@@ -1,7 +1,7 @@
 package com.ytrue.yadmin.xss.wrapper;
 
 
-import com.ytrue.yadmin.xss.utils.XssUtils;
+import com.ytrue.yadmin.xss.util.XssUtil;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,7 +32,7 @@ public class XssRequestWrapper extends HttpServletRequestWrapper {
             String[] values = me.getValue();
             for (int i = 0; i < values.length; i++) {
                 log.debug(values[i]);
-                values[i] = XssUtils.xssClean(values[i], this.ignoreParamValueList);
+                values[i] = XssUtil.xssClean(values[i], this.ignoreParamValueList);
             }
         }
         return requestMap;
@@ -47,7 +47,7 @@ public class XssRequestWrapper extends HttpServletRequestWrapper {
         int i = arrayOfString1.length;
         String[] arrayOfString2 = new String[i];
         for (int j = 0; j < i; j++) {
-            arrayOfString2[j] = XssUtils.xssClean(arrayOfString1[j], this.ignoreParamValueList);
+            arrayOfString2[j] = XssUtil.xssClean(arrayOfString1[j], this.ignoreParamValueList);
         }
         return arrayOfString2;
     }
@@ -58,7 +58,7 @@ public class XssRequestWrapper extends HttpServletRequestWrapper {
         if (str == null) {
             return null;
         }
-        return XssUtils.xssClean(str, this.ignoreParamValueList);
+        return XssUtil.xssClean(str, this.ignoreParamValueList);
     }
 
     @Override
@@ -67,6 +67,6 @@ public class XssRequestWrapper extends HttpServletRequestWrapper {
         if (str == null) {
             return null;
         }
-        return XssUtils.xssClean(str, this.ignoreParamValueList);
+        return XssUtil.xssClean(str, this.ignoreParamValueList);
     }
 }

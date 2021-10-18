@@ -9,7 +9,7 @@ import com.ytrue.yadmin.modules.system.model.vo.UserInfoVO;
 import com.ytrue.yadmin.modules.system.service.SysRoleService;
 import com.ytrue.yadmin.modules.system.service.SysUserService;
 import com.ytrue.yadmin.search.SearchModel;
-import com.ytrue.yadmin.security.utils.JwtUtils;
+import com.ytrue.yadmin.security.util.JwtUtil;
 import io.jsonwebtoken.Claims;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -39,7 +39,7 @@ public class SysUserController {
 
     private final SysRoleService sysRoleService;
 
-    private final JwtUtils jwtUtils;
+    private final JwtUtil jwtUtil;
 
 
     @PostMapping("page")
@@ -93,7 +93,7 @@ public class SysUserController {
         //获得token
         String header = request.getHeader("Authorization");
         String token = header.substring(header.indexOf("bearer") + 7);
-        Claims claimsFromToken = jwtUtils.getClaimsFromToken(token);
+        Claims claimsFromToken = jwtUtil.getClaimsFromToken(token);
         return sysUserService.getUserInfo(claimsFromToken);
     }
 }

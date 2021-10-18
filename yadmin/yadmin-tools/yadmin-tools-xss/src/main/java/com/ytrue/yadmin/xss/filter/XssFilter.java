@@ -4,7 +4,7 @@ import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.StrUtil;
 
 
-import com.ytrue.yadmin.utils.GsonUtils;
+import com.ytrue.yadmin.util.GsonUtil;
 import com.ytrue.yadmin.xss.wrapper.XssRequestWrapper;
 import lombok.extern.slf4j.Slf4j;
 
@@ -64,8 +64,8 @@ public class XssFilter implements Filter {
             ignoreParamValueList = new ArrayList<>();
             ignoreParamValueList.add(CAS_LOGOUT_RESPONSE_TAG);
         }
-        log.debug("ignorePathList=" + GsonUtils.to(ignorePathList));
-        log.debug("ignoreParamValueList=" + GsonUtils.to(ignoreParamValueList));
+        log.debug("ignorePathList=" + GsonUtil.to(ignorePathList));
+        log.debug("ignoreParamValueList=" + GsonUtil.to(ignoreParamValueList));
         log.debug("XSS fiter [XSSFilter] init end");
     }
 

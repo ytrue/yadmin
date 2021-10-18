@@ -1,4 +1,4 @@
-package com.ytrue.yadmin.xss.utils;
+package com.ytrue.yadmin.xss.util;
 
 
 import cn.hutool.core.collection.CollectionUtil;
@@ -17,14 +17,14 @@ import java.util.List;
  * @description XSS 工具类， 用于过滤特殊字符
  */
 @Slf4j
-public class XssUtils {
+public class XssUtil {
     private static final String ANTISAMY_SLASHDOT_XML = "antisamy-slashdot-1.4.4.xml";
 
     private static Policy policy = null;
 
     static {
         log.debug(" start read XSS configfile [" + ANTISAMY_SLASHDOT_XML + "]");
-        InputStream inputStream = XssUtils.class.getClassLoader().getResourceAsStream(ANTISAMY_SLASHDOT_XML);
+        InputStream inputStream = XssUtil.class.getClassLoader().getResourceAsStream(ANTISAMY_SLASHDOT_XML);
         try {
             policy = Policy.getInstance(inputStream);
             log.debug("read XSS configfile [" + ANTISAMY_SLASHDOT_XML + "] success");

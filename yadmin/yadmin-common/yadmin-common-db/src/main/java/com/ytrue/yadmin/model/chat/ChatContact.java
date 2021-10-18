@@ -26,7 +26,7 @@ public class ChatContact implements Serializable {
      */
     @TableId
     @TableField("contact_id")
-    private Integer contactId;
+    private Long contactId;
 
 
     /**

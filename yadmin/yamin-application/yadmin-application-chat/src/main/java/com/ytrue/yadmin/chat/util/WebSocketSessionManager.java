@@ -1,4 +1,4 @@
-package com.ytrue.yadmin.chat.utils;
+package com.ytrue.yadmin.chat.util;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.socket.WebSocketSession;

@@ -3,10 +3,9 @@ package com.ytrue.yadmin.unified.dispose.exeption;
 
 import com.ytrue.yadmin.exeption.code.ExceptionCode;
 import com.ytrue.yadmin.unified.dispose.properties.UnifiedDisposeExceptionProperties;
-import com.ytrue.yadmin.utils.R;
+import com.ytrue.yadmin.util.R;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;

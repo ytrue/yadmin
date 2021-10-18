@@ -6,6 +6,8 @@ import com.ytrue.yadmin.model.chat.ChatContact;
 import com.ytrue.yadmin.service.ChatContactService;
 import com.ytrue.yadmin.vo.ContactVO;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,6 +18,7 @@ import java.util.List;
  * @date 2021/10/15 23:13
  * @description 聊天联系人表
  */
+@Slf4j
 @Service
 @AllArgsConstructor
 @Transactional(rollbackFor = Exception.class)
@@ -31,7 +34,7 @@ public class ChatContactServiceImpl extends ServiceImpl<ChatContactDAO, ChatCont
      * @return
      */
     @Override
-    public List<ContactVO> getMyContactById(Integer contactId) {
+    public List<ContactVO> getMyContactById(Long contactId) {
         return chatContactDAO.getMyContactById(contactId);
     }
 
@@ -42,7 +45,8 @@ public class ChatContactServiceImpl extends ServiceImpl<ChatContactDAO, ChatCont
      * @return
      */
     @Override
-    public List<ContactVO> getMySidebarMessageById(Integer contactId) {
+    public List<ContactVO> getMySidebarMessageById(Long contactId) {
         return chatContactDAO.getMySidebarMessageById(contactId);
     }
+
 }

@@ -83,12 +83,16 @@ public class EnhanceRedisCache extends RedisCache {
         }
     }
 
+
+
+
     /**
      * 描述 现有key 值格式为  key#ttl ;改方法将key 值后边的#ttl 去掉 ；例如test# 10；改方法处理后为test
      *
      * @param key
      * @return
      */
+    @Override
     protected String createCacheKey(Object key) {
         return !configuration.usePrefix() ? convertKey(key) : prefixCacheKey(convertKey(key));
     }

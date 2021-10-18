@@ -52,7 +52,7 @@ public interface ChatContactDAO extends BaseMapper<ChatContact> {
             "LEFT JOIN chat_contact_relation AS r ON c.contact_id = r.from_contact_id\n" +
             "WHERE\n" +
             "r.from_contact_id = #{contactId}")
-    List<ContactVO> getMyContactById(@Param("contactId") Integer contactId);
+    List<ContactVO> getMyContactById(@Param("contactId") Long contactId);
 
     /**
      * 获得当前用户侧栏聊天消息列表，限制是前150条
@@ -93,5 +93,5 @@ public interface ChatContactDAO extends BaseMapper<ChatContact> {
             "r.from_contact_id =  #{contactId} AND\n" +
             "r.is_show = 1\n" +
             "LIMIT 0, 150\n")
-    List<ContactVO> getMySidebarMessageById(@Param("contactId") Integer contactId);
+    List<ContactVO> getMySidebarMessageById(@Param("contactId") Long contactId);
 }

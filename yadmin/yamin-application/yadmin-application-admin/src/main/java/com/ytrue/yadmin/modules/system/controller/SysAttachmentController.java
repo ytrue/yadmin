@@ -7,7 +7,7 @@ import com.ytrue.yadmin.modules.system.model.SysAttachment;
 import com.ytrue.yadmin.modules.system.service.SysAttachmentService;
 import com.ytrue.yadmin.modules.system.service.dto.MoveGroupParamDTO;
 import com.ytrue.yadmin.search.SearchModel;
-import com.ytrue.yadmin.utils.R;
+import com.ytrue.yadmin.util.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;

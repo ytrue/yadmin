@@ -22,7 +22,7 @@ public class ChatEmojiCategory implements Serializable {
      */
     @TableId
     @TableField("emoji_category_id")
-    private Integer emojiCategoryId;
+    private Long emojiCategoryId;
     /**
      * 分类名称
      */

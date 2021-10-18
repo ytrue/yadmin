@@ -2,11 +2,10 @@ package com.ytrue.yadmin.security.error;
 
 
 import com.ytrue.yadmin.exeption.code.ExceptionCode;
-import com.ytrue.yadmin.utils.R;
-import com.ytrue.yadmin.utils.ResponseUtils;
+import com.ytrue.yadmin.util.R;
+import com.ytrue.yadmin.util.ResponseUtil;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
@@ -31,7 +30,7 @@ public class YadminAuthenticationEntryPoint implements AuthenticationEntryPoint 
     @SneakyThrows
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException e) {
         // throw new AuthenticationCredentialsNotFoundException("未登录");
-        ResponseUtils.renderJson(response,
+        ResponseUtil.renderJson(response,
                 R.fail(ExceptionCode.NOT_LOGIN.getCode(), ExceptionCode.NOT_LOGIN.getMessage()));
     }
 }

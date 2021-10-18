@@ -2,8 +2,8 @@ package com.ytrue.yadmin.security.error;
 
 
 import com.ytrue.yadmin.exeption.code.ExceptionCode;
-import com.ytrue.yadmin.utils.R;
-import com.ytrue.yadmin.utils.ResponseUtils;
+import com.ytrue.yadmin.util.R;
+import com.ytrue.yadmin.util.ResponseUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
@@ -24,7 +24,7 @@ public class YadminAccessDeniedHandler implements AccessDeniedHandler {
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException e) {
      //   throw new AccessDeniedException("权限不足");
-        ResponseUtils.renderJson(response,
+        ResponseUtil.renderJson(response,
                 R.fail(ExceptionCode.NOT_PERMISSION.getCode(), ExceptionCode.NOT_PERMISSION.getMessage()));
     }
 

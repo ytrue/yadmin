@@ -22,17 +22,17 @@ public class ChatContactRelation implements Serializable {
      */
     @TableId
     @TableField("contact_relation_id")
-    private Integer contactRelationId;
+    private Long contactRelationId;
     /**
      * 接收消息的联系人ID
      */
     @TableField("to_contact_id")
-    private Integer toContactId;
+    private Long toContactId;
     /**
      * 消息发送人的信息ID
      */
     @TableField("from_contact_id")
-    private Integer fromContactId;
+    private Long fromContactId;
     /**
      * 未读消息数
      */

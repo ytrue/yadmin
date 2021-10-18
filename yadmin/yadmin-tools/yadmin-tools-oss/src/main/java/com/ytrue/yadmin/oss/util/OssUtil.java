@@ -1,4 +1,4 @@
-package com.ytrue.yadmin.oss.utils;
+package com.ytrue.yadmin.oss.util;
 
 
 import com.ytrue.yadmin.oss.dto.UploadSetting;
@@ -17,7 +17,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 @AllArgsConstructor
 @NoArgsConstructor
 @EnableConfigurationProperties({OssProperties.class})
-public class OssUtils {
+public class OssUtil {
 
 
     private OssProperties ossProperties;

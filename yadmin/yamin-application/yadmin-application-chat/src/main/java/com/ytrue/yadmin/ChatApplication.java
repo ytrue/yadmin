@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * @date 2021/10/11 14:07
  * @description ChatApplication
  */
+@EnableCaching
 @SpringBootApplication
 @EnableTransactionManagement
 @MapperScan(value = {

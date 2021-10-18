@@ -5,15 +5,13 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.core.util.URLUtil;
 import cn.hutool.extra.servlet.ServletUtil;
 import com.ytrue.yadmin.exeption.code.ExceptionCode;
-import com.ytrue.yadmin.log.annotation.SysLog;
 import com.ytrue.yadmin.log.entity.OptLogDTO;
 import com.ytrue.yadmin.log.event.SysLogEvent;
-import com.ytrue.yadmin.log.utils.LogUtil;
-import com.ytrue.yadmin.utils.GsonUtils;
-import com.ytrue.yadmin.utils.R;
+import com.ytrue.yadmin.log.util.LogUtil;
+import com.ytrue.yadmin.util.GsonUtil;
+import com.ytrue.yadmin.util.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
@@ -120,7 +118,7 @@ public class SysLogAspect {
             HttpServletRequest request = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest();
             try {
                 if (!request.getContentType().contains("multipart/form-data")) {
-                    strArgs = GsonUtils.to(args);
+                    strArgs = GsonUtil.to(args);
                 }
             } catch (Exception e) {
                 try {

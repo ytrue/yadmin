@@ -4,7 +4,7 @@ import com.ytrue.yadmin.oss.cloud.*;
 import com.ytrue.yadmin.oss.cloud.QcloudCloud;
 import com.ytrue.yadmin.oss.cloud.QiniuCloud;
 import com.ytrue.yadmin.oss.properties.*;
-import com.ytrue.yadmin.oss.utils.OssUtils;
+import com.ytrue.yadmin.oss.util.OssUtil;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 
@@ -23,8 +23,8 @@ import org.springframework.context.annotation.Bean;
 class OssAutoConfiguration {
 
     @Bean
-    public OssUtils ossUtils(OssProperties ossProperties) {
-        return new OssUtils(ossProperties);
+    public OssUtil ossUtils(OssProperties ossProperties) {
+        return new OssUtil(ossProperties);
     }
 
     @Bean

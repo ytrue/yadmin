@@ -3,8 +3,8 @@ package com.ytrue.yadmin.unified.dispose.advice;
 
 import com.ytrue.yadmin.unified.dispose.annotation.IgnoreResponseAdvice;
 import com.ytrue.yadmin.unified.dispose.properties.UnifiedDisposeResponseDataProperties;
-import com.ytrue.yadmin.utils.GsonUtils;
-import com.ytrue.yadmin.utils.R;
+import com.ytrue.yadmin.util.GsonUtil;
+import com.ytrue.yadmin.util.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
@@ -18,10 +18,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 
 /**
  * @author ytrue
@@ -79,7 +77,7 @@ public class CommonResponseDataAdvice implements ResponseBodyAdvice<Object> {
         if (o == null) {
             // 当 o 返回类型为 string 并且为null会出现 java.lang.ClassCastException: Result cannot be cast to java.lang.String
             if (STRING.equals(methodParameter.getParameterType().getName())) {
-                return GsonUtils.to(R.success()).toString();
+                return GsonUtil.to(R.success()).toString();
             }
             return R.success();
         }
@@ -89,7 +87,7 @@ public class CommonResponseDataAdvice implements ResponseBodyAdvice<Object> {
         }
         // string 特殊处理 java.lang.ClassCastException: Result cannot be cast to java.lang.String
         if (o instanceof String) {
-            return GsonUtils.to(R.success(o)).toString();
+            return GsonUtil.to(R.success(o)).toString();
         }
         return R.success(o);
     }

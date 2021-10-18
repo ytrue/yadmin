@@ -5,7 +5,6 @@ import com.ytrue.yadmin.modules.system.model.SysLog;
 import com.ytrue.yadmin.search.SearchModel;
 
 import com.ytrue.yadmin.modules.system.service.SysLogService;
-import com.ytrue.yadmin.utils.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;

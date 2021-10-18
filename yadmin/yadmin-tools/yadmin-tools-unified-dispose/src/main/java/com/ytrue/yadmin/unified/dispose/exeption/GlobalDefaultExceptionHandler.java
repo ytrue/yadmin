@@ -4,8 +4,8 @@ package com.ytrue.yadmin.unified.dispose.exeption;
 import com.ytrue.yadmin.exeption.code.ExceptionCode;
 import com.ytrue.yadmin.unified.dispose.annotation.IgnoreResponseAdvice;
 import com.ytrue.yadmin.unified.dispose.properties.UnifiedDisposeExceptionProperties;
-import com.ytrue.yadmin.utils.R;
-import com.ytrue.yadmin.utils.ResponseUtils;
+import com.ytrue.yadmin.util.R;
+import com.ytrue.yadmin.util.ResponseUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ErrorProperties;
@@ -73,7 +73,7 @@ public class GlobalDefaultExceptionHandler extends AbstractErrorController {
     ) {
         if (unifiedDisposeExceptionProperties.getEnabled()) {
             response.setStatus(ExceptionCode.SUCCESS.getCode());
-            ResponseUtils.renderJson(response, myHandle(response, req));
+            ResponseUtil.renderJson(response, myHandle(response, req));
             return null;
         }
         HttpStatus status = this.getStatus(request);
@@ -98,7 +98,7 @@ public class GlobalDefaultExceptionHandler extends AbstractErrorController {
     ) {
         if (unifiedDisposeExceptionProperties.getEnabled()) {
             response.setStatus(ExceptionCode.SUCCESS.getCode());
-            ResponseUtils.renderJson(response, myHandle(response, req));
+            ResponseUtil.renderJson(response, myHandle(response, req));
             return null;
         }
 

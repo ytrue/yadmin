@@ -1,11 +1,11 @@
-package com.ytrue.yadmin.utils;
+package com.ytrue.yadmin.util;
 
 /**
  * @author ytrue
  * @date 2021/6/17 10:33
  * @description FileUtils 文件工具
  */
-public class FileUtils {
+public class FileUtil {
 
     /**
      * 1024

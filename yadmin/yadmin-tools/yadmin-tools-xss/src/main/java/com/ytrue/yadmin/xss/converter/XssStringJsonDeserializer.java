@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
-import com.ytrue.yadmin.xss.utils.XssUtils;
+import com.ytrue.yadmin.xss.util.XssUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -40,7 +40,7 @@ public class XssStringJsonDeserializer extends JsonDeserializer<String> {
             list.add("</noframes>");
             boolean flag = list.stream().anyMatch(value::contains);
             if (flag) {
-                return XssUtils.xssClean(value, null);
+                return XssUtil.xssClean(value, null);
             }
             return value;
         }

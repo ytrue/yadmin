@@ -1,4 +1,4 @@
-package com.ytrue.yadmin.log.utils;
+package com.ytrue.yadmin.log.util;
 
 
 import com.ytrue.yadmin.log.annotation.SysLog;

@@ -10,8 +10,6 @@ import com.ytrue.yadmin.security.integration.IntegrationAuthenticationContext;
 import com.ytrue.yadmin.security.integration.IntegrationAuthenticationEntity;
 import com.ytrue.yadmin.security.integration.authenticator.IntegrationAuthenticator;
 import com.ytrue.yadmin.security.user.SysUserDetails;
-import com.ytrue.yadmin.utils.R;
-import com.ytrue.yadmin.utils.ResponseUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
@@ -23,7 +21,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpServletResponse;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;

@@ -1,4 +1,4 @@
-package com.ytrue.yadmin.utils;
+package com.ytrue.yadmin.util;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -11,7 +11,7 @@ import java.io.IOException;
  * @description Response工具类
  */
 @Slf4j
-public final class ResponseUtils {
+public final class ResponseUtil {
 
     /**
      * 发送文本。使用UTF-8编码。
@@ -30,7 +30,7 @@ public final class ResponseUtils {
      * @param object   发送的字符串
      */
     public static void renderJson(HttpServletResponse response, Object object) {
-        render(response, "application/json;charset=UTF-8", GsonUtils.to(object));
+        render(response, "application/json;charset=UTF-8", GsonUtil.to(object));
     }
 
     /**

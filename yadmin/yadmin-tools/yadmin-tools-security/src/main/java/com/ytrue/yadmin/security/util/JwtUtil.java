@@ -1,5 +1,6 @@
-package com.ytrue.yadmin.security.utils;
+package com.ytrue.yadmin.security.util;
 
+import cn.hutool.core.convert.Convert;
 import com.ytrue.yadmin.security.properties.JwtProperties;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -13,7 +14,7 @@ import java.nio.charset.StandardCharsets;
  * @description JwtUtils
  */
 @AllArgsConstructor
-public class JwtUtils {
+public class JwtUtil {
 
 
     private final JwtProperties jwtProperties;
@@ -30,4 +31,16 @@ public class JwtUtils {
                 .parseClaimsJws(token)
                 .getBody();
     }
+
+
+    /**
+     * 返回token的user_id
+     *
+     * @param token
+     * @return
+     */
+    public Long getUserIdFromToken(String token) {
+        return Convert.toLong(getClaimsFromToken(token).get("user_id"));
+    }
+
 }

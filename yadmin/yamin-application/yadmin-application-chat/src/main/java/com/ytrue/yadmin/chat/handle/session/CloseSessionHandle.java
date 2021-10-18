@@ -1,7 +1,7 @@
 package com.ytrue.yadmin.chat.handle.session;
 
 import com.ytrue.yadmin.chat.constant.RedisKey;
-import com.ytrue.yadmin.chat.utils.WebSocketSessionManager;
+import com.ytrue.yadmin.chat.util.WebSocketSessionManager;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;

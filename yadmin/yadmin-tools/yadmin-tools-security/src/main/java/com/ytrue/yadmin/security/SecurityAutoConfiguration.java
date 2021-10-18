@@ -2,7 +2,7 @@ package com.ytrue.yadmin.security;
 
 import com.ytrue.yadmin.security.properties.JwtProperties;
 import com.ytrue.yadmin.security.properties.SecurityProperties;
-import com.ytrue.yadmin.security.utils.JwtUtils;
+import com.ytrue.yadmin.security.util.JwtUtil;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 
@@ -18,7 +18,7 @@ import org.springframework.context.annotation.Bean;
 public class SecurityAutoConfiguration {
 
     @Bean
-    public JwtUtils jwtUtils(JwtProperties jwtProperties) {
-        return new JwtUtils(jwtProperties);
+    public JwtUtil jwtUtils(JwtProperties jwtProperties) {
+        return new JwtUtil(jwtProperties);
     }
 }

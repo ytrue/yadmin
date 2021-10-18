@@ -1,4 +1,4 @@
-package com.ytrue.yadmin.utils;
+package com.ytrue.yadmin.util;
 
 
 import com.google.gson.*;
@@ -26,7 +26,7 @@ import java.util.*;
  * @description GsonUtils Gson工具类
  */
 
-public class GsonUtils {
+public class GsonUtil {
     private static final Gson gson;
 
     static {

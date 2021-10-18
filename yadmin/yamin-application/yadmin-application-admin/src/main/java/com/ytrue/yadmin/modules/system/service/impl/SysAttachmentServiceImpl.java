@@ -1,6 +1,5 @@
 package com.ytrue.yadmin.modules.system.service.impl;
 
-import cn.hutool.core.io.FileUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ytrue.yadmin.dao.SettingDao;
@@ -10,9 +9,9 @@ import com.ytrue.yadmin.modules.system.model.SysAttachment;
 import com.ytrue.yadmin.modules.system.service.SysAttachmentService;
 import com.ytrue.yadmin.modules.system.service.dto.MoveGroupParamDTO;
 import com.ytrue.yadmin.oss.dto.UploadSetting;
-import com.ytrue.yadmin.oss.utils.OssUtils;
-import com.ytrue.yadmin.utils.FileUtils;
-import com.ytrue.yadmin.utils.GsonUtils;
+import com.ytrue.yadmin.oss.util.OssUtil;
+import com.ytrue.yadmin.util.FileUtil;
+import com.ytrue.yadmin.util.GsonUtil;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
@@ -31,23 +30,23 @@ import java.util.UUID;
 @AllArgsConstructor
 public class SysAttachmentServiceImpl extends ServiceImpl<SysAttachmentDAO, SysAttachment> implements SysAttachmentService {
 
-    private final OssUtils ossUtils;
+    private final OssUtil ossUtil;
 
     private final SettingDao settingDao;
 
     @SneakyThrows
     @Override
     public void uploadFile(MultipartFile file) {
-        String extName = FileUtil.extName(file.getOriginalFilename());
+        String extName = cn.hutool.core.io.FileUtil.extName(file.getOriginalFilename());
         String fileName = UUID.randomUUID() + "." + extName;
 
         //去数据库读取
-        UploadSetting uploadSetting = GsonUtils.from(settingDao.selectOne(
+        UploadSetting uploadSetting = GsonUtil.from(settingDao.selectOne(
                 new QueryWrapper<Setting>()
                         .lambda()
                         .eq(Setting::getKey, "storage")).getValues(), UploadSetting.class);
 
-        String uploadPath = ossUtils.upload(uploadSetting, file.getBytes(), fileName);
+        String uploadPath = ossUtil.upload(uploadSetting, file.getBytes(), fileName);
 
         //插入数据
         SysAttachment sysAttachment = new SysAttachment();
@@ -56,7 +55,7 @@ public class SysAttachmentServiceImpl extends ServiceImpl<SysAttachmentDAO, SysA
         //文件的路径
         sysAttachment.setFilePath(uploadPath);
         //获得文件大小
-        sysAttachment.setFileSize(FileUtils.getPrintSize(file.getSize()));
+        sysAttachment.setFileSize(FileUtil.getPrintSize(file.getSize()));
         //后缀名称
         sysAttachment.setFileExt(extName);
         //插入数据
