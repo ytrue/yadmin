@@ -4,6 +4,7 @@ package com.ytrue.yadmin.controller;
 import com.ytrue.yadmin.model.chat.ChatContact;
 import com.ytrue.yadmin.security.util.JwtUtil;
 import com.ytrue.yadmin.service.ChatContactService;
+import com.ytrue.yadmin.util.RequestUtil;
 import com.ytrue.yadmin.vo.ContactVO;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,39 +33,24 @@ public class ChatContactController {
     private final HttpServletRequest request;
 
     /**
-     * 获得当前用户侧栏聊天消息列表，限制是前150条
-     *
-     * @param contactId
-     * @return
-     */
-    @GetMapping("message")
-    public List<ContactVO> getMySidebarMessage(@RequestParam("contactId") Long contactId) {
-        //获得用户id
-        //  Long userId = jwtUtils.getUserIdFromToken(RequestUtils.getToken(request));
-        return chatContactService.getMySidebarMessageById(contactId);
-    }
-
-    /**
      * 获得当前用户的联系人
      *
-     * @param contactId
      * @return
      */
     @GetMapping("list")
-    public List<ContactVO> getMyContact(@RequestParam("contactId") Long contactId) {
-        return chatContactService.getMyContactById(contactId);
+    public List<ContactVO> getMyContact() {
+        return chatContactService.getMyContactById(jwtUtil.getUserIdFromToken(RequestUtil.getToken(request)));
     }
 
 
     /**
      * 获取我的信息
      *
-     * @param contactId
      * @return
      */
     @GetMapping("my")
-    public ChatContact my(@RequestParam("contactId") Long contactId) {
-        return chatContactService.getById(contactId);
+    public ChatContact my() {
+        return chatContactService.getById(jwtUtil.getUserIdFromToken(RequestUtil.getToken(request)));
     }
 
 }

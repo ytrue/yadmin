@@ -37,16 +37,4 @@ public class ChatContactServiceImpl extends ServiceImpl<ChatContactDAO, ChatCont
     public List<ContactVO> getMyContactById(Long contactId) {
         return chatContactDAO.getMyContactById(contactId);
     }
-
-    /**
-     * 获得当前用户侧栏聊天消息列表，限制是前150条
-     *
-     * @param contactId
-     * @return
-     */
-    @Override
-    public List<ContactVO> getMySidebarMessageById(Long contactId) {
-        return chatContactDAO.getMySidebarMessageById(contactId);
-    }
-
 }

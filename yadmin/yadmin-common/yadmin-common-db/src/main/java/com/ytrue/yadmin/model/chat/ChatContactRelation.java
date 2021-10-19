@@ -53,11 +53,7 @@ public class ChatContactRelation implements Serializable {
      */
     @TableField("remark")
     private String remark;
-    /**
-     * 是否在消息列表显示:0=否,1=是
-     */
-    @TableField("is_show")
-    private Integer isShow;
+
     /**
      * 通讯录索引，传入字母或数字进行排序，索引可以显示自定义文字“[1]群组”
      */

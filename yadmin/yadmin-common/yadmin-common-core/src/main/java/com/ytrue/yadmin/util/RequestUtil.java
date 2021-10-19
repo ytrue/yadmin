@@ -1,6 +1,7 @@
 package com.ytrue.yadmin.util;
 
-import cn.hutool.http.server.HttpServerRequest;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author ytrue
@@ -15,7 +16,7 @@ public class RequestUtil {
      *
      * @return
      */
-    public static String getToken(HttpServerRequest request) {
+    public static String getToken(HttpServletRequest request) {
         String header = request.getHeader("Authorization");
         return header.substring(header.indexOf("bearer") + 7);
     }

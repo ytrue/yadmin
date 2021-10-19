@@ -118,7 +118,7 @@ export default {
 
         setAuthorization({
           token: loginRes.data.access_token,
-          expireAt: new Date(new Date().getTime() + loginRes.data.expires_in)
+          expireAt: new Date(new Date().getTime() + (loginRes.data.expires_in * 100))
         })
 
         // 获取路由配置---这里是获得路由
@@ -142,7 +142,8 @@ export default {
           //loadRoutes([tmpRouterData])
 
 
-          this.$router.push(`/${data.menu[0]['path']}`).catch(() => {})
+          this.$router.push(`/${data.menu[0]['path']}`).catch(() => {
+          })
           this.$message.success(loginRes.message, 3)
         })
       } else {

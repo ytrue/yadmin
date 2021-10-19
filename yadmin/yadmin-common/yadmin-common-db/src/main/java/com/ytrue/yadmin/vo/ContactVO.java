@@ -30,12 +30,18 @@ public class ContactVO implements Serializable {
     /**
      * 是否是群:0=否,1=是
      */
-    private Integer isGroup;
+    private Boolean isGroup;
 
     /**
      * 未读消息数
      */
     private Integer unread;
+
+
+    /**
+     *
+     */
+    private String index;
 
     /**
      * 最近一条消息的时间戳,13位毫秒
