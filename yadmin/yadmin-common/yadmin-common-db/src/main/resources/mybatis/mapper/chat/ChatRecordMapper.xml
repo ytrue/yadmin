@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ytrue.yadmin.dao.chat.ChatRecordDAO">
+    <resultMap type="com.ytrue.yadmin.dto.MessageDTO" id="messageDTO">
+        <id column="id" property="id"/>
+        <result column="status" property="status" />
+        <result column="type" property="type"/>
+        <result column="send_type" property="sendType"/>
+        <result column="send_time" property="sendTime"/>
+        <result column="content" property="content"/>
+        <result column="to_contact_id" property="toContactId"/>
+
+        <association property="fromUser" javaType="com.ytrue.yadmin.dto.FromUser">
+            <id column="from_contact_id" property="id"/>
+            <result column="display_name" property="displayName"/>
+            <result column="avatar" property="avatar"/>
+        </association>
+    </resultMap>
+
+    <select id="getChatRecordList" resultMap="messageDTO">
+        SELECT r.id,
+               r.`status`,
+               r.type,
+               r.send_type,
+               r.content,
+               r.from_contact_id,
+               r.to_contact_id,
+               c.display_name,
+               c.avatar,
+              IF(from_contact_id = #{toContactId} AND to_contact_id = #{fromContactId}, r.create_time, r.send_time) AS send_time
+        FROM
+            chat_contact AS c
+        INNER JOIN
+            chat_record AS r ON c.contact_id = r.from_contact_id
+        WHERE
+            from_contact_id IN (#{fromContactId}, #{toContactId})
+        AND
+            to_contact_id IN (#{fromContactId}, #{toContactId})
+        ORDER BY
+            send_time
+       	LIMIT
+       	    #{currPage},#{pageSize}
+    </select>
+</mapper>

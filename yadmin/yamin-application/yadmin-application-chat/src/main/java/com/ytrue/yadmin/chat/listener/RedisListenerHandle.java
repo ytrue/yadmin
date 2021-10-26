@@ -1,6 +1,6 @@
 package com.ytrue.yadmin.chat.listener;
 
-import com.ytrue.yadmin.chat.dto.Message;
+import com.ytrue.yadmin.dto.MessageDTO;
 import com.ytrue.yadmin.chat.handle.message.MessageHandleFactory;
 import com.ytrue.yadmin.util.GsonUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +21,7 @@ public class RedisListenerHandle {
      * @param message
      */
     public void receiveMessage(String message) {
-        Message msg = GsonUtil.from(message, Message.class);
+        MessageDTO msg = GsonUtil.from(message, MessageDTO.class);
         MessageHandleFactory.getInvokeStrategy(msg.getSendType()).handle(msg);
     }
 

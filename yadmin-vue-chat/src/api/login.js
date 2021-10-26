@@ -1,4 +1,4 @@
-import { METHOD, request } from '@/utils/request'
+import { METHOD, request } from '../utils/request'
 import qs from 'qs'
 import Cookie from 'js-cookie'
 

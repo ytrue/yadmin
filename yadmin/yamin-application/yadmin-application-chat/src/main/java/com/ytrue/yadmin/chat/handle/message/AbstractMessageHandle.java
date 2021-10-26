@@ -1,6 +1,6 @@
 package com.ytrue.yadmin.chat.handle.message;
 
-import com.ytrue.yadmin.chat.dto.Message;
+import com.ytrue.yadmin.dto.MessageDTO;
 import org.springframework.beans.factory.InitializingBean;
 
 /**
@@ -13,9 +13,9 @@ public abstract class AbstractMessageHandle implements InitializingBean {
     /**
      * 消息处理
      *
-     * @param message
+     * @param messageDTO
      */
-    public void handle(Message message) {
+    public void handle(MessageDTO messageDTO) {
         throw new UnsupportedOperationException();
     }
 

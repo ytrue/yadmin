@@ -1,4 +1,4 @@
-package com.ytrue.yadmin.chat.dto;
+package com.ytrue.yadmin.dto;
 
 import lombok.Builder;
 import lombok.Data;
@@ -11,8 +11,7 @@ import java.io.Serializable;
  * @description 接收和发送消息的模板
  */
 @Data
-@Builder
-public class Message implements Serializable {
+public class  MessageDTO implements Serializable {
     private static final long serialVersionUID = 668621975948168831L;
 
     /**
@@ -21,12 +20,12 @@ public class Message implements Serializable {
     private String id;
 
     /**
-     * 状态
+     * 消息发送的状态：going | failed | succeed
      */
     private String status;
 
     /**
-     * ；类型
+     * 消息类型：file | image | text | event
      */
     private String type;
 

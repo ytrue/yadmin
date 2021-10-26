@@ -1,7 +1,7 @@
 package com.ytrue.yadmin.chat.handle.message;
 
 import com.ytrue.yadmin.chat.constant.SendType;
-import com.ytrue.yadmin.chat.dto.Message;
+import com.ytrue.yadmin.dto.MessageDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -15,8 +15,8 @@ import org.springframework.stereotype.Component;
 public class HeartbeatMessageHandle extends AbstractMessageHandle {
 
     @Override
-    public void handle(Message message) {
-        super.handle(message);
+    public void handle(MessageDTO messageDTO) {
+        super.handle(messageDTO);
     }
 
     @Override

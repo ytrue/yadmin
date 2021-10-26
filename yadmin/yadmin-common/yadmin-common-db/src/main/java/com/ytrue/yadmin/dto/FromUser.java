@@ -1,4 +1,4 @@
-package com.ytrue.yadmin.chat.dto;
+package com.ytrue.yadmin.dto;
 
 import lombok.Data;
 
