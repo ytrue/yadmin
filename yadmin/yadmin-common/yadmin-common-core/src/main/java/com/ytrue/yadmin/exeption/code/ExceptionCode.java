@@ -15,7 +15,8 @@ public enum ExceptionCode implements BaseExceptionCode {
     ARGUMENT_NOT_VALID(900, "方法参数无效"),
     UNKNOWN(10000, "未知异常!"),
     NOT_PERMISSION(403, "权限不足"),
-    NOT_LOGIN(903,"未登录"),
+    NOT_LOGIN(903, "未登录"),
+
 
     CONTINUE(100, "Continue"),
     SWITCHING_PROTOCOLS(101, "Switching Protocols"),
@@ -83,12 +84,12 @@ public enum ExceptionCode implements BaseExceptionCode {
     /**
      * code错误码
      */
-    private Integer code;
+    private final Integer code;
 
     /**
      * 前端进行页面展示的信息
      */
-    private String message;
+    private final String message;
 
     ExceptionCode(Integer code, String message) {
         this.code = code;
@@ -109,7 +110,7 @@ public enum ExceptionCode implements BaseExceptionCode {
     /**
      * 通过状态码获得枚举
      *
-     * @param code
+     * @param code 状态码
      * @return
      */
     public static ExceptionCode getCodeByExceptionCode(Integer code) {

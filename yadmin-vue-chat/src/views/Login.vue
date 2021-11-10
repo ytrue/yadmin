@@ -75,6 +75,7 @@
 </template>
 
 <script>
+import 'ant-design-vue/dist/antd.less'
 import { login1 } from '@/api/login'
 import { setAuthorization } from '@/utils/request'
 

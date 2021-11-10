@@ -1,6 +1,8 @@
 package com.ytrue.yadmin.model;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -23,7 +25,7 @@ public class Setting implements Serializable {
     /**
      * 设置项标示
      */
-    @TableField("`key`")
+    @TableId(value = "`key`", type = IdType.INPUT)
     @ApiModelProperty(value = "设置项标示", required = true)
     private String key;
 

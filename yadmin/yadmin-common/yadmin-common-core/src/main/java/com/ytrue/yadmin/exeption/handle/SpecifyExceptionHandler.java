@@ -1,16 +1,15 @@
-package com.ytrue.yadmin.unified.dispose.exeption;
+package com.ytrue.yadmin.exeption.handle;
 
 
 import com.ytrue.yadmin.exeption.code.ExceptionCode;
-import com.ytrue.yadmin.unified.dispose.properties.UnifiedDisposeExceptionProperties;
 import com.ytrue.yadmin.util.R;
 import lombok.SneakyThrows;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
@@ -20,14 +19,11 @@ import java.util.Set;
 /**
  * @author ytrue
  * @date 2021/7/14 11:35
- * @description 其他验证异常
+ * @description 指定异常处理
  */
-@ResponseBody
-public class OtherExceptionHandler {
-
-
-    @Autowired
-    private UnifiedDisposeExceptionProperties unifiedDisposeExceptionProperties;
+@Slf4j
+@RestControllerAdvice
+public class SpecifyExceptionHandler {
 
     /**
      * 验证异常处理 主要针对 @Validated 和 Valid的错误处理
@@ -45,17 +41,14 @@ public class OtherExceptionHandler {
             MethodArgumentNotValidException.class
     })
     public R<ArrayList<String>> validateException(Exception ex) {
-        errorDispose(ex);
         ArrayList<String> list = new ArrayList<>();
         if (ex instanceof ConstraintViolationException) {
 
             ConstraintViolationException constraintViolationException = (ConstraintViolationException) ex;
             Set<ConstraintViolation<?>> violations = constraintViolationException.getConstraintViolations();
-
             for (ConstraintViolation<?> violation : violations) {
                 list.add(violation.getMessage());
             }
-
         } else if (ex instanceof BindException) {
 
             BindException bindException = (BindException) ex;
@@ -70,18 +63,6 @@ public class OtherExceptionHandler {
         return R.fail(ExceptionCode.ARGUMENT_NOT_VALID, list);
     }
 
-    /**
-     * 是否开启全局异常处理
-     *
-     * @param e
-     * @param <T>
-     * @throws Throwable
-     */
-    private <T extends Throwable> void errorDispose(T e) throws Throwable {
-        if (!unifiedDisposeExceptionProperties.getEnabled()) {
-            throw e;
-        }
-    }
 
     /**
      * 获得错误集合

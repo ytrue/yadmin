@@ -7,7 +7,7 @@ const apiPath = '/sys/user'
  * 获得列表数据
  * @returns {Promise<*>}
  */
-export async function page(data) {
+export function page(data) {
     return request(`${apiPath}/page`, METHOD.POST, data)
 }
 

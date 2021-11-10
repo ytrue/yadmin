@@ -1,6 +1,7 @@
 <template>
   <div>
     <lemon-imui
+      :width="width"
       class="screen-centered"
       @pull-messages="handlePullMessages"
       :user='user'
@@ -12,11 +13,47 @@
 
 <script>
 import * as contactsApi from '@/api/contacts'
+import * as recordApi from '@/api/record'
+import emojiData from '@/database/emoji'
+
+const getTime = () => {
+  return new Date().getTime()
+}
+const generateRandId = () => {
+  return Math.random()
+    .toString(36)
+    .substr(-8)
+}
+const generateRandWord = () => {
+  return Math.random()
+    .toString(36)
+    .substr(2)
+}
+const generateMessage = (toContactId = '', fromUser) => {
+  if (!fromUser) {
+    fromUser = {
+      id: 'system',
+      displayName: '系统测试',
+      avatar: 'http://upload.qqbodys.com/allimg/1710/1035512943-0.jpg'
+    }
+  }
+  return {
+    id: generateRandId(),
+    status: 'succeed',
+    type: 'text',
+    sendTime: getTime(),
+    content: generateRandWord(),
+    toContactId,
+    fromUser
+  }
+}
 
 export default {
   name: 'Test',
   data () {
     return {
+      // 聊天窗口的宽度
+      width: '900px',
       // 初始化登录用户的信息
       user: {
         // id
@@ -44,6 +81,8 @@ export default {
         const { data } = response.data
         this.contactsListData = data
         IMUI.initContacts(this.contactsListData)
+        // 初始化表情，这个要改是从数据库获取，目前线虫前端获取
+        IMUI.initEmoji(emojiData)
       })
     },
     /**
@@ -53,13 +92,24 @@ export default {
      * @param instance
      */
     handlePullMessages (contact, next, instance) {
+      // 这里去获得数据
+      let isEnd = false
+      setTimeout(() => {
+        recordApi.page().then((response) => {
+          const { data } = response.data
+          // 返回当前聊天窗口的所有消息的数量+从服务器请求数据的长度，怎么去获取分页的长度呢？
+          if (instance.getCurrentMessages().length + data.length > 11) {
+            isEnd = true
+          }
+          next(data, isEnd)
+        })
+      }, 200)
     }
   }
 }
 </script>
 
 <style scoped>
-
 * {
   margin: 0;
   padding: 0;
