@@ -5,9 +5,9 @@ yadmin 基于springboot 开发后台
 # 2. 目录结构
 
 ```
-yadmin-ui									# yadmin前端
+yadmin-ui                                    # yadmin前端
 
-yadmin-server								# 后端代码
+yadmin-server                                # 后端代码
 ├── yadmin-application
 │   └── yadmin-application-admin             # 后台应用
 │
