@@ -1,7 +1,7 @@
 package com.ytrue.yadmin.security.filter;
 
-import com.ytrue.yadmin.security.domain.LoginUser;
-import com.ytrue.yadmin.security.domain.User;
+import com.ytrue.yadmin.security.user.LoginUser;
+import com.ytrue.yadmin.security.user.User;
 import com.ytrue.yadmin.security.utils.JwtUtil;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;

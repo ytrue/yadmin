@@ -1,6 +1,6 @@
 package com.ytrue.yadmin.security.service.impl;
 
-import com.ytrue.yadmin.security.domain.LoginUser;
+import com.ytrue.yadmin.security.user.LoginUser;
 import com.ytrue.yadmin.security.integration.IntegrationAuthenticationContext;
 import com.ytrue.yadmin.security.integration.IntegrationAuthenticationEntity;
 import com.ytrue.yadmin.security.integration.authenticator.IntegrationAuthenticator;

@@ -1,13 +1,16 @@
-package com.ytrue.yadmin.security.domain;
+package com.ytrue.yadmin.security.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author ytrue
@@ -19,6 +22,8 @@ import java.util.Collection;
 @AllArgsConstructor
 public class LoginUser implements UserDetails, Serializable {
 
+    private static final long serialVersionUID = -1977241509435137545L;
+
     private User user;
 
 
@@ -29,6 +34,15 @@ public class LoginUser implements UserDetails, Serializable {
      */
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+
+        if (!user.authorities().isEmpty() && user.authorities() != null) {
+            List<GrantedAuthority> authorities;
+            //把permissions中字符串类型的权限信息转换成GrantedAuthority对象存入authorities中
+            authorities = user.authorities().stream().
+                    map(SimpleGrantedAuthority::new)
+                    .collect(Collectors.toList());
+            return authorities;
+        }
         return null;
     }
 
@@ -39,7 +53,7 @@ public class LoginUser implements UserDetails, Serializable {
      */
     @Override
     public String getPassword() {
-        return user.getPassword();
+        return user.password();
     }
 
     /**
@@ -49,7 +63,7 @@ public class LoginUser implements UserDetails, Serializable {
      */
     @Override
     public String getUsername() {
-        return user.getUsername();
+        return user.username();
     }
 
     /**

@@ -1,12 +1,8 @@
 package com.ytrue.yadmin.security.utils;
 
-import com.ytrue.yadmin.security.domain.LoginUser;
-import com.ytrue.yadmin.security.domain.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import org.junit.jupiter.api.Test;
-
-import java.util.HashMap;
 
 
 /**
@@ -35,7 +31,7 @@ class JwtUtilTest {
 
 
         Jws<Claims> claimsJws = JwtUtil.parseToken(token);
-        System.out.println(claimsJws.getBody().getSubject());
+
 
     }
 

@@ -1,8 +1,8 @@
 package com.ytrue.yadmin.security.service.impl;
 
-import com.ytrue.yadmin.security.domain.LoginUser;
-import com.ytrue.yadmin.security.domain.User;
 import com.ytrue.yadmin.security.service.LoginService;
+import com.ytrue.yadmin.security.user.LoginUser;
+import com.ytrue.yadmin.security.user.User;
 import com.ytrue.yadmin.security.utils.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -31,9 +31,9 @@ public class LoginServiceImpl implements LoginService {
     private final RedisTemplate<String, Object> redisTemplate;
 
     @Override
-    public Map<String, String> login(User user) {
+    public Map<String, String> login(String username, String password) {
 
-        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, password);
 
         Authentication authenticate = authenticationManager.authenticate(authenticationToken);
         if (Objects.isNull(authenticate)) {
@@ -42,7 +42,7 @@ public class LoginServiceImpl implements LoginService {
 
         LoginUser loginUser = ((LoginUser) authenticate.getPrincipal());
         User user1 = loginUser.getUser();
-        String userId = user1.getId().toString();
+        String userId = user1.userId();
 
         //加入缓存,存放到hash里面去
         redisTemplate.opsForValue().set(userId, user1);

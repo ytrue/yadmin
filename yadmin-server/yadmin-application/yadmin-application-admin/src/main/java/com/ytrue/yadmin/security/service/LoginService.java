@@ -1,7 +1,5 @@
 package com.ytrue.yadmin.security.service;
 
-import com.ytrue.yadmin.security.domain.User;
-
 import java.util.Map;
 
 /**
@@ -17,7 +15,7 @@ public interface LoginService {
      * @param user
      * @return
      */
-    Map<String, String> login(User user);
+    Map<String, String> login(String username, String password);
 
     /**
      * 退出登录

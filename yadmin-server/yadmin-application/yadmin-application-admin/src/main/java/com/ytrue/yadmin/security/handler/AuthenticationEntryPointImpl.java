@@ -28,6 +28,7 @@ public class AuthenticationEntryPointImpl implements AuthenticationEntryPoint {
             throw new BadCredentialsException(authException.getMessage());
         }
 
+
         throw new InternalAuthenticationServiceException(authException.getMessage(), authException);
     }
 }
