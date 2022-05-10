@@ -47,7 +47,7 @@ spring:
     # 指定数据库，默认为0
     database: 0
     # 连接超时时间，单位毫秒，默认为0
-    timeout: 0
+    timeout: 3000
     # 是否启用SSL连接，默认false
     ssl: false
     # jedis客户端连接方式是基于tcp的阻塞式连接方式,

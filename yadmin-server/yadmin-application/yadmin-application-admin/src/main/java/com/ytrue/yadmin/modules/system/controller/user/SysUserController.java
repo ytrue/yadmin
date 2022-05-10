@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.ytrue.yadmin.core.utils.ResultData;
 import com.ytrue.yadmin.modules.system.model.SysUser;
 import com.ytrue.yadmin.modules.system.service.SysUserService;
+import com.ytrue.yadmin.security.domain.LoginUser;
 import com.ytrue.yadmin.security.domain.User;
 import com.ytrue.yadmin.security.service.LoginService;
 import io.swagger.annotations.Api;
@@ -12,6 +13,7 @@ import io.swagger.annotations.ApiOperation;
 import jdk.nashorn.internal.objects.annotations.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -61,10 +63,27 @@ public class SysUserController {
     }
 
 
+    @Autowired
+    private   RedisTemplate<String, Object> redisTemplate;
+
     @GetMapping("test01")
     @ApiOperation("分页查询数据")
-    public String test01() {
-        return "test01";
+    public void test01() {
+
+        User user = new User();
+        user.setId(1)
+                .setUsername("yangyi")
+                .setPassword("$2a$10$7C5PuRa87rkpAMMi16peFuRQ72PI.FE/1Xd0yY1sJ6qul8fpMEH5y")
+                .setEmail("ytrue@qq.com");
+         ;
+
+
+        redisTemplate.opsForValue().set("10010", user);
+
+        User user11 = (User) redisTemplate.opsForValue().get("10010");
+
+        System.out.println(user11);
+
     }
 
     @GetMapping("test02")
@@ -101,4 +120,6 @@ public class SysUserController {
         loginService.logout();
         return ResultData.success();
     }
+
+
 }

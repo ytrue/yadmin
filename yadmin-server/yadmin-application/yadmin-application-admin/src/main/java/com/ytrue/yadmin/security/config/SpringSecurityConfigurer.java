@@ -1,5 +1,6 @@
 package com.ytrue.yadmin.security.config;
 
+import com.ytrue.yadmin.security.filter.JwtAuthenticationTokenFilter;
 import com.ytrue.yadmin.security.handler.AccessDeniedHandlerImpl;
 import com.ytrue.yadmin.security.handler.AuthenticationEntryPointImpl;
 import com.ytrue.yadmin.security.integration.IntegrationAuthenticationFilter;
@@ -31,6 +32,8 @@ public class SpringSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     private final IntegrationAuthenticationFilter integrationAuthenticationFilter;
 
+    private final JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -52,7 +55,8 @@ public class SpringSecurityConfigurer extends WebSecurityConfigurerAdapter {
                         "/v2/api-docs**",
                         "/webjars/**",
                         "/doc.html**",
-                        "/swagger**"
+                        "/swagger**",
+                        "/error"
                 ).anonymous()
                 // 除上面外的所有请求全部需要鉴权认证
                 .anyRequest().authenticated();
@@ -67,6 +71,7 @@ public class SpringSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
         //添加过滤器
         http.addFilterBefore(integrationAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(jwtAuthenticationTokenFilter, IntegrationAuthenticationFilter.class);
 
         //允许跨域
         http.cors();
