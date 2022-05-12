@@ -38,6 +38,9 @@
         <!--swagger文档-->
         <knife4j-version>2.0.7</knife4j-version>
         <swagger-annotations.version>1.5.22</swagger-annotations.version>
+
+        <!--jwt-->
+        <jjwt.version>0.9.0</jjwt.version>
     </properties>
 
     <dependencies>
@@ -114,6 +117,12 @@
                 <version>${swagger-annotations.version}</version>
             </dependency>
 
+            <!--jwt-->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

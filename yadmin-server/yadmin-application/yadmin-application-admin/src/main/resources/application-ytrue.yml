@@ -36,3 +36,21 @@ ytrue:
         title: 测试管理
         base-package: com.ytrue.yadmin.modules.system.controller.test
         path-regex: /test.*
+
+  # 安全框架
+  security:
+    auth-type-parameter-name: auth_type
+    authorization-header-parameter-name: Authorization
+    # 这个必须要与你认证的接口保存一致
+    auth-url: user/login
+    ignore-auth:
+      - /user/login1
+      - /favicon.ico
+      - /v2/api-docs**
+      - /webjars/**
+      - /doc.html**
+      - /swagger**
+      - /error
+    jwt:
+      token-expire-time: 3600000
+

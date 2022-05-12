@@ -49,6 +49,8 @@ public class GlobalExceptionHandle implements ErrorController {
                         ErrorAttributeOptions.Include.BINDING_ERRORS
                 ));
 
+        System.out.println(errorAttributes);
+
         //返回错误
         String errorMessage = (String) errorAttributes.get("message");
         Integer errorCode = (Integer) errorAttributes.get("status");

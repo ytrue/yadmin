@@ -1,6 +1,6 @@
 package com.ytrue.yadmin.security;
 
-import com.ytrue.yadmin.security.user.User;
+import com.ytrue.yadmin.tools.security.user.User;
 import lombok.Data;
 import lombok.experimental.Accessors;
 

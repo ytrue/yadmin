@@ -1,8 +1,8 @@
 package com.ytrue.yadmin.security;
 
-import com.ytrue.yadmin.security.user.LoginUser;
-import com.ytrue.yadmin.security.integration.IntegrationAuthenticationEntity;
-import com.ytrue.yadmin.security.integration.authenticator.AbstractPreparableIntegrationAuthenticator;
+import com.ytrue.yadmin.tools.security.user.LoginUser;
+import com.ytrue.yadmin.tools.security.integration.IntegrationAuthenticationEntity;
+import com.ytrue.yadmin.tools.security.integration.authenticator.AbstractPreparableIntegrationAuthenticator;
 import org.springframework.stereotype.Component;
 
 /**
