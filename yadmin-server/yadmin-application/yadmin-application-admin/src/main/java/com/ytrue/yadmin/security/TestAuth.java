@@ -13,20 +13,24 @@ import org.springframework.stereotype.Component;
 @Component
 public class TestAuth extends AbstractPreparableIntegrationAuthenticator {
     @Override
-    public Object authenticate(IntegrationAuthenticationEntity entity) {
+    public LoginUser authenticate(IntegrationAuthenticationEntity entity) {
+
         AdminUser user = new AdminUser();
         user.setId(1)
                 .setUsername(entity.getAuthParameter("username"))
                 .setPassword("$2a$10$7C5PuRa87rkpAMMi16peFuRQ72PI.FE/1Xd0yY1sJ6qul8fpMEH5y")
                 .setEmail("ytrue@qq.com");
+
         LoginUser loginUser = new LoginUser();
         loginUser.setUser(user);
         return loginUser;
+
     }
 
     @Override
     public boolean support(IntegrationAuthenticationEntity entity) {
         String authType = entity.getAuthType();
+      //  System.out.println(authType);
         return "password".equals(authType);
     }
 }

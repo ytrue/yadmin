@@ -1,4 +1,4 @@
-#针对ytrue配置
+# 针对ytrue配置
 ytrue:
   # swagger配置
   document:
@@ -37,14 +37,15 @@ ytrue:
         base-package: com.ytrue.yadmin.modules.system.controller.test
         path-regex: /test.*
 
-  # 安全框架
+  # 安全配置
   security:
     auth-type-parameter-name: auth_type
     authorization-header-parameter-name: Authorization
     # 这个必须要与你认证的接口保存一致
-    auth-url: user/login
+    auth-url: /user/login
     ignore-auth:
-      - /user/login1
+      - /user/login
+      - /user/logout
       - /favicon.ico
       - /v2/api-docs**
       - /webjars/**

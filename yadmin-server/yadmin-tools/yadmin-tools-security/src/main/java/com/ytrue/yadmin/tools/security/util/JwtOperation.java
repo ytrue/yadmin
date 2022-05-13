@@ -1,8 +1,7 @@
-package com.ytrue.yadmin.tools.security.utils;
+package com.ytrue.yadmin.tools.security.util;
 
 import com.ytrue.yadmin.tools.security.properties.JwtProperties;
 import io.jsonwebtoken.*;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;

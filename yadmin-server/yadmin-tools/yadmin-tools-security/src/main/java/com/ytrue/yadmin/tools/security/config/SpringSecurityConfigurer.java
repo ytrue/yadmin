@@ -17,7 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  * @author ytrue
@@ -49,7 +49,7 @@ public class SpringSecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
 
-        List<String> ignoreAuth = securityProperties.getIgnoreAuth();
+        Set<String> ignoreAuth = securityProperties.getIgnoreAuth();
         String[] stringArray = new String[ignoreAuth.size()];
         String[] ignoreAuthArray = ignoreAuth.toArray(stringArray);
 

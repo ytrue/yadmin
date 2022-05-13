@@ -2,6 +2,7 @@ package com.ytrue.yadmin.tools.security.integration.authenticator;
 
 
 import com.ytrue.yadmin.tools.security.integration.IntegrationAuthenticationEntity;
+import com.ytrue.yadmin.tools.security.user.LoginUser;
 
 /**
  * @author ytrue
@@ -16,7 +17,7 @@ public interface IntegrationAuthenticator {
      * @param entity 集成认证实体
      * @return 用户表实体
      */
-    Object authenticate(IntegrationAuthenticationEntity entity);
+    LoginUser authenticate(IntegrationAuthenticationEntity entity);
 
     /**
      * 预处理

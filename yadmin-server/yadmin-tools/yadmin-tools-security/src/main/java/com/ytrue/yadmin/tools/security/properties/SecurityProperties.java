@@ -3,8 +3,8 @@ package com.ytrue.yadmin.tools.security.properties;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author ytrue
@@ -18,7 +18,7 @@ public class SecurityProperties {
     /**
      * 忽略认证接口
      */
-    private List<String> ignoreAuth = new ArrayList<>();
+    private Set<String> ignoreAuth = new HashSet<>();
 
     /**
      * auth 类型 参数名称
@@ -35,5 +35,10 @@ public class SecurityProperties {
      * 认证的url,也就是集成认证拦截的地址，这个必须要与认证的接口保存一致
      */
     private String authUrl = "login";
+
+    /**
+     * token缓存到redis的前缀
+     */
+    private String tokenCachePrefix = "auth:";
 
 }

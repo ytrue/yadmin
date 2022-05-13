@@ -1,9 +1,9 @@
 package com.ytrue.yadmin.tools.security.service.impl;
 
-import com.ytrue.yadmin.tools.security.user.LoginUser;
 import com.ytrue.yadmin.tools.security.integration.IntegrationAuthenticationContext;
 import com.ytrue.yadmin.tools.security.integration.IntegrationAuthenticationEntity;
 import com.ytrue.yadmin.tools.security.integration.authenticator.IntegrationAuthenticator;
+import com.ytrue.yadmin.tools.security.user.LoginUser;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
@@ -43,7 +43,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         entity = entity == null ? new IntegrationAuthenticationEntity() : entity;
 
         //判断是否支持集成认证类型
-        LoginUser loginUser = (LoginUser) authenticate(entity);
+        LoginUser loginUser = authenticate(entity);
 
         if (loginUser == null) {
             throw new InternalAuthenticationServiceException("认证服务错误");
@@ -57,7 +57,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
      * @param entity
      * @return
      */
-    private Object authenticate(IntegrationAuthenticationEntity entity) {
+    private LoginUser authenticate(IntegrationAuthenticationEntity entity) {
 
         if (this.authenticators == null) {
             throw new InternalAuthenticationServiceException("未定义认证服务！");

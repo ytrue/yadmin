@@ -2,7 +2,9 @@ package com.ytrue.yadmin.tools.security.integration;
 
 import com.ytrue.yadmin.tools.security.integration.authenticator.IntegrationAuthenticator;
 import com.ytrue.yadmin.tools.security.properties.SecurityProperties;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -29,6 +31,7 @@ import java.util.Map;
  * @date 2022/4/26 16:10
  * @description 集成认证拦截器
  */
+@Slf4j
 @Component
 public class IntegrationAuthenticationFilter extends GenericFilterBean implements ApplicationContextAware {
 

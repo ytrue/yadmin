@@ -1,9 +1,11 @@
 package com.ytrue.yadmin.tools.security.service.impl;
 
+import com.ytrue.yadmin.tools.security.properties.JwtProperties;
+import com.ytrue.yadmin.tools.security.properties.SecurityProperties;
 import com.ytrue.yadmin.tools.security.service.LoginService;
 import com.ytrue.yadmin.tools.security.user.LoginUser;
 import com.ytrue.yadmin.tools.security.user.User;
-import com.ytrue.yadmin.tools.security.utils.JwtOperation;
+import com.ytrue.yadmin.tools.security.util.JwtOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,6 +18,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author ytrue
@@ -32,6 +35,11 @@ public class LoginServiceImpl implements LoginService {
 
     private final JwtOperation jwtOperation;
 
+
+    private final SecurityProperties securityProperties;
+
+    private final JwtProperties jwtProperties;
+
     @Override
     public Map<String, String> login() {
 
@@ -46,8 +54,8 @@ public class LoginServiceImpl implements LoginService {
         User user1 = loginUser.getUser();
         String userId = user1.userId();
 
-        //加入缓存,存放到hash里面去
-        redisTemplate.opsForValue().set(userId, user1);
+        //加入缓存
+        redisTemplate.opsForValue().set(securityProperties.getTokenCachePrefix() + userId, user1, jwtProperties.getTokenExpireTime(), TimeUnit.MILLISECONDS);
 
         //把token响应给前端
         HashMap<String, String> map = new HashMap<>(16);
@@ -60,9 +68,7 @@ public class LoginServiceImpl implements LoginService {
      * 退出登录
      */
     @Override
-    public void logout() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        authentication.getPrincipal();
-
+    public void logout(String userId) {
+        redisTemplate.delete(securityProperties.getTokenCachePrefix() + userId);
     }
 }

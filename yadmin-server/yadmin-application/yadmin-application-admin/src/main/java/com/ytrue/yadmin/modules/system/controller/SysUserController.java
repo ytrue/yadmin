@@ -4,6 +4,7 @@ import com.ytrue.yadmin.core.utils.ResultData;
 import com.ytrue.yadmin.tools.security.service.LoginService;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class SysUserController {
 
 
+    private final StringRedisTemplate stringRedisTemplate;
 
     private final LoginService loginService;
 
@@ -43,7 +45,7 @@ public class SysUserController {
 
     @GetMapping("logout")
     public ResultData<Object> logout() {
-        loginService.logout();
+        loginService.logout(String.valueOf(1));
         return ResultData.success();
     }
 
