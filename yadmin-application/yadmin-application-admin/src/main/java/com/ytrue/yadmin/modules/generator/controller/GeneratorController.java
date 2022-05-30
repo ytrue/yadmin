@@ -33,7 +33,7 @@ public class GeneratorController {
     private final GeneratorService generatorService;
     private final TableInfoMapper tableInfoMapper;
 
-    @PostMapping("generator/page")
+    @PostMapping("tableInfo/page")
     @ApiOperation("分页查询")
     public IPage<TableInfoVO> page(@RequestBody QueryEntity<GenTableInfo> queryEntity) {
         return genTableInfoService
@@ -43,14 +43,14 @@ public class GeneratorController {
     }
 
 
-    @DeleteMapping("generator")
+    @DeleteMapping("tableInfo")
     @ApiOperation("删除")
     public ApiResultResponse<Object> delete(@RequestBody Long[] ids) {
         genTableInfoService.removeBatchByIds(Arrays.asList(ids));
         return ApiResultResponse.success();
     }
 
-    @GetMapping("datasource/table/list/{id}")
+    @GetMapping("tableInfo/list/{id}")
     @ApiOperation("获取数据源中所有表")
     public ApiResultResponse<List<TableInfoDTO>> getDataSourceTableList(@PathVariable("id") Long id) {
         List<TableInfoDTO> dataSourceTables = genTableInfoService.getDataSourceTables(id);
