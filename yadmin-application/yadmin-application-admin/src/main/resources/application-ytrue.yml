@@ -1,0 +1,56 @@
+# 针对ytrue配置
+ytrue:
+  # swagger配置
+  document:
+    # 开启文档
+    enabled: true
+    # 是否是线上模式
+    production: false
+    # 认证配置
+    basic:
+      # 开启认证
+      enable: true
+      # 用户名
+      username: yadmin
+      # 密码
+      password: 111111
+    # 全局参数配置
+    global-operation-parameters:
+      # 认证头
+      - name: Authorization
+        description: 认证头
+        modelRef: String
+        parameter-type: header
+        required: true
+        default-value: 123456
+        allow-empty-value: false
+    # 分组文档
+    docket:
+      # 用户模块
+      generator:
+        title: 代码生成器
+        base-package: com.ytrue.yadmin.modules.generator
+        path-regex: /gen.*
+
+
+  # 安全配置
+  security:
+    auth-type-parameter-name: auth_type
+    authorization-header-parameter-name: Authorization1
+    token-cache-prefix: auth-
+    # 这个必须要与你认证的接口保存一致
+    auth-url: /user/login
+    ignore-auth:
+      - /**
+    #      - /user/login
+    #      - /user/logout
+    #      - /favicon.ico
+    #      - /v2/api-docs**
+    #      - /webjars/**
+    #      - /doc.html**
+    #      - /swagger**
+    #      - /error
+    jwt:
+      token-expire-time: 3600000
+
+
