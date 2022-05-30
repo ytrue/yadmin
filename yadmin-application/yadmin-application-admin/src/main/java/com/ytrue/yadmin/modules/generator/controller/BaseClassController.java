@@ -5,8 +5,6 @@ import com.ytrue.yadmin.core.annotation.ApiModelEnumProperty;
 import com.ytrue.yadmin.core.utils.ApiResultResponse;
 import com.ytrue.yadmin.core.utils.query.QueryEntity;
 import com.ytrue.yadmin.modules.generator.model.GenBaseClass;
-import com.ytrue.yadmin.modules.generator.model.vo.TableInfoVO;
-import com.ytrue.yadmin.modules.generator.model.vo.TypeEnum;
 import com.ytrue.yadmin.modules.generator.service.GenBaseClassService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -64,16 +62,6 @@ public class BaseClassController {
     public ApiResultResponse<Object> delete(@RequestBody Long[] ids) {
         genBaseClassService.removeBatchByIds(Arrays.asList(ids));
         return ApiResultResponse.success();
-    }
-
-    @GetMapping("123")
-    @ApiOperation("test")
-    @ApiParam
-    public void test1(
-            @ApiModelEnumProperty(value = "id枚举", enumClass = TypeEnum.class)
-            @RequestParam("id") Integer id
-    ) {
-
     }
 
 

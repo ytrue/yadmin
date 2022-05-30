@@ -3,8 +3,8 @@ package com.ytrue.yadmin.core.annotation.handle;
 import cn.hutool.core.util.ArrayUtil;
 import com.fasterxml.jackson.databind.introspect.BeanPropertyDefinition;
 import com.ytrue.yadmin.core.annotation.ApiModelEnumProperty;
-import com.ytrue.yadmin.core.enums.DefaultNameValueEnum;
-import com.ytrue.yadmin.core.utils.enums.NameValueEnum;
+import com.ytrue.yadmin.core.enums.DefaultKeyValueEnum;
+import com.ytrue.yadmin.core.enums.KeyValueEnum;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.annotation.AnnotationUtils;
@@ -61,7 +61,7 @@ public class ApiModelEnumPropertyHandle implements ModelPropertyBuilderPlugin, E
         // 获取字段类型
         Class<?> rawType = bpd.getField().getRawType();
         // 是否为枚举类型，为枚举类型，对应的value需为枚举值的名称。而不是调用getValue方法获取值，因为枚举类型前端需传枚举值对象名才可以转换为枚举对象
-        boolean isEnumType = NameValueEnum.class.isAssignableFrom(rawType);
+        boolean isEnumType = KeyValueEnum.class.isAssignableFrom(rawType);
 
         AllowableListValues values = getAllowableListValues(rawType, ev);
 
@@ -101,23 +101,23 @@ public class ApiModelEnumPropertyHandle implements ModelPropertyBuilderPlugin, E
     private AllowableListValues getAllowableListValues(Class<?> fieldType, ApiModelEnumProperty apiModelEnumProperty) {
 
         // 是否为枚举类型，为枚举类型，对应的value需为枚举值的名称。而不是调用getValue方法获取值，因为枚举类型前端需传枚举值对象名才可以转换为枚举对象
-        boolean isEnumType = NameValueEnum.class.isAssignableFrom(fieldType);
+        boolean isEnumType = KeyValueEnum.class.isAssignableFrom(fieldType);
 
         Class<?> enumClass = apiModelEnumProperty.enumClass();
 
         //如果是NameValueEnum类型，并且是默认值
-        if (isEnumType && enumClass == DefaultNameValueEnum.class) {
+        if (isEnumType && enumClass == DefaultKeyValueEnum.class) {
             enumClass = fieldType;
         }
 
 
-        NameValueEnum[] enumConstants = (NameValueEnum[]) enumClass.getEnumConstants();
+        KeyValueEnum[] enumConstants = (KeyValueEnum[]) enumClass.getEnumConstants();
 
         String[] vs = apiModelEnumProperty.values();
         // 如果vs空，则为values中指定枚举值
         if (ArrayUtil.isEmpty(vs)) {
             List<String> values = Arrays.stream(enumConstants)
-                    .map(nameValueEnum -> getPair(nameValueEnum.getName().toString(), nameValueEnum.getValue().toString()))
+                    .map(nameValueEnum -> getPair(nameValueEnum.getKey().toString(), nameValueEnum.getValue().toString()))
                     .collect(Collectors.toList());
 
 
@@ -127,13 +127,11 @@ public class ApiModelEnumPropertyHandle implements ModelPropertyBuilderPlugin, E
 
         List<String> vl = new ArrayList<>();
 
-        for (NameValueEnum ce : enumConstants) {
+        for (KeyValueEnum ce : enumConstants) {
             if (ArrayUtil.contains(vs, ce.toString())) {
-                vl.add(getPair(ce.getName().toString(), ce.getValue().toString()));
+                vl.add(getPair(ce.getKey().toString(), ce.getValue().toString()));
             }
         }
-
-        System.out.println(vl);
         return new AllowableListValues(vl, enumClass.getName());
 
     }

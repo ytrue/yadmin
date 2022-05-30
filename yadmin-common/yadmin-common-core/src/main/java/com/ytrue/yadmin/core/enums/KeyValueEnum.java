@@ -1,17 +1,17 @@
-package com.ytrue.yadmin.core.utils.enums;
+package com.ytrue.yadmin.core.enums;
 
 /**
  * @author ytrue
  * @date 2022/5/28 19:15
  * @description NameEnum
  */
-public interface NameValueEnum<N, V> {
+public interface KeyValueEnum<K, V> {
     /**
      * 获取枚举名称
      *
      * @return 枚举名
      */
-    N getName();
+    K getKey();
 
     /**
      * 获取枚举值

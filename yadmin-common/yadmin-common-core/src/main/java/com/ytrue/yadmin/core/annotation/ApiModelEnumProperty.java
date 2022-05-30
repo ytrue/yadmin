@@ -1,7 +1,7 @@
 package com.ytrue.yadmin.core.annotation;
 
-import com.ytrue.yadmin.core.enums.DefaultNameValueEnum;
-import com.ytrue.yadmin.core.utils.enums.NameValueEnum;
+import com.ytrue.yadmin.core.enums.DefaultKeyValueEnum;
+import com.ytrue.yadmin.core.enums.KeyValueEnum;
 
 import java.lang.annotation.*;
 
@@ -23,7 +23,7 @@ public @interface ApiModelEnumProperty {
     /**
      * 枚举类
      */
-    Class<? extends Enum<? extends NameValueEnum>> enumClass() default DefaultNameValueEnum.class;
+    Class<? extends Enum<? extends KeyValueEnum>> enumClass() default DefaultKeyValueEnum.class;
 
     /**
      * 可选枚举值，即swagger只会显示该指定值对应的枚举描述，支持String, Integer

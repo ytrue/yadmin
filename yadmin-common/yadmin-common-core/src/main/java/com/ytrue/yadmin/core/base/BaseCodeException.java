@@ -30,8 +30,8 @@ public abstract class BaseCodeException extends RuntimeException {
     }
 
     public BaseCodeException(BaseExceptionCode responseCode) {
-        super(responseCode.getMessage());
-        this.code = responseCode.getCode();
+        super(responseCode.getValue());
+        this.code = responseCode.getKey();
     }
 
 }

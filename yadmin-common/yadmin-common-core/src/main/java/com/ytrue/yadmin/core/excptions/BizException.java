@@ -1,7 +1,7 @@
 package com.ytrue.yadmin.core.excptions;
 
 import com.ytrue.yadmin.core.base.BaseCodeException;
-import com.ytrue.yadmin.core.enums.ResponseCode;
+import com.ytrue.yadmin.core.base.BaseExceptionCode;
 
 /**
  * @author ytrue
@@ -13,7 +13,7 @@ public class BizException extends BaseCodeException {
 
     private static final long serialVersionUID = 1922140199999930024L;
 
-    public BizException(ResponseCode responseCode) {
+    public BizException(BaseExceptionCode responseCode) {
         super(responseCode);
     }
 

@@ -41,8 +41,8 @@ public class ApiResultResponse<T> {
     public static <T> ApiResultResponse<T> success() {
         ApiResultResponse<T> resp = new ApiResultResponse<>(null);
         //操作成功
-        resp.setCode(ResponseCode.SUCCESS.getCode());
-        resp.setMessage(ResponseCode.SUCCESS.getMessage());
+        resp.setCode(ResponseCode.SUCCESS.getKey());
+        resp.setMessage(ResponseCode.SUCCESS.getValue());
         return resp;
     }
 
@@ -56,8 +56,8 @@ public class ApiResultResponse<T> {
     public static <T> ApiResultResponse<T> success(T data) {
         ApiResultResponse<T> resp = new ApiResultResponse<>(data);
         //操作成功
-        resp.setCode(ResponseCode.SUCCESS.getCode());
-        resp.setMessage(ResponseCode.SUCCESS.getMessage());
+        resp.setCode(ResponseCode.SUCCESS.getKey());
+        resp.setMessage(ResponseCode.SUCCESS.getValue());
         return resp;
     }
 
@@ -71,8 +71,8 @@ public class ApiResultResponse<T> {
     public static <T> ApiResultResponse<T> fail() {
         ApiResultResponse<T> resp = new ApiResultResponse<>(null);
         //操作失败
-        resp.setCode(ResponseCode.FAIL.getCode());
-        resp.setMessage(ResponseCode.FAIL.getMessage());
+        resp.setCode(ResponseCode.FAIL.getKey());
+        resp.setMessage(ResponseCode.FAIL.getValue());
         return resp;
     }
 
@@ -86,8 +86,8 @@ public class ApiResultResponse<T> {
     public static <T> ApiResultResponse<T> fail(BaseExceptionCode baseExceptionCode) {
         ApiResultResponse<T> resp = new ApiResultResponse<>();
         //操作失败
-        resp.setCode(baseExceptionCode.getCode());
-        resp.setMessage(baseExceptionCode.getMessage());
+        resp.setCode(baseExceptionCode.getKey());
+        resp.setMessage(baseExceptionCode.getValue());
         return resp;
     }
 
@@ -117,7 +117,7 @@ public class ApiResultResponse<T> {
      * @param <T>
      * @return
      */
-    public static <T> ApiResultResponse<T> returnJson(Integer code, String message, T data) {
+    public static <T> ApiResultResponse<T> of(Integer code, String message, T data) {
         ApiResultResponse<T> resp = new ApiResultResponse<>(data);
         //操作成功
         resp.setCode(code);

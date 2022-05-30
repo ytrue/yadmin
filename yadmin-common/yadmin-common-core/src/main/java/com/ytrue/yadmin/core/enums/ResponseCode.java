@@ -37,13 +37,12 @@ public enum ResponseCode implements BaseExceptionCode {
     }
 
     @Override
-    public Integer getCode() {
+    public Integer getKey() {
         return this.code;
     }
 
     @Override
-    public String getMessage() {
+    public String getValue() {
         return this.message;
     }
-
 }

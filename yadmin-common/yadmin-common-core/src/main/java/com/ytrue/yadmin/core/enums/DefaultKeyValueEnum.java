@@ -1,18 +1,16 @@
 package com.ytrue.yadmin.core.enums;
 
-import com.ytrue.yadmin.core.utils.enums.NameValueEnum;
-
 /**
  * @author ytrue
  * @date 2022/5/29 11:14
- * @description DefaultNameValueEnum
+ * @description DefaultKeyValueEnum
  */
-public enum  DefaultNameValueEnum implements NameValueEnum<Integer, String> {
+public enum DefaultKeyValueEnum implements KeyValueEnum<Integer, String> {
     ;
 
 
     @Override
-    public Integer getName() {
+    public Integer getKey() {
         return 0;
     }
 
