@@ -1,8 +1,10 @@
 spring:
-  # 环境 dev|test|prod quart定时任务
   profiles:
-    active: dev,ytrue
-
-
-
-
+    active:
+      - @profileActive@
+    group:
+      dev:
+        - dev
+        - dev-ytrue
+      prod:
+        - prod

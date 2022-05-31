@@ -20,12 +20,6 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
-        <!--json序列化-->
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-        </dependency>
-
         <!--redis依赖-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
