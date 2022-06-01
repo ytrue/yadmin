@@ -8,7 +8,6 @@ import com.ytrue.yadmin.modules.generator.service.GenDataSourceService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
-import lombok.SneakyThrows;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -49,7 +48,7 @@ public class DataSourceController {
         return ApiResultResponse.success(genDataSource);
     }
 
-    @SneakyThrows
+
     @GetMapping("test/{id}")
     @ApiOperation("测试连接")
     public ApiResultResponse<Object> test(@PathVariable("id") Long id) {

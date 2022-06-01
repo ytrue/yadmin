@@ -17,6 +17,7 @@
         <module>yadmin-application</module>
         <module>yadmin-application/yadmin-application-admin</module>
         <module>yadmin-tools/yadmin-tools-document</module>
+        <module>yadmin-tools/yadmin-tools-log</module>
     </modules>
 
     <name>yadmin</name>
@@ -64,10 +65,9 @@
             <version>1.18.22</version>
         </dependency>
 
-        <!--hutool工具库 只导入核心库其它用不到-->
         <dependency>
             <groupId>cn.hutool</groupId>
-            <artifactId>hutool-core</artifactId>
+            <artifactId>hutool-all</artifactId>
             <version>5.8.0.M2</version>
         </dependency>
 

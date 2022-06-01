@@ -37,6 +37,12 @@
             <artifactId>yadmin-tools-security</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.ytrue</groupId>
+            <artifactId>yadmin-tools-log</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
 

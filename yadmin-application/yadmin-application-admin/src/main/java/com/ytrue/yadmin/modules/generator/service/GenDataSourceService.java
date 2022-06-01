@@ -16,5 +16,5 @@ public interface GenDataSourceService extends IService<GenDataSource> {
      *
      * @param id
      */
-    void testDatabaseConnect(Long id) throws SQLException, ClassNotFoundException;
+    void testDatabaseConnect(Long id);
 }

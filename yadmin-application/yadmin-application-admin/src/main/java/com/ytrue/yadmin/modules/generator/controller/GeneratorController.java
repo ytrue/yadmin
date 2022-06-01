@@ -4,11 +4,11 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.ytrue.yadmin.core.utils.ApiResultResponse;
 import com.ytrue.yadmin.core.utils.query.QueryEntity;
 import com.ytrue.yadmin.modules.generator.model.GenTableInfo;
+import com.ytrue.yadmin.modules.generator.model.dto.TableInfoDTO;
 import com.ytrue.yadmin.modules.generator.model.mapstruct.TableInfoMapper;
 import com.ytrue.yadmin.modules.generator.model.vo.TableInfoVO;
 import com.ytrue.yadmin.modules.generator.service.GenTableInfoService;
 import com.ytrue.yadmin.modules.generator.service.GeneratorService;
-import com.ytrue.yadmin.modules.generator.model.dto.TableInfoDTO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Function;
 
 /**
  * @author ytrue

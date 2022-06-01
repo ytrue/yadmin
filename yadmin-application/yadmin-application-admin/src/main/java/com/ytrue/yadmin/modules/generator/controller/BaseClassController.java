@@ -1,14 +1,15 @@
 package com.ytrue.yadmin.modules.generator.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.ytrue.yadmin.core.annotation.ApiModelEnumProperty;
+import com.ytrue.yadmin.core.enums.ResponseCode;
 import com.ytrue.yadmin.core.utils.ApiResultResponse;
+import com.ytrue.yadmin.core.utils.AssertUtils;
 import com.ytrue.yadmin.core.utils.query.QueryEntity;
 import com.ytrue.yadmin.modules.generator.model.GenBaseClass;
 import com.ytrue.yadmin.modules.generator.service.GenBaseClassService;
+import com.ytrue.yadmin.tools.log.annotation.SysLog;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,6 +30,7 @@ public class BaseClassController {
     private final GenBaseClassService genBaseClassService;
 
 
+    @SysLog
     @PostMapping("page")
     @ApiOperation("分页查询")
     public ApiResultResponse<IPage<GenBaseClass>> page(@RequestBody QueryEntity<GenBaseClass> queryEntity) {
