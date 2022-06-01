@@ -5,7 +5,7 @@ yadmin 基于springboot 开发后台
 # 2. 目录结构
 
 ```
-yadmin-ui                                    # yadmin前端
+yadmin-ui                                    # yadmin前端，暂未开发
 
 yadmin-server                                # 后端代码
 ├── yadmin-application
@@ -18,4 +18,5 @@ yadmin-server                                # 后端代码
 ├── yadmin-tools                             # 工具库此模块
 │   └── yadmin-tools-document                # knife4j文档整合             
 │   └── yadmin-tools-security                # spring security + jwt 安全
+│   └── yadmin-tools-log					 # spring security + jwt 安全
 ```
