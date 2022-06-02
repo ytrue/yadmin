@@ -1,10 +1,16 @@
 package com.ytrue.yadmin.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author ytrue
@@ -14,6 +20,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableWebMvc
 @Configuration
 public class SpringWebMvcConfigurer implements WebMvcConfigurer {
+
+    @Resource
+    private ObjectMapper objectMapper;
 
     /**
      * doc.html是在jar包里的，需要使用资源处理器注册静态资源，不然会404
@@ -45,5 +54,17 @@ public class SpringWebMvcConfigurer implements WebMvcConfigurer {
                 .allowedHeaders("*")
                 // 跨域允许时间
                 .maxAge(3600);
+    }
+
+
+    /**
+     * 处理全局日期配置 不生效问题
+     *
+     * @param converters
+     */
+    @Override
+    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+        converters.removeIf(o -> o instanceof MappingJackson2HttpMessageConverter);
+        converters.add(new MappingJackson2HttpMessageConverter(objectMapper));
     }
 }

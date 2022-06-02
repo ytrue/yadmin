@@ -14,8 +14,8 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
 import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
 
 import java.text.SimpleDateFormat;
@@ -31,8 +31,10 @@ import java.util.TimeZone;
  * @date 2022/5/30 11:50
  * @description 全局日期配置
  */
-@Configurable
+
+@Configuration
 public class DateHandlerConfigurer {
+
     /**
      * 默认日期时间格式
      */
@@ -109,11 +111,13 @@ public class DateHandlerConfigurer {
         objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         // 指定时区
         objectMapper.setTimeZone(TimeZone.getTimeZone("GMT+8:00"));
-
-        // Date日期类型字符串全局处理, 默认格式为：yyyy-MM-dd HH:mm:ss
-        // 局部处理某个Date属性字段接收或返回日期格式yyyy-MM-dd, 可采用@JsonFormat(pattern = "yyyy-MM-dd", timezone="GMT+8")注解标注该属性
+        /*
+          Date日期类型字符串全局处理, 默认格式为：yyyy-MM-dd HH:mm:ss
+          局部处理某个Date属性字段接收或返回日期格式yyyy-MM-dd, 可采用@JsonFormat(pattern = "yyyy-MM-dd", timezone="GMT+8")注解标注该属性
+         */
         objectMapper.setDateFormat(new SimpleDateFormat(DEFAULT_DATE_TIME_FORMAT));
 
         return objectMapper;
     }
+
 }

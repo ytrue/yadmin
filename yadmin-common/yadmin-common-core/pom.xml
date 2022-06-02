@@ -60,11 +60,6 @@
             <artifactId>jjwt</artifactId>
         </dependency>
 
-        <!-- json序列化 -->
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-        </dependency>
 
         <!-- map struct bean转换 -->
         <dependency>
