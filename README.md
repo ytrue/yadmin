@@ -18,5 +18,5 @@ yadmin-server                                # 后端代码
 ├── yadmin-tools                             # 工具库此模块
 │   └── yadmin-tools-document                # knife4j文档整合             
 │   └── yadmin-tools-security                # spring security + jwt 安全
-│   └── yadmin-tools-log					 # spring security + jwt 安全
+│   └── yadmin-tools-log                     # spring security + jwt 安全
 ```
