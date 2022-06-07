@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
 
 /**
  * @author ytrue
@@ -34,10 +35,13 @@ public class GeneratorController {
 
     @PostMapping("tableInfo/page")
     @ApiOperation("分页查询")
-    public IPage<TableInfoVO> page(@RequestBody QueryEntity<GenTableInfo> queryEntity) {
-        return genTableInfoService
+    public ApiResultResponse<IPage<TableInfoVO>> page(@RequestBody QueryEntity<GenTableInfo> queryEntity) {
+        IPage<TableInfoVO> page = genTableInfoService
                 .page(queryEntity.getPage(), queryEntity.getQueryModel().orderByDesc(GenTableInfo::getId))
                 .convert(tableInfoMapper::toVo);
+
+
+        return ApiResultResponse.success(page);
 
     }
 

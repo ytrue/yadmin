@@ -10,14 +10,14 @@ import org.mapstruct.ReportingPolicy;
  * @date 2022/5/28 14:30
  * @description TableInfoMapper
  */
-@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
+@Mapper(componentModel = "spring")
 public interface TableInfoMapper {
 
     /**
      * Entity转VO
      *
-     * @param entityList
+     * @param tableInfo
      * @return
      */
-    TableInfoVO toVo(GenTableInfo entityList);
+    TableInfoVO toVo(GenTableInfo tableInfo);
 }

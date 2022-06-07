@@ -1,7 +1,6 @@
 package com.ytrue.yadmin.core.config;
 
 import cn.hutool.core.date.DateUtil;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -29,11 +28,11 @@ import java.util.TimeZone;
 /**
  * @author ytrue
  * @date 2022/5/30 11:50
- * @description 全局日期配置
+ * @description Jackson配置--目前 加入全局日期配置
  */
 
 @Configuration
-public class DateHandlerConfigurer {
+public class JacksonConfigurer {
 
     /**
      * 默认日期时间格式
@@ -107,8 +106,10 @@ public class DateHandlerConfigurer {
         objectMapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
         // PrettyPrinter 格式化输出
         objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
-        // NULL不参与序列化
-        objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+
+        //NULL不参与序列化--null是要参数序列化的,所以这里注释
+        //objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+
         // 指定时区
         objectMapper.setTimeZone(TimeZone.getTimeZone("GMT+8:00"));
         /*
