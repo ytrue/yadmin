@@ -84,7 +84,7 @@ public class ApiResultResponse<T> {
      * @return
      */
     public static <T> ApiResultResponse<T> fail(BaseExceptionCode baseExceptionCode) {
-        ApiResultResponse<T> resp = new ApiResultResponse<>();
+        ApiResultResponse<T> resp = new ApiResultResponse<>(null);
         //操作失败
         resp.setCode(baseExceptionCode.getKey());
         resp.setMessage(baseExceptionCode.getValue());
@@ -100,7 +100,7 @@ public class ApiResultResponse<T> {
      * @return
      */
     public static <T> ApiResultResponse<T> fail(Integer code, String message) {
-        ApiResultResponse<T> resp = new ApiResultResponse<>();
+        ApiResultResponse<T> resp = new ApiResultResponse<>(null);
         //操作失败
         resp.setCode(code);
         resp.setMessage(message);

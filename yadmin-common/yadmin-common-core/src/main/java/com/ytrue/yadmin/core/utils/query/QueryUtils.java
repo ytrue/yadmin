@@ -26,7 +26,7 @@ public class QueryUtils<T> {
      * @return {@link LambdaQueryWrapper<T> }
      * @throws RuntimeException
      */
-    public LambdaQueryWrapper<T> builder(QueryEntity<T> queryEntity) throws RuntimeException {
+    public static <T> LambdaQueryWrapper<T> builder(QueryEntity<T> queryEntity) throws RuntimeException {
 
         QueryWrapper<T> queryWrapper = new QueryWrapper<>();
 

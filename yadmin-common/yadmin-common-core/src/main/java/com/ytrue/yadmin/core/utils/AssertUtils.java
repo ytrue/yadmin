@@ -37,12 +37,26 @@ public class AssertUtils {
         }
     }
 
+
+    /**
+     * 字符串判断是否相等
+     *
+     * @param value
+     * @param expect
+     * @param responseCode
+     */
+    public static void strEq(String value, String expect, BaseExceptionCode responseCode) {
+        if (!value.equals(expect)) {
+            reportInvalidArgument(responseCode);
+        }
+    }
+
     /**
      * 报告无效参数
      *
      * @param responseCode
      */
-    protected static void reportInvalidArgument(BaseExceptionCode responseCode) {
+    private static void reportInvalidArgument(BaseExceptionCode responseCode) {
         throw new AssertInvalidArgumentException(responseCode);
     }
 }

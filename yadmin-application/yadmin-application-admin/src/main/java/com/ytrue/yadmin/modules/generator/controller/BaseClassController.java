@@ -1,7 +1,10 @@
 package com.ytrue.yadmin.modules.generator.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.ytrue.yadmin.core.enums.DatabaseType;
+import com.ytrue.yadmin.core.enums.ResponseCode;
 import com.ytrue.yadmin.core.utils.ApiResultResponse;
+import com.ytrue.yadmin.core.utils.AssertUtils;
 import com.ytrue.yadmin.core.utils.query.QueryEntity;
 import com.ytrue.yadmin.modules.generator.model.GenBaseClass;
 import com.ytrue.yadmin.modules.generator.service.GenBaseClassService;
@@ -9,6 +12,7 @@ import com.ytrue.yadmin.tools.log.annotation.SysLog;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -41,6 +45,7 @@ public class BaseClassController {
     @ApiOperation("详情")
     public ApiResultResponse<GenBaseClass> detail(@PathVariable("id") Long id) {
         GenBaseClass baseClass = genBaseClassService.getById(id);
+        AssertUtils.notNull(baseClass, ResponseCode.DATA_NOT_FOUND);
         return ApiResultResponse.success(baseClass);
     }
 

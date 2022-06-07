@@ -19,6 +19,7 @@ public enum ResponseCode implements BaseExceptionCode {
     SUCCESS(2000, "成功"),
     FAIL(5000, "服务器内部错误"),
     DATA_NOT_FOUND(5004, "数据不存在"),
+    ONLY_SUPPORT_MYSQL(5005, "目前只支持MySQL"),
     UNKNOWN(50001, "未知异常");
 
     /**

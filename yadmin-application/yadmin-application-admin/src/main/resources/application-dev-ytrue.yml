@@ -52,5 +52,3 @@ ytrue:
     #      - /error
     jwt:
       token-expire-time: 3600000
-
-

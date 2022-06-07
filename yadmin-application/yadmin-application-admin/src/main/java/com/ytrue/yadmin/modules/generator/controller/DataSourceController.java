@@ -20,7 +20,7 @@ import java.util.List;
  * @description DataSourceController
  */
 @RestController
-@RequestMapping("gen/dataSource")
+@RequestMapping("gen/datasource")
 @AllArgsConstructor
 @Api(tags = "数据源管理")
 public class DataSourceController {
