@@ -1,7 +1,6 @@
 package com.ytrue.yadmin.modules.generator.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.ytrue.yadmin.core.enums.DatabaseType;
 import com.ytrue.yadmin.core.enums.ResponseCode;
 import com.ytrue.yadmin.core.utils.ApiResultResponse;
 import com.ytrue.yadmin.core.utils.AssertUtils;
@@ -12,7 +11,6 @@ import com.ytrue.yadmin.tools.log.annotation.SysLog;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
-import lombok.SneakyThrows;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;

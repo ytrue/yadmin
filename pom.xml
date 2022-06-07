@@ -48,7 +48,12 @@
         <gosn.2.8.9.version>2.8.9</gosn.2.8.9.version>
 
         <!--bean转化 mapstruct-->
-        <mapstruct-version>1.4.1.Final</mapstruct-version>
+        <mapstruct-version>1.4.2.Final</mapstruct-version>
+
+        <!--简化get 和set-->
+        <lombok-version>1.18.2</lombok-version>
+        <!--处理lombok 和 mapstruct不兼容的问题处理 -->
+        <lombok-mapstruct-binding-version>0.2.0</lombok-mapstruct-binding-version>
     </properties>
 
     <dependencies>
@@ -62,7 +67,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.22</version>
+            <version>${lombok-version}</version>
         </dependency>
 
         <dependency>

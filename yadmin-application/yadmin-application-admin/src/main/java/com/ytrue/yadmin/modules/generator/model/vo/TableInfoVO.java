@@ -1,5 +1,6 @@
 package com.ytrue.yadmin.modules.generator.model.vo;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ytrue.yadmin.core.annotation.ApiModelEnumProperty;
 import io.swagger.annotations.ApiModel;
@@ -26,14 +27,12 @@ public class TableInfoVO {
     @ApiModelProperty(value = "实体类名称")
     private String className;
 
+    @ApiModelProperty(value = "功能名")
+    private String tableComment;
+
     @ApiModelProperty(value = "数据源ID")
     private Long datasourceId;
 
-
-    @ApiModelProperty(value = "test")
-    private Long test;
-
     @ApiModelProperty(value = "创建时间")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private LocalDateTime createTime;
 }
