@@ -13,6 +13,10 @@ public class BizException extends BaseCodeException {
 
     private static final long serialVersionUID = 1922140199999930024L;
 
+    public BizException(String message) {
+        super(message);
+    }
+
     public BizException(BaseExceptionCode responseCode) {
         super(responseCode);
     }

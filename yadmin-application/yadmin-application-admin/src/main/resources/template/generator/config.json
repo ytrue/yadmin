@@ -1,0 +1,38 @@
+{
+  "project": {
+    "packageName": "com.ytrue.yadmin",
+    "version": "1.0.0",
+    "backendPath": "D:\\generator\\yadmin\\yadmin-server",
+    "frontendPath": "D:\\generator\\yadmin\\yadmin-web"
+  },
+  "developer": {
+    "author": "ytrue",
+    "email": "ytrue@qq.com"
+  },
+  "templates": [
+    {
+      "templateName": "Controller.java.ftl",
+      "generatorPath": "${backendPath}/src/main/java/${packagePath}/${moduleName!}/controller/${subModuleName!}/${ClassName}Controller.java"
+    },
+    {
+      "templateName": "Service.java.ftl",
+      "generatorPath": "${backendPath}/src/main/java/${packagePath}/${moduleName!}/service/${subModuleName!}/${ClassName}Service.java"
+    },
+    {
+      "templateName": "ServiceImpl.java.ftl",
+      "generatorPath": "${backendPath}/src/main/java/${packagePath}/${moduleName!}/service/impl/${subModuleName!}/${ClassName}ServiceImpl.java"
+    },
+    {
+      "templateName": "Entity.java.ftl",
+      "generatorPath": "${backendPath}/src/main/java/${packagePath}/${moduleName!}/entity/${subModuleName!}/${ClassName}Entity.java"
+    },
+    {
+      "templateName": "Dao.java.ftl",
+      "generatorPath": "${backendPath}/src/main/java/${packagePath}/${moduleName!}/dao/${subModuleName!}/${ClassName}Dao.java"
+    },
+    {
+      "templateName": "Dao.xml.ftl",
+      "generatorPath": "${backendPath}/src/main/resources/mapper/${moduleName!}/${ClassName}Dao.xml"
+    }
+  ]
+}

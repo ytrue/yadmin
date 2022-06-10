@@ -52,3 +52,6 @@ ytrue:
     #      - /error
     jwt:
       token-expire-time: 3600000
+  # 开启操作日志监听
+  log:
+    enabled: true

@@ -30,11 +30,10 @@ public class BaseClassController {
 
     private final GenBaseClassService genBaseClassService;
 
-
     @SysLog
     @PostMapping("page")
     @ApiOperation("分页查询")
-    public Object page(@RequestBody QueryEntity<GenBaseClass> queryEntity) {
+    public ApiResultResponse<IPage<GenBaseClass>> page(@RequestBody QueryEntity<GenBaseClass> queryEntity) {
         IPage<GenBaseClass> page = genBaseClassService.page(queryEntity.getPage(), queryEntity.getQueryModel().orderByDesc(GenBaseClass::getId));
         return ApiResultResponse.success(page);
     }
@@ -67,6 +66,4 @@ public class BaseClassController {
         genBaseClassService.removeBatchByIds(Arrays.asList(ids));
         return ApiResultResponse.success();
     }
-
-
 }

@@ -2,7 +2,7 @@ package com.ytrue.yadmin.modules.generator.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.ytrue.yadmin.modules.generator.model.GenTableInfo;
-import com.ytrue.yadmin.modules.generator.model.dto.TableInfoDTO;
+import com.ytrue.yadmin.modules.generator.model.dto.ImportTableRequest;
 
 import java.util.List;
 
@@ -19,6 +19,13 @@ public interface GenTableInfoService extends IService<GenTableInfo> {
      * @param id
      * @return
      */
-    List<TableInfoDTO> getDataSourceTables(Long id);
+    List<GenTableInfo> getDataSourceTables(Long id);
 
+
+    /**
+     * 导入表
+     *
+     * @param importTableRequest
+     */
+    void importTable(ImportTableRequest importTableRequest);
 }

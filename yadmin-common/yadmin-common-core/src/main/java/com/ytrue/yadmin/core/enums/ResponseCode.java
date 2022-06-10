@@ -20,7 +20,12 @@ public enum ResponseCode implements BaseExceptionCode {
     FAIL(5000, "服务器内部错误"),
     DATA_NOT_FOUND(5004, "数据不存在"),
     ONLY_SUPPORT_MYSQL(5005, "目前只支持MySQL"),
+    TEMPLATE_NOT_FOUND(5004, "模板配置文件，config.json不存在"),
+    READ_CONFIG_ERROR(5004, "读取config.json配置文件失败"),
+    TABLE_EXISTS(50002, "数据表已存在"),
+
     UNKNOWN(50001, "未知异常");
+
 
     /**
      * code错误码

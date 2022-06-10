@@ -36,9 +36,9 @@ public class LogAutoConfiguration {
     @AllArgsConstructor
     public static class LogService {
         public void saveLog(OperationLog operationLog) {
-//            log.info("操作日志开启监听了....start");
-//            log.info(operationLog.toString());
-//            log.info("操作日志开启监听了....end");
+            log.info("操作日志开启监听了....start");
+            log.info(operationLog.toString());
+            log.info("操作日志开启监听了....end");
         }
     }
 

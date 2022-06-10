@@ -32,5 +32,5 @@ public class TableFieldDTO implements Serializable {
     private String columnComment;
 
     @ApiModelProperty(value = "是否主键 0：否  1：是")
-    private boolean isPk;
+    private Boolean isPk;
 }

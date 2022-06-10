@@ -4,9 +4,7 @@ yadmin 基于springboot 开发后台
 
 # 2. 目录结构
 
-```
-yadmin-ui                                    # yadmin前端，暂未开发
-
+```text
 yadmin-server                                # 后端代码
 ├── yadmin-application
 │   └── yadmin-application-admin             # 后台应用
@@ -20,3 +18,5 @@ yadmin-server                                # 后端代码
 │   └── yadmin-tools-security                # spring security + jwt 安全
 │   └── yadmin-tools-log                     # 操作日志
 ```
+# 3.注意
+修改mapstruct 衍射的类 maven 要 clean
