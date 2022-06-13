@@ -20,13 +20,13 @@ import java.util.Arrays;
 /**
  * @author ytrue
  * @date 2022/5/19 16:55
- * @description BaseClassController
+ * @description GenBaseClassController
  */
 @RestController
 @RequestMapping("gen/baseClass")
 @AllArgsConstructor
 @Api(tags = "基类管理")
-public class BaseClassController {
+public class GenBaseClassController {
 
     private final GenBaseClassService genBaseClassService;
 

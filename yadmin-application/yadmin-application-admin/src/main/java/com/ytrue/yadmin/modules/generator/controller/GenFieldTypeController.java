@@ -17,13 +17,13 @@ import java.util.List;
 /**
  * @author ytrue
  * @date 2022/5/27 11:27
- * @description FieldTypeController
+ * @description GenFieldTypeController
  */
 @RestController
 @RequestMapping("gen/fieldType")
 @AllArgsConstructor
 @Api(tags = "字段类型管理")
-public class FieldTypeController {
+public class GenFieldTypeController {
     private final GenFieldTypeService genFieldTypeService;
 
     @PostMapping("page")

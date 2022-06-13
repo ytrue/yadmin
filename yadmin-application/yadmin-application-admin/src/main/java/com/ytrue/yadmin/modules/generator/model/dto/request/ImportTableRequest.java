@@ -1,4 +1,4 @@
-package com.ytrue.yadmin.modules.generator.model.dto;
+package com.ytrue.yadmin.modules.generator.model.dto.request;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

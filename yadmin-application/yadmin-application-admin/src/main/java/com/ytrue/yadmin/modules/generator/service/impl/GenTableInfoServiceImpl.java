@@ -11,7 +11,7 @@ import com.ytrue.yadmin.modules.generator.dao.GenTableInfoDao;
 import com.ytrue.yadmin.modules.generator.model.GenFieldType;
 import com.ytrue.yadmin.modules.generator.model.GenTableField;
 import com.ytrue.yadmin.modules.generator.model.GenTableInfo;
-import com.ytrue.yadmin.modules.generator.model.dto.ImportTableRequest;
+import com.ytrue.yadmin.modules.generator.model.dto.request.ImportTableRequest;
 import com.ytrue.yadmin.modules.generator.model.dto.config.GeneratorConfigDTO;
 import com.ytrue.yadmin.modules.generator.service.GenTableInfoService;
 import com.ytrue.yadmin.modules.generator.service.manager.DbManager;
@@ -56,8 +56,6 @@ public class GenTableInfoServiceImpl extends ServiceImpl<GenTableInfoDao, GenTab
         AssertUtils.isNull(table, ResponseCode.TABLE_EXISTS);
 
         GenTableInfo tableInfo = dbManager.getDataSourceTable(importTableRequest.getDatasourceId(), importTableRequest.getTableName());
-        //获取原生列数据
-        List<GenTableField> tableFieldList = dbManager.getTableColumns(importTableRequest.getDatasourceId(), tableInfo.getId(), tableInfo.getTableName());
         //代码生成器信息
         GeneratorConfigDTO generatorConfig = generatorConfigManger.getGeneratorConfig();
 
@@ -70,6 +68,8 @@ public class GenTableInfoServiceImpl extends ServiceImpl<GenTableInfoDao, GenTab
         tableInfo.setEmail(generatorConfig.getDeveloper().getEmail());
         //保存到数据库
         save(tableInfo);
+        //获取原生列数据
+        List<GenTableField> tableFieldList = dbManager.getTableColumns(importTableRequest.getDatasourceId(), tableInfo.getId(), tableInfo.getTableName());
         //初始化列数据
         initFieldList(tableFieldList);
         // 批量插入

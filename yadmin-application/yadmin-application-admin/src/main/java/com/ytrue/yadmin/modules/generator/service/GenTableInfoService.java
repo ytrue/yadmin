@@ -2,7 +2,7 @@ package com.ytrue.yadmin.modules.generator.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.ytrue.yadmin.modules.generator.model.GenTableInfo;
-import com.ytrue.yadmin.modules.generator.model.dto.ImportTableRequest;
+import com.ytrue.yadmin.modules.generator.model.dto.request.ImportTableRequest;
 
 import java.util.List;
 

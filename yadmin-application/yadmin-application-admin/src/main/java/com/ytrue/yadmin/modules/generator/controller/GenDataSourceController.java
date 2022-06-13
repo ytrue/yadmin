@@ -8,24 +8,22 @@ import com.ytrue.yadmin.modules.generator.service.GenDataSourceService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
-import lombok.SneakyThrows;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author ytrue
  * @date 2022/5/26 17:00
- * @description DataSourceController
+ * @description GenDataSourceController
  */
 @RestController
 @RequestMapping("gen/datasource")
 @AllArgsConstructor
 @Api(tags = "数据源管理")
-public class DataSourceController {
+public class GenDataSourceController {
 
     private final GenDataSourceService genDataSourceService;
 
