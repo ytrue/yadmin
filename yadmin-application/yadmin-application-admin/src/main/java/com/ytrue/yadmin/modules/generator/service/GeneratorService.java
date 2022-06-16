@@ -6,4 +6,8 @@ package com.ytrue.yadmin.modules.generator.service;
  * @description GeneratorService
  */
 public interface GeneratorService {
+    /**
+     * 生成代码
+     */
+    void generatorCode();
 }

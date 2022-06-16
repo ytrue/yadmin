@@ -2,7 +2,9 @@ package com.ytrue.yadmin.modules.generator.controller;
 
 import com.ytrue.yadmin.modules.generator.service.GeneratorService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,4 +22,9 @@ public class GeneratorController {
 
     private final GeneratorService generatorService;
 
+    @GetMapping("generator/code")
+    @ApiOperation("生成代码")
+    private void generatorCode() {
+        generatorService.generatorCode();
+    }
 }

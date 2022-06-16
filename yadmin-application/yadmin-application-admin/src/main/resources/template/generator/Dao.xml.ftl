@@ -3,7 +3,7 @@
 
 <mapper namespace="${package}<#if moduleName??>.${moduleName}</#if>.dao<#if subModuleName??>.${subModuleName}</#if>.${ClassName}Dao">
 
-    <resultMap type="${package}<#if moduleName??>.${moduleName}</#if>.entity<#if subModuleName??>.${subModuleName}</#if>.${ClassName}Entity" id="${className}Map">
+    <resultMap type="${package}<#if moduleName??>.${moduleName}</#if>.model<#if subModuleName??>.${subModuleName}</#if>.${ClassName}" id="${className}Map">
         <#list columnList as column>
         <result property="${column.attrName}" column="${column.columnName}"/>
         </#list>

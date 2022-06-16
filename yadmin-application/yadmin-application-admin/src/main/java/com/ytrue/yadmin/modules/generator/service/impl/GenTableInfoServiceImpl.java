@@ -76,6 +76,14 @@ public class GenTableInfoServiceImpl extends ServiceImpl<GenTableInfoDao, GenTab
         tableFieldList.forEach(genTableFieldDao::insert);
     }
 
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void removeBatchTableAndFieldByIds(List<Long> ids) {
+        removeBatchByIds(ids);
+        genTableFieldDao.delete(new LambdaQueryWrapper<GenTableField>().in(GenTableField::getTableId, ids));
+    }
+
     /**
      * 初始化列数据
      *
@@ -104,8 +112,8 @@ public class GenTableInfoServiceImpl extends ServiceImpl<GenTableInfoDao, GenTab
                 tableField.setPackageName(fieldTypeMapping.getPackageName());
             }
 
-            tableField.setList(true);
-            tableField.setForm(true);
+            tableField.setIsList(true);
+            tableField.setIsForm(true);
 
             tableField.setQueryType("=");
             tableField.setFormType("text");

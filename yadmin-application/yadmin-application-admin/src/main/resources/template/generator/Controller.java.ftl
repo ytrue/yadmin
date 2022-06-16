@@ -1,76 +1,68 @@
-package ${package}<#if moduleName??>.${moduleName}</#if>.controller<#if subModuleName??>.${subModuleName}</#if>;
+package com.ytrue.yadmin.modules.generator.controller;
 
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
-import lombok.AllArgsConstructor;
-import ${package}.framework.common.page.PageResult;
-import ${package}.framework.common.utils.Result;
-import ${package}<#if moduleName??>.${moduleName}</#if>.convert<#if subModuleName??>.${subModuleName}</#if>.${ClassName}Convert;
-import ${package}<#if moduleName??>.${moduleName}</#if>.entity<#if subModuleName??>.${subModuleName}</#if>.${ClassName}Entity;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.ytrue.yadmin.core.enums.ResponseCode;
+import com.ytrue.yadmin.core.utils.ApiResultResponse;
+import com.ytrue.yadmin.core.utils.AssertUtils;
+import com.ytrue.yadmin.core.utils.query.QueryEntity;
+import ${package}<#if moduleName??>.${moduleName}</#if>.model<#if subModuleName??>.${subModuleName}</#if>.${ClassName};
 import ${package}<#if moduleName??>.${moduleName}</#if>.service<#if subModuleName??>.${subModuleName}</#if>.${ClassName}Service;
-import ${package}<#if moduleName??>.${moduleName}</#if>.query<#if subModuleName??>.${subModuleName}</#if>.${ClassName}Query;
-import ${package}<#if moduleName??>.${moduleName}</#if>.vo<#if subModuleName??>.${subModuleName}</#if>.${ClassName}VO;
-import org.springframework.security.access.prepost.PreAuthorize;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
+import java.util.Arrays;
+
 
 /**
-* ${tableComment}
-*
-* @author ${author} ${email}
-* @since ${version} ${date}
+* @author ${author}
+* @date ${date}
+* @description ${tableComment}控制器
 */
 @RestController
-@RequestMapping("<#if moduleName??>${moduleName}/</#if>${classname}")
-@Tag(name="${tableComment}")
+@RequestMapping("<#if moduleName??>${moduleName}/</#if>${className}")
 @AllArgsConstructor
-public class ${ClassName}Controller {
+@Api(tags = "${tableComment}")
+public class GenBaseClassController {
+
     private final ${ClassName}Service ${className}Service;
 
-    @GetMapping("page")
-    @Operation(summary = "分页")
-    @PreAuthorize("hasAuthority('<#if moduleName??>${moduleName}:</#if>${classname}:page')")
-    public Result<PageResult<${ClassName}VO>> page(@Valid ${ClassName}Query query){
-        PageResult<${ClassName}VO> page = ${className}Service.page(query);
 
-        return Result.ok(page);
+    @PostMapping("page")
+    @ApiOperation("分页查询")
+    public ApiResultResponse<IPage<${ClassName}>> page(@RequestBody QueryEntity<${ClassName}> queryEntity) {
+        IPage<${ClassName}> page = genBaseClassService.page(queryEntity.getPage(), queryEntity.getQueryModel();
+        return ApiResultResponse.success(page);
     }
 
     @GetMapping("{id}")
-    @Operation(summary = "信息")
-    @PreAuthorize("hasAuthority('<#if moduleName??>${moduleName}:</#if>${classname}:info')")
-    public Result<${ClassName}VO> get(@PathVariable("id") Long id){
-        ${ClassName}Entity entity = ${className}Service.getById(id);
-
-        return Result.ok(${ClassName}Convert.INSTANCE.convert(entity));
+    @ApiOperation("详情")
+    public ApiResultResponse<${ClassName}> detail(@PathVariable("id") Long id) {
+        GenBaseClass data = genBaseClassService.getById(id);
+        AssertUtils.notNull(data, ResponseCode.DATA_NOT_FOUND);
+        return ApiResultResponse.success(data);
     }
 
     @PostMapping
-    @Operation(summary = "保存")
-    @PreAuthorize("hasAuthority('<#if moduleName??>${moduleName}:</#if>${classname}:save')")
-    public Result<String> save(@RequestBody ${ClassName}VO vo){
-        ${className}Service.save(vo);
-
-        return Result.ok();
+    @ApiOperation("保存")
+    public ApiResultResponse<Object> save(@Valid @RequestBody ${ClassName} ${className}) {
+        ${className}Service.save(${className});
+        return ApiResultResponse.success();
     }
 
     @PutMapping
-    @Operation(summary = "修改")
-    @PreAuthorize("hasAuthority('<#if moduleName??>${moduleName}:</#if>${classname}:update')")
-    public Result<String> update(@RequestBody @Valid ${ClassName}VO vo){
-        ${className}Service.update(vo);
-
-        return Result.ok();
+    @ApiOperation("修改")
+    public ApiResultResponse<Object> update(@Valid @RequestBody ${ClassName} ${className}) {
+        ${className}Service.updateById(${className?uncap_first});
+        return ApiResultResponse.success();
     }
 
     @DeleteMapping
-    @Operation(summary = "删除")
-    @PreAuthorize("hasAuthority('<#if moduleName??>${moduleName}:</#if>${classname}:delete')")
-    public Result<String> delete(@RequestBody List<Long> idList){
-        ${className}Service.delete(idList);
-
-        return Result.ok();
+    @ApiOperation("删除")
+    public ApiResultResponse<Object> delete(@RequestBody Long[] ids) {
+        ${className}Service.removeBatchByIds(Arrays.asList(ids));
+        return ApiResultResponse.success();
     }
 }

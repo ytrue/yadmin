@@ -29,7 +29,7 @@ public class GenTableInfoController {
     private final GenTableInfoService genTableInfoService;
     private final TableInfoMapper tableInfoMapper;
 
-    @PostMapping("tableInfo/page")
+    @PostMapping("page")
     @ApiOperation("分页查询")
     public ApiResultResponse<IPage<TableInfoVO>> page(@RequestBody QueryEntity<GenTableInfo> queryEntity) {
         IPage<TableInfoVO> page = genTableInfoService
@@ -39,21 +39,21 @@ public class GenTableInfoController {
 
     }
 
-    @DeleteMapping("tableInfo")
+    @DeleteMapping
     @ApiOperation("删除")
     public ApiResultResponse<Object> delete(@RequestBody Long[] ids) {
-        genTableInfoService.removeBatchByIds(Arrays.asList(ids));
+        genTableInfoService.removeBatchTableAndFieldByIds(Arrays.asList(ids));
         return ApiResultResponse.success();
     }
 
-    @GetMapping("tableInfo/list/{id}")
+    @GetMapping("list/{id}")
     @ApiOperation("获取数据源中所有表")
     public ApiResultResponse<List<GenTableInfo>> getDataSourceTableList(@PathVariable("id") Long id) {
         List<GenTableInfo> dataSourceTables = genTableInfoService.getDataSourceTables(id);
         return ApiResultResponse.success(dataSourceTables);
     }
 
-    @PostMapping("tableInfo/import")
+    @PostMapping("import")
     @ApiOperation("导入表")
     public ApiResultResponse<Object> importTable(@RequestBody ImportTableRequest importTableRequest) {
         genTableInfoService.importTable(importTableRequest);

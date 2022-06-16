@@ -1,16 +1,14 @@
 package ${package}<#if moduleName??>.${moduleName}</#if>.dao<#if subModuleName??>.${subModuleName}</#if>;
 
-import ${package}.framework.common.dao.BaseDao;
-import ${package}<#if moduleName??>.${moduleName}</#if>.entity<#if subModuleName??>.${subModuleName}</#if>.${ClassName}Entity;
-import org.apache.ibatis.annotations.Mapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import ${package}<#if moduleName??>.${moduleName}</#if>.model<#if subModuleName??>.${subModuleName}</#if>.${ClassName};
+
 
 /**
-* ${tableComment}
-*
-* @author ${author} ${email}
-* @since ${version} ${date}
+* @author ${author}
+* @date ${date}
+* @description ${tableComment}Dao
 */
-@Mapper
-public interface ${ClassName}Dao extends BaseDao<${ClassName}Entity> {
-	
+public interface ${ClassName}Dao extends BaseMapper<${ClassName}> {
+
 }

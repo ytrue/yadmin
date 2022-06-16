@@ -64,23 +64,23 @@ public class GenTableField implements Serializable {
 
     @TableField("is_pk")
     @ApiModelProperty(value = "是否主键 0：否  1：是")
-    private boolean isPk;
+    private Boolean isPk;
 
     @TableField("is_required")
     @ApiModelProperty(value = "是否必填 0：否  1：是")
-    private boolean isRequired;
+    private Boolean isRequired;
 
     @TableField("is_form")
     @ApiModelProperty(value = "是否表单字段 0：否  1：是")
-    private boolean isForm;
+    private Boolean isForm;
 
     @TableField("is_list")
     @ApiModelProperty(value = "是否列表字段 0：否  1：是")
-    private boolean isList;
+    private Boolean isList;
 
     @TableField("is_query")
     @ApiModelProperty(value = "是否查询字段 0：否  1：是")
-    private boolean isQuery;
+    private Boolean isQuery;
 
     @TableField("query_type")
     @ApiModelProperty(value = "查询方式")

@@ -28,4 +28,11 @@ public interface GenTableInfoService extends IService<GenTableInfo> {
      * @param importTableRequest
      */
     void importTable(ImportTableRequest importTableRequest);
+
+    /**
+     * 批量删除表和对应的字段
+     *
+     * @param ids
+     */
+    void removeBatchTableAndFieldByIds(List<Long> ids);
 }

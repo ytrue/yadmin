@@ -17,6 +17,11 @@ public class BizException extends BaseCodeException {
         super(message);
     }
 
+    public BizException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+
     public BizException(BaseExceptionCode responseCode) {
         super(responseCode);
     }

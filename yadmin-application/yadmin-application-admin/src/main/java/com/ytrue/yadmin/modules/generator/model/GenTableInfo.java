@@ -90,16 +90,4 @@ public class GenTableInfo  implements Serializable {
     @TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE)
     @ApiModelProperty(value = "更新时间")
     private LocalDateTime updateTime;
-
-    /**
-     * 表字段
-     */
-    @TableField(exist = false)
-    private List<GenTableField> fields;
-    /**
-     * 主键
-     */
-    @TableField(exist = false)
-    private GenTableField key;
-
 }

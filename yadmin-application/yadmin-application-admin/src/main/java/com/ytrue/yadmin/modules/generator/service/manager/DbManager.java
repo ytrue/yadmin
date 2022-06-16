@@ -128,7 +128,7 @@ public class DbManager {
             field.setColumnType(columnType);
             field.setColumnComment(rs.getString(dbQuery.fieldComment()));
             String key = rs.getString(dbQuery.fieldKey());
-            field.setPk(StringUtils.isNotBlank(key) && "PRI".equalsIgnoreCase(key));
+            field.setIsPk(StringUtils.isNotBlank(key) && "PRI".equalsIgnoreCase(key));
 
             tableFieldList.add(field);
         }

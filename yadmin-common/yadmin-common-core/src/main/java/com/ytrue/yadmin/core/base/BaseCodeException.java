@@ -29,6 +29,10 @@ public abstract class BaseCodeException extends RuntimeException {
         this.code = code;
     }
 
+    public BaseCodeException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
     public BaseCodeException(BaseExceptionCode responseCode) {
         super(responseCode.getValue());
         this.code = responseCode.getKey();

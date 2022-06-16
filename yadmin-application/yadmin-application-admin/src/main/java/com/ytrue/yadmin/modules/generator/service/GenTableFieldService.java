@@ -2,6 +2,9 @@ package com.ytrue.yadmin.modules.generator.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.ytrue.yadmin.modules.generator.model.GenTableField;
+import com.ytrue.yadmin.modules.generator.model.dto.request.TableFieldUpdateRequest;
+
+import java.util.List;
 
 /**
  * @author ytrue
@@ -9,4 +12,5 @@ import com.ytrue.yadmin.modules.generator.model.GenTableField;
  * @description GenTableFieldService
  */
 public interface GenTableFieldService extends IService<GenTableField> {
+
 }

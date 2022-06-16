@@ -43,6 +43,12 @@
             <artifactId>yadmin-tools-log</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>2.3.31</version>
+        </dependency>
     </dependencies>
 
 
@@ -101,7 +107,6 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
-
                     <!--解决 mapstruct 和 lombok 因为版本导致不兼容的处理-->
                     <annotationProcessorPaths>
                         <path>
