@@ -1,13 +1,16 @@
 package com.ytrue.yadmin.modules.generator.service.impl;
 
 
+import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.ytrue.yadmin.core.config.JacksonConfigurer;
 import com.ytrue.yadmin.core.excptions.BizException;
 import com.ytrue.yadmin.modules.generator.dao.GenBaseClassDao;
 import com.ytrue.yadmin.modules.generator.dao.GenTableFieldDao;
 import com.ytrue.yadmin.modules.generator.dao.GenTableInfoDao;
+import com.ytrue.yadmin.modules.generator.model.GenBaseClass;
 import com.ytrue.yadmin.modules.generator.model.GenTableField;
 import com.ytrue.yadmin.modules.generator.model.GenTableInfo;
 import com.ytrue.yadmin.modules.generator.model.dto.config.GeneratorConfigDTO;
@@ -27,6 +30,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * @author ytrue
@@ -85,8 +90,17 @@ public class GeneratorServiceImpl implements GeneratorService {
         GenTableField pkTableField = columnList.stream().filter(GenTableField::getIsPk).findFirst().orElse(null);
         dataModel.put("pk", pkTableField);
 
+        //导入的包列表
+        Set<String> imports = columnList.stream().map(GenTableField::getPackageName).filter(StringUtils::isNotBlank).collect(Collectors.toSet());
+        dataModel.put("imports", imports);
 
+        //基类
         dataModel.put("baseClassEntity", null);
+        if (tableInfo.getBaseclassId() != null) {
+            GenBaseClass baseClass = genBaseClassDao.selectById(tableInfo.getBaseclassId());
+            dataModel.put("baseClassEntity", baseClass);
+        }
+
 
         //代码生成器信息
         GeneratorConfigDTO generatorConfig = generatorConfigManger.getGeneratorConfig();
@@ -95,8 +109,9 @@ public class GeneratorServiceImpl implements GeneratorService {
         generatorConfig.getTemplates().forEach(template -> {
             dataModel.put("templateName", template.getTemplateName());
             String content = getRenderedTemplateContent(template.getTemplateContent(), dataModel);
-
-            System.out.println(content);
+            String path = getRenderedTemplateContent(template.getGeneratorPath(), dataModel);
+            //生成文件
+            FileUtil.writeString(content, new File(path), "utf-8");
         });
     }
 

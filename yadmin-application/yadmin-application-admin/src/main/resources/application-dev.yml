@@ -63,6 +63,9 @@ spring:
         max-wait: -1
         # 最小空闲连接数，默认0
         min-idle: 0
+  # freemarker配置
+  freemarker:
+    check-template-location: false
 
 # mybatis plus配置
 mybatis-plus:

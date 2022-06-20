@@ -9,5 +9,4 @@ import com.ytrue.yadmin.modules.generator.model.GenFieldType;
  * @description 字段类型管理
  */
 public interface GenFieldTypeDao extends BaseMapper<GenFieldType> {
-
 }
