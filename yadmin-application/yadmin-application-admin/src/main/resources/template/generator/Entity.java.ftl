@@ -1,5 +1,7 @@
 package ${package}<#if moduleName??>.${moduleName}</#if>.model<#if subModuleName??>.${subModuleName}</#if>;
 
+import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -25,8 +27,6 @@ import ${baseClassEntity.packageName};
 @ApiModel(value = "${tableComment}")
 @TableName("${tableName}")
 public class ${ClassName}<#if baseClassEntity??> extends ${baseClassEntity.code}</#if> implements Serializable {
-
-    private static final long serialVersionUID = 1L;
 
 <#list columnList as column>
 

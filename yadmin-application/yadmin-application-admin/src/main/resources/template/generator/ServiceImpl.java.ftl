@@ -13,5 +13,5 @@ import org.springframework.stereotype.Service;
 * @description ${tableComment}Service实现类
 */
 @Service
-public class GenBaseClassServiceImpl extends ServiceImpl<${ClassName}Dao, ${ClassName}> implements ${ClassName}Service {
+public class ${ClassName}ServiceImpl extends ServiceImpl<${ClassName}Dao, ${ClassName}> implements ${ClassName}Service {
 }

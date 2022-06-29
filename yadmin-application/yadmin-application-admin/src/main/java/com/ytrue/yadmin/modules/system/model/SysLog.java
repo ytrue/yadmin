@@ -1,75 +1,113 @@
 package com.ytrue.yadmin.modules.system.model;
 
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Builder;
+import io.swagger.annotations.ApiModel;
 import lombok.Data;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
-
-import java.util.Date;
-
+import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.*;
+import java.time.LocalDateTime;
 
 /**
- * @author ytrue
- * @date 2022/4/13 14:25
- * @description 系统日志
- */
+* @author ytrue
+* @date 2022-06-29
+* @description 操作日志实体类
+*/
 @Data
-@TableName("sys_log")
 @Builder
-@ApiModel(value = "系统日志")
 @Accessors(chain = true)
-public class SysLog {
+@EqualsAndHashCode(callSuper=false)
+@ApiModel(value = "操作日志")
+@TableName("sys_log")
+public class SysLog implements Serializable {
 
+
+    private static final long serialVersionUID = 8776612911433518626L;
     @TableId
     @TableField("log_id")
-    @ApiModelProperty(value = "ID")
+    @ApiModelProperty(value = "id")
     private Long logId;
 
-    @TableField("description")
-    @ApiModelProperty(value = "描述")
-    private String description;
-
-    @TableField("log_type")
-    @ApiModelProperty(value = "类型")
-    private String logType;
-
-    @TableField("method")
-    @ApiModelProperty(value = "方法")
-    private String method;
-
-    @TableField("params")
-    @ApiModelProperty(value = "参数")
-    private String params;
 
     @TableField("request_ip")
-    @ApiModelProperty(value = "请求IP")
+    @ApiModelProperty(value = "操作IP")
     private String requestIp;
 
-    @TableField("time")
-    @ApiModelProperty(value = "时间")
-    private Long time;
+
+    @TableField("type")
+    @ApiModelProperty(value = "OPT:操作类型;EX:异常类型")
+    private String type;
+
 
     @TableField("username")
-    @ApiModelProperty(value = "用户名")
+    @ApiModelProperty(value = "操作人")
     private String username;
 
-    @TableField("address")
-    @ApiModelProperty(value = "地址")
-    private String address;
 
-    @TableField("browser")
+    @TableField("description")
+    @ApiModelProperty(value = "操作描述")
+    private String description;
+
+
+    @TableField("class_path")
+    @ApiModelProperty(value = "类路径")
+    private String classPath;
+
+
+    @TableField("action_method")
+    @ApiModelProperty(value = "请求方法")
+    private String actionMethod;
+
+
+    @TableField("request_uri")
+    @ApiModelProperty(value = "请求url")
+    private String requestUri;
+
+
+    @TableField("http_method")
+    @ApiModelProperty(value = "请求参数")
+    private String httpMethod;
+
+
+    @TableField("params")
+    @ApiModelProperty(value = "返回值,项目使用了注解返回包装，拿不到值，所先注释")
+    private String params;
+
+
+    @TableField("ex_desc")
+    @ApiModelProperty(value = "异常详情信息")
+    private String exDesc;
+
+
+    @TableField("ex_detail")
+    @ApiModelProperty(value = "异常描述")
+    private Object exDetail;
+
+
+    @TableField("start_time")
+    @ApiModelProperty(value = "开始时间")
+    private LocalDateTime startTime;
+
+
+    @TableField("finish_time")
+    @ApiModelProperty(value = "完成时间")
+    private LocalDateTime finishTime;
+
+
+    @TableField("consuming_time")
+    @ApiModelProperty(value = "消耗时间")
+    private Long consumingTime;
+
+
+    @TableField("ua")
     @ApiModelProperty(value = "浏览器")
-    private String browser;
+    private String ua;
 
-    @TableField("exception_detail")
-    @ApiModelProperty(value = "异常详情")
-    private String exceptionDetail;
 
-    @TableField("create_time")
-    @ApiModelProperty(value = "创建时间")
-    private Date createTime;
+    @TableField("user_id")
+    @ApiModelProperty(value = "操作人id")
+    private Long userId;
+
 }

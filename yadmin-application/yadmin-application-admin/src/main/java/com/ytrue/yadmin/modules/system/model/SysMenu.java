@@ -1,115 +1,92 @@
 package com.ytrue.yadmin.modules.system.model;
 
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiModel;
-import lombok.Builder;
 import lombok.Data;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
-
-import java.util.Date;
+import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.*;
+import java.time.LocalDateTime;
 
 /**
- * @author ytrue
- * @date 2022/4/13 14:25
- * @description 系统菜单
- */
+* @author ytrue
+* @date 2022-06-29
+* @description 菜单管理实体类
+*/
 @Data
-@TableName("sys_menu")
 @Builder
-@ApiModel(value = "系统菜单")
 @Accessors(chain = true)
-public class SysMenu {
-    /**
-     * ID
-     */
+@EqualsAndHashCode(callSuper=false)
+@ApiModel(value = "菜单管理")
+@TableName("sys_menu")
+public class SysMenu implements Serializable {
+
+
+    private static final long serialVersionUID = 2430789651255349191L;
     @TableId
     @TableField("menu_id")
     private Long menuId;
-    /**
-     * 上级菜单ID
-     */
-    @TableField("pid")
-    private Long pid;
-    /**
-     * 子菜单数目
-     */
-    @TableField("sub_count")
-    private Integer subCount;
-    /**
-     * 菜单类型
-     */
-    @TableField("type")
-    private Integer type;
-    /**
-     * 菜单标题
-     */
-    @TableField("title")
-    private String title;
-    /**
-     * 组件名称
-     */
+
+
+    @TableField("parent_id")
+    @ApiModelProperty(value = "父菜单ID,一级菜单为0")
+    private Long parentId;
+
+
+    @TableField("router")
+    @ApiModelProperty(value = "对应路由组件")
+    private String router;
+
+
     @TableField("name")
+    @ApiModelProperty(value = "菜单名称")
     private String name;
-    /**
-     * 组件
-     */
-    @TableField("component")
-    private String component;
-    /**
-     * 排序
-     */
-    @TableField("menu_sort")
-    private Integer menuSort;
-    /**
-     * 图标
-     */
-    @TableField("icon")
-    private String icon;
-    /**
-     * 链接地址
-     */
+
+
     @TableField("path")
+    @ApiModelProperty(value = "path")
     private String path;
-    /**
-     * 是否外链
-     */
-    @TableField("i_frame")
-    private boolean iFrame;
-    /**
-     * 缓存
-     */
-    @TableField("cache")
-    private boolean cache;
-    /**
-     * 隐藏
-     */
+
+
+    @TableField("icon")
+    @ApiModelProperty(value = "icon图标")
+    private String icon;
+
+
+    @TableField("perms")
+    @ApiModelProperty(value = "授权(多个用逗号分隔，如：user:list,user:create)")
+    private String perms;
+
+
+    @TableField("redirect")
+    @ApiModelProperty(value = "跳转地址")
+    private String redirect;
+
+
+    @TableField("order_num")
+    @ApiModelProperty(value = "排序")
+    private Object orderNum;
+
+
     @TableField("hidden")
-    private boolean hidden;
-    /**
-     * 权限
-     */
-    @TableField("permission")
-    private String permission;
-    /**
-     * 创建者
-     */
-    @TableField("create_by")
-    private String createBy;
-    /**
-     * 更新者
-     */
-    @TableField("update_by")
-    private String updateBy;
-    /**
-     * 创建日期
-     */
-    @TableField("create_time")
-    private Date createTime;
-    /**
-     * 更新时间
-     */
-    @TableField("update_time")
-    private Date updateTime;
+    @ApiModelProperty(value = "是否显示:0=false,1=true")
+    private Object hidden;
+
+
+    @TableField("menu_type")
+    @ApiModelProperty(value = "级别")
+    private Object menuType;
+
+
+    @TableField(value = "create_time", fill = FieldFill.INSERT)
+    @ApiModelProperty(value = "创建时间")
+    private LocalDateTime createTime;
+
+
+    @TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE)
+    @ApiModelProperty(value = "更新时间")
+    private LocalDateTime updateTime;
+
 }

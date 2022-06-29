@@ -12,27 +12,27 @@
   "templates": [
     {
       "templateName": "Controller.java.ftl",
-      "generatorPath": "${backendPath}/src/main/java/${packagePath}/${moduleName!}/controller/${subModuleName!}/${ClassName}Controller.java"
+      "generatorPath": "${backendPath}/src/main/java/${packagePath}/${modulePath!}/controller/${subModule!}/${ClassName}Controller.java"
     },
     {
       "templateName": "Service.java.ftl",
-      "generatorPath": "${backendPath}/src/main/java/${packagePath}/${moduleName!}/service/${subModuleName!}/${ClassName}Service.java"
+      "generatorPath": "${backendPath}/src/main/java/${packagePath}/${modulePath!}/service/${subModule!}/${ClassName}Service.java"
     },
     {
       "templateName": "ServiceImpl.java.ftl",
-      "generatorPath": "${backendPath}/src/main/java/${packagePath}/${moduleName!}/service/impl/${subModuleName!}/${ClassName}ServiceImpl.java"
+      "generatorPath": "${backendPath}/src/main/java/${packagePath}/${modulePath!}/service/impl/${subModule!}/${ClassName}ServiceImpl.java"
     },
     {
       "templateName": "Entity.java.ftl",
-      "generatorPath": "${backendPath}/src/main/java/${packagePath}/${moduleName!}/entity/${subModuleName!}/${ClassName}Entity.java"
+      "generatorPath": "${backendPath}/src/main/java/${packagePath}/${modulePath!}/model/${subModule!}/${ClassName}.java"
     },
     {
       "templateName": "Dao.java.ftl",
-      "generatorPath": "${backendPath}/src/main/java/${packagePath}/${moduleName!}/dao/${subModuleName!}/${ClassName}Dao.java"
+      "generatorPath": "${backendPath}/src/main/java/${packagePath}/${modulePath!}/dao/${subModule!}/${ClassName}Dao.java"
     },
     {
       "templateName": "Dao.xml.ftl",
-      "generatorPath": "${backendPath}/src/main/resources/mapper/${moduleName!}/${ClassName}Dao.xml"
+      "generatorPath": "${backendPath}/src/main/resources/mapper/${modulePath!}/${ClassName}Dao.xml"
     }
   ]
 }

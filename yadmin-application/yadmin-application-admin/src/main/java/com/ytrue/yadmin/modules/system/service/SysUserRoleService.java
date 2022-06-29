@@ -1,15 +1,15 @@
 package com.ytrue.yadmin.modules.system.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.ytrue.yadmin.modules.system.model.SysMenu;
+import com.ytrue.yadmin.modules.system.model.SysUserRole;
 
 import java.util.List;
 
 /**
 * @author ytrue
 * @date 2022-06-29
-* @description 菜单管理Service
+* @description 用户与角色对应关系Service
 */
-public interface SysMenuService extends IService<SysMenu> {
+public interface SysUserRoleService extends IService<SysUserRole> {
 
 }

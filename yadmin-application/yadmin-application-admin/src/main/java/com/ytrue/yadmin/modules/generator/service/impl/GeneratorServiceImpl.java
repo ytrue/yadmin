@@ -48,7 +48,6 @@ public class GeneratorServiceImpl implements GeneratorService {
     private final GenBaseClassDao genBaseClassDao;
 
 
-
     @Override
     public void generatorCode(GenTableInfo genTableInfo) {
         //保存
@@ -65,17 +64,30 @@ public class GeneratorServiceImpl implements GeneratorService {
         dataModel.put("packagePath", tableInfo.getPackageName().replace(".", File.separator));
         dataModel.put("version", tableInfo.getVersion());
 
+        //处理 moduleName 使用 . 可以创建多级目录
+
+
         String moduleName = tableInfo.getModuleName();
+
         if (StrUtil.isBlank(moduleName)) {
             moduleName = null;
+            dataModel.put("modulePath", null);
+        } else {
+            dataModel.put("modulePath", moduleName.replace(".", File.separator));
         }
         dataModel.put("moduleName", moduleName);
+
 
         String subModuleName = tableInfo.getSubModuleName();
         if (StrUtil.isBlank(subModuleName)) {
             subModuleName = null;
+            dataModel.put("subModule", null);
+        } else {
+            dataModel.put("subModule", subModuleName.replace(".", File.separator));
         }
+
         dataModel.put("subModuleName", subModuleName);
+
         dataModel.put("backendPath", tableInfo.getBackendPath());
         dataModel.put("frontendPath", tableInfo.getFrontendPath());
 
@@ -110,13 +122,15 @@ public class GeneratorServiceImpl implements GeneratorService {
         //代码生成器信息
         GeneratorConfigDTO generatorConfig = generatorConfigManger.getGeneratorConfig();
 
+
         //渲染模板并输出
         generatorConfig.getTemplates().forEach(template -> {
             dataModel.put("templateName", template.getTemplateName());
             String content = getRenderedTemplateContent(template.getTemplateContent(), dataModel);
+            //这里要处理一下
             String path = getRenderedTemplateContent(template.getGeneratorPath(), dataModel);
             //生成文件
-            FileUtil.writeString(content, new File(path), "utf-8");
+             FileUtil.writeString(content, new File(path), "utf-8");
         });
     }
 

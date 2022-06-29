@@ -26,12 +26,14 @@ ytrue:
         allow-empty-value: false
     # 分组文档
     docket:
-      # 用户模块
       generator:
         title: 代码生成器
         base-package: com.ytrue.yadmin.modules.generator
         path-regex: /gen.*
-
+      user:
+        title: 权限管理
+        base-package: com.ytrue.yadmin.modules.system
+        path-regex: /system.*
 
   # 安全配置
   security:

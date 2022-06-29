@@ -1,4 +1,4 @@
-package com.ytrue.yadmin.modules.generator.controller;
+package ${package}<#if moduleName??>.${moduleName}</#if>.controller<#if subModuleName??>.${subModuleName}</#if>;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.ytrue.yadmin.core.enums.ResponseCode;
@@ -25,7 +25,7 @@ import java.util.Arrays;
 @RequestMapping("<#if moduleName??>${moduleName}/</#if>${className}")
 @AllArgsConstructor
 @Api(tags = "${tableComment}")
-public class GenBaseClassController {
+public class ${ClassName}Controller {
 
     private final ${ClassName}Service ${className}Service;
 
@@ -33,14 +33,14 @@ public class GenBaseClassController {
     @PostMapping("page")
     @ApiOperation("分页查询")
     public ApiResultResponse<IPage<${ClassName}>> page(@RequestBody QueryEntity<${ClassName}> queryEntity) {
-        IPage<${ClassName}> page = genBaseClassService.page(queryEntity.getPage(), queryEntity.getQueryModel();
+        IPage<${ClassName}> page = ${className}Service.page(queryEntity.getPage(), queryEntity.getQueryModel());
         return ApiResultResponse.success(page);
     }
 
     @GetMapping("detail/{id}")
     @ApiOperation("详情")
     public ApiResultResponse<${ClassName}> detail(@PathVariable("id") Long id) {
-        GenBaseClass data = genBaseClassService.getById(id);
+        ${ClassName} data = ${className}Service.getById(id);
         AssertUtils.notNull(data, ResponseCode.DATA_NOT_FOUND);
         return ApiResultResponse.success(data);
     }

@@ -1,65 +1,53 @@
 package com.ytrue.yadmin.modules.system.model;
 
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiModel;
 import lombok.Data;
-
-import java.util.Date;
-
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
+import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.*;
+import java.time.LocalDateTime;
 
 /**
- * @author ytrue
- * @date 2022/4/13 14:25
- * @description 角色表
- */
+* @author ytrue
+* @date 2022-06-29
+* @description 角色实体类
+*/
 @Data
+@Builder
+@Accessors(chain = true)
+@EqualsAndHashCode(callSuper=false)
+@ApiModel(value = "角色")
 @TableName("sys_role")
-public class SysRole {
-    /**
-     * ID
-     */
+public class SysRole implements Serializable {
+
+
+    private static final long serialVersionUID = -6350234728443853054L;
     @TableId
     @TableField("role_id")
+    @ApiModelProperty(value = "id")
     private Long roleId;
-    /**
-     * 名称
-     */
-    @TableField("name")
-    private String name;
-    /**
-     * 角色级别
-     */
-    @TableField("level")
-    private Integer level;
-    /**
-     * 描述
-     */
-    @TableField("description")
-    private String description;
-    /**
-     * 数据权限
-     */
-    @TableField("data_scope")
-    private String dataScope;
-    /**
-     * 创建者
-     */
-    @TableField("create_by")
-    private String createBy;
-    /**
-     * 更新者
-     */
-    @TableField("update_by")
-    private String updateBy;
-    /**
-     * 创建日期
-     */
-    @TableField("create_time")
-    private Date createTime;
-    /**
-     * 更新时间
-     */
-    @TableField("update_time")
-    private Date updateTime;
+
+
+    @TableField("role_name")
+    @ApiModelProperty(value = "角色名称")
+    private String roleName;
+
+
+    @TableField("remark")
+    @ApiModelProperty(value = "备注")
+    private String remark;
+
+
+    @TableField(value = "create_time", fill = FieldFill.INSERT)
+    @ApiModelProperty(value = "创建时间")
+    private LocalDateTime createTime;
+
+
+    @TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE)
+    @ApiModelProperty(value = "更新时间")
+    private LocalDateTime updateTime;
+
 }
