@@ -32,8 +32,8 @@ public class SysRoleController {
 
     @PostMapping("page")
     @ApiOperation("分页查询")
-    public ApiResultResponse<IPage<SysRole>> page(@RequestBody QueryEntity<SysRole> queryEntity) {
-        IPage<SysRole> page = sysRoleService.page(queryEntity.getPage(), queryEntity.getQueryModel());
+    public ApiResultResponse<IPage<SysRole>> page(@RequestBody(required = false) QueryEntity<SysRole> queryEntity) {
+        IPage<SysRole> page = sysRoleService.paginate(queryEntity);
         return ApiResultResponse.success(page);
     }
 

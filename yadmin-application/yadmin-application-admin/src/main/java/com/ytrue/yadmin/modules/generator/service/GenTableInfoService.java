@@ -1,6 +1,8 @@
 package com.ytrue.yadmin.modules.generator.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.ytrue.yadmin.core.utils.query.QueryEntity;
 import com.ytrue.yadmin.modules.generator.model.GenTableInfo;
 import com.ytrue.yadmin.modules.generator.model.dto.request.ImportTableRequest;
 
@@ -12,6 +14,15 @@ import java.util.List;
  * @description TableInfoService
  */
 public interface GenTableInfoService extends IService<GenTableInfo> {
+
+
+    /**
+     * 分页查询
+     *
+     * @param queryEntity
+     * @return
+     */
+    IPage<GenTableInfo> paginate(QueryEntity<GenTableInfo> queryEntity);
 
     /**
      * 获取数据源所有的表信息

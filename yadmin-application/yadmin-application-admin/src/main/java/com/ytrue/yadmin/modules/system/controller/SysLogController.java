@@ -32,8 +32,8 @@ public class SysLogController {
 
     @PostMapping("page")
     @ApiOperation("分页查询")
-    public ApiResultResponse<IPage<SysLog>> page(@RequestBody QueryEntity<SysLog> queryEntity) {
-        IPage<SysLog> page = sysLogService.page(queryEntity.getPage(), queryEntity.getQueryModel());
+    public ApiResultResponse<IPage<SysLog>> page(@RequestBody(required = false) QueryEntity<SysLog> queryEntity) {
+        IPage<SysLog> page = sysLogService.paginate(queryEntity);
         return ApiResultResponse.success(page);
     }
 

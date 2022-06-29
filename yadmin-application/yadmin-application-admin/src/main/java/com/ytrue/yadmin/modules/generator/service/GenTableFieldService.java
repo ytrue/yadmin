@@ -1,10 +1,9 @@
 package com.ytrue.yadmin.modules.generator.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.ytrue.yadmin.core.utils.query.QueryEntity;
 import com.ytrue.yadmin.modules.generator.model.GenTableField;
-import com.ytrue.yadmin.modules.generator.model.dto.request.TableFieldUpdateRequest;
-
-import java.util.List;
 
 /**
  * @author ytrue
@@ -13,4 +12,11 @@ import java.util.List;
  */
 public interface GenTableFieldService extends IService<GenTableField> {
 
+    /**
+     * 分页查询
+     *
+     * @param queryEntity
+     * @return
+     */
+    IPage<GenTableField> paginate(QueryEntity<GenTableField> queryEntity);
 }

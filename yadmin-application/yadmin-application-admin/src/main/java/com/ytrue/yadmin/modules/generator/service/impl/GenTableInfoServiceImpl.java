@@ -2,9 +2,11 @@ package com.ytrue.yadmin.modules.generator.service.impl;
 
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ytrue.yadmin.core.enums.ResponseCode;
 import com.ytrue.yadmin.core.utils.AssertUtils;
+import com.ytrue.yadmin.core.utils.query.QueryEntity;
 import com.ytrue.yadmin.modules.generator.dao.GenFieldTypeDao;
 import com.ytrue.yadmin.modules.generator.dao.GenTableFieldDao;
 import com.ytrue.yadmin.modules.generator.dao.GenTableInfoDao;
@@ -23,6 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -38,6 +41,12 @@ public class GenTableInfoServiceImpl extends ServiceImpl<GenTableInfoDao, GenTab
     private final GeneratorConfigManger generatorConfigManger;
     private final GenFieldTypeDao genFieldTypeDao;
     private final GenTableFieldDao genTableFieldDao;
+
+    @Override
+    public IPage<GenTableInfo> paginate(QueryEntity<GenTableInfo> queryEntity) {
+        queryEntity = Objects.isNull(queryEntity) ? new QueryEntity<>() : queryEntity;
+        return page(queryEntity.getPage(), queryEntity.getQueryModel());
+    }
 
     @Override
     public List<GenTableInfo> getDataSourceTables(Long id) {

@@ -1,9 +1,9 @@
 package com.ytrue.yadmin.modules.generator.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.ytrue.yadmin.core.utils.query.QueryEntity;
 import com.ytrue.yadmin.modules.generator.model.GenDataSource;
-
-import java.sql.SQLException;
 
 /**
  * @author ytrue
@@ -11,6 +11,15 @@ import java.sql.SQLException;
  * @description GenDataSourceService
  */
 public interface GenDataSourceService extends IService<GenDataSource> {
+
+    /**
+     * 分页查询
+     *
+     * @param queryEntity
+     * @return
+     */
+    IPage<GenDataSource> paginate(QueryEntity<GenDataSource> queryEntity);
+
     /**
      * 测试数据库连接
      *

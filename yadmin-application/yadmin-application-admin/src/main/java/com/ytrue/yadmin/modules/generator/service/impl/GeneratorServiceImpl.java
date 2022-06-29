@@ -72,8 +72,10 @@ public class GeneratorServiceImpl implements GeneratorService {
         if (StrUtil.isBlank(moduleName)) {
             moduleName = null;
             dataModel.put("modulePath", null);
+            dataModel.put("moduleUrl", null);
         } else {
             dataModel.put("modulePath", moduleName.replace(".", File.separator));
+            dataModel.put("moduleUrl", moduleName.replace(".", "/"));
         }
         dataModel.put("moduleName", moduleName);
 
@@ -130,7 +132,7 @@ public class GeneratorServiceImpl implements GeneratorService {
             //这里要处理一下
             String path = getRenderedTemplateContent(template.getGeneratorPath(), dataModel);
             //生成文件
-             FileUtil.writeString(content, new File(path), "utf-8");
+            FileUtil.writeString(content, new File(path), "utf-8");
         });
     }
 

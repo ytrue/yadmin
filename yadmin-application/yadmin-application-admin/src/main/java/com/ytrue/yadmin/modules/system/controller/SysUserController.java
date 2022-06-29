@@ -17,10 +17,10 @@ import java.util.Arrays;
 
 
 /**
-* @author ytrue
-* @date 2022-06-29
-* @description 系统用户控制器
-*/
+ * @author ytrue
+ * @date 2022-06-29
+ * @description 系统用户控制器
+ */
 @RestController
 @RequestMapping("system/sysUser")
 @AllArgsConstructor
@@ -32,8 +32,8 @@ public class SysUserController {
 
     @PostMapping("page")
     @ApiOperation("分页查询")
-    public ApiResultResponse<IPage<SysUser>> page(@RequestBody QueryEntity<SysUser> queryEntity) {
-        IPage<SysUser> page = sysUserService.page(queryEntity.getPage(), queryEntity.getQueryModel());
+    public ApiResultResponse<IPage<SysUser>> page(@RequestBody(required = false) QueryEntity<SysUser> queryEntity) {
+        IPage<SysUser> page = sysUserService.paginate(queryEntity);
         return ApiResultResponse.success(page);
     }
 

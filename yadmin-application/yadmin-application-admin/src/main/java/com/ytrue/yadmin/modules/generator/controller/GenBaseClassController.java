@@ -34,8 +34,8 @@ public class GenBaseClassController {
     @SysLog
     @PostMapping("page")
     @ApiOperation("分页查询")
-    public ApiResultResponse<IPage<GenBaseClass>> page(@RequestBody QueryEntity<GenBaseClass> queryEntity) {
-        IPage<GenBaseClass> page = genBaseClassService.page(queryEntity.getPage(), queryEntity.getQueryModel().orderByDesc(GenBaseClass::getId));
+    public ApiResultResponse<IPage<GenBaseClass>> page(@RequestBody(required = false) QueryEntity<GenBaseClass> queryEntity) {
+        IPage<GenBaseClass> page = genBaseClassService.paginate(queryEntity);
         return ApiResultResponse.success(page);
     }
 

@@ -29,8 +29,8 @@ public class GenDataSourceController {
 
     @PostMapping("page")
     @ApiOperation("分页查询")
-    public ApiResultResponse<IPage<GenDataSource>> page(@RequestBody QueryEntity<GenDataSource> queryEntity) {
-        IPage<GenDataSource> page = genDataSourceService.page(queryEntity.getPage(), queryEntity.getQueryModel().orderByDesc(GenDataSource::getId));
+    public ApiResultResponse<IPage<GenDataSource>> page(@RequestBody(required = false) QueryEntity<GenDataSource> queryEntity) {
+        IPage<GenDataSource> page = genDataSourceService.paginate(queryEntity);
         return ApiResultResponse.success(page);
     }
 

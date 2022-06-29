@@ -22,7 +22,7 @@ import java.util.Arrays;
 * @description ${tableComment}控制器
 */
 @RestController
-@RequestMapping("<#if moduleName??>${moduleName}/</#if>${className}")
+@RequestMapping("<#if moduleUrl??>${moduleUrl}/</#if>${className}")
 @AllArgsConstructor
 @Api(tags = "${tableComment}")
 public class ${ClassName}Controller {
@@ -33,7 +33,7 @@ public class ${ClassName}Controller {
     @PostMapping("page")
     @ApiOperation("分页查询")
     public ApiResultResponse<IPage<${ClassName}>> page(@RequestBody QueryEntity<${ClassName}> queryEntity) {
-        IPage<${ClassName}> page = ${className}Service.page(queryEntity.getPage(), queryEntity.getQueryModel());
+        IPage<${ClassName}> page = ${className}Service.paginate(queryEntity);
         return ApiResultResponse.success(page);
     }
 

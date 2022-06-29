@@ -1,5 +1,7 @@
 package com.ytrue.yadmin.modules.system.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.ytrue.yadmin.core.utils.query.QueryEntity;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.ytrue.yadmin.modules.system.model.SysRoleMenu;
 
@@ -12,4 +14,10 @@ import java.util.List;
 */
 public interface SysRoleMenuService extends IService<SysRoleMenu> {
 
+    /**
+    * 分页查询
+    * @param queryEntity
+    * @return
+    */
+    IPage<SysRoleMenu> paginate(QueryEntity<SysRoleMenu> queryEntity);
 }

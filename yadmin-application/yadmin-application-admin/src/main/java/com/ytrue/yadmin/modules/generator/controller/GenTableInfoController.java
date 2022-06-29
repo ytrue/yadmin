@@ -6,6 +6,7 @@ import com.ytrue.yadmin.core.utils.ApiResultResponse;
 import com.ytrue.yadmin.core.utils.AssertUtils;
 import com.ytrue.yadmin.core.utils.query.QueryEntity;
 import com.ytrue.yadmin.modules.generator.model.GenBaseClass;
+import com.ytrue.yadmin.modules.generator.model.GenFieldType;
 import com.ytrue.yadmin.modules.generator.model.GenTableInfo;
 import com.ytrue.yadmin.modules.generator.model.dto.request.ImportTableRequest;
 import com.ytrue.yadmin.modules.generator.model.mapstruct.TableInfoMapper;
@@ -35,12 +36,9 @@ public class GenTableInfoController {
 
     @PostMapping("page")
     @ApiOperation("分页查询")
-    public ApiResultResponse<IPage<TableInfoVO>> page(@RequestBody QueryEntity<GenTableInfo> queryEntity) {
-        IPage<TableInfoVO> page = genTableInfoService
-                .page(queryEntity.getPage(), queryEntity.getQueryModel().orderByDesc(GenTableInfo::getId))
-                .convert(tableInfoMapper::toVo);
+    public ApiResultResponse<IPage<TableInfoVO>> page(@RequestBody(required = false) QueryEntity<GenTableInfo> queryEntity) {
+        IPage<TableInfoVO> page = genTableInfoService.paginate(queryEntity).convert(tableInfoMapper::toVo);
         return ApiResultResponse.success(page);
-
     }
 
     @PutMapping

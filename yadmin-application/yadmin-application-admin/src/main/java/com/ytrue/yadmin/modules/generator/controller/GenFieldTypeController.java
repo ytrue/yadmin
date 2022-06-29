@@ -3,6 +3,7 @@ package com.ytrue.yadmin.modules.generator.controller;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.ytrue.yadmin.core.utils.ApiResultResponse;
 import com.ytrue.yadmin.core.utils.query.QueryEntity;
+import com.ytrue.yadmin.modules.generator.model.GenDataSource;
 import com.ytrue.yadmin.modules.generator.model.GenFieldType;
 import com.ytrue.yadmin.modules.generator.service.GenFieldTypeService;
 import io.swagger.annotations.Api;
@@ -28,8 +29,8 @@ public class GenFieldTypeController {
 
     @PostMapping("page")
     @ApiOperation("分页查询")
-    public ApiResultResponse<IPage<GenFieldType>> page(@RequestBody QueryEntity<GenFieldType> queryEntity) {
-        IPage<GenFieldType> page = genFieldTypeService.page(queryEntity.getPage(), queryEntity.getQueryModel().orderByDesc(GenFieldType::getId));
+    public ApiResultResponse<IPage<GenFieldType>> page(@RequestBody(required = false) QueryEntity<GenFieldType> queryEntity) {
+        IPage<GenFieldType> page = genFieldTypeService.paginate(queryEntity);
         return ApiResultResponse.success(page);
     }
 

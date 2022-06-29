@@ -17,10 +17,10 @@ import java.util.Arrays;
 
 
 /**
-* @author ytrue
-* @date 2022-06-29
-* @description 菜单管理控制器
-*/
+ * @author ytrue
+ * @date 2022-06-29
+ * @description 菜单管理控制器
+ */
 @RestController
 @RequestMapping("system/sysMenu")
 @AllArgsConstructor
@@ -32,8 +32,8 @@ public class SysMenuController {
 
     @PostMapping("page")
     @ApiOperation("分页查询")
-    public ApiResultResponse<IPage<SysMenu>> page(@RequestBody QueryEntity<SysMenu> queryEntity) {
-        IPage<SysMenu> page = sysMenuService.page(queryEntity.getPage(), queryEntity.getQueryModel());
+    public ApiResultResponse<IPage<SysMenu>> page(@RequestBody(required = false) QueryEntity<SysMenu> queryEntity) {
+        IPage<SysMenu> page = sysMenuService.paginate(queryEntity);
         return ApiResultResponse.success(page);
     }
 

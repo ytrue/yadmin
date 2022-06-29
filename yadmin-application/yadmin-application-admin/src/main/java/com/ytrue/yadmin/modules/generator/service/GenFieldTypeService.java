@@ -1,6 +1,8 @@
 package com.ytrue.yadmin.modules.generator.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.ytrue.yadmin.core.utils.query.QueryEntity;
 import com.ytrue.yadmin.modules.generator.model.GenFieldType;
 
 /**
@@ -9,4 +11,12 @@ import com.ytrue.yadmin.modules.generator.model.GenFieldType;
  * @description GenFieldTypeService
  */
 public interface GenFieldTypeService extends IService<GenFieldType> {
+
+    /**
+     * 分页查询
+     *
+     * @param queryEntity
+     * @return
+     */
+    IPage<GenFieldType> paginate(QueryEntity<GenFieldType> queryEntity);
 }
