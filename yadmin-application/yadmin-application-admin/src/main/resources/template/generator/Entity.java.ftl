@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+import java.io.Serializable;
 import com.baomidou.mybatisplus.annotation.*;
 <#list imports as i>
 import ${i!};
@@ -23,7 +24,10 @@ import ${baseClassEntity.packageName};
 @EqualsAndHashCode(callSuper=false)
 @ApiModel(value = "${tableComment}")
 @TableName("${tableName}")
-public class ${ClassName}<#if baseClassEntity??> extends ${baseClassEntity.code}</#if> {
+public class ${ClassName}<#if baseClassEntity??> extends ${baseClassEntity.code}</#if> implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
 <#list columnList as column>
 
     <#if column.isPk>

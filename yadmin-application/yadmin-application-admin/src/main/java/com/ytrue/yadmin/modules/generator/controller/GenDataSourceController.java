@@ -41,7 +41,7 @@ public class GenDataSourceController {
         return ApiResultResponse.success(list);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("detail/{id}")
     @ApiOperation("详情")
     public ApiResultResponse<GenDataSource> detail(@PathVariable("id") Long id) {
         GenDataSource genDataSource = genDataSourceService.getById(id);

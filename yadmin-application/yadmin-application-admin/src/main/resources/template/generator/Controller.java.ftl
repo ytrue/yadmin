@@ -37,7 +37,7 @@ public class GenBaseClassController {
         return ApiResultResponse.success(page);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("detail/{id}")
     @ApiOperation("详情")
     public ApiResultResponse<${ClassName}> detail(@PathVariable("id") Long id) {
         GenBaseClass data = genBaseClassService.getById(id);
@@ -55,7 +55,7 @@ public class GenBaseClassController {
     @PutMapping
     @ApiOperation("修改")
     public ApiResultResponse<Object> update(@Valid @RequestBody ${ClassName} ${className}) {
-        ${className}Service.updateById(${className?uncap_first});
+        ${className}Service.updateById(${className});
         return ApiResultResponse.success();
     }
 

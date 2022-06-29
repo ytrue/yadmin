@@ -78,7 +78,7 @@ public class GenTableInfo  implements Serializable {
     private Long datasourceId;
 
 
-    @TableField(value = "datasource_id", updateStrategy = FieldStrategy.IGNORED)
+    @TableField(value = "baseclass_id", updateStrategy = FieldStrategy.IGNORED)
     @ApiModelProperty(value = "基类ID")
     private Long baseclassId;
 

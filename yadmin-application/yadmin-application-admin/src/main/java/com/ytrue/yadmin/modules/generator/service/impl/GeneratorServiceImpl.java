@@ -47,11 +47,16 @@ public class GeneratorServiceImpl implements GeneratorService {
     private final GeneratorConfigManger generatorConfigManger;
     private final GenBaseClassDao genBaseClassDao;
 
+
+
     @Override
-    public void generatorCode() {
-        GenTableInfo tableInfo = genTableInfoDao.selectById(10);
+    public void generatorCode(GenTableInfo genTableInfo) {
+        //保存
+        genTableInfoDao.updateById(genTableInfo);
+
+        GenTableInfo tableInfo = genTableInfoDao.selectById(genTableInfo.getId());
         List<GenTableField> columnList = genTableFieldDao
-                .selectList(new LambdaQueryWrapper<GenTableField>().eq(GenTableField::getTableId, 10));
+                .selectList(new LambdaQueryWrapper<GenTableField>().eq(GenTableField::getTableId, genTableInfo.getId()));
 
         //数据模型
         Map<String, Object> dataModel = new HashMap<>(16);
@@ -144,4 +149,6 @@ public class GeneratorServiceImpl implements GeneratorService {
 
         return content;
     }
+
+
 }

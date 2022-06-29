@@ -25,7 +25,7 @@ import java.time.LocalDateTime;
 @Accessors(chain = true)
 public class SysDept implements Serializable {
 
-    private static final long serialVersionUID = 6914215265817006956L;
+    private static final long serialVersionUID = 1L;
 
     @TableId
     @TableField("dept_id")

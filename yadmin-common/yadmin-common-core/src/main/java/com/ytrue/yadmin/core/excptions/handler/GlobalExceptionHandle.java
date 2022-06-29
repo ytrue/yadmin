@@ -9,6 +9,7 @@ import org.springframework.boot.web.error.ErrorAttributeOptions;
 import org.springframework.boot.web.servlet.error.ErrorAttributes;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
@@ -24,6 +25,7 @@ import java.util.Map;
 @Controller
 @Slf4j
 @AllArgsConstructor
+@CrossOrigin
 public class GlobalExceptionHandle implements ErrorController {
 
     private final ErrorAttributes errorAttributes;
@@ -38,7 +40,6 @@ public class GlobalExceptionHandle implements ErrorController {
     @RequestMapping("error")
     @ResponseBody
     public ApiResultResponse<Object> error(HttpServletResponse response, WebRequest req) {
-        log.info("GlobalExceptionHandle：被触发了");
         //设置200，方便前端处理
         response.setStatus(200);
         Map<String, Object> errorAttributes = this.errorAttributes.getErrorAttributes(req,
@@ -60,8 +61,6 @@ public class GlobalExceptionHandle implements ErrorController {
         if (error instanceof BaseCodeException) {
             errorMessage = error.getMessage();
             errorCode = ((BaseCodeException) error).getCode();
-
-            log.info(errorCode.toString());
         }
 
         return ApiResultResponse.fail(errorCode, errorMessage);

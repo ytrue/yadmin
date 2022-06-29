@@ -40,7 +40,7 @@ public class GenFieldTypeController {
         return ApiResultResponse.success(list);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("detail/{id}")
     @ApiOperation("详情")
     public ApiResultResponse<GenFieldType> detail(@PathVariable("id") Long id) {
         GenFieldType genFieldType = genFieldTypeService.getById(id);

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Arrays;
+import java.util.List;
 
 
 /**
@@ -38,7 +39,15 @@ public class GenBaseClassController {
         return ApiResultResponse.success(page);
     }
 
-    @GetMapping("{id}")
+
+    @GetMapping("list")
+    @ApiOperation("列表")
+    public ApiResultResponse<List<GenBaseClass>> list() {
+        List<GenBaseClass> list = genBaseClassService.list();
+        return ApiResultResponse.success(list);
+    }
+
+    @GetMapping("detail/{id}")
     @ApiOperation("详情")
     public ApiResultResponse<GenBaseClass> detail(@PathVariable("id") Long id) {
         GenBaseClass baseClass = genBaseClassService.getById(id);
