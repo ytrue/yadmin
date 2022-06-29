@@ -32,7 +32,7 @@ public class ${ClassName}Controller {
 
     @PostMapping("page")
     @ApiOperation("分页查询")
-    public ApiResultResponse<IPage<${ClassName}>> page(@RequestBody QueryEntity<${ClassName}> queryEntity) {
+    public ApiResultResponse<IPage<${ClassName}>> page(@RequestBody(required = false) QueryEntity<${ClassName}> queryEntity) {
         IPage<${ClassName}> page = ${className}Service.paginate(queryEntity);
         return ApiResultResponse.success(page);
     }
