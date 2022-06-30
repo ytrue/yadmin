@@ -16,6 +16,8 @@
 
         <module>yadmin-application</module>
         <module>yadmin-application/yadmin-application-admin</module>
+        <module>yadmin-application/yadmin-application-monitor</module>
+
         <module>yadmin-tools/yadmin-tools-document</module>
         <module>yadmin-tools/yadmin-tools-log</module>
     </modules>
@@ -30,14 +32,14 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <!--spring boot版本-->
-        <spring-boot.version>2.6.2</spring-boot.version>
+        <spring-boot.version>2.5.6</spring-boot.version>
 
         <!--mysql数据库操作-->
         <mybatisplus.version>3.5.1</mybatisplus.version>
         <mysql.version>8.0.16</mysql.version>
 
         <!--swagger文档-->
-        <knife4j-version>2.0.7</knife4j-version>
+        <knife4j-version>2.0.9</knife4j-version>
         <swagger-annotations.version>1.5.22</swagger-annotations.version>
         <springfox.version>2.10.5</springfox.version>
 
@@ -152,6 +154,18 @@
                 <version>${mapstruct-version}</version>
             </dependency>
 
+            <!--spring admin 监控-->
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-server</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-client</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

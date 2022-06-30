@@ -47,7 +47,7 @@ spring:
     # 指定数据库，默认为0
     database: 0
     # 连接超时时间，单位毫秒，默认为0
-    timeout: 3000
+    timeout: 30000
     # 是否启用SSL连接，默认false
     ssl: false
     # jedis客户端连接方式是基于tcp的阻塞式连接方式,
@@ -66,6 +66,27 @@ spring:
   # freemarker配置
   freemarker:
     check-template-location: false
+
+  # springboot admin 配置
+  boot:
+    admin:
+      client:
+        url: http://127.0.0.1:7001
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+management:
+  endpoints:
+    web:
+      exposure:
+        #暴露部分端点
+        include: '*'
+  endpoint:
+    health:
+      #显示健康具体信息  默认不会显示详细信息
+      show-details: always
 
 # mybatis plus配置
 mybatis-plus:
@@ -91,3 +112,5 @@ mybatis-plus:
       logic-delete-value: 1
       # 逻辑未删除值(默认为 0)
       logic-not-delete-value: 0
+
+
