@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ytrue.yadmin.modules.generator.dao.GenBaseClassDao">
+
+
+    <select id="queryAll" resultType="com.ytrue.yadmin.modules.generator.model.GenBaseClass">
+        select *
+        from gen_base_class where id > 100;
+    </select>
+
+
+    <delete id="deleteAll">
+        delete
+        from gen_base_class
+        where id > 100
+    </delete>
+</mapper>

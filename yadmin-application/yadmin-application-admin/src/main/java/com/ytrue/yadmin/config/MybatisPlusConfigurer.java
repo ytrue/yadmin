@@ -1,8 +1,10 @@
 package com.ytrue.yadmin.config;
 
+import com.baomidou.mybatisplus.autoconfigure.ConfigurationCustomizer;
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.OptimisticLockerInnerInterceptor;
+import com.ytrue.yadmin.core.utils.query.CondInterceptor;
 import org.apache.ibatis.reflection.MetaObject;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
@@ -22,7 +24,21 @@ public class MybatisPlusConfigurer implements MetaObjectHandler {
 
 
     /**
-     * 乐观锁
+     * 将插件加入到mybatis插件拦截链中
+     *
+     * @return
+     */
+    @Bean
+    public ConfigurationCustomizer configurationCustomizer() {
+        return configuration -> {
+            //注册条件拦截器
+            CondInterceptor condInterceptor = new CondInterceptor();
+            configuration.addInterceptor(condInterceptor);
+        };
+    }
+
+    /**
+     * mybatis plus 插件
      */
     @Bean
     public MybatisPlusInterceptor mybatisPlusInterceptor() {

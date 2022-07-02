@@ -64,7 +64,7 @@ public class QueryEntity<T> implements Serializable {
      */
     public LambdaQueryWrapper<T> getQueryModel() {
 
-        return QueryUtils.builder(this);
+        return QueryUtils.builder(this.getFields());
     }
 
 }

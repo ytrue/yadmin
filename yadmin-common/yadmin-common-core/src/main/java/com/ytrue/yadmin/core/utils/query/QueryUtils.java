@@ -7,6 +7,8 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.ytrue.yadmin.core.excptions.MatchException;
 
+import java.util.List;
+
 /**
  * @author ytrue
  * @date 2022/4/20 17:16
@@ -22,17 +24,17 @@ public class QueryUtils<T> {
     /**
      * 构建查询
      *
-     * @param queryEntity
+     * @param fields
      * @return {@link LambdaQueryWrapper<T> }
      * @throws RuntimeException
      */
-    public static <T> LambdaQueryWrapper<T> builder(QueryEntity<T> queryEntity) throws RuntimeException {
+    public static <T> LambdaQueryWrapper<T> builder(List<Field> fields) throws RuntimeException {
 
         QueryWrapper<T> queryWrapper = new QueryWrapper<>();
 
         //要判断一下是否为空，不然会报空指针异常
-        if (CollUtil.isNotEmpty(queryEntity.getFields())) {
-            queryEntity.getFields().forEach(field -> {
+        if (CollUtil.isNotEmpty(fields)) {
+            fields.forEach(field -> {
 
                 //如果是字符串并且是空就不处理
                 if (field.getValue() instanceof String) {
@@ -40,7 +42,6 @@ public class QueryUtils<T> {
                         return;
                     }
                 }
-
                 //循环处理,后续这里使用map优化掉switch
                 switch (field.getType()) {
                     case eq:
@@ -51,6 +52,12 @@ public class QueryUtils<T> {
                         break;
                     case like:
                         queryWrapper.like(true, field.getColumn(), field.getValue());
+                        break;
+                    case likeLeft:
+                        queryWrapper.likeLeft(true, field.getColumn(), field.getValue());
+                        break;
+                    case likeRight:
+                        queryWrapper.likeRight(true, field.getColumn(), field.getValue());
                         break;
                     case betweenDate:
                         String[] arr = Convert.toStr(field.getValue()).split(",");
@@ -68,9 +75,6 @@ public class QueryUtils<T> {
             });
         }
 
-        if (!StrUtil.hasEmpty(queryEntity.getOrderField())) {
-            queryWrapper.orderBy(true, queryEntity.isAsc(), queryEntity.getOrderField());
-        }
         return queryWrapper.lambda();
     }
 }

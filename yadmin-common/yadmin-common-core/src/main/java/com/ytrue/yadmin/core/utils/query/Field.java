@@ -2,6 +2,8 @@ package com.ytrue.yadmin.core.utils.query;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 
 /**
  * @author ytrue
@@ -9,7 +11,9 @@ import lombok.Data;
  * @description 字段
  */
 @Data
-class Field {
+@Accessors(chain = true)
+@EqualsAndHashCode
+public class Field {
     /**
      * 字段
      */
