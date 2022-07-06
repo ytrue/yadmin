@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ytrue.yadmin.core.enums.ResponseCode;
 import com.ytrue.yadmin.core.utils.AssertUtils;
-import com.ytrue.yadmin.core.utils.query.QueryEntity;
+import com.ytrue.yadmin.tools.query.entity.QueryEntity;
 import com.ytrue.yadmin.modules.generator.dao.GenFieldTypeDao;
 import com.ytrue.yadmin.modules.generator.dao.GenTableFieldDao;
 import com.ytrue.yadmin.modules.generator.dao.GenTableInfoDao;

@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.ytrue.yadmin.core.enums.ResponseCode;
 import com.ytrue.yadmin.core.utils.ApiResultResponse;
 import com.ytrue.yadmin.core.utils.AssertUtils;
-import com.ytrue.yadmin.core.utils.query.QueryEntity;
+import com.ytrue.yadmin.tools.query.entity.QueryEntity;
 import com.ytrue.yadmin.modules.generator.model.GenBaseClass;
 import com.ytrue.yadmin.modules.generator.model.GenFieldType;
 import com.ytrue.yadmin.modules.generator.model.GenTableInfo;

@@ -2,7 +2,7 @@ package com.ytrue.yadmin.modules.generator.service.impl;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.ytrue.yadmin.core.utils.query.QueryEntity;
+import com.ytrue.yadmin.tools.query.entity.QueryEntity;
 import com.ytrue.yadmin.modules.generator.dao.GenBaseClassDao;
 import com.ytrue.yadmin.modules.generator.model.GenBaseClass;
 import com.ytrue.yadmin.modules.generator.service.GenBaseClassService;

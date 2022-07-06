@@ -1,11 +1,12 @@
-package com.ytrue.yadmin.core.utils.query;
+package com.ytrue.yadmin.tools.query.utils;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.ytrue.yadmin.core.excptions.MatchException;
+import com.ytrue.yadmin.tools.query.entity.Field;
+import com.ytrue.yadmin.tools.query.excption.MatchException;
 
 import java.util.List;
 

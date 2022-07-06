@@ -1,4 +1,4 @@
-package com.ytrue.yadmin.core.utils.query;
+package com.ytrue.yadmin.tools.query.enums;
 
 /**
  * @author ytrue

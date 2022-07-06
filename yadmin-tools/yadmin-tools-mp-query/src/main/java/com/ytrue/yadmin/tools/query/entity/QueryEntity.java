@@ -1,13 +1,11 @@
-package com.ytrue.yadmin.core.utils.query;
+package com.ytrue.yadmin.tools.query.entity;
 
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.metadata.OrderItem;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import com.ytrue.yadmin.tools.query.utils.QueryUtils;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -19,25 +17,35 @@ import java.util.List;
  * @description 查询条件实体
  */
 @Data
-@ApiModel(value = "查询实体")
 public class QueryEntity<T> implements Serializable {
 
 
     private static final long serialVersionUID = 6551142650282442009L;
 
-    @ApiModelProperty(value = "当前页码，默认是1")
+
+    /**
+     * 当前页码，默认是1
+     */
     private Integer currentPage = 1;
 
-    @ApiModelProperty(value = "当前页码，默认是10")
+    /**
+     * 当前页码，默认是10
+     */
     private Integer limit = 10;
 
-    @ApiModelProperty(value = "字段条件")
+    /**
+     * 字段条件
+     */
     private List<Field> fields;
 
-    @ApiModelProperty(value = "排序的字段")
+    /**
+     * 排序的字段
+     */
     private String orderField;
 
-    @ApiModelProperty(value = "是否是asc")
+    /**
+     * 是否是asc
+     */
     private boolean asc;
 
     /**

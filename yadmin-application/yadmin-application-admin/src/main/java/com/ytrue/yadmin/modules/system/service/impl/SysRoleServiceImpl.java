@@ -1,7 +1,7 @@
 package com.ytrue.yadmin.modules.system.service.impl;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.ytrue.yadmin.core.utils.query.QueryEntity;
+import com.ytrue.yadmin.tools.query.entity.QueryEntity;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ytrue.yadmin.modules.system.model.SysRole;
 import com.ytrue.yadmin.modules.system.dao.SysRoleDao;

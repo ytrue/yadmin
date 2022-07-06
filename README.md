@@ -13,10 +13,12 @@ yadmin-server                                # 后端代码
 │   └── yadmin-common-core                   # 基础库
 │   └── yadmin-common-db                     # 存放dao和model
 │  
-├── yadmin-tools                             # 工具库此模块
-│   └── yadmin-tools-document                # knife4j文档整合             
+├── yadmin-tools                             # 工具库-独立模块-该模块下大部分是启动器
+│
+│   └── yadmin-tools-document                # knife4j 文档整合             
 │   └── yadmin-tools-security                # spring security + jwt 安全
 │   └── yadmin-tools-log                     # 操作日志
+│   └── yadmin-tools-mp-query                # mybatis-plus 条件查询
 ```
 # 3.注意
 修改mapstruct 衍射的类 maven 要 clean

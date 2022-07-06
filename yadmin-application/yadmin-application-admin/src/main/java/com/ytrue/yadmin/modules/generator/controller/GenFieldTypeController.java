@@ -2,7 +2,7 @@ package com.ytrue.yadmin.modules.generator.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.ytrue.yadmin.core.utils.ApiResultResponse;
-import com.ytrue.yadmin.core.utils.query.QueryEntity;
+import com.ytrue.yadmin.tools.query.entity.QueryEntity;
 import com.ytrue.yadmin.modules.generator.model.GenDataSource;
 import com.ytrue.yadmin.modules.generator.model.GenFieldType;
 import com.ytrue.yadmin.modules.generator.service.GenFieldTypeService;

@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
  */
 @Slf4j
 @Configuration
-public class LogAutoConfiguration {
+public class LogAutoConfigurer {
 
     /**
      * 自动配置日志监听器组件

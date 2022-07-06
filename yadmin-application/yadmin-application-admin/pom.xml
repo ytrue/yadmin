@@ -38,11 +38,6 @@
         </dependency>
 
         <dependency>
-            <groupId>de.codecentric</groupId>
-            <artifactId>spring-boot-admin-starter-client</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>com.ytrue</groupId>
             <artifactId>yadmin-tools-security</artifactId>
             <version>0.0.1-SNAPSHOT</version>
@@ -53,6 +48,19 @@
             <artifactId>yadmin-tools-log</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.ytrue</groupId>
+            <artifactId>yadmin-tools-mp-query</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-starter-client</artifactId>
+        </dependency>
+
+
 
         <dependency>
             <groupId>org.freemarker</groupId>

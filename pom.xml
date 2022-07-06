@@ -20,6 +20,7 @@
 
         <module>yadmin-tools/yadmin-tools-document</module>
         <module>yadmin-tools/yadmin-tools-log</module>
+        <module>yadmin-tools/yadmin-tools-mp-query</module>
     </modules>
 
     <name>yadmin</name>

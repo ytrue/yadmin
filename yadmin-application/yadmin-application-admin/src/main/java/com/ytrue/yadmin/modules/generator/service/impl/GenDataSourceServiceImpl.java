@@ -6,7 +6,7 @@ import com.ytrue.yadmin.core.enums.DatabaseType;
 import com.ytrue.yadmin.core.enums.ResponseCode;
 import com.ytrue.yadmin.core.utils.AssertUtils;
 import com.ytrue.yadmin.core.utils.db.DbUtils;
-import com.ytrue.yadmin.core.utils.query.QueryEntity;
+import com.ytrue.yadmin.tools.query.entity.QueryEntity;
 import com.ytrue.yadmin.modules.generator.dao.GenDataSourceDao;
 import com.ytrue.yadmin.modules.generator.model.GenBaseClass;
 import com.ytrue.yadmin.modules.generator.model.GenDataSource;

@@ -1,7 +1,7 @@
 package ${package}<#if moduleName??>.${moduleName}</#if>.service.impl<#if subModuleName??>.${subModuleName}</#if>;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.ytrue.yadmin.core.utils.query.QueryEntity;
+import com.ytrue.yadmin.tools.query.entity.QueryEntity;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import ${package}<#if moduleName??>.${moduleName}</#if>.model<#if subModuleName??>.${subModuleName}</#if>.${ClassName};
 import ${package}<#if moduleName??>.${moduleName}</#if>.dao<#if subModuleName??>.${subModuleName}</#if>.${ClassName}Dao;

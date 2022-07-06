@@ -1,8 +1,8 @@
 package com.ytrue.yadmin.modules.generator.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.ytrue.yadmin.core.utils.query.Fields;
 import com.ytrue.yadmin.modules.generator.model.GenBaseClass;
+import com.ytrue.yadmin.tools.query.entity.Fields;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
