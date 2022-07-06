@@ -8,6 +8,7 @@ yadmin 基于springboot 开发后台
 yadmin-server                                # 后端代码
 ├── yadmin-application
 │   └── yadmin-application-admin             # 后台应用
+│   └── yadmin-application-monitor           # spring-boot-admin监控
 │
 ├── yadmin-common                            # 公共库
 │   └── yadmin-common-core                   # 基础库
