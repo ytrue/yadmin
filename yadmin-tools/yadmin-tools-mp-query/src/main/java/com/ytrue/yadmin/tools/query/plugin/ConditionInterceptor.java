@@ -1,10 +1,11 @@
 package com.ytrue.yadmin.tools.query.plugin;
 
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.lang.Assert;
 import cn.hutool.core.util.StrUtil;
 import com.ytrue.yadmin.tools.query.entity.Field;
 import com.ytrue.yadmin.tools.query.entity.Fields;
-import com.ytrue.yadmin.tools.query.excption.MatchException;
+import com.ytrue.yadmin.tools.query.enums.QueryMethod;
 import net.sf.jsqlparser.JSQLParserException;
 import net.sf.jsqlparser.expression.Expression;
 import net.sf.jsqlparser.expression.operators.conditional.AndExpression;
@@ -26,6 +27,7 @@ import org.apache.ibatis.reflection.SystemMetaObject;
 
 import java.io.StringReader;
 import java.sql.Connection;
+import java.util.HashMap;
 import java.util.HashSet;
 
 /**
@@ -40,6 +42,15 @@ public class ConditionInterceptor implements Interceptor {
 
     private final static String TARGET_DELEGATE_BOUNDS_SQL = "target.delegate.boundSql.sql";
     private final static String TARGET_DELEGATE_PARAMETERIZABLE_PARAMETERISED = "target.delegate.parameterHandler.parameterObject";
+    private static final HashMap<QueryMethod, AppendCondition> APPEND_CONDITION_MAP = new HashMap<>();
+
+    static {
+        APPEND_CONDITION_MAP.put(QueryMethod.eq, (stringBuffer, field) -> splicingString(stringBuffer, field, "="));
+        APPEND_CONDITION_MAP.put(QueryMethod.ne, (stringBuffer, field) -> splicingString(stringBuffer, field, "!="));
+        APPEND_CONDITION_MAP.put(QueryMethod.like, (stringBuffer, field) -> splicingString(stringBuffer, field, "LIKE", "'%", "%'"));
+        APPEND_CONDITION_MAP.put(QueryMethod.likeLeft, (stringBuffer, field) -> splicingString(stringBuffer, field, "LIKE", "'%", "'"));
+        APPEND_CONDITION_MAP.put(QueryMethod.likeRight, (stringBuffer, field) -> splicingString(stringBuffer, field, "LIKE", "'", "%'"));
+    }
 
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
@@ -193,30 +204,30 @@ public class ConditionInterceptor implements Interceptor {
         StringBuffer stringBuffer = new StringBuffer();
 
         fields.forEach(field -> {
-            //循环处理,后续这里使用map优化掉switch
-            switch (field.getType()) {
-                case eq:
-                    splicingString(stringBuffer, field, "=");
-                    break;
-                case ne:
-                    splicingString(stringBuffer, field, "!=");
-                    break;
-                case like:
-                    splicingString(stringBuffer, field, "LIKE", "'%", "%'");
-                    break;
-                case likeLeft:
-                    splicingString(stringBuffer, field, "LIKE", "'%", "'");
-                    break;
-                case likeRight:
-                    splicingString(stringBuffer, field, "LIKE", "'", "%'");
-                    break;
-                default:
-                    throw new MatchException("非法操作");
-            }
+            // 进行匹配
+            AppendCondition appendCondition = APPEND_CONDITION_MAP.get(field.getType());
+            Assert.notNull(appendCondition, "类型匹配错误");
+            appendCondition.append(stringBuffer, field);
+
         });
         //删除前面的 and
         String s = stringBuffer.toString();
         return s.substring(5);
+    }
+
+
+    /**
+     * 条件拼接
+     */
+    @FunctionalInterface
+    private interface AppendCondition {
+        /**
+         * 追加条件
+         *
+         * @param stringBuffer
+         * @param field
+         */
+        void append(StringBuffer stringBuffer, Field field);
     }
 
     /**
@@ -226,7 +237,7 @@ public class ConditionInterceptor implements Interceptor {
      * @param field
      * @param type
      */
-    private void splicingString(StringBuffer stringBuffer, Field field, String type) {
+    private static void splicingString(StringBuffer stringBuffer, Field field, String type) {
         splicingString(stringBuffer, field, type, "", "");
     }
 
@@ -239,7 +250,7 @@ public class ConditionInterceptor implements Interceptor {
      * @param prefixString
      * @param suffixString
      */
-    private void splicingString(StringBuffer stringBuffer, Field field, String type, String prefixString, String suffixString) {
+    private static void splicingString(StringBuffer stringBuffer, Field field, String type, String prefixString, String suffixString) {
         stringBuffer.append(" and ");
         stringBuffer.append(field.getColumn());
         stringBuffer.append(" ");
