@@ -9,7 +9,7 @@ yadmin-server                                # 后端代码
 ├── yadmin-application
 │   └── yadmin-application-monitor           # spring-boot-admin监控
 │   └── yadmin-application-admin             # 后台应用
-│       └── modules
+│       └── modules                          # 后台应用模块
 │           └── generator                    # 代码生成器模块
 │           └── quartz                       # 定时任务模块
 │           └── system                       # 后台rbac模块
