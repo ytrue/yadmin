@@ -16,7 +16,7 @@ yadmin-server                                # 后端代码
 ├── yadmin-common                            # 公共库
 │   └── yadmin-common-core                   # 基础库
 │   └── yadmin-common-db                     # 存放dao和model
-├── yadmin-tools                             # 工具库-独立模块-该模块下大部分是启动器
+├── yadmin-tools                             # 工具库-独立模块
 │   └── yadmin-tools-document                # knife4j 文档整合             
 │   └── yadmin-tools-security                # spring security + jwt 安全
 │   └── yadmin-tools-log                     # 操作日志

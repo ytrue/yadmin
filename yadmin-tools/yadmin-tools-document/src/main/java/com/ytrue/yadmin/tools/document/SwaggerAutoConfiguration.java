@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -35,6 +36,7 @@ import java.util.stream.Collectors;
  * @description Swagger自动配置类
  */
 @Configurable
+@ConditionalOnWebApplication
 @EnableSwagger2WebMvc
 @EnableConfigurationProperties(SwaggerProperties.class)
 @ConditionalOnProperty(name = "ytrue.document.enabled", havingValue = "true", matchIfMissing = true)

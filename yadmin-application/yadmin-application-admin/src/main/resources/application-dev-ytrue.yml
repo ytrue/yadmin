@@ -34,6 +34,10 @@ ytrue:
         title: 权限管理
         base-package: com.ytrue.yadmin.modules.system
         path-regex: /system.*
+      quartz:
+        title: 定时任务
+        base-package: com.ytrue.yadmin.modules.quartz
+
 
   # 安全配置
   security:

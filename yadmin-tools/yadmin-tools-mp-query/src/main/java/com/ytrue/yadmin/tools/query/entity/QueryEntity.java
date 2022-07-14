@@ -1,15 +1,14 @@
 package com.ytrue.yadmin.tools.query.entity;
 
 import cn.hutool.core.collection.CollUtil;
-import cn.hutool.core.convert.Convert;
 import cn.hutool.core.lang.Assert;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.core.metadata.OrderItem;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ytrue.yadmin.tools.query.enums.QueryMethod;
+import com.ytrue.yadmin.tools.query.utils.EmptyUtils;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -70,14 +69,7 @@ public class QueryEntity<T> implements Serializable {
      * @return {@link IPage<T>}
      */
     public IPage<T> getPage() {
-        IPage<T> page = new Page<>(currentPage, limit);
-        if (!StrUtil.hasEmpty(orderField)) {
-            OrderItem orderItem = new OrderItem();
-            orderItem.setAsc(asc);
-            orderItem.setColumn(orderField);
-            page.orders().add(orderItem);
-        }
-        return page;
+        return new Page<>(currentPage, limit);
     }
 
 
@@ -90,12 +82,12 @@ public class QueryEntity<T> implements Serializable {
         return queryWrapperBuilder(this.getFields()).lambda();
     }
 
-
     /**
-     * 日期数组的长度
+     * QueryWrapper 构建
+     *
+     * @param fields
+     * @return
      */
-    private static final int ARRAY_LENGTH = 2;
-
     public QueryWrapper<T> queryWrapperBuilder(List<Field> fields) {
 
         QueryWrapper<T> queryWrapper = new QueryWrapper<>();
@@ -103,20 +95,20 @@ public class QueryEntity<T> implements Serializable {
         //要判断一下是否为空，不然会报空指针异常
         if (CollUtil.isNotEmpty(fields)) {
             fields.forEach(field -> {
-
-                //如果是字符串并且是空就不处理
-                if (field.getValue() instanceof String) {
-                    if (StrUtil.hasBlank((Convert.toStr(field.getValue())))) {
-                        return;
-                    }
+                //如果是空就不处理
+                if (EmptyUtils.isEmpty(field.getValue())) {
+                    return;
                 }
                 // 进行匹配
-                AppendQueryWrapper appendQueryWrapper = APPEND_QUERY_WRAPPER_MAP.get(field.getType());
+                AppendQueryWrapper appendQueryWrapper = APPEND_QUERY_WRAPPER_MAP.get(field.getCondition());
                 Assert.notNull(appendQueryWrapper, "类型匹配错误");
                 appendQueryWrapper.append(queryWrapper, field);
             });
         }
 
+        if (!StrUtil.hasEmpty(orderField)) {
+            queryWrapper.orderBy(true, asc, orderField);
+        }
         return queryWrapper;
     }
 

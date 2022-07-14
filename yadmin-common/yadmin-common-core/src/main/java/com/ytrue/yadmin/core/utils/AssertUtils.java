@@ -14,7 +14,7 @@ public class AssertUtils {
 
 
     /**
-     * 断言对象不为空
+     * 笃定 object 一定不为空
      *
      * @param object
      * @param responseCode
@@ -26,7 +26,7 @@ public class AssertUtils {
     }
 
     /**
-     * 断言对象为空
+     * 笃定 object 一定为空
      *
      * @param object
      * @param responseCode
@@ -39,7 +39,7 @@ public class AssertUtils {
 
 
     /**
-     * 字符串判断是否相等
+     * 笃定 字符串value 和 expect 一定相等
      *
      * @param value
      * @param expect
@@ -47,6 +47,19 @@ public class AssertUtils {
      */
     public static void strEq(String value, String expect, BaseExceptionCode responseCode) {
         if (!value.equals(expect)) {
+            reportInvalidArgument(responseCode);
+        }
+    }
+
+    /**
+     * 笃定 value 一定小于 limit
+     *
+     * @param value
+     * @param limit
+     * @param responseCode
+     */
+    public static void lessThanEq(Long value, Long limit, BaseExceptionCode responseCode) {
+        if (value > limit) {
             reportInvalidArgument(responseCode);
         }
     }

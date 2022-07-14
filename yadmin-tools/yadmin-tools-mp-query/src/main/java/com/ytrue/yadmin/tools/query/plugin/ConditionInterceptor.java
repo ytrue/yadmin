@@ -205,7 +205,7 @@ public class ConditionInterceptor implements Interceptor {
 
         fields.forEach(field -> {
             // 进行匹配
-            AppendCondition appendCondition = APPEND_CONDITION_MAP.get(field.getType());
+            AppendCondition appendCondition = APPEND_CONDITION_MAP.get(field.getCondition());
             Assert.notNull(appendCondition, "类型匹配错误");
             appendCondition.append(stringBuffer, field);
 

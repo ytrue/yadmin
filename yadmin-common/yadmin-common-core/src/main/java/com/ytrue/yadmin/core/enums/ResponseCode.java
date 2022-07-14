@@ -22,7 +22,8 @@ public enum ResponseCode implements BaseExceptionCode {
     ONLY_SUPPORT_MYSQL(5005, "目前只支持MySQL"),
     TEMPLATE_NOT_FOUND(5004, "模板配置文件，config.json不存在"),
     READ_CONFIG_ERROR(5004, "读取config.json配置文件失败"),
-    TABLE_EXISTS(50002, "数据表已存在"),
+    TABLE_EXISTS(5005, "数据表已存在"),
+    SCHEDULED_TASK_EXISTS(5006, "定时任务已存在"),
 
     UNKNOWN(50001, "未知异常");
 

@@ -4,22 +4,16 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.ytrue.yadmin.core.enums.ResponseCode;
 import com.ytrue.yadmin.core.utils.ApiResultResponse;
 import com.ytrue.yadmin.core.utils.AssertUtils;
-
-import com.ytrue.yadmin.modules.generator.dao.GenBaseClassDao;
 import com.ytrue.yadmin.modules.generator.model.GenBaseClass;
 import com.ytrue.yadmin.modules.generator.service.GenBaseClassService;
 import com.ytrue.yadmin.tools.log.annotation.SysLog;
-import com.ytrue.yadmin.tools.query.entity.Field;
-import com.ytrue.yadmin.tools.query.entity.Fields;
 import com.ytrue.yadmin.tools.query.entity.QueryEntity;
-import com.ytrue.yadmin.tools.query.enums.QueryMethod;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -36,48 +30,6 @@ import java.util.List;
 public class GenBaseClassController {
 
     private final GenBaseClassService genBaseClassService;
-    private final GenBaseClassDao genBaseClassDao;
-
-
-    @GetMapping("test")
-    @ApiOperation("测试")
-    public void test() {
-
-
-        Field field = new Field();
-        field.setColumn("id");
-        field.setType(QueryMethod.eq);
-        field.setValue(1);
-
-        Field field1 = new Field();
-        field1.setColumn("id");
-        field1.setType(QueryMethod.likeRight);
-        field1.setValue(1);
-
-        Field field2 = new Field();
-        field2.setColumn("code");
-        field2.setType(QueryMethod.likeLeft);
-        field2.setValue(1);
-
-        Field field3 = new Field();
-        field3.setColumn("code");
-        field3.setType(QueryMethod.like);
-        field3.setValue(2);
-
-        ArrayList<Field> list = new ArrayList<>();
-        list.add(field);
-        list.add(field1);
-        list.add(field2);
-        list.add(field3);
-
-
-        Fields fields = new Fields();
-        fields.setFields(list);
-
-
-        genBaseClassDao.queryAll(fields, fields, 1);
-    }
-
 
     @SysLog
     @PostMapping("page")

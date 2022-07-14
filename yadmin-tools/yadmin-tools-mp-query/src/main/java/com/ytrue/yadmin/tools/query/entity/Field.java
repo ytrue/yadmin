@@ -20,12 +20,12 @@ public class Field {
     private String column;
 
     /**
-     * 内容 ,一般是 string和int
+     * 内容 ,一般是 string 和 int, array
      */
     private Object value;
 
     /**
-     * 类型
+     * 条件
      */
-    private QueryMethod type;
+    private QueryMethod condition;
 }
