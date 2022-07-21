@@ -25,7 +25,6 @@ public class SysRoleMenu implements Serializable {
 
     private static final long serialVersionUID = -4661231521690339037L;
     @TableId
-    @TableField("id")
     private Long id;
 
 

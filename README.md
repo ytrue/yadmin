@@ -1,6 +1,7 @@
 # 1.简介
 
-yadmin 基于springboot 开发后台
+后端 yadmin 基于springboot 开发后台<br>
+前端 yadmin 基于vue3 + ts + element plus 开发
 
 # 2. 目录结构
 
@@ -24,3 +25,5 @@ yadmin-server                                # 后端代码
 ```
 # 3.注意
 修改mapstruct 衍射的类 maven 要 clean
+# 4.截图
+![image-01](https://php-yangyi-images.oss-cn-shenzhen.aliyuncs.com/yadmin-docs/01.jpg)

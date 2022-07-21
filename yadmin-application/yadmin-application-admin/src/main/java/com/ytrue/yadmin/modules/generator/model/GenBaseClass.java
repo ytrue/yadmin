@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.ytrue.yadmin.core.annotation.ApiModelEnumProperty;
+import com.ytrue.yadmin.core.annotation.EnumValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -24,7 +26,6 @@ public class GenBaseClass {
 
 
     @TableId
-    @TableField("id")
     @ApiModelProperty(value = "id", required = true)
     private Long id;
 

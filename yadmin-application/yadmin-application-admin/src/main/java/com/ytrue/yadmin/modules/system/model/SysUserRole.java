@@ -25,7 +25,6 @@ public class SysUserRole implements Serializable {
 
     private static final long serialVersionUID = 7373142138958749506L;
     @TableId
-    @TableField("id")
     private Long id;
 
 

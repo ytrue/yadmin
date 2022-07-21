@@ -25,7 +25,6 @@ public class GenTableInfo  implements Serializable {
 
     private static final long serialVersionUID = 5844494419588333242L;
     @TableId
-    @TableField("id")
     @ApiModelProperty(value = "id", required = true)
     private Long id;
 

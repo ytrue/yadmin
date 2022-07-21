@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 
 /**
  * @author ytrue
@@ -86,10 +87,9 @@ public class ScheduleJobServiceImpl extends ServiceImpl<ScheduleJobDao, Schedule
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void updateBatch(Long[] jobIds, int status) {
-        for (Long jobId : jobIds) {
-            scheduleJobDao.updateById(new ScheduleJob().setStatus(status).setId(jobId));
-        }
+        Arrays.asList(jobIds).forEach(jobId -> scheduleJobDao.updateById(new ScheduleJob().setStatus(status).setId(jobId)));
     }
 
     @Override

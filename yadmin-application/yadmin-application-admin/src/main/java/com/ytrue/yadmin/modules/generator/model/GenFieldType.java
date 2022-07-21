@@ -26,7 +26,6 @@ public class GenFieldType implements Serializable {
 
 	private static final long serialVersionUID = 6837054471436385670L;
 	@TableId
-	@TableField("id")
 	@ApiModelProperty(value = "id", required = true)
 	private Long id;
 

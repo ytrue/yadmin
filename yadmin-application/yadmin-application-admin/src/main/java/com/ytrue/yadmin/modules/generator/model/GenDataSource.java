@@ -25,7 +25,6 @@ public class GenDataSource implements Serializable {
 
     private static final long serialVersionUID = 8599780725997944971L;
     @TableId
-    @TableField("id")
     @ApiModelProperty(value = "id", required = true)
     private Long id;
 

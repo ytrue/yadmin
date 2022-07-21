@@ -32,8 +32,9 @@ public class ${ClassName}<#if baseClassEntity??> extends ${baseClassEntity.code}
 
     <#if column.isPk>
     @TableId
-    </#if>
+    <#else >
     @TableField("${column.columnName}")
+    </#if>
     <#if column.columnComment!?length gt 0>
     @ApiModelProperty(value = "${column.columnComment}")
     </#if>
