@@ -50,8 +50,12 @@ public class QueryEntity<T> implements Serializable {
     /**
      * 是否是asc
      */
-    private boolean asc;
+    private Boolean asc;
 
+    /**
+     * Column 小驼峰转下划线,默认开启
+     */
+    private Boolean columnToUnderline = true;
 
     private static final HashMap<QueryMethod, AppendQueryWrapper> APPEND_QUERY_WRAPPER_MAP = new HashMap<>();
 
@@ -70,8 +74,8 @@ public class QueryEntity<T> implements Serializable {
      */
     public IPage<T> getPage() {
         return new Page<>(currentPage, limit);
-    }
 
+    }
 
     /**
      * 获得 QueryWrapper
@@ -99,6 +103,12 @@ public class QueryEntity<T> implements Serializable {
                 if (EmptyUtils.isEmpty(field.getValue())) {
                     return;
                 }
+
+                // 处理小驼峰转下划线
+                if (columnToUnderline) {
+                    field.setColumn(StrUtil.toUnderlineCase(field.getColumn()));
+                }
+
                 // 进行匹配
                 AppendQueryWrapper appendQueryWrapper = APPEND_QUERY_WRAPPER_MAP.get(field.getCondition());
                 Assert.notNull(appendQueryWrapper, "类型匹配错误");
